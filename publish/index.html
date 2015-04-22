@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Apache Parquet</title>
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		    <meta name="description" content="">
+		    <meta name="author" content="">
+
+		    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+		    <link href="/assets/css/bootstrap-theme.css" rel="stylesheet">
+                    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+				
+		    <!-- JS -->
+		    <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
+		    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+				<!-- Analytics -->
+				<script type="text/javascript">
+					  var _gaq = _gaq || [];
+					  _gaq.push(['_setAccount', 'UA-39101739-5']);
+					  _gaq.push(['_setDomainName', 'apache.org']);
+					  _gaq.push(['_trackPageview']);
+
+					  (function() {
+					    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+					    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					  })();
+				</script>
+	</head>
+    <body>	
+      <div class="navbar navbar-custom navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="img-responsive pull-left" href="/">
+	   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+	   </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+			<li><a href="/documentation/latest/">Documentation</a></li>
+		    <li><a href="/downloads">Download</a></li>
+			<li><a href="/presentations">Presentations</a></li>
+			<li><a href="/adopters">Adopters</a></li>
+            <li class="dropdown">
+              <a href="/community">Get Involved <span class="caret"></span></a>
+			                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/incubator-parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+			                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+			               </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<!--
+<div class="navbar navbar-custom navbar-static-top">
+  <div class="navbar-header">
+    <a class="img-responsive pull-left" href="/">
+   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+   </a>
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+	<li><a href="/documentation/latest/">Documentation</a></li>
+    <li><a href="/downloads">Download</a></li>
+	<li><a href="/presentations">Presentations</a></li>
+	<li><a href="/adopters">Adopters</a></li>
+        <li class="dropdown">
+        	<a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/incubator-parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+               </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+<hr />
+</div>
+-->
+
+
+<div class="container">
+<!-- magical breadcrumbs -->
+<ol class="breadcrumb">
+  <li>
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apache Software Foundation <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="http://www.apache.org">Apache Homepage</a></li>
+        <li><a href="http://www.apache.org/licenses/">Apache License</a></li>
+        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>  
+        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+        <li><a href="http://www.apache.org/security/">Security</a></li>
+      </ul>
+    </div>
+  </li>
+  <li><a href="http://incubator.apache.org">Apache Incubator</a></li>
+  <li><a href="http://parquet.incubator.apache.org">Apache Parquet</a></li>
+</ol>
+<!-- /breadcrumb -->
+	
+      <div class="container">
+        <!-- masthead -->
+
+<div class="masthead">
+    <div class="jumbotron">
+      <div>
+        <p class="lead">Apache Parquet is a <a href="http://en.wikipedia.org/wiki/Column-oriented_DBMS">columnar storage</a> format available to any project in the Hadoop ecosystem, regardless of the choice of data processing framework, data model or programming language.</p>
+      </div>
+    </div>
+</div><!-- /masthead -->
+
+<!-- overviewsection -->
+<div class="row">
+            <div class="col-lg-6">
+             <h3>Parquet Videos (more <a href="/presentations">presentations</a>)</h3>
+            <iframe width="460" height="315" src="//www.youtube.com/embed/MZNjmfx4LMc" frameborder="0" allowfullscreen></iframe>
+        </div>
+            <div class="col-lg-6">
+                <h3>News</h3>
+        <p>
+                <a class="twitter-timeline" href="https://twitter.com/ApacheParquet" data-widget-id="487276069435633664">Tweets by @ApacheParquet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </p>
+            </div>
+
+</div>
+
+	  </div>
+      <div class="container">
+    <hr>
+    <footer class="footer">
+        <div class="row-fluid">
+            <div class="span12 text-left">
+							<div class="span12">
+                Copyright 2014 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation. Currently part of the <a href="http://incubator.apache.org">Apache Incubator</a>.
+							</div>
+            </div>
+
+        </div>
+
+    </footer>
+</div>
+
+	</body>
+</html>
+

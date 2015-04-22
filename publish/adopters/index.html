@@ -1,0 +1,173 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Apache Parquet</title>
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		    <meta name="description" content="">
+		    <meta name="author" content="">
+
+		    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+		    <link href="/assets/css/bootstrap-theme.css" rel="stylesheet">
+                    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+				
+		    <!-- JS -->
+		    <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
+		    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+				<!-- Analytics -->
+				<script type="text/javascript">
+					  var _gaq = _gaq || [];
+					  _gaq.push(['_setAccount', 'UA-39101739-5']);
+					  _gaq.push(['_setDomainName', 'apache.org']);
+					  _gaq.push(['_trackPageview']);
+
+					  (function() {
+					    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+					    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+					  })();
+				</script>
+	</head>
+    <body>	
+      <div class="navbar navbar-custom navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="img-responsive pull-left" href="/">
+	   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+	   </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+			<li><a href="/documentation/latest/">Documentation</a></li>
+		    <li><a href="/downloads">Download</a></li>
+			<li><a href="/presentations">Presentations</a></li>
+			<li><a href="/adopters">Adopters</a></li>
+            <li class="dropdown">
+              <a href="/community">Get Involved <span class="caret"></span></a>
+			                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/incubator-parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+			                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+			               </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<!--
+<div class="navbar navbar-custom navbar-static-top">
+  <div class="navbar-header">
+    <a class="img-responsive pull-left" href="/">
+   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+   </a>
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+	<li><a href="/documentation/latest/">Documentation</a></li>
+    <li><a href="/downloads">Download</a></li>
+	<li><a href="/presentations">Presentations</a></li>
+	<li><a href="/adopters">Adopters</a></li>
+        <li class="dropdown">
+        	<a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/incubator-parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+               </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+<hr />
+</div>
+-->
+
+
+<div class="container">
+<!-- magical breadcrumbs -->
+<ol class="breadcrumb">
+  <li>
+    <div class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apache Software Foundation <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="http://www.apache.org">Apache Homepage</a></li>
+        <li><a href="http://www.apache.org/licenses/">Apache License</a></li>
+        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>  
+        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks</a></li>
+        <li><a href="http://www.apache.org/security/">Security</a></li>
+      </ul>
+    </div>
+  </li>
+  <li><a href="http://incubator.apache.org">Apache Incubator</a></li>
+  <li><a href="http://parquet.incubator.apache.org">Apache Parquet</a></li>
+</ol>
+<!-- /breadcrumb -->
+	
+      <div class="container">
+        <h1 id="adopters">Adopters</h1>
+
+<p>Please feel free to add yourself to the list by <a href="https://twitter.com/apacheparquet">tweeting at us</a> or opening up an <a href="https://issues.apache.org/jira/browse/parquet">issue</a> and linking to a tweet.</p>
+
+<p>This list is in alphabetical order.</p>
+
+<h3 id="cloudera-impala">Cloudera Impala</h3>
+
+<blockquote class="twitter-tweet" lang="en"><p>We shipped Impala 0.7 (<a href="http://t.co/wxuV0wYShk">http://t.co/wxuV0wYShk</a>) - a whole ton of great new features including DDL, Parquet support and partitioned joins!</p>&mdash; Henry Robinson (@HenryR) <a href="https://twitter.com/HenryR/statuses/324222874011451392">April 16, 2013</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h3 id="criteo">Criteo</h3>
+
+<blockquote class="twitter-tweet" lang="en"><p>Parquet: Efficient Columnar Storage for Apache <a href="https://twitter.com/hashtag/Hadoop?src=hash">#Hadoop</a> <a href="http://t.co/He1xyv6NC3">http://t.co/He1xyv6NC3</a> via <a href="https://twitter.com/cloudera">@cloudera</a> - <a href="https://twitter.com/hashtag/Criteo?src=hash">#Criteo</a> R&amp;D very happy to contribute!</p>&mdash; Julien SIMON (@julsimon) <a href="https://twitter.com/julsimon/statuses/312114074911666177">March 14, 2013</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="salesforce">Salesforce</h2>
+
+<blockquote class="twitter-tweet" lang="en"><p>&ldquo;<a href="https://twitter.com/ParquetFormat">@ParquetFormat</a> at <a href="http://t.co/lro7m7quuc">http://t.co/lro7m7quuc</a>&rdquo; <a href="http://t.co/IFskqF0FP3">http://t.co/IFskqF0FP3</a> via <a href="https://twitter.com/cloudera">@cloudera</a></p>&mdash; Twitter Open Source (@TwitterOSS) <a href="https://twitter.com/TwitterOSS/statuses/392734610116726784">October 22, 2013</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="stripe">Stripe</h2>
+
+<blockquote class="twitter-tweet" lang="en"><p>We&rsquo;re moving basically all of our archival data at <a href="https://twitter.com/stripe">@stripe</a> into <a href="https://twitter.com/ParquetFormat">@ParquetFormat</a>, and I&rsquo;m super pleased with how well it&rsquo;s working out.</p>&mdash; Avi Bryant (@avibryant) <a href="https://twitter.com/avibryant/statuses/391339949250715648">October 18, 2013</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="twitter">Twitter</h2>
+
+<blockquote class="twitter-tweet" lang="en"><p>Converting some data to Parquet on the Twitter clusters. I&rsquo;m seeing a 28% space saving thanks to the compressibility of the column layout.</p>&mdash; Julien Le Dem (@J_) <a href="https://twitter.com/J_/statuses/315844725611581441">March 24, 2013</a></blockquote>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+	  </div>
+      <div class="container">
+    <hr>
+    <footer class="footer">
+        <div class="row-fluid">
+            <div class="span12 text-left">
+							<div class="span12">
+                Copyright 2014 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation. Currently part of the <a href="http://incubator.apache.org">Apache Incubator</a>.
+							</div>
+            </div>
+
+        </div>
+
+    </footer>
+</div>
+
+	</body>
+</html>
+
