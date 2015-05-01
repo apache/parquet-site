@@ -52,7 +52,7 @@
 			                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/incubator-parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
 								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
@@ -80,7 +80,7 @@
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/incubator-parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
@@ -110,8 +110,7 @@
       </ul>
     </div>
   </li>
-  <li><a href="http://incubator.apache.org">Apache Incubator</a></li>
-  <li><a href="http://parquet.incubator.apache.org">Apache Parquet</a></li>
+  <li><a href="http://parquet.apache.org">Apache Parquet</a></li>
 </ol>
 <!-- /breadcrumb -->
 	
@@ -120,26 +119,26 @@
 
 <h2 id="pull-requests">Pull Requests</h2>
 
-<p>We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the <a href="https://github.com/apache/incubator-parquet-mr">github.com/apache/incubator-parquet-mr</a> repository. If you&rsquo;ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to <a href="https://github.com/apache/incubator-parquet-mr.git">https://github.com/apache/incubator-parquet-mr.git</a>
+<p>We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the <a href="https://github.com/apache/parquet-mr">github.com/apache/parquet-mr</a> repository. If you&rsquo;ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to <a href="https://github.com/apache/incubator-parquet-mr.git">https://github.com/apache/incubator-parquet-mr.git</a>
 Here are a few tips to get your contribution in:</p>
 
 <ol>
 <li>Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.</li>
 <li>Create a JIRA for your patch on the <a href="https://issues.apache.org/jira/browse/PARQUET">Parquet Project JIRA</a>.</li>
-<li>Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the JIRA name (ex: <a href="https://github.com/apache/incubator-parquet-mr/pull/5">https://github.com/apache/incubator-parquet-mr/pull/5</a>).</li>
+<li>Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the JIRA name (ex: <a href="https://github.com/apache/parquet-mr/pull/5">https://github.com/apache/parquet-mr/pull/5</a>).</li>
 <li>Make sure that your code passes the unit tests. You can run the tests with <code>mvn test</code> in the root directory. </li>
 <li>Add new unit tests for your code. </li>
 </ol>
 
-<p>If you’d like to report a bug but don’t have time to fix it, you can still post it to our <a href="https://issues.apache.org/jira/browse/PARQUET">issue tracker</a>, or email the mailing list (<a href="mailto:dev@parquet.incubator.apache.org">dev@parquet.incubator.apache.org</a>).</p>
+<p>If you’d like to report a bug but don’t have time to fix it, you can still post it to our <a href="https://issues.apache.org/jira/browse/PARQUET">issue tracker</a>, or email the mailing list (<a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org</a>).</p>
 
 <h2 id="committers">Committers</h2>
 
 <p>Merging a pull request requires being a comitter on the project.</p>
 
 <p>How to merge a Pull request (have an apache and github-apache remote setup):</p>
-<pre class="highlight text">git remote add github-apache git@github.com:apache/incubator-parquet-mr.git
-git remote add apache https://git-wip-us.apache.org/repos/asf/incubator-parquet-mr.git
+<pre class="highlight text">git remote add github-apache git@github.com:apache/parquet-mr.git
+git remote add apache https://git-wip-us.apache.org/repos/asf/parquet-mr.git
 </pre>
 <p>run the following command</p>
 <pre class="highlight text">dev/merge_parquet_pr.py
@@ -147,17 +146,17 @@ git remote add apache https://git-wip-us.apache.org/repos/asf/incubator-parquet-
 <p>example output:</p>
 <pre class="highlight text">Which pull request would you like to merge? (e.g. 34):
 </pre>
-<p>Type the pull request number (from <a href="https://github.com/apache/incubator-parquet-mr/pulls">https://github.com/apache/incubator-parquet-mr/pulls</a>) and hit enter.</p>
+<p>Type the pull request number (from <a href="https://github.com/apache/parquet-mr/pulls">https://github.com/apache/parquet-mr/pulls</a>) and hit enter.</p>
 <pre class="highlight text">=== Pull Request #X ===
 title   Blah Blah Blah
 source  repo/branch
 target  master
-url https://api.github.com/repos/apache/incubator-parquet-mr/pulls/X
+url https://api.github.com/repos/apache/parquet-mr/pulls/X
 
 Proceed with merging pull request #3? (y/n): 
 </pre>
 <p>If this looks good, type y and hit enter.</p>
-<pre class="highlight text">From git-wip-us.apache.org:/repos/asf/incubator-parquet-mr.git
+<pre class="highlight text">From git-wip-us.apache.org:/repos/asf/parquet-mr.git
 * [new branch]      master     -&gt; PR_TOOL_MERGE_PR_3_MASTER
 Switched to branch &#39;PR_TOOL_MERGE_PR_3_MASTER&#39;
 
@@ -169,7 +168,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (26/26), done.
 Writing objects: 100% (36/36), 5.32 KiB, done.
 Total 36 (delta 17), reused 0 (delta 0)
-To git-wip-us.apache.org:/repos/asf/incubator-parquet-mr.git
+To git-wip-us.apache.org:/repos/asf/parquet-mr.git
    b767ac4..485658a  PR_TOOL_MERGE_PR_X_MASTER -&gt; master
 Restoring head pointer to b767ac4e
 Note: checking out &#39;b767ac4e&#39;.
@@ -204,7 +203,7 @@ bundle install
 <h3 id="checking-out-the-website">Checking out the website</h3>
 
 <p>Checkout the website from SVN:</p>
-<pre class="highlight text">svn co https://svn.apache.org/repos/asf/incubator/parquet
+<pre class="highlight text">svn co https://svn.apache.org/repos/asf/parquet
 </pre>
 <h3 id="make-changes-in-source/">Make changes in source/</h3>
 
@@ -239,7 +238,7 @@ the live site. </p>
         <div class="row-fluid">
             <div class="span12 text-left">
 							<div class="span12">
-                Copyright 2014 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation. Currently part of the <a href="http://incubator.apache.org">Apache Incubator</a>.
+                Copyright 2014 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation.
 							</div>
             </div>
 
