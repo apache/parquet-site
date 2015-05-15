@@ -126,6 +126,8 @@
 <p>Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:</p>
 <pre class="highlight text">mvn deploy
 </pre>
+<p>If you have problems, read the <a href="https://www.apache.org/dev/publishing-maven-artifacts.html">publishing Maven artifacts documentation</a></p>
+
 <h3 id="release-process">Release process</h3>
 
 <p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.</p>
@@ -163,7 +165,7 @@
 <li>Go to <a href="https://repository.apache.org/">Nexus</a>.</li>
 <li>In the menu on the left, choose &ldquo;Staging Repositories&rdquo;.</li>
 <li>Select the Parquet repository.</li>
-<li>At the top, click &ldquo;Close&rdquo;.</li>
+<li>At the top, click &ldquo;Close&rdquo; and follow the instructions. For the comment use &ldquo;Apache Parquet [Format] <VERSION> <RC>&rdquo;.</li>
 </ol>
 
 <h4 id="4.-run-the-source-tarball-script">4. Run the source tarball script</h4>
@@ -171,31 +173,31 @@
 </pre>
 <p>This script builds the source tarball from the release tag&rsquo;s SHA1, signs it, and uploads the necessary files with SVN.</p>
 
-<p>The source release is pushed to <a href="https://dist.apache.org/repos/dist/dev/incubator/parquet/">https://dist.apache.org/repos/dist/dev/incubator/parquet/</a></p>
+<p>The source release is pushed to <a href="https://dist.apache.org/repos/dist/dev/parquet/">https://dist.apache.org/repos/dist/dev/parquet/</a></p>
 
 <p>The last message from the script is the release commit&rsquo;s SHA1 hash and URL for the VOTE e-mail.</p>
 
-<h4 id="5.-send-a-vote-e-mail-to-dev@parquet.incubator.apache.org">5. Send a VOTE e-mail to <a href="mailto:dev@parquet.incubator.apache.org">dev@parquet.incubator.apache.org</a></h4>
+<h4 id="5.-send-a-vote-e-mail-to-dev@parquet.apache.org">5. Send a VOTE e-mail to <a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org</a></h4>
 
 <p>Here is a template you can use. Make sure everything applies to your release.</p>
-<pre class="highlight text">Subject: Release Apache Parquet Format (Incubating) &lt;VERSION&gt; RC&lt;NUM&gt;
+<pre class="highlight text">Subject: [VOTE] Release Apache Parquet &lt;VERSION&gt; RC&lt;NUM&gt;
 </pre><pre class="highlight text">Hi everyone,
 
 I propose the following RC to be released as official Apache Parquet &lt;VERSION&gt; release.
 
 The commit id is &lt;SHA1&gt;
-* This corresponds to the tag: apache-parquet-format-&lt;VERSION&gt;
-* https://github.com/apache/incubator-parquet-format/tree/&lt;SHA1&gt;
-* https://git-wip-us.apache.org/repos/asf/incubator/repo?p=incubator-parquet-format.git&amp;a=commit&amp;h=&lt;SHA1&gt;
+* This corresponds to the tag: apache-parquet-&lt;VERSION&gt;
+* https://github.com/apache/parquet-format/tree/&lt;SHA1&gt;
+* https://git-wip-us.apache.org/repos/asf/projects/repo?p=parquet-mr.git&amp;a=commit&amp;h=&lt;SHA1&gt;
 
 The release tarball, signature, and checksums are here:
-* https://dist.apache.org/repos/dist/dev/incubator/parquet/&lt;PATH&gt;
+* https://dist.apache.org/repos/dist/dev/parquet/&lt;PATH&gt;
 
 You can find the KEYS file here:
-* https://dist.apache.org/repos/dist/dev/incubator/parquet/KEYS
+* https://dist.apache.org/repos/dist/dev/parquet/KEYS
 
 Binary artifacts are staged in Nexus here:
-* https://repository.apache.org/content/groups/staging/org/apache/parquet/parquet-format/
+* https://repository.apache.org/content/groups/staging/org/apache/parquet/parquet/
 
 This release includes important changes that I should have summarized here, but I&#39;m lazy.
 
@@ -203,7 +205,7 @@ Please download, verify, and test.
 
 Please vote by &lt;72 HOUR FROM NOW&gt;
 
-[ ] +1 Release this as Apache Parquet Format &lt;VERSION&gt;
+[ ] +1 Release this as Apache Parquet &lt;VERSION&gt;
 [ ] +0
 [ ] -1 Do not release this because...
 
