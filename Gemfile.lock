@@ -22,7 +22,7 @@ GEM
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.5.3)
-    eventmachine (1.0.3)
+    eventmachine (1.2.0.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.9.3)
@@ -109,3 +109,6 @@ DEPENDENCIES
   middleman-syntax (= 1.2.1)
   rake (= 10.3.1)
   redcarpet!
+
+BUNDLED WITH
+   1.13.6

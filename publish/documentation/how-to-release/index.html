@@ -148,10 +148,14 @@
 </ol>
 
 <h4 id="1.-run-the-prepare-script">1. Run the prepare script</h4>
-<pre class="highlight text">sh dev/release-prepare.sh &lt;version&gt;
+<pre class="highlight text">sh dev/prepare-release.sh &lt;version&gt;
 </pre>
 <p>This runs maven&rsquo;s release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.</p>
 
+<p>If this step fails, you can roll back the changes by running these commands.</p>
+<pre class="highlight text">find ./ -type f -name &#39;*.releaseBackup&#39; -exec rm {} \;
+find ./ -type f -name &#39;pom.xml&#39; -exec git checkout {} \;
+</pre>
 <h4 id="2.-run-release:perform-to-stage-binaries">2. Run release:perform to stage binaries</h4>
 <pre class="highlight text">mvn release:perform
 </pre>
@@ -210,6 +214,56 @@ Please vote by &lt;72 HOUR FROM NOW&gt;
 [ ] -1 Do not release this because...
 
 </pre>
+<h3 id="publishing-after-the-vote-passes">Publishing after the vote passes</h3>
+
+<p>After a release candidate passes a vote, the candidate needs to be published as the final release.</p>
+
+<h4 id="1.-release-the-binary-repository-in-nexus">1. Release the binary repository in Nexus</h4>
+
+<h4 id="2.-copy-the-release-artifacts-in-svn-into-releases">2. Copy the release artifacts in SVN into releases</h4>
+
+<p>First, check out the candidates and releases locations in SVN:</p>
+<pre class="highlight text">mkdir parquet
+cd parquet
+svn co https://dist.apache.org/repos/dist/dev/parquet candidates
+svn co https://dist.apache.org/repos/dist/release/parquet releases
+</pre>
+<p>Next, copy the directory for the release candidate the passed from candidates to releases and rename it; remove the &ldquo;-rcN&rdquo; part of the directory name.</p>
+<pre class="highlight text">cp -r candidates/apache-parquet-&lt;VERSION&gt;-rcN/ releases/apache-parquet-&lt;VERSION&gt;
+</pre>
+<p>Then add and commit the release artifacts:</p>
+<pre class="highlight text">cd releases
+svn add apache-parquet-&lt;version&gt;
+svn ci -m &quot;Parquet: Add release &lt;VERSION&gt;&quot;
+</pre>
+<h4 id="3.-send-an-announce-e-mail-to-announce@apache.org-and-the-dev-list">3. Send an ANNOUNCE e-mail to <a href="mailto:announce@apache.org">announce@apache.org</a> and the dev list</h4>
+<pre class="highlight text">[ANNOUNCE] Apache Parquet release &lt;VERSION&gt;
+</pre><pre class="highlight text">I&#39;m please to announce the release of Parquet &lt;VERSION&gt;!
+
+Parquet is a general-purpose columnar file format for nested data. It uses
+space-efficient encodings and a compressed and splittable structure for
+processing frameworks like Hadoop.
+
+Changes are listed at: &lt;CHANGES-URL&gt;
+
+This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/
+
+Java artifacts are available from Maven Central.
+
+Thanks to everyone for contributing!
+</pre>
+<h4 id="4.-update-parquet.apache.org">4. Update parquet.apache.org</h4>
+
+<p>Instructions for updating the site are on the <a href="http://parquet.apache.org/contribute/">contribution page</a>.</p>
+
+<h3 id="what-to-do-if-a-vote-fails">What to do if a vote fails</h3>
+
+<p>If a vote fails, you need to remove the release tag that was created by the <code>dev/prepare-release.sh</code> script:</p>
+<pre class="highlight text">git tag -d apache-parquet-&lt;VERSION&gt; # delete locally
+git push apache :apache-parquet-&lt;VERSION&gt; # delete in the Apache repo
+</pre>
+<p>Then, use the release process above to build another RC for the release version.</p>
+
 	  </div>
       <div class="container">
     <hr>

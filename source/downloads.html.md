@@ -10,9 +10,9 @@ Add the following dependency section to your pom.xml:
 	<dependencies>
 	...
 	   <dependency>
-          <groupId>com.twitter</groupId>
-          <artifactId>parquet</artifactId>
-          <version>2.1.0</version> <!-- or latest version -->
+          <groupId>org.apache.parquet</groupId>
+          <artifactId>parquet-avro</artifactId>
+          <version>1.9.0</version> <!-- or latest version -->
        </dependency>
     ...
     </dependencies>
@@ -20,4 +20,4 @@ Add the following dependency section to your pom.xml:
 ### Older Releases
 
 Older releases can be found on GitHub: 
-[https://github.com/Parquet/parquet-mr/releases](https://github.com/Parquet/parquet-mr/releases)
+[https://github.com/Parquet/parquet-mr/releases](https://github.com/apache/parquet-mr/releases)

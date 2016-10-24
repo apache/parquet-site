@@ -36,10 +36,17 @@ Before you start the release process:
 #### 1. Run the prepare script
 
 ```
-sh dev/release-prepare.sh <version>
+sh dev/prepare-release.sh <version>
 ```
 
 This runs maven's release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.
+
+If this step fails, you can roll back the changes by running these commands.
+
+```
+find ./ -type f -name '*.releaseBackup' -exec rm {} \;
+find ./ -type f -name 'pom.xml' -exec git checkout {} \;
+```
 
 #### 2. Run release:perform to stage binaries
 
@@ -111,3 +118,76 @@ Please vote by <72 HOUR FROM NOW>
 
 [nexus]: https://repository.apache.org/
 [staging]: https://repository.apache.org/content/groups/staging/org/apache/parquet/
+
+### Publishing after the vote passes
+
+After a release candidate passes a vote, the candidate needs to be published as the final release.
+
+#### 1. Release the binary repository in Nexus
+
+
+#### 2. Copy the release artifacts in SVN into releases
+
+First, check out the candidates and releases locations in SVN:
+
+```
+mkdir parquet
+cd parquet
+svn co https://dist.apache.org/repos/dist/dev/parquet candidates
+svn co https://dist.apache.org/repos/dist/release/parquet releases
+```
+
+Next, copy the directory for the release candidate the passed from candidates to releases and rename it; remove the "-rcN" part of the directory name.
+
+```
+cp -r candidates/apache-parquet-<VERSION>-rcN/ releases/apache-parquet-<VERSION>
+```
+
+Then add and commit the release artifacts:
+
+```
+cd releases
+svn add apache-parquet-<version>
+svn ci -m "Parquet: Add release <VERSION>"
+```
+
+
+#### 3. Send an ANNOUNCE e-mail to announce@apache.org and the dev list
+
+```
+[ANNOUNCE] Apache Parquet release <VERSION>
+```
+```
+I'm please to announce the release of Parquet <VERSION>!
+
+Parquet is a general-purpose columnar file format for nested data. It uses
+space-efficient encodings and a compressed and splittable structure for
+processing frameworks like Hadoop.
+
+Changes are listed at: <CHANGES-URL>
+
+This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/
+
+Java artifacts are available from Maven Central.
+
+Thanks to everyone for contributing!
+```
+
+#### 4. Update parquet.apache.org
+
+Instructions for updating the site are on the [contribution page][parquet-site-docs].
+
+[parquet-site-docs]: http://parquet.apache.org/contribute/
+
+
+### What to do if a vote fails
+
+If a vote fails, you need to remove the release tag that was created by the `dev/prepare-release.sh` script:
+
+```
+git tag -d apache-parquet-<VERSION> # delete locally
+git push apache :apache-parquet-<VERSION> # delete in the Apache repo
+```
+
+Then, use the release process above to build another RC for the release version.
+
