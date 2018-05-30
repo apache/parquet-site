@@ -2,7 +2,7 @@
 
 We created Parquet to make the advantages of compressed, efficient columnar data representation available to any project in the Hadoop ecosystem.
 
-Parquet is built from the ground up with complex nested data structures in mind, and uses the [record shredding and assembly algorithm](https://github.com/Parquet/parquet-mr/wiki/The-striping-and-assembly-algorithms-from-the-Dremel-paper) described in the Dremel paper. We believe this approach is superior to simple flattening of nested name spaces.
+Parquet is built from the ground up with complex nested data structures in mind, and uses the [record shredding and assembly algorithm](https://github.com/julienledem/redelm/wiki/The-striping-and-assembly-algorithms-from-the-Dremel-paper) described in the Dremel paper. We believe this approach is superior to simple flattening of nested name spaces.
 
 Parquet is built to support very efficient compression and encoding schemes. Multiple projects have demonstrated the performance impact of applying the right compression and encoding scheme to the data. Parquet allows compression schemes to be specified on a per-column level, and is future-proofed to allow adding more encodings as they are invented and implemented.
 
@@ -10,11 +10,15 @@ Parquet is built to be used by anyone. The Hadoop ecosystem is rich with data pr
 
 ## Modules
 
-The `parquet-format` project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.
+The [parquet-format](https://github.com/apache/parquet-format) project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.
 
-The `parquet-mr` project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other java-based utilities for interacting with Parquet.
+The [parquet-mr](https://github.com/apache/parquet-mr) project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.
 
-The `parquet-compatibility` project contains compatibility tests that can be used to verify that implementations in different languages can read and write each other's files.
+The [parquet-cpp](https://github.com/apache/parquet-cpp) project is a C++ library to read-write Parquet files.
+
+The [parquet-rs](https://github.com/sunchao/parquet-rs) project is a Rust library to read-write Parquet files.
+
+The [parquet-compatibility](https://github.com/Parquet/parquet-compatibility) project contains compatibility tests that can be used to verify that implementations in different languages can read and write each other's files.
 
 ## Building
 
@@ -89,27 +93,28 @@ Metadata is written after the data to allow for single pass writing.
 Readers are expected to first read the file metadata to find all the column 
 chunks they are interested in.  The columns chunks should then be read sequentially.
 
- ![File Layout](https://raw.github.com/Parquet/parquet-format/master/doc/images/FileLayout.gif)
+ ![File Layout](https://raw.github.com/apache/parquet-format/master/doc/images/FileLayout.gif)
 
 ## Metadata
 There are three types of metadata: file metadata, column (chunk) metadata and page
 header metadata.  All thrift structures are serialized using the TCompactProtocol.
 
- ![Metadata diagram](https://github.com/Parquet/parquet-format/raw/master/doc/images/FileFormat.gif)
+ ![Metadata diagram](https://github.com/apache/parquet-format/raw/master/doc/images/FileFormat.gif)
 
 ## Types
 The types supported by the file format are intended to be as minimal as possible,
-with a focus on how the types effect on disk storage.  For example, 16-bit ints
+with a focus on how the types effect on disk storage. For example, 16-bit ints
 are not explicitly supported in the storage format since they are covered by
-32-bit ints with an efficient encoding.  This reduces the complexity of implementing
-readers and writers for the format.  The types are:
-  - BOOLEAN: 1 bit boolean
-  - INT32: 32 bit signed ints
-  - INT64: 64 bit signed ints
-  - INT96: 96 bit signed ints
-  - FLOAT: IEEE 32-bit floating point values
-  - DOUBLE: IEEE 64-bit floating point values
-  - BYTE_ARRAY: arbitrarily long byte arrays.
+32-bit ints with an efficient encoding. This reduces the complexity of implementing
+readers and writers for the format. The types are:
+
+  - *BOOLEAN*: 1 bit boolean
+  - *INT32*: 32 bit signed ints
+  - *INT64*: 64 bit signed ints
+  - *INT96*: 96 bit signed ints
+  - *FLOAT*: IEEE 32-bit floating point values
+  - *DOUBLE*: IEEE 64-bit floating point values
+  - *BYTE_ARRAY*: arbitrarily long byte arrays.
 
 ### Logical Types
 Logical types are used to extend the types that parquet can be used to store,
@@ -121,7 +126,7 @@ Annotations are stored as a `ConvertedType` in the file metadata and are
 documented in
 [LogicalTypes.md][logical-types].
 
-[logical-types]: https://github.com/Parquet/parquet-format/blob/master/LogicalTypes.md
+[logical-types]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md
 
 ## Nested Encoding
 To encode nested columns, Parquet uses the Dremel encoding with definition and 
@@ -142,7 +147,8 @@ nothing else.
 
 ## Data Pages
 For data pages, the 3 pieces of information are encoded back to back, after the page
-header.  We have the 
+header. We have the 
+
  - definition levels data,  
  - repetition levels data, 
  - encoded values.
@@ -157,7 +163,7 @@ skipped (if encoded, it will always have the value of the max definition level).
 For example, in the case where the column is non-nested and required, the data in the
 page is only the encoded values.
 
-The supported encodings are described in [Encodings.md](https://github.com/Parquet/parquet-format/blob/master/Encodings.md)
+The supported encodings are described in [Encodings.md](https://github.com/apache/parquet-format/blob/master/Encodings.md)
 
 ## Column chunks
 Column chunks are composed of pages written back to back.  The pages share a common 
@@ -185,7 +191,7 @@ far.  Combining this with the strategy used for rc or avro files using sync mark
 a reader could recover partially written files.  
 
 ## Separating metadata and column data.
-The format is explicitly designed to separate the metadata from the data.  This
+The format is explicitly designed to separate the metadata from the data. This
 allows splitting columns into multiple files, as well as having a single metadata
 file reference multiple parquet files.  
 
@@ -205,6 +211,7 @@ at a time; this is not the IO chunk.  We recommend 8KB for page sizes.
 
 ## Extensibility
 There are many places in the format for compatible extensions:
+
 - File Version: The file metadata contains a version.
 - Encodings: Encodings are specified by enum and more can be added in the future.  
 - Page types: Additional page types can be added and safely skipped.

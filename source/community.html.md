@@ -17,7 +17,7 @@
 		<h4 name="contribute">Contribute a core patch</h4>
 		<p>Follow our <a href="/contribute/">contribution guidelines</a> when submitting a patch.</p>
           	<h3>Stay in Touch</h3>
-                <p>Attend a Parquet <a href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8">sync up meeting</a> via Google Hangouts.</p>
+                <p>Attend a Parquet sync up meeting via Google Hangouts. These meetings are hold ad-hoc, announced on the developer list about a week before the meeting.</p>
 
 		<h3>Bylaws</h3>
     <p><a href="/bylaws/">Parquet community bylaws</a></p>
