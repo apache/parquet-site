@@ -1,18 +1,31 @@
 <html>
     <head>
+  <script type="text/javascript">
+    WEB_SOCKET_SWF_LOCATION = "/__rack/WebSocketMain.swf";
+    
+  </script>
+  <script type="text/javascript" src="/__rack/swfobject.js"></script>
+  <script type="text/javascript" src="/__rack/web_socket.js"></script>
+
+<script type="text/javascript">
+  RACK_LIVERELOAD_PORT = 35729;
+</script>
+<script type="text/javascript" src="/__rack/livereload.js?host=0.0.0.0&amp;port=35729"></script>
+
+
         <meta charset="utf-8">
         <title>Apache Parquet</title>
 		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		    <meta name="description" content="">
 		    <meta name="author" content="">
 
-		    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-		    <link href="/assets/css/bootstrap-theme.css" rel="stylesheet">
-                    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+		    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+		    <link href="../../assets/css/bootstrap-theme.css" rel="stylesheet">
+                    <link href="../../assets/css/font-awesome.css" rel="stylesheet">
 				
 		    <!-- JS -->
-		    <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
-		    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+		    <script type="text/javascript" src="../../assets/js/jquery-2.1.1.min.js"></script>
+		    <script type="text/javascript" src="../../assets/js/bootstrap.js"></script>
 				<!-- Analytics -->
 				<script type="text/javascript">
 					  var _gaq = _gaq || [];
@@ -38,25 +51,25 @@
             <span class="icon-bar"></span>
           </button>
           <a class="img-responsive pull-left" href="/">
-	   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
-	   </a>
+        <img src="../../assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+       </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-			<li><a href="/documentation/latest/">Documentation</a></li>
-		    <li><a href="/downloads">Download</a></li>
-			<li><a href="/presentations">Presentations</a></li>
-			<li><a href="/adopters">Adopters</a></li>
+            <li><a href="/documentation/latest/">Documentation</a></li>
+            <li><a href="/downloads">Download</a></li>
+            <li><a href="/presentations">Presentations</a></li>
+            <li><a href="/adopters">Adopters</a></li>
             <li class="dropdown">
               <a href="/community">Get Involved <span class="caret"></span></a>
-			                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://gitbox.apache.org/repos/asf?p=parquet-mr.git"><i class="fa fa-code"></i> Source (Apache)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
-			               </ul>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://gitbox.apache.org/repos/asf?p=parquet-mr.git"><i class="fa fa-code"></i> Source (Apache)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                           </ul>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -66,24 +79,24 @@
 <div class="navbar navbar-custom navbar-static-top">
   <div class="navbar-header">
     <a class="img-responsive pull-left" href="/">
-   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+    <img src="../../assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
    </a>
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-	<li><a href="/documentation/latest/">Documentation</a></li>
+    <li><a href="/documentation/latest/">Documentation</a></li>
     <li><a href="/downloads">Download</a></li>
-	<li><a href="/presentations">Presentations</a></li>
-	<li><a href="/adopters">Adopters</a></li>
+    <li><a href="/presentations">Presentations</a></li>
+    <li><a href="/adopters">Adopters</a></li>
         <li class="dropdown">
-        	<a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
+            <a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
-                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
                </ul>
         </li>
       </ul>
@@ -91,8 +104,8 @@
   </div>
 <hr />
 </div>
--->
 
+<p>&ndash;&gt;</p>
 
 <div class="container">
 <!-- magical breadcrumbs -->
@@ -108,10 +121,11 @@
         <li><a href="http://www.apache.org/security/">Security</a></li>
       </ul>
     </div>
-  </li>
+
+<p></li>
   <li><a href="http://parquet.apache.org">Apache Parquet</a></li>
 </ol>
-<!-- /breadcrumb -->
+&lt;!&ndash; /breadcrumb &ndash;&gt;</p>
 	
       <div class="container">
         <h2 id="how-to-release">How to release</h2>
@@ -123,8 +137,8 @@
 * Permission to stage artifacts in Nexus</p>
 
 <p>Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:</p>
-<pre class="highlight text">mvn deploy
-</pre>
+<div class="highlight"><pre class="highlight plaintext"><code>mvn deploy
+</code></pre></div>
 <p>If you have problems, read the <a href="https://www.apache.org/dev/publishing-maven-artifacts.html">publishing Maven artifacts documentation</a></p>
 
 <h3 id="release-process">Release process</h3>
@@ -146,21 +160,21 @@
 </ul></li>
 </ol>
 
-<h4 id="1.-run-the-prepare-script">1. Run the prepare script</h4>
-<pre class="highlight text">sh dev/prepare-release.sh &lt;version&gt;
-</pre>
+<h4 id="1-run-the-prepare-script">1. Run the prepare script</h4>
+<div class="highlight"><pre class="highlight plaintext"><code>sh dev/prepare-release.sh &lt;version&gt;
+</code></pre></div>
 <p>This runs maven&rsquo;s release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.</p>
 
 <p>If this step fails, you can roll back the changes by running these commands.</p>
-<pre class="highlight text">find ./ -type f -name &#39;*.releaseBackup&#39; -exec rm {} \;
-find ./ -type f -name &#39;pom.xml&#39; -exec git checkout {} \;
-</pre>
-<h4 id="2.-run-release:perform-to-stage-binaries">2. Run release:perform to stage binaries</h4>
-<pre class="highlight text">mvn release:perform
-</pre>
+<div class="highlight"><pre class="highlight plaintext"><code>find ./ -type f -name '*.releaseBackup' -exec rm {} \;
+find ./ -type f -name 'pom.xml' -exec git checkout {} \;
+</code></pre></div>
+<h4 id="2-run-release-perform-to-stage-binaries">2. Run release:perform to stage binaries</h4>
+<div class="highlight"><pre class="highlight plaintext"><code>mvn release:perform
+</code></pre></div>
 <p>This uploads binary artifacts for the release tag to <a href="https://repository.apache.org/">Nexus</a>.</p>
 
-<h4 id="3.-in-nexus,-close-the-staging-repository">3. In Nexus, close the staging repository</h4>
+<h4 id="3-in-nexus-close-the-staging-repository">3. In Nexus, close the staging repository</h4>
 
 <p>Closing a staging repository makes the binaries available in <a href="https://repository.apache.org/content/groups/staging/org/apache/parquet/">staging</a>, but does not publish them.</p>
 
@@ -171,20 +185,20 @@ find ./ -type f -name &#39;pom.xml&#39; -exec git checkout {} \;
 <li>At the top, click &ldquo;Close&rdquo; and follow the instructions. For the comment use &ldquo;Apache Parquet [Format] <VERSION> <RC>&rdquo;.</li>
 </ol>
 
-<h4 id="4.-run-the-source-tarball-script">4. Run the source tarball script</h4>
-<pre class="highlight text">sh dev/source-release.sh &lt;version&gt; &lt;rc-number&gt;
-</pre>
+<h4 id="4-run-the-source-tarball-script">4. Run the source tarball script</h4>
+<div class="highlight"><pre class="highlight plaintext"><code>sh dev/source-release.sh &lt;version&gt; &lt;rc-number&gt;
+</code></pre></div>
 <p>This script builds the source tarball from the release tag&rsquo;s SHA1, signs it, and uploads the necessary files with SVN.</p>
 
 <p>The source release is pushed to <a href="https://dist.apache.org/repos/dist/dev/parquet/">https://dist.apache.org/repos/dist/dev/parquet/</a></p>
 
 <p>The last message from the script is the release commit&rsquo;s SHA1 hash and URL for the VOTE e-mail.</p>
 
-<h4 id="5.-send-a-vote-e-mail-to-dev@parquet.apache.org">5. Send a VOTE e-mail to <a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org</a></h4>
+<h4 id="5-send-a-vote-e-mail-to-dev-parquet-apache-org">5. Send a VOTE e-mail to <a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org</a></h4>
 
 <p>Here is a template you can use. Make sure everything applies to your release.</p>
-<pre class="highlight text">Subject: [VOTE] Release Apache Parquet &lt;VERSION&gt; RC&lt;NUM&gt;
-</pre><pre class="highlight text">Hi everyone,
+<div class="highlight"><pre class="highlight plaintext"><code>Subject: [VOTE] Release Apache Parquet &lt;VERSION&gt; RC&lt;NUM&gt;
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>Hi everyone,
 
 I propose the following RC to be released as official Apache Parquet &lt;VERSION&gt; release.
 
@@ -202,7 +216,7 @@ You can find the KEYS file here:
 Binary artifacts are staged in Nexus here:
 * https://repository.apache.org/content/groups/staging/org/apache/parquet/parquet/
 
-This release includes important changes that I should have summarized here, but I&#39;m lazy.
+This release includes important changes that I should have summarized here, but I'm lazy.
 
 Please download, verify, and test.
 
@@ -212,32 +226,32 @@ Please vote by &lt;72 HOUR FROM NOW&gt;
 [ ] +0
 [ ] -1 Do not release this because...
 
-</pre>
+</code></pre></div>
 <h3 id="publishing-after-the-vote-passes">Publishing after the vote passes</h3>
 
 <p>After a release candidate passes a vote, the candidate needs to be published as the final release.</p>
 
-<h4 id="1.-release-the-binary-repository-in-nexus">1. Release the binary repository in Nexus</h4>
+<h4 id="1-release-the-binary-repository-in-nexus">1. Release the binary repository in Nexus</h4>
 
-<h4 id="2.-copy-the-release-artifacts-in-svn-into-releases">2. Copy the release artifacts in SVN into releases</h4>
+<h4 id="2-copy-the-release-artifacts-in-svn-into-releases">2. Copy the release artifacts in SVN into releases</h4>
 
 <p>First, check out the candidates and releases locations in SVN:</p>
-<pre class="highlight text">mkdir parquet
+<div class="highlight"><pre class="highlight plaintext"><code>mkdir parquet
 cd parquet
 svn co https://dist.apache.org/repos/dist/dev/parquet candidates
 svn co https://dist.apache.org/repos/dist/release/parquet releases
-</pre>
+</code></pre></div>
 <p>Next, copy the directory for the release candidate the passed from candidates to releases and rename it; remove the &ldquo;-rcN&rdquo; part of the directory name.</p>
-<pre class="highlight text">cp -r candidates/apache-parquet-&lt;VERSION&gt;-rcN/ releases/apache-parquet-&lt;VERSION&gt;
-</pre>
+<div class="highlight"><pre class="highlight plaintext"><code>cp -r candidates/apache-parquet-&lt;VERSION&gt;-rcN/ releases/apache-parquet-&lt;VERSION&gt;
+</code></pre></div>
 <p>Then add and commit the release artifacts:</p>
-<pre class="highlight text">cd releases
+<div class="highlight"><pre class="highlight plaintext"><code>cd releases
 svn add apache-parquet-&lt;version&gt;
-svn ci -m &quot;Parquet: Add release &lt;VERSION&gt;&quot;
-</pre>
-<h4 id="3.-send-an-announce-e-mail-to-announce@apache.org-and-the-dev-list">3. Send an ANNOUNCE e-mail to <a href="mailto:announce@apache.org">announce@apache.org</a> and the dev list</h4>
-<pre class="highlight text">[ANNOUNCE] Apache Parquet release &lt;VERSION&gt;
-</pre><pre class="highlight text">I&#39;m please to announce the release of Parquet &lt;VERSION&gt;!
+svn ci -m "Parquet: Add release &lt;VERSION&gt;"
+</code></pre></div>
+<h4 id="3-send-an-announce-e-mail-to-announce-apache-org-and-the-dev-list">3. Send an ANNOUNCE e-mail to <a href="mailto:announce@apache.org">announce@apache.org</a> and the dev list</h4>
+<div class="highlight"><pre class="highlight plaintext"><code>[ANNOUNCE] Apache Parquet release &lt;VERSION&gt;
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>I'm please to announce the release of Parquet &lt;VERSION&gt;!
 
 Parquet is a general-purpose columnar file format for nested data. It uses
 space-efficient encodings and a compressed and splittable structure for
@@ -245,22 +259,23 @@ processing frameworks like Hadoop.
 
 Changes are listed at: &lt;CHANGES-URL&gt;
 
-This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/
+This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/&lt;TARBALL NAME WITHOUT .tar.gz&gt;/&lt;TARBALL NAME&gt;
 
 Java artifacts are available from Maven Central.
 
 Thanks to everyone for contributing!
-</pre>
-<h4 id="4.-update-parquet.apache.org">4. Update parquet.apache.org</h4>
+</code></pre></div>
+<h4 id="4-update-parquet-apache-org">4. Update parquet.apache.org</h4>
 
-<p>Instructions for updating the site are on the <a href="http://parquet.apache.org/contribute/">contribution page</a>.</p>
+<p>Update the downloads page on parquet.apache.org.
+Instructions for updating the site are on the <a href="http://parquet.apache.org/contribute/">contribution page</a>.</p>
 
 <h3 id="what-to-do-if-a-vote-fails">What to do if a vote fails</h3>
 
 <p>If a vote fails, you need to remove the release tag that was created by the <code>dev/prepare-release.sh</code> script:</p>
-<pre class="highlight text">git tag -d apache-parquet-&lt;VERSION&gt; # delete locally
+<div class="highlight"><pre class="highlight plaintext"><code>git tag -d apache-parquet-&lt;VERSION&gt; # delete locally
 git push apache :apache-parquet-&lt;VERSION&gt; # delete in the Apache repo
-</pre>
+</code></pre></div>
 <p>Then, use the release process above to build another RC for the release version.</p>
 
 	  </div>
@@ -269,9 +284,9 @@ git push apache :apache-parquet-&lt;VERSION&gt; # delete in the Apache repo
     <footer class="footer">
         <div class="row-fluid">
             <div class="span12 text-left">
-							<div class="span12">
+                            <div class="span12">
                 Copyright 2018 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation.
-							</div>
+                            </div>
             </div>
 
         </div>

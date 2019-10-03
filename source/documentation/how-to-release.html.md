@@ -166,7 +166,7 @@ processing frameworks like Hadoop.
 
 Changes are listed at: <CHANGES-URL>
 
-This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/
+This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/<TARBALL NAME WITHOUT .tar.gz>/<TARBALL NAME>
 
 Java artifacts are available from Maven Central.
 
@@ -175,6 +175,7 @@ Thanks to everyone for contributing!
 
 #### 4. Update parquet.apache.org
 
+Update the downloads page on parquet.apache.org.
 Instructions for updating the site are on the [contribution page][parquet-site-docs].
 
 [parquet-site-docs]: http://parquet.apache.org/contribute/

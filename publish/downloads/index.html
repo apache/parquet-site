@@ -1,18 +1,31 @@
 <html>
     <head>
+  <script type="text/javascript">
+    WEB_SOCKET_SWF_LOCATION = "/__rack/WebSocketMain.swf";
+    
+  </script>
+  <script type="text/javascript" src="/__rack/swfobject.js"></script>
+  <script type="text/javascript" src="/__rack/web_socket.js"></script>
+
+<script type="text/javascript">
+  RACK_LIVERELOAD_PORT = 35729;
+</script>
+<script type="text/javascript" src="/__rack/livereload.js?host=0.0.0.0&amp;port=35729"></script>
+
+
         <meta charset="utf-8">
         <title>Apache Parquet</title>
 		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		    <meta name="description" content="">
 		    <meta name="author" content="">
 
-		    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-		    <link href="/assets/css/bootstrap-theme.css" rel="stylesheet">
-                    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+		    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+		    <link href="../assets/css/bootstrap-theme.css" rel="stylesheet">
+                    <link href="../assets/css/font-awesome.css" rel="stylesheet">
 				
 		    <!-- JS -->
-		    <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
-		    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+		    <script type="text/javascript" src="../assets/js/jquery-2.1.1.min.js"></script>
+		    <script type="text/javascript" src="../assets/js/bootstrap.js"></script>
 				<!-- Analytics -->
 				<script type="text/javascript">
 					  var _gaq = _gaq || [];
@@ -38,25 +51,25 @@
             <span class="icon-bar"></span>
           </button>
           <a class="img-responsive pull-left" href="/">
-	   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
-	   </a>
+        <img src="../assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+       </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-			<li><a href="/documentation/latest/">Documentation</a></li>
-		    <li><a href="/downloads">Download</a></li>
-			<li><a href="/presentations">Presentations</a></li>
-			<li><a href="/adopters">Adopters</a></li>
+            <li><a href="/documentation/latest/">Documentation</a></li>
+            <li><a href="/downloads">Download</a></li>
+            <li><a href="/presentations">Presentations</a></li>
+            <li><a href="/adopters">Adopters</a></li>
             <li class="dropdown">
               <a href="/community">Get Involved <span class="caret"></span></a>
-			                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://gitbox.apache.org/repos/asf?p=parquet-mr.git"><i class="fa fa-code"></i> Source (Apache)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
-			               </ul>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://gitbox.apache.org/repos/asf?p=parquet-mr.git"><i class="fa fa-code"></i> Source (Apache)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                           </ul>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -66,24 +79,24 @@
 <div class="navbar navbar-custom navbar-static-top">
   <div class="navbar-header">
     <a class="img-responsive pull-left" href="/">
-   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+    <img src="../assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
    </a>
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-	<li><a href="/documentation/latest/">Documentation</a></li>
+    <li><a href="/documentation/latest/">Documentation</a></li>
     <li><a href="/downloads">Download</a></li>
-	<li><a href="/presentations">Presentations</a></li>
-	<li><a href="/adopters">Adopters</a></li>
+    <li><a href="/presentations">Presentations</a></li>
+    <li><a href="/adopters">Adopters</a></li>
         <li class="dropdown">
-        	<a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
+            <a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
-                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
                </ul>
         </li>
       </ul>
@@ -91,8 +104,8 @@
   </div>
 <hr />
 </div>
--->
 
+<p>&ndash;&gt;</p>
 
 <div class="container">
 <!-- magical breadcrumbs -->
@@ -108,35 +121,44 @@
         <li><a href="http://www.apache.org/security/">Security</a></li>
       </ul>
     </div>
-  </li>
+
+<p></li>
   <li><a href="http://parquet.apache.org">Apache Parquet</a></li>
 </ol>
-<!-- /breadcrumb -->
+&lt;!&ndash; /breadcrumb &ndash;&gt;</p>
 	
       <div class="container">
         <h1 id="downloads">Downloads</h1>
 
-<p>The Parquet team recently moved to the Apache Software Foundation and is working to publish its first release there.</p>
+<p>The <a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz">latest version of parquet-format is 2.7.0</a>.</p>
+
+<p>To <a href="https://www.apache.org/info/verification.html">check the validity</a> of this release, use its:</p>
+
+<ul>
+<li><a href="https://www.apache.org/dist/parquet/KEYS">Release manager OpenPGP key</a></li>
+<li><a href="https://www.apache.org/dist/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.asc">OpenPGP signature</a></li>
+<li><a href="https://www.apache.org/dist/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.sha512">SHA-512</a></li>
+</ul>
 
 <h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository</h3>
 
-<p>The Parquet team publishes its <a href="http://search.maven.org/#search%7Cga%7C1%7Cparquet">releases to Maven Central</a>.</p>
+<p>The Parquet team publishes its <a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central</a>.</p>
 
 <p>Add the following dependency section to your pom.xml:</p>
-<pre class="highlight text">&lt;dependencies&gt;
+<div class="highlight"><pre class="highlight plaintext"><code>&lt;dependencies&gt;
 ...
    &lt;dependency&gt;
       &lt;groupId&gt;org.apache.parquet&lt;/groupId&gt;
       &lt;artifactId&gt;parquet-avro&lt;/artifactId&gt;
-      &lt;version&gt;1.9.0&lt;/version&gt; &lt;!-- or latest version --&gt;
+      &lt;version&gt;1.10.1&lt;/version&gt; &lt;!-- or latest version --&gt;
    &lt;/dependency&gt;
 ...
 &lt;/dependencies&gt;
-</pre>
+</code></pre></div>
 <h3 id="older-releases">Older Releases</h3>
 
-<p>Older releases can be found on GitHub: 
-<a href="https://github.com/apache/parquet-mr/releases">https://github.com/Parquet/parquet-mr/releases</a></p>
+<p>Older releases can be found in the Archives of the Apache Software Foundation:
+<a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/</a></p>
 
 	  </div>
       <div class="container">
@@ -144,9 +166,9 @@
     <footer class="footer">
         <div class="row-fluid">
             <div class="span12 text-left">
-							<div class="span12">
+                            <div class="span12">
                 Copyright 2018 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation.
-							</div>
+                            </div>
             </div>
 
         </div>

@@ -1,18 +1,31 @@
 <html>
     <head>
+  <script type="text/javascript">
+    WEB_SOCKET_SWF_LOCATION = "/__rack/WebSocketMain.swf";
+    
+  </script>
+  <script type="text/javascript" src="/__rack/swfobject.js"></script>
+  <script type="text/javascript" src="/__rack/web_socket.js"></script>
+
+<script type="text/javascript">
+  RACK_LIVERELOAD_PORT = 35729;
+</script>
+<script type="text/javascript" src="/__rack/livereload.js?host=0.0.0.0&amp;port=35729"></script>
+
+
         <meta charset="utf-8">
         <title>Apache Parquet</title>
 		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		    <meta name="description" content="">
 		    <meta name="author" content="">
 
-		    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-		    <link href="/assets/css/bootstrap-theme.css" rel="stylesheet">
-                    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+		    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+		    <link href="../assets/css/bootstrap-theme.css" rel="stylesheet">
+                    <link href="../assets/css/font-awesome.css" rel="stylesheet">
 				
 		    <!-- JS -->
-		    <script type="text/javascript" src="/assets/js/jquery-2.1.1.min.js"></script>
-		    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+		    <script type="text/javascript" src="../assets/js/jquery-2.1.1.min.js"></script>
+		    <script type="text/javascript" src="../assets/js/bootstrap.js"></script>
 				<!-- Analytics -->
 				<script type="text/javascript">
 					  var _gaq = _gaq || [];
@@ -38,25 +51,25 @@
             <span class="icon-bar"></span>
           </button>
           <a class="img-responsive pull-left" href="/">
-	   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
-	   </a>
+        <img src="../assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+       </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-			<li><a href="/documentation/latest/">Documentation</a></li>
-		    <li><a href="/downloads">Download</a></li>
-			<li><a href="/presentations">Presentations</a></li>
-			<li><a href="/adopters">Adopters</a></li>
+            <li><a href="/documentation/latest/">Documentation</a></li>
+            <li><a href="/downloads">Download</a></li>
+            <li><a href="/presentations">Presentations</a></li>
+            <li><a href="/adopters">Adopters</a></li>
             <li class="dropdown">
               <a href="/community">Get Involved <span class="caret"></span></a>
-			                <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://gitbox.apache.org/repos/asf?p=parquet-mr.git"><i class="fa fa-code"></i> Source (Apache)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
-								<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
-			               </ul>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://gitbox.apache.org/repos/asf?p=parquet-mr.git"><i class="fa fa-code"></i> Source (Apache)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                           </ul>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -66,24 +79,24 @@
 <div class="navbar navbar-custom navbar-static-top">
   <div class="navbar-header">
     <a class="img-responsive pull-left" href="/">
-   	<img src="/assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
+    <img src="../assets/img/parquet_logo.png" alt="Apache Parquet logo" />     
    </a>
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-	<li><a href="/documentation/latest/">Documentation</a></li>
+    <li><a href="/documentation/latest/">Documentation</a></li>
     <li><a href="/downloads">Download</a></li>
-	<li><a href="/presentations">Presentations</a></li>
-	<li><a href="/adopters">Adopters</a></li>
+    <li><a href="/presentations">Presentations</a></li>
+    <li><a href="/adopters">Adopters</a></li>
         <li class="dropdown">
-        	<a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
+            <a id="drop1" href="/community">Get Involved <b class="caret"></b></a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
-                	<li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://issues.apache.org/jira/browse/parquet"><i class="fa fa-bug"></i> JIRA (Bugs)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://git-wip-us.apache.org/repos/asf?s=parquet"><i class="fa fa-code"></i> Source (Apache)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://github.com/apache/parquet-mr"><i class="fa fa-github-alt"></i> Source (GitHub)</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="/contribute"><i class="fa fa-code-fork"></i> Contributing</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/ApacheParquet"><i class="fa fa-twitter"></i> @ApacheParquet</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://stackoverflow.com/questions/tagged/parquet"><i class="fa fa-stack-overflow"></i> StackOverflow</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="https://plus.google.com/events/c36apc97f7invko9p128hq9e6b8"><i class="fa fa-google"></i> Google Hangout</a></li>
                </ul>
         </li>
       </ul>
@@ -91,8 +104,8 @@
   </div>
 <hr />
 </div>
--->
 
+<p>&ndash;&gt;</p>
 
 <div class="container">
 <!-- magical breadcrumbs -->
@@ -108,10 +121,11 @@
         <li><a href="http://www.apache.org/security/">Security</a></li>
       </ul>
     </div>
-  </li>
+
+<p></li>
   <li><a href="http://parquet.apache.org">Apache Parquet</a></li>
 </ol>
-<!-- /breadcrumb -->
+&lt;!&ndash; /breadcrumb &ndash;&gt;</p>
 	
       <div class="container">
         <h1 id="how-to-contribute">How To Contribute</h1>
@@ -136,33 +150,33 @@ Here are a few tips to get your contribution in:</p>
 <p>Merging a pull request requires being a comitter on the project.</p>
 
 <p>How to merge a Pull request (have an apache and github-apache remote setup):</p>
-<pre class="highlight text">git remote add github-apache git@github.com:apache/parquet-mr.git
+<div class="highlight"><pre class="highlight plaintext"><code>git remote add github-apache git@github.com:apache/parquet-mr.git
 git remote add apache https://git-wip-us.apache.org/repos/asf/parquet-mr.git
-</pre>
+</code></pre></div>
 <p>run the following command</p>
-<pre class="highlight text">dev/merge_parquet_pr.py
-</pre>
+<div class="highlight"><pre class="highlight plaintext"><code>dev/merge_parquet_pr.py
+</code></pre></div>
 <p>example output:</p>
-<pre class="highlight text">Which pull request would you like to merge? (e.g. 34):
-</pre>
+<div class="highlight"><pre class="highlight plaintext"><code>Which pull request would you like to merge? (e.g. 34):
+</code></pre></div>
 <p>Type the pull request number (from <a href="https://github.com/apache/parquet-mr/pulls">https://github.com/apache/parquet-mr/pulls</a>) and hit enter.</p>
-<pre class="highlight text">=== Pull Request #X ===
+<div class="highlight"><pre class="highlight plaintext"><code>=== Pull Request #X ===
 title   Blah Blah Blah
 source  repo/branch
 target  master
 url https://api.github.com/repos/apache/parquet-mr/pulls/X
 
 Proceed with merging pull request #3? (y/n): 
-</pre>
+</code></pre></div>
 <p>If this looks good, type y and hit enter.</p>
-<pre class="highlight text">From git-wip-us.apache.org:/repos/asf/parquet-mr.git
+<div class="highlight"><pre class="highlight plaintext"><code>From git-wip-us.apache.org:/repos/asf/parquet-mr.git
 * [new branch]      master     -&gt; PR_TOOL_MERGE_PR_3_MASTER
-Switched to branch &#39;PR_TOOL_MERGE_PR_3_MASTER&#39;
+Switched to branch 'PR_TOOL_MERGE_PR_3_MASTER'
 
 Merge complete (local ref PR_TOOL_MERGE_PR_3_MASTER). Push to apache? (y/n):
-</pre>
+</code></pre></div>
 <p>A local branch with the merge has been created. type y and hit enter to push it to apache master</p>
-<pre class="highlight text">Counting objects: 67, done.
+<div class="highlight"><pre class="highlight plaintext"><code>Counting objects: 67, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (26/26), done.
 Writing objects: 100% (36/36), 5.32 KiB, done.
@@ -170,9 +184,9 @@ Total 36 (delta 17), reused 0 (delta 0)
 To git-wip-us.apache.org:/repos/asf/parquet-mr.git
    b767ac4..485658a  PR_TOOL_MERGE_PR_X_MASTER -&gt; master
 Restoring head pointer to b767ac4e
-Note: checking out &#39;b767ac4e&#39;.
+Note: checking out 'b767ac4e'.
 
-You are in &#39;detached HEAD&#39; state. You can look around, make experimental
+You are in 'detached HEAD' state. You can look around, make experimental
 changes and commit them, and you can discard any commits you make in this
 state without impacting any branches by performing another checkout.
 
@@ -188,7 +202,7 @@ Pull request #X merged!
 Merge hash: 485658a5
 
 Would you like to pick 485658a5 into another branch? (y/n):
-</pre>
+</code></pre></div>
 <p>For now just say n as we have 1 branch</p>
 
 <h2 id="website">Website</h2>
@@ -196,34 +210,34 @@ Would you like to pick 485658a5 into another branch? (y/n):
 <p>We use middleman to generate the website content from markdown and other 
 dynamic templates. The following steps assume you have a working 
 ruby environment setup</p>
-<pre class="highlight text">gem install bundler
+<div class="highlight"><pre class="highlight plaintext"><code>gem install bundler
 bundle install
-</pre>
+</code></pre></div>
 <h3 id="checking-out-the-website">Checking out the website</h3>
 
 <p>Checkout the website from SVN:</p>
-<pre class="highlight text">svn co https://svn.apache.org/repos/asf/parquet
-</pre>
-<h3 id="make-changes-in-source/">Make changes in source/</h3>
+<div class="highlight"><pre class="highlight plaintext"><code>svn co https://svn.apache.org/repos/asf/parquet
+</code></pre></div>
+<h3 id="make-changes-in-source">Make changes in source/</h3>
 
 <p>Make any changes in the source directory:</p>
-<pre class="highlight text">cd site/source/
+<div class="highlight"><pre class="highlight plaintext"><code>cd site/source/
 vim contribute.html.md
-</pre>
+</code></pre></div>
 <h3 id="generating-the-website">Generating the website</h3>
 
 <p>To generate the static wesbite for Apache Parquet run the following commands at the root site directory:</p>
-<pre class="highlight text">bundle exec middleman build
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec middleman build
 svn add *
-svn commit -m &#39;made changes to the site&#39;
-</pre>
+svn commit -m 'made changes to the site'
+</code></pre></div>
 <h3 id="live-development">Live Development</h3>
 
 <p>Live development of the site enables automatic reload when changes are saved. 
 To enable run the following command and then open a browser and navigate to 
 <a href="http://localhost:4567/">http://localhost:4567</a> </p>
-<pre class="highlight text">bundle exec middleman 
-</pre>
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec middleman 
+</code></pre></div>
 <h3 id="publishing-the-site">Publishing the Site</h3>
 
 <p>The website uses svnpubsub. The publish folder contains the websites content
@@ -236,9 +250,9 @@ the live site. </p>
     <footer class="footer">
         <div class="row-fluid">
             <div class="span12 text-left">
-							<div class="span12">
+                            <div class="span12">
                 Copyright 2018 <a href="http://www.apache.org/">Apache Software Foundation</a>. Licensed under the <a href="http://www.apache.org/licenses/">Apache License v2.0</a>. Apache Parquet and the Apache feather logo are trademarks of The Apache Software Foundation.
-							</div>
+                            </div>
             </div>
 
         </div>
