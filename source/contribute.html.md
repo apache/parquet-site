@@ -88,10 +88,10 @@ ruby environment setup
 	gem install bundler
 	bundle install
 
-### Checking out the website
-Checkout the website from SVN:
+### Cloning the website
+Cloning the website from git:
 
-	svn co https://svn.apache.org/repos/asf/parquet
+	git clone https://github.com/apache/parquet-site
 
 ### Make changes in source/
 Make any changes in the source directory:
@@ -103,8 +103,13 @@ Make any changes in the source directory:
 To generate the static wesbite for Apache Parquet run the following commands at the root site directory:
 
 	bundle exec middleman build
-	svn add *
-	svn commit -m 'made changes to the site'
+	git add .
+	git commit -m 'made changes to the site'
+	git push
+
+(git push can only be done by a committer. If you are not a committer then you
+may create a pull reqest from your forked repository and let a committer push
+your changes.)
 
 ### Live Development 
 Live development of the site enables automatic reload when changes are saved. 
@@ -114,7 +119,7 @@ To enable run the following command and then open a browser and navigate to
 	bundle exec middleman 
 
 ### Publishing the Site
-The website uses svnpubsub. The publish folder contains the websites content
-and when committed to the svn repository it will be automatically deployed to 
+The website uses gitpubsub. The output folder contains the websites content
+and when committed to the git repository it will be automatically deployed to 
 the live site. 
 

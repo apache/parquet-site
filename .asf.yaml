@@ -1,0 +1,4 @@
+staging: false
+
+publish:
+  whoami:  asf-site
