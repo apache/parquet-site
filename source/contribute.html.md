@@ -120,6 +120,6 @@ To enable run the following command and then open a browser and navigate to
 
 ### Publishing the Site
 The website uses gitpubsub. The output folder contains the websites content
-and when committed to the git repository it will be automatically deployed to 
+and when committed to the git repository it will be automatically deployed to
 the live site. 
 
