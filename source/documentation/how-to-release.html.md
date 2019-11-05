@@ -4,7 +4,7 @@
 ### Setup
 
 You will need:
-* PGP code signing keys, published in KEYS
+* PGP code signing keys, published in [KEYS][keys]
 * Permission to stage artifacts in Nexus
 
 Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:
@@ -15,6 +15,7 @@ mvn deploy
 
 If you have problems, read the [publishing Maven artifacts documentation][publish-maven-docs]
 
+[keys]: https://www.apache.org/dist/parquet/KEYS
 [publish-maven-docs]: https://www.apache.org/dev/publishing-maven-artifacts.html
 
 ### Release process
@@ -31,12 +32,12 @@ Before you start the release process:
   * Add the content to CHANGES.md and update formatting
   * Commit the update to CHANGES.md
 
-[html-to-md]: https://domchristie.github.io/to-markdown/
+[html-to-md]: https://domchristie.github.io/turndown/
 
 #### 1. Run the prepare script
 
 ```
-sh dev/prepare-release.sh <version>
+dev/prepare-release.sh <version> <rc-number>
 ```
 
 This runs maven's release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.
@@ -68,7 +69,7 @@ Closing a staging repository makes the binaries available in [staging][staging],
 #### 4. Run the source tarball script
 
 ```
-sh dev/source-release.sh <version> <rc-number>
+dev/source-release.sh <version> <rc-number>
 ```
 
 This script builds the source tarball from the release tag's SHA1, signs it, and uploads the necessary files with SVN.
@@ -90,24 +91,23 @@ Hi everyone,
 I propose the following RC to be released as official Apache Parquet <VERSION> release.
 
 The commit id is <SHA1>
-* This corresponds to the tag: apache-parquet-<VERSION>
-* https://github.com/apache/parquet-format/tree/<SHA1>
-* https://git-wip-us.apache.org/repos/asf/projects/repo?p=parquet-mr.git&a=commit&h=<SHA1>
+* This corresponds to the tag: apache-parquet-<VERSION>-rc<NUM>
+* https://github.com/apache/parquet-mr/tree/<SHA1>
 
 The release tarball, signature, and checksums are here:
 * https://dist.apache.org/repos/dist/dev/parquet/<PATH>
 
 You can find the KEYS file here:
-* https://dist.apache.org/repos/dist/dev/parquet/KEYS
+* https://apache.org/dist/parquet/KEYS
 
 Binary artifacts are staged in Nexus here:
-* https://repository.apache.org/content/groups/staging/org/apache/parquet/parquet/
+* https://repository.apache.org/content/groups/staging/org/apache/parquet/
 
 This release includes important changes that I should have summarized here, but I'm lazy.
 
 Please download, verify, and test.
 
-Please vote by <72 HOUR FROM NOW>
+Please vote in the next 72 hours.
 
 [ ] +1 Release this as Apache Parquet <VERSION>
 [ ] +0
@@ -123,10 +123,22 @@ Please vote by <72 HOUR FROM NOW>
 
 After a release candidate passes a vote, the candidate needs to be published as the final release.
 
-#### 1. Release the binary repository in Nexus
+#### 1. Tag final release and set development version
+
+```
+dev/finalize-release <release-version> <rc-num> <new-development-version-without-SNAPSHOT-suffix>
+```
+
+This will add the final release tag to the RC tag and sets the new development version in the pom files.
+If everything is fine push the changes and the new tag to github:
+```
+git push --follow-tags
+```
+
+#### 2. Release the binary repository in Nexus
 
 
-#### 2. Copy the release artifacts in SVN into releases
+#### 3. Copy the release artifacts in SVN into releases
 
 First, check out the candidates and releases locations in SVN:
 
@@ -152,7 +164,7 @@ svn ci -m "Parquet: Add release <VERSION>"
 ```
 
 
-#### 3. Send an ANNOUNCE e-mail to announce@apache.org and the dev list
+#### 4. Send an ANNOUNCE e-mail to announce@apache.org and the dev list
 
 ```
 [ANNOUNCE] Apache Parquet release <VERSION>
@@ -173,22 +185,10 @@ Java artifacts are available from Maven Central.
 Thanks to everyone for contributing!
 ```
 
-#### 4. Update parquet.apache.org
+#### 5. Update parquet.apache.org
 
 Update the downloads page on parquet.apache.org.
 Instructions for updating the site are on the [contribution page][parquet-site-docs].
 
 [parquet-site-docs]: http://parquet.apache.org/contribute/
-
-
-### What to do if a vote fails
-
-If a vote fails, you need to remove the release tag that was created by the `dev/prepare-release.sh` script:
-
-```
-git tag -d apache-parquet-<VERSION> # delete locally
-git push apache :apache-parquet-<VERSION> # delete in the Apache repo
-```
-
-Then, use the release process above to build another RC for the release version.
 
