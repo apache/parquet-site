@@ -151,8 +151,14 @@ svn add apache-parquet-<version>
 svn ci -m "Parquet: Add release <VERSION>"
 ```
 
+#### 3. Update parquet.apache.org
 
-#### 3. Send an ANNOUNCE e-mail to announce@apache.org and the dev list
+Update the downloads page on parquet.apache.org.
+Instructions for updating the site are on the [contribution page][parquet-site-docs].
+
+[parquet-site-docs]: http://parquet.apache.org/contribute/
+
+#### 4. Send an ANNOUNCE e-mail to announce@apache.org and the dev list
 
 ```
 [ANNOUNCE] Apache Parquet release <VERSION>
@@ -164,22 +170,14 @@ Parquet is a general-purpose columnar file format for nested data. It uses
 space-efficient encodings and a compressed and splittable structure for
 processing frameworks like Hadoop.
 
-Changes are listed at: <CHANGES-URL>
+Changes are listed at: https://github.com/apache/parquet-mr/blob/apache-parquet-<VERSION>/CHANGES.md
 
-This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/<TARBALL NAME WITHOUT .tar.gz>/<TARBALL NAME>
+This release can be downloaded from: https://parquet.apache.org/downloads/
 
 Java artifacts are available from Maven Central.
 
 Thanks to everyone for contributing!
 ```
-
-#### 4. Update parquet.apache.org
-
-Update the downloads page on parquet.apache.org.
-Instructions for updating the site are on the [contribution page][parquet-site-docs].
-
-[parquet-site-docs]: http://parquet.apache.org/contribute/
-
 
 ### What to do if a vote fails
 

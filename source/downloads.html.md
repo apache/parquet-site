@@ -1,5 +1,7 @@
 # Downloads
 
+## Parquet Format
+
 The [latest version of parquet-format is 2.7.0](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz).
 
 To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
@@ -7,6 +9,16 @@ To [check the validity](https://www.apache.org/info/verification.html) of this r
  * [Release manager OpenPGP key](https://www.apache.org/dist/parquet/KEYS)
  * [OpenPGP signature](https://www.apache.org/dist/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.asc)
  * [SHA-512](https://www.apache.org/dist/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.sha512)
+
+## Parquet MR
+
+The [latest version of parquet-mr is 1.10.1](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.10.1/apache-parquet-1.10.1.tar.gz).
+
+To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
+
+ * [Release manager OpenPGP key](https://www.apache.org/dist/parquet/KEYS)
+ * [OpenPGP signature](https://www.apache.org/dist/parquet/apache-parquet-1.10.1/apache-parquet-1.10.1.tar.gz.asc)
+ * [SHA-512](https://www.apache.org/dist/parquet/apache-parquet-1.10.1/apache-parquet-1.10.1.tar.gz.sha512)
 
 ### Downloading from the Maven central repository
 
