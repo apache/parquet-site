@@ -249,7 +249,12 @@ svn co https://dist.apache.org/repos/dist/release/parquet releases
 svn add apache-parquet-&lt;version&gt;
 svn ci -m "Parquet: Add release &lt;VERSION&gt;"
 </code></pre></div>
-<h4 id="3-send-an-announce-e-mail-to-announce-apache-org-and-the-dev-list">3. Send an ANNOUNCE e-mail to <a href="mailto:announce@apache.org">announce@apache.org</a> and the dev list</h4>
+<h4 id="3-update-parquet-apache-org">3. Update parquet.apache.org</h4>
+
+<p>Update the downloads page on parquet.apache.org.
+Instructions for updating the site are on the <a href="http://parquet.apache.org/contribute/">contribution page</a>.</p>
+
+<h4 id="4-send-an-announce-e-mail-to-announce-apache-org-and-the-dev-list">4. Send an ANNOUNCE e-mail to <a href="mailto:announce@apache.org">announce@apache.org</a> and the dev list</h4>
 <div class="highlight"><pre class="highlight plaintext"><code>[ANNOUNCE] Apache Parquet release &lt;VERSION&gt;
 </code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>I'm please to announce the release of Parquet &lt;VERSION&gt;!
 
@@ -257,19 +262,14 @@ Parquet is a general-purpose columnar file format for nested data. It uses
 space-efficient encodings and a compressed and splittable structure for
 processing frameworks like Hadoop.
 
-Changes are listed at: &lt;CHANGES-URL&gt;
+Changes are listed at: https://github.com/apache/parquet-mr/blob/apache-parquet-&lt;VERSION&gt;/CHANGES.md
 
-This release can be downloaded from: https://www.apache.org/dyn/closer.cgi/parquet/&lt;TARBALL NAME WITHOUT .tar.gz&gt;/&lt;TARBALL NAME&gt;
+This release can be downloaded from: https://parquet.apache.org/downloads/
 
 Java artifacts are available from Maven Central.
 
 Thanks to everyone for contributing!
 </code></pre></div>
-<h4 id="4-update-parquet-apache-org">4. Update parquet.apache.org</h4>
-
-<p>Update the downloads page on parquet.apache.org.
-Instructions for updating the site are on the <a href="http://parquet.apache.org/contribute/">contribution page</a>.</p>
-
 <h3 id="what-to-do-if-a-vote-fails">What to do if a vote fails</h3>
 
 <p>If a vote fails, you need to remove the release tag that was created by the <code>dev/prepare-release.sh</code> script:</p>
