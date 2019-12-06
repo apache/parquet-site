@@ -12,13 +12,13 @@ To [check the validity](https://www.apache.org/info/verification.html) of this r
 
 ## Parquet MR
 
-The [latest version of parquet-mr is 1.10.1](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.10.1/apache-parquet-1.10.1.tar.gz).
+The [latest version of parquet-mr is 1.11.0](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz).
 
 To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
 
  * [Release manager OpenPGP key](https://www.apache.org/dist/parquet/KEYS)
- * [OpenPGP signature](https://www.apache.org/dist/parquet/apache-parquet-1.10.1/apache-parquet-1.10.1.tar.gz.asc)
- * [SHA-512](https://www.apache.org/dist/parquet/apache-parquet-1.10.1/apache-parquet-1.10.1.tar.gz.sha512)
+ * [OpenPGP signature](https://www.apache.org/dist/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz.asc)
+ * [SHA-512](https://www.apache.org/dist/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz.sha512)
 
 ### Downloading from the Maven central repository
 
@@ -31,7 +31,7 @@ Add the following dependency section to your pom.xml:
 	   <dependency>
           <groupId>org.apache.parquet</groupId>
           <artifactId>parquet-avro</artifactId>
-          <version>1.10.1</version> <!-- or latest version -->
+          <version>1.11.0</version> <!-- or latest version -->
        </dependency>
     ...
     </dependencies>
