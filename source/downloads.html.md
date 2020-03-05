@@ -6,9 +6,9 @@ The [latest version of parquet-format is 2.8.0](https://www.apache.org/dyn/close
 
 To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
 
- * [Release manager OpenPGP key](https://www.apache.org/dist/parquet/KEYS)
- * [OpenPGP signature](https://www.apache.org/dist/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc)
- * [SHA-512](https://www.apache.org/dist/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512)
+ * [Release manager OpenPGP key](https://downloads.apache.org/parquet/KEYS)
+ * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc)
+ * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512)
 
 ## Parquet MR
 
@@ -16,9 +16,9 @@ The [latest version of parquet-mr is 1.11.0](https://www.apache.org/dyn/closer.l
 
 To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
 
- * [Release manager OpenPGP key](https://www.apache.org/dist/parquet/KEYS)
- * [OpenPGP signature](https://www.apache.org/dist/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz.asc)
- * [SHA-512](https://www.apache.org/dist/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz.sha512)
+ * [Release manager OpenPGP key](https://downloads.apache.org/parquet/KEYS)
+ * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz.asc)
+ * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-1.11.0/apache-parquet-1.11.0.tar.gz.sha512)
 
 ### Downloading from the Maven central repository
 

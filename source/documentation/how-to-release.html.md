@@ -15,7 +15,7 @@ mvn deploy
 
 If you have problems, read the [publishing Maven artifacts documentation][publish-maven-docs]
 
-[keys]: https://www.apache.org/dist/parquet/KEYS
+[keys]: https://downloads.apache.org/parquet/KEYS
 [publish-maven-docs]: https://www.apache.org/dev/publishing-maven-artifacts.html
 
 ### Release process
@@ -98,7 +98,7 @@ The release tarball, signature, and checksums are here:
 * https://dist.apache.org/repos/dist/dev/parquet/<PATH>
 
 You can find the KEYS file here:
-* https://apache.org/dist/parquet/KEYS
+* https://downloads.apache.org/parquet/KEYS
 
 Binary artifacts are staged in Nexus here:
 * https://repository.apache.org/content/groups/staging/org/apache/parquet/
