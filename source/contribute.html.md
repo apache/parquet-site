@@ -10,6 +10,7 @@ Here are a few tips to get your contribution in:
   3. Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the JIRA name (ex: https://github.com/apache/parquet-mr/pull/5).
   4. Make sure that your code passes the unit tests. You can run the tests with `mvn test` in the root directory. 
   5. Add new unit tests for your code. 
+  6. All Pull Requests are tested automatically on [GitHub Actions](https://github.com/apache/parquet-mr/actions). [TravisCI](https://travis-ci.org/github/apache/parquet-mr) is also used to run the tests on ARM64 CPU architecture
 
 If you’d like to report a bug but don’t have time to fix it, you can still post it to our [issue tracker](https://issues.apache.org/jira/browse/PARQUET), or email the mailing list (dev@parquet.apache.org).
 
@@ -20,7 +21,7 @@ Merging a pull request requires being a comitter on the project.
 How to merge a Pull request (have an apache and github-apache remote setup):
 
 	git remote add github-apache git@github.com:apache/parquet-mr.git
-	git remote add apache https://git-wip-us.apache.org/repos/asf/parquet-mr.git
+	git remote add apache https://gitbox.apache.org/repos/asf?p=parquet-mr.git
 
 run the following command
 
@@ -40,22 +41,22 @@ Type the pull request number (from https://github.com/apache/parquet-mr/pulls) a
 
 	Proceed with merging pull request #3? (y/n): 
 
-If this looks good, type y and hit enter.
+If this looks good, type `y` and hit enter.
 
-	From git-wip-us.apache.org:/repos/asf/parquet-mr.git
+	From gitbox.apache.org:/repos/asf/parquet-mr.git
 	* [new branch]      master     -> PR_TOOL_MERGE_PR_3_MASTER
 	Switched to branch 'PR_TOOL_MERGE_PR_3_MASTER'
 
 	Merge complete (local ref PR_TOOL_MERGE_PR_3_MASTER). Push to apache? (y/n):
 
-A local branch with the merge has been created. type y and hit enter to push it to apache master
+A local branch with the merge has been created. Type `y` and hit enter to push it to apache master
 
 	Counting objects: 67, done.
 	Delta compression using up to 4 threads.
 	Compressing objects: 100% (26/26), done.
 	Writing objects: 100% (36/36), 5.32 KiB, done.
 	Total 36 (delta 17), reused 0 (delta 0)
-	To git-wip-us.apache.org:/repos/asf/parquet-mr.git
+	To gitbox.apache.org:/repos/asf/parquet-mr.git
 	   b767ac4..485658a  PR_TOOL_MERGE_PR_X_MASTER -> master
 	Restoring head pointer to b767ac4e
 	Note: checking out 'b767ac4e'.
@@ -77,7 +78,7 @@ A local branch with the merge has been created. type y and hit enter to push it 
 
 	Would you like to pick 485658a5 into another branch? (y/n):
 
-For now just say n as we have 1 branch
+For now just say `n` as we have 1 branch
 
 ## Website
 
@@ -96,7 +97,7 @@ Cloning the website from git:
 ### Make changes in source/
 Make any changes in the source directory:
 
-	cd site/source/
+	cd parquet-site/source/
 	vim contribute.html.md
 
 ### Generating the website
