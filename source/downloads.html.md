@@ -2,13 +2,13 @@
 
 ## Parquet Format
 
-The [latest version of parquet-format is 2.8.0](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz).
+The [latest version of parquet-format is 2.9.0](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz).
 
 To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
 
  * [Release manager OpenPGP key](https://downloads.apache.org/parquet/KEYS)
- * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc)
- * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512)
+ * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.asc)
+ * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.sha512)
 
 ## Parquet MR
 
