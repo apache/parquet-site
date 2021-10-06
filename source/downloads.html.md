@@ -12,13 +12,21 @@ To [check the validity](https://www.apache.org/info/verification.html) of this r
 
 ## Parquet MR
 
-The [latest version of parquet-mr is 1.12.1](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.1/apache-parquet-1.12.1.tar.gz).
+The [latest version of parquet-mr is 1.12.2](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz).
 
 To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
 
  * [Release manager OpenPGP key](https://downloads.apache.org/parquet/KEYS)
- * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-1.12.1/apache-parquet-1.12.1.tar.gz.asc)
- * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-1.12.1/apache-parquet-1.12.1.tar.gz.sha512)
+ * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz.asc)
+ * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz.sha512)
+
+The [latest version of parquet-mr on the previous minor branch is 1.11.2](https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz).
+
+To [check the validity](https://www.apache.org/info/verification.html) of this release, use its:
+
+ * [Release manager OpenPGP key](https://downloads.apache.org/parquet/KEYS)
+ * [OpenPGP signature](https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc)
+ * [SHA-512](https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512)
 
 ### Downloading from the Maven central repository
 
@@ -31,7 +39,7 @@ Add the following dependency section to your pom.xml:
 	   <dependency>
           <groupId>org.apache.parquet</groupId>
           <artifactId>parquet-avro</artifactId>
-          <version>1.12.1</version> <!-- or latest version -->
+          <version>1.12.2</version> <!-- or latest version -->
        </dependency>
     ...
     </dependencies>
