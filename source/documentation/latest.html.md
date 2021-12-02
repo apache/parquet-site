@@ -137,7 +137,7 @@ be computed from the schema (i.e. how much nesting there is).  This defines the
 maximum number of bits required to store the levels (levels are defined for all
 values in the column).  
 
-Two encodings for the levels are supported BIT_PACKED and RLE. Only RLE is now used as it supersedes BIT_PACKED.
+Two encodings for the levels are supported: BIT_PACKED and RLE. Only RLE is now used as it supersedes BIT_PACKED.
 
 ## Nulls
 Nullity is encoded in the definition levels (which is run-length encoded).  NULL values 
@@ -152,7 +152,8 @@ header. We have the
  - definition levels data,  
  - repetition levels data, 
  - encoded values.
-The size of specified in the header is for all 3 pieces combined.
+
+The size specified in the header is for all 3 pieces combined.
 
 The data for the data page is always required.  The definition and repetition levels
 are optional, based on the schema definition.  If the column is not nested (i.e.
