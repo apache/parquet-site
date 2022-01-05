@@ -30,7 +30,7 @@ GEM
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.1.7)
-    ffi (1.11.1)
+    ffi (1.15.4)
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
@@ -136,4 +136,4 @@ DEPENDENCIES
   redcarpet!
 
 BUNDLED WITH
-   2.0.2
+   2.3.4
