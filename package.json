@@ -1,0 +1,24 @@
+{
+  "name": "parquet-site",
+  "version": "0.0.1",
+  "description": "Website for Apache Parquet.",
+  "main": "none.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinooganesh/parquet-hugo-site.git"
+  },
+  "author": "Vinoo Ganesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinooganesh/parquet-hugo-site/issues"
+  },
+  "homepage": "https://github.com/vinooganesh/parquet-hugo-site#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.8",
+    "postcss-cli": "^9.1.0"
+  }
+}
