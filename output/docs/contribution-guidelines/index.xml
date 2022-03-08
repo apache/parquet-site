@@ -1,0 +1,176 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – Developer Guide</title><link>/docs/contribution-guidelines/</link><description>Recent content in Developer Guide on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/contribution-guidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Modules</title><link>/docs/contribution-guidelines/modules/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/modules/</guid><description>
+&lt;p>The &lt;a href="https://github.com/apache/parquet-format">parquet-format&lt;/a> project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p>
+&lt;p>The &lt;a href="https://github.com/apache/parquet-mr">parquet-mr&lt;/a> project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p>
+&lt;p>The &lt;a href="https://github.com/apache/parquet-cpp">parquet-cpp&lt;/a> project is a C++ library to read-write Parquet files.&lt;/p>
+&lt;p>The &lt;a href="https://github.com/apache/arrow-rs/tree/master/parquet">parquet-rs&lt;/a> project is a Rust library to read-write Parquet files.&lt;/p>
+&lt;p>The &lt;a href="https://github.com/Parquet/parquet-compatibility">parquet-compatibility&lt;/a> project (deprecated) contains compatibility tests that can be used to verify that implementations in different languages can read and write each other’s files. As of January 2022 compatibility tests only exist up to version 1.2.0.&lt;/p></description></item><item><title>Docs: Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>
+&lt;p>Building
+Java resources can be build using &lt;code>mvn package&lt;/code>. The current stable version should always be available from Maven Central.&lt;/p>
+&lt;p>C++ thrift resources can be generated via make.&lt;/p>
+&lt;p>Thrift can be also code-genned into any other thrift-supported language.&lt;/p></description></item><item><title>Docs: Contributing to Parquet</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>
+&lt;h2 id="pull-requests">Pull Requests&lt;/h2>
+&lt;p>We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-mr">github.com/apache/parquet-mr&lt;/a> repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/incubator-parquet-mr.git">https://github.com/apache/incubator-parquet-mr.git&lt;/a> Here are a few tips to get your contribution in:&lt;/p>
+&lt;ol>
+&lt;li>Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.&lt;/li>
+&lt;li>Create a JIRA for your patch on the &lt;a href="https://issues.apache.org/jira/browse/PARQUET">Parquet Project JIRA&lt;/a>.&lt;/li>
+&lt;li>Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the JIRA name (ex: &lt;a href="https://github.com/apache/parquet-mr/pull/5">https://github.com/apache/parquet-mr/pull/5&lt;/a>).&lt;/li>
+&lt;li>Make sure that your code passes the unit tests. You can run the tests with &lt;code>mvn test&lt;/code> in the root directory.&lt;/li>
+&lt;li>Add new unit tests for your code.&lt;/li>
+&lt;li>All Pull Requests are tested automatically on &lt;a href="https://github.com/apache/parquet-mr/actions">GitHub Actions&lt;/a>. &lt;a href="https://travis-ci.org/github/apache/parquet-mr">TravisCI&lt;/a> is also used to run the tests on ARM64 CPU architecture&lt;/li>
+&lt;/ol>
+&lt;p>If you’d like to report a bug but don’t have time to fix it, you can still post it to our &lt;a href="https://issues.apache.org/jira/browse/PARQUET">issue tracker&lt;/a>, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org&lt;/a>).&lt;/p>
+&lt;h2 id="committers">Committers&lt;/h2>
+&lt;p>Merging a pull request requires being a comitter on the project.&lt;/p>
+&lt;p>How to merge a Pull request (have an apache and github-apache remote setup):&lt;/p>
+&lt;pre>&lt;code>git remote add github-apache git@github.com:apache/parquet-mr.git
+git remote add apache https://gitbox.apache.org/repos/asf?p=parquet-mr.git
+&lt;/code>&lt;/pre>
+&lt;p>run the following command&lt;/p>
+&lt;pre>&lt;code>dev/merge_parquet_pr.py
+&lt;/code>&lt;/pre>
+&lt;p>example output:&lt;/p>
+&lt;pre>&lt;code>Which pull request would you like to merge? (e.g. 34):
+&lt;/code>&lt;/pre>
+&lt;p>Type the pull request number (from &lt;a href="https://github.com/apache/parquet-mr/pulls">https://github.com/apache/parquet-mr/pulls&lt;/a>) and hit enter.&lt;/p>
+&lt;pre>&lt;code>=== Pull Request #X ===
+title Blah Blah Blah
+source repo/branch
+target master
+url https://api.github.com/repos/apache/parquet-mr/pulls/X
+Proceed with merging pull request #3? (y/n):
+&lt;/code>&lt;/pre>
+&lt;p>If this looks good, type &lt;code>y&lt;/code> and hit enter.&lt;/p>
+&lt;pre>&lt;code>From gitbox.apache.org:/repos/asf/parquet-mr.git
+* [new branch] master -&amp;gt; PR_TOOL_MERGE_PR_3_MASTER
+Switched to branch 'PR_TOOL_MERGE_PR_3_MASTER'
+Merge complete (local ref PR_TOOL_MERGE_PR_3_MASTER). Push to apache? (y/n):
+&lt;/code>&lt;/pre>
+&lt;p>A local branch with the merge has been created. Type &lt;code>y&lt;/code> and hit enter to push it to apache master&lt;/p>
+&lt;pre>&lt;code>Counting objects: 67, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (26/26), done.
+Writing objects: 100% (36/36), 5.32 KiB, done.
+Total 36 (delta 17), reused 0 (delta 0)
+To gitbox.apache.org:/repos/asf/parquet-mr.git
+b767ac4..485658a PR_TOOL_MERGE_PR_X_MASTER -&amp;gt; master
+Restoring head pointer to b767ac4e
+Note: checking out 'b767ac4e'.
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+git checkout -b new_branch_name
+HEAD is now at b767ac4... Update README.md
+Deleting local branch PR_TOOL_MERGE_PR_X
+Deleting local branch PR_TOOL_MERGE_PR_X_MASTER
+Pull request #X merged!
+Merge hash: 485658a5
+Would you like to pick 485658a5 into another branch? (y/n):
+&lt;/code>&lt;/pre>
+&lt;p>For now just say &lt;code>n&lt;/code> as we have 1 branch&lt;/p>
+&lt;h2 id="website">Website&lt;/h2>
+&lt;p>TODO&lt;/p></description></item><item><title>Docs: Releasing Parquet</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>
+&lt;h3 id="setup">Setup&lt;/h3>
+&lt;p>You will need: * PGP code signing keys, published in &lt;a href="https://downloads.apache.org/parquet/KEYS">KEYS&lt;/a> * Permission to stage artifacts in Nexus&lt;/p>
+&lt;p>Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:&lt;/p>
+&lt;pre>&lt;code>mvn deploy
+&lt;/code>&lt;/pre>
+&lt;p>If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html">publishing Maven artifacts documentation&lt;/a>&lt;/p>
+&lt;h3 id="release-process">Release process&lt;/h3>
+&lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.&lt;/p>
+&lt;p>Before you start the release process:&lt;/p>
+&lt;ol>
+&lt;li>Verify that the release is finished (no planned JIRAs are pending)&lt;/li>
+&lt;li>Build and test the project&lt;/li>
+&lt;li>Update the change log
+&lt;ul>
+&lt;li>Go to the release notes for the release in JIRA&lt;/li>
+&lt;li>Copy the HTML and convert it to markdown with an &lt;a href="https://domchristie.github.io/turndown/">online converter&lt;/a>&lt;/li>
+&lt;li>Add the content to CHANGES.md and update formatting&lt;/li>
+&lt;li>Commit the update to CHANGES.md&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="1-run-the-prepare-script">1. Run the prepare script&lt;/h4>
+&lt;pre>&lt;code>dev/prepare-release.sh &amp;lt;version&amp;gt; &amp;lt;rc-number&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>This runs maven’s release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.&lt;/p>
+&lt;p>If this step fails, you can roll back the changes by running these commands.&lt;/p>
+&lt;pre>&lt;code>find ./ -type f -name '*.releaseBackup' -exec rm {} \;
+find ./ -type f -name 'pom.xml' -exec git checkout {} \;
+&lt;/code>&lt;/pre>
+&lt;h4 id="2-run-releaseperform-to-stage-binaries">2. Run release:perform to stage binaries&lt;/h4>
+&lt;pre>&lt;code>mvn release:perform
+&lt;/code>&lt;/pre>
+&lt;p>This uploads binary artifacts for the release tag to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/p>
+&lt;h4 id="3-in-nexus-close-the-staging-repository">3. In Nexus, close the staging repository&lt;/h4>
+&lt;p>Closing a staging repository makes the binaries available in &lt;a href="https://repository.apache.org/content/groups/staging/org/apache/parquet/">staging&lt;/a>, but does not publish them.&lt;/p>
+&lt;ol>
+&lt;li>Go to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/li>
+&lt;li>In the menu on the left, choose “Staging Repositories”.&lt;/li>
+&lt;li>Select the Parquet repository.&lt;/li>
+&lt;li>At the top, click “Close” and follow the instructions. For the comment use “Apache Parquet [Format] ”.&lt;/li>
+&lt;/ol>
+&lt;h4 id="4-run-the-source-tarball-script">4. Run the source tarball script&lt;/h4>
+&lt;pre>&lt;code>dev/source-release.sh &amp;lt;version&amp;gt; &amp;lt;rc-number&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>This script builds the source tarball from the release tag’s SHA1, signs it, and uploads the necessary files with SVN.&lt;/p>
+&lt;p>The source release is pushed to &lt;a href="https://dist.apache.org/repos/dist/dev/parquet/">https://dist.apache.org/repos/dist/dev/parquet/&lt;/a>&lt;/p>
+&lt;p>The last message from the script is the release commit’s SHA1 hash and URL for the VOTE e-mail.&lt;/p>
+&lt;h4 id="5-send-a-vote-e-mail-to-devparquetapacheorgmailtodevparquetapacheorg">5. Send a VOTE e-mail to &lt;a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org&lt;/a>&lt;/h4>
+&lt;p>Here is a template you can use. Make sure everything applies to your release.&lt;/p>
+&lt;pre>&lt;code>Subject: [VOTE] Release Apache Parquet &amp;lt;VERSION&amp;gt; RC&amp;lt;NUM&amp;gt;
+Hi everyone,
+I propose the following RC to be released as official Apache Parquet &amp;lt;VERSION&amp;gt; release.
+The commit id is &amp;lt;SHA1&amp;gt;
+* This corresponds to the tag: apache-parquet-&amp;lt;VERSION&amp;gt;-rc&amp;lt;NUM&amp;gt;
+* https://github.com/apache/parquet-mr/tree/&amp;lt;SHA1&amp;gt;
+The release tarball, signature, and checksums are here:
+* https://dist.apache.org/repos/dist/dev/parquet/&amp;lt;PATH&amp;gt;
+You can find the KEYS file here:
+* https://downloads.apache.org/parquet/KEYS
+Binary artifacts are staged in Nexus here:
+* https://repository.apache.org/content/groups/staging/org/apache/parquet/
+This release includes important changes that I should have summarized here, but I'm lazy.
+Please download, verify, and test.
+Please vote in the next 72 hours.
+[ ] +1 Release this as Apache Parquet &amp;lt;VERSION&amp;gt;
+[ ] +0
+[ ] -1 Do not release this because...
+&lt;/code>&lt;/pre>
+&lt;h3 id="publishing-after-the-vote-passes">Publishing after the vote passes&lt;/h3>
+&lt;p>After a release candidate passes a vote, the candidate needs to be published as the final release.&lt;/p>
+&lt;h4 id="1-tag-final-release-and-set-development-version">1. Tag final release and set development version&lt;/h4>
+&lt;pre>&lt;code>dev/finalize-release &amp;lt;release-version&amp;gt; &amp;lt;rc-num&amp;gt; &amp;lt;new-development-version-without-SNAPSHOT-suffix&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>This will add the final release tag to the RC tag and sets the new development version in the pom files. If everything is fine push the changes and the new tag to github: &lt;code>git push --follow-tags&lt;/code>&lt;/p>
+&lt;h4 id="2-release-the-binary-repository-in-nexus">2. Release the binary repository in Nexus&lt;/h4>
+&lt;h4 id="3-copy-the-release-artifacts-in-svn-into-releases">3. Copy the release artifacts in SVN into releases&lt;/h4>
+&lt;p>First, check out the candidates and releases locations in SVN:&lt;/p>
+&lt;pre>&lt;code>mkdir parquet
+cd parquet
+svn co https://dist.apache.org/repos/dist/dev/parquet candidates
+svn co https://dist.apache.org/repos/dist/release/parquet releases
+&lt;/code>&lt;/pre>
+&lt;p>Next, copy the directory for the release candidate the passed from candidates to releases and rename it; remove the “-rcN” part of the directory name.&lt;/p>
+&lt;pre>&lt;code>cp -r candidates/apache-parquet-&amp;lt;VERSION&amp;gt;-rcN/ releases/apache-parquet-&amp;lt;VERSION&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>Then add and commit the release artifacts:&lt;/p>
+&lt;pre>&lt;code>cd releases
+svn add apache-parquet-&amp;lt;version&amp;gt;
+svn ci -m &amp;quot;Parquet: Add release &amp;lt;VERSION&amp;gt;&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;h4 id="4-update-parquetapacheorg">4. Update parquet.apache.org&lt;/h4>
+&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="http://parquet.apache.org/contribute/">contribution page&lt;/a>.&lt;/p>
+&lt;h4 id="5-send-an-announce-e-mail-to-announceapacheorgmailtoannounceapacheorg-and-the-dev-list">5. Send an ANNOUNCE e-mail to &lt;a href="mailto:announce@apache.org">announce@apache.org&lt;/a> and the dev list&lt;/h4>
+&lt;pre>&lt;code>[ANNOUNCE] Apache Parquet release &amp;lt;VERSION&amp;gt;
+I'm please to announce the release of Parquet &amp;lt;VERSION&amp;gt;!
+Parquet is a general-purpose columnar file format for nested data. It uses
+space-efficient encodings and a compressed and splittable structure for
+processing frameworks like Hadoop.
+Changes are listed at: https://github.com/apache/parquet-mr/blob/apache-parquet-&amp;lt;VERSION&amp;gt;/CHANGES.md
+This release can be downloaded from: https://parquet.apache.org/downloads/
+Java artifacts are available from Maven Central.
+Thanks to everyone for contributing!
+&lt;/code>&lt;/pre></description></item></channel></rss>
