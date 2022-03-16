@@ -98,7 +98,7 @@ url_latest_version = "https://parquet.apache.org"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/apache/parquet-site"
-github_branch= "main"
+github_branch= "staging"
 
 # Comment out to disable search.
 gcs_engine_id = "7e3f91e3eadecceaa"
