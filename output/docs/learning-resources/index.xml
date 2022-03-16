@@ -1,13 +1,9 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – Resources</title><link>/docs/learning-resources/</link><description>Recent content in Resources on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/learning-resources/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Spark Summit 2020</title><link>/docs/learning-resources/spark-summit-2020/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/spark-summit-2020/</guid><description>
-&lt;p>&lt;a href="https://www.slideshare.net/databricks/the-apache-spark-file-format-ecosystem">Slides&lt;/a>&lt;/p>
-&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-&lt;iframe src="https://www.youtube.com/embed/auNAzC3AU18" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
-&lt;/div></description></item><item><title>Docs: Hadoop Summit 2014</title><link>/docs/learning-resources/hadoop-summit-2014/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/hadoop-summit-2014/</guid><description>
-&lt;p>&lt;a href="https://www.slideshare.net/cloudera/hadoop-summit-36479635">Slides&lt;/a>&lt;/p>
-&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-&lt;iframe src="https://www.youtube.com/embed/MZNjmfx4LMc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
-&lt;/div></description></item><item><title>Docs: #CONF 2014</title><link>/docs/learning-resources/conf-2014-parquet-summit-twitter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/conf-2014-parquet-summit-twitter/</guid><description>
-&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-&lt;iframe src="https://www.youtube.com/embed/Qfp6Uv1UrA0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
-&lt;/div></description></item><item><title>Docs: Strata 2013</title><link>/docs/learning-resources/strata-2013/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/strata-2013/</guid><description>
-&lt;p>&lt;a href="https://www.slideshare.net/julienledem/parquet-stratany-hadoopworld2013">Slides&lt;/a>&lt;/p></description></item></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – Resources</title><link>/docs/learning-resources/</link><description>Recent content in Resources on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/learning-resources/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Blog Posts</title><link>/docs/learning-resources/blog-posts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/blog-posts/</guid><description>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://eng.uber.com/cost-efficiency-big-data/">Apache Parquet: Cost Efficiency @ Scale in Big Data File Format&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://eng.uber.com/one-stone-three-birds-finer-grained-encryption-apache-parquet/">One Stone, Three Birds: Finer-Grained Encryption @ Apache Parquet&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Presentations</title><link>/docs/learning-resources/presentations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/</guid><description/></item></channel></rss>
