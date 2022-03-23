@@ -101,7 +101,7 @@ github_repo = "https://github.com/apache/parquet-site"
 github_branch= "staging"
 
 # Comment out to disable search.
-gcs_engine_id = "7e3f91e3eadecceaa"
+gcs_engine_id = "d72aa9b2712488cc3"
 
 # Enable Algolia DocSearch
 algolia_docsearch = false

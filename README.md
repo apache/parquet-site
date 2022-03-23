@@ -29,6 +29,12 @@ To run this website site locally, run the following in the root of the directory
 hugo server
 ```
 
+# Release Documentation
+
+To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.
+
+To create documentation for a new release of `parquet-mr` create a new <releaseNumber>.md file under `content/en/blog/parquet-mr`. Please see existing files in that directory as an example.
+
 # Website development and deployment
 
 ## Staging
