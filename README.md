@@ -4,7 +4,6 @@ This website is built / powered by [Hugo](https://gohugo.io/), and extended from
 
 The following steps assume that you have `hugo` installed and working.
 
-
 ## Building and Running Locally
 
 Clone this repository to run the website locally:
