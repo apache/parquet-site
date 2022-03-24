@@ -1,49 +1,50 @@
-# Apache Parquet Website
+# Parquet Website
 
-This is the website for Apache Parquet. 
+This website is built / powered by [Hugo](https://gohugo.io/), and extended from the [Docsy Theme](https://www.docsy.dev/).
 
-### Development Setup
-We use middleman to generate the website content from markdown and other 
-dynamic templates. The following steps assume you have a working 
-ruby environment setup
-
-	gem install bundler
-	bundle install
-
-### Generating the website
----
-To generate the static wesbite for Apache Parquet run the following commands
-
-		bundle exec middleman build
+The following steps assume that you have `hugo` installed and working.
 
 
-### Live Development 
----
-Live development of the site enables automatic reload when changes are saved. 
-To enable run the following command and then open a browser and navigate to 
-[http://localhost:4567](http://localhost:4567/) 
+## Building and Running Locally
 
-		bundle exec middleman 
+Clone this repository to run the website locally:
 
+```shell
+git clone git@github.com:apache/parquet-site.git
+cd parquet-site
+git submodule update --init --recursive
+```
 
-### Publishing the Site
-The website uses svnpubsub. The publish folder contains the websites content
-and when committed to the svn repository it will be automatically deployed to 
-the live site. 
+To build or update your site’s CSS resources, you also need PostCSS to create the final assets. By default npm installs tools under the directory where you run npm install.
 
+```
+npm install -D autoprefixer
+npm install -D postcss-cli
+npm install -D postcss
+```
 
-### Apache License
----
-Except as otherwise noted this software is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
+To run this website site locally, run the following in the root of the directory:
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+```shell
+hugo server
+```
 
-  http://www.apache.org/licenses/LICENSE-2.0
+# Website development and deployment
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Staging
+
+To make a change to the `staging` version of the website:
+1. Make a PR against the `staging` branch in the repository
+2. Once the PR is merged, the `Build and Deploy Parquet Site`
+job in the [deployment workflow](./.github/workflows/deploy.yml) will be run, populating the `asf-staging` branch on this repo with the necessary files.
+
+**Do not directly edit the `asf-staging` branch of this repo**
+
+## Production
+
+To make a change to the `production` version of the website:
+1. Make a PR against the `production` branch in the repository
+2. Once the PR is merged, the `Build and Deploy Parquet Site`
+job in the [deployment workflow](./.github/workflows/deploy.yml) will be run, populating the `asf-site` branch on this repo with the necessary files.
+
+**Do not directly edit the `asf-site` branch of this repo**
