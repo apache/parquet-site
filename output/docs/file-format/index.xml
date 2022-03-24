@@ -1,0 +1,32 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – File Format</title><link>/docs/file-format/</link><description>Recent content in File Format on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/file-format/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>
+&lt;h3 id="row-group-size">Row Group Size&lt;/h3>
+&lt;p>Larger row groups allow for larger column chunks which makes it possible to do larger sequential IO. Larger groups also require more buffering in the write path (or a two pass write). We recommend large row groups (512MB - 1GB). Since an entire row group might need to be read, we want it to completely fit on one HDFS block. Therefore, HDFS block sizes should also be set to be larger. An optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block per HDFS file.&lt;/p>
+&lt;h3 id="data-page--size">Data Page Size&lt;/h3>
+&lt;p>Data pages should be considered indivisible so smaller data pages allow for more fine grained reading (e.g. single row lookup). Larger page sizes incur less space overhead (less page headers) and potentially less parsing overhead (processing headers). Note: for sequential scans, it is not expected to read a page at a time; this is not the IO chunk. We recommend 8KB for page sizes.&lt;/p></description></item><item><title>Docs: Extensibility</title><link>/docs/file-format/extensibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/extensibility/</guid><description>
+&lt;p>There are many places in the format for compatible extensions:&lt;/p>
+&lt;p>File Version: The file metadata contains a version.
+Encodings: Encodings are specified by enum and more can be added in the future.
+Page types: Additional page types can be added and safely skipped.&lt;/p></description></item><item><title>Docs: Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>
+&lt;p>There are three types of metadata: file metadata, column (chunk) metadata and page header metadata. All thrift structures are serialized using the TCompactProtocol.&lt;/p>
+&lt;p>&lt;img src="/images/FileFormat.gif" alt="File Layout">&lt;/p></description></item><item><title>Docs: Types</title><link>/docs/file-format/types/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/</guid><description>
+&lt;p>The types supported by the file format are intended to be as minimal as possible, with a focus on how the types effect on disk storage. For example, 16-bit ints are not explicitly supported in the storage format since they are covered by 32-bit ints with an efficient encoding. This reduces the complexity of implementing readers and writers for the format. The types are:&lt;/p>
+&lt;pre tabindex="0">&lt;code>BOOLEAN: 1 bit boolean
+INT32: 32 bit signed ints
+INT64: 64 bit signed ints
+INT96: 96 bit signed ints
+FLOAT: IEEE 32-bit floating point values
+DOUBLE: IEEE 64-bit floating point values
+BYTE_ARRAY: arbitrarily long byte arrays.
+&lt;/code>&lt;/pre></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
+&lt;p>To encode nested columns, Parquet uses the Dremel encoding with definition and repetition levels. Definition levels specify how many optional fields in the path for the column are defined. Repetition levels specify at what repeated field in the path has the value repeated. The max definition and repetition levels can be computed from the schema (i.e. how much nesting there is). This defines the maximum number of bits required to store the levels (levels are defined for all values in the column).&lt;/p>
+&lt;p>Two encodings for the levels are supported BITPACKED and RLE. Only RLE is now used as it supersedes BITPACKED.&lt;/p></description></item><item><title>Docs: Data Pages</title><link>/docs/file-format/data-pages/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/</guid><description>
+&lt;p>For data pages, the 3 pieces of information are encoded back to back, after the page header. We have the&lt;/p>
+&lt;ul>
+&lt;li>definition levels data,&lt;/li>
+&lt;li>repetition levels data,&lt;/li>
+&lt;li>encoded values. The size of specified in the header is for all 3 pieces combined.&lt;/li>
+&lt;/ul>
+&lt;p>The data for the data page is always required. The definition and repetition levels are optional, based on the schema definition. If the column is not nested (i.e. the path to the column has length 1), we do not encode the repetition levels (it would always have the value 1). For data that is required, the definition levels are skipped (if encoded, it will always have the value of the max definition level).&lt;/p>
+&lt;p>For example, in the case where the column is non-nested and required, the data in the page is only the encoded values.&lt;/p>
+&lt;p>The supported encodings are described in Encodings.md&lt;/p></description></item><item><title>Docs: Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>
+&lt;p>Nullity is encoded in the definition levels (which is run-length encoded). NULL values are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs would be encoded with run-length encoding (0, 1000 times) for the definition levels and nothing else.&lt;/p></description></item></channel></rss>
