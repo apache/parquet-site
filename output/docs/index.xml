@@ -284,7 +284,26 @@ Would you like to pick 485658a5 into another branch? (y/n):
 &lt;/code>&lt;/pre>
 &lt;p>For now just say &lt;code>n&lt;/code> as we have 1 branch&lt;/p>
 &lt;h2 id="website">Website&lt;/h2>
-&lt;p>TODO&lt;/p></description></item><item><title>Docs: Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>
+&lt;h3 id="release-documentation">Release Documentation&lt;/h3>
+&lt;p>To create documentation for a new release of &lt;code>parquet-format&lt;/code> create a new &lt;releaseNumber>.md file under &lt;code>content/en/blog/parquet-format&lt;/code>. Please see existing files in that directory as an example.&lt;/p>
+&lt;p>To create documentation for a new release of &lt;code>parquet-mr&lt;/code> create a new &lt;releaseNumber>.md file under &lt;code>content/en/blog/parquet-mr&lt;/code>. Please see existing files in that directory as an example.&lt;/p>
+&lt;h3 id="website-development-and-deployment">Website development and deployment&lt;/h3>
+&lt;h4 id="staging">Staging&lt;/h4>
+&lt;p>To make a change to the &lt;code>staging&lt;/code> version of the website:&lt;/p>
+&lt;ol>
+&lt;li>Make a PR against the &lt;code>staging&lt;/code> branch in the repository&lt;/li>
+&lt;li>Once the PR is merged, the &lt;code>Build and Deploy Parquet Site&lt;/code>
+job in the &lt;a href="https://github.com/apache/parquet-site/blob/staging/.github/workflows/deploy.yml">deployment workflow&lt;/a> will be run, populating the &lt;code>asf-staging&lt;/code> branch on this repo with the necessary files.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>Do not directly edit the &lt;code>asf-staging&lt;/code> branch of this repo&lt;/strong>&lt;/p>
+&lt;h4 id="production">Production&lt;/h4>
+&lt;p>To make a change to the &lt;code>production&lt;/code> version of the website:&lt;/p>
+&lt;ol>
+&lt;li>Make a PR against the &lt;code>production&lt;/code> branch in the repository&lt;/li>
+&lt;li>Once the PR is merged, the &lt;code>Build and Deploy Parquet Site&lt;/code>
+job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.github/workflows/deploy.yml">deployment workflow&lt;/a> will be run, populating the &lt;code>asf-site&lt;/code> branch on this repo with the necessary files.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>Do not directly edit the &lt;code>asf-site&lt;/code> branch of this repo&lt;/strong>&lt;/p></description></item><item><title>Docs: Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>
 &lt;p>&lt;a href="https://www.apache.org/foundation/thanks.html">Sponsor&lt;/a>&lt;/p></description></item><item><title>Docs: Donate</title><link>/docs/asf/donate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/donate/</guid><description>
 &lt;p>&lt;a href="https://www.apache.org/foundation/sponsorship.html">Donate&lt;/a>&lt;/p></description></item><item><title>Docs: Releasing Parquet</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>
 &lt;h3 id="setup">Setup&lt;/h3>
@@ -378,7 +397,7 @@ svn add apache-parquet-&amp;lt;version&amp;gt;
 svn ci -m &amp;quot;Parquet: Add release &amp;lt;VERSION&amp;gt;&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;h4 id="4-update-parquetapacheorg">4. Update parquet.apache.org&lt;/h4>
-&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="http://parquet.apache.org/contribute/">contribution page&lt;/a>.&lt;/p>
+&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="http://parquet.apache.org/docs/contribution-guidelines/contributing/">contribution page&lt;/a>.&lt;/p>
 &lt;h4 id="5-send-an-announce-e-mail-to-announceapacheorgmailtoannounceapacheorg-and-the-dev-list">5. Send an ANNOUNCE e-mail to &lt;a href="mailto:announce@apache.org">announce@apache.org&lt;/a> and the dev list&lt;/h4>
 &lt;pre>&lt;code>[ANNOUNCE] Apache Parquet release &amp;lt;VERSION&amp;gt;
 I'm please to announce the release of Parquet &amp;lt;VERSION&amp;gt;!
