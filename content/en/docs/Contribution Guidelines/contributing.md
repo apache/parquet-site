@@ -9,7 +9,7 @@ description: >
 Pull Requests
 -------------
 
-We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the [github.com/apache/parquet-mr](https://github.com/apache/parquet-mr) repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to [https://github.com/apache/incubator-parquet-mr.git](https://github.com/apache/incubator-parquet-mr.git) Here are a few tips to get your contribution in:
+We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the [github.com/apache/parquet-mr](https://github.com/apache/parquet-mr) repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to [https://github.com/apache/parquet-mr.git](https://github.com/apache/parquet-mr.git) Here are a few tips to get your contribution in:
 
 1.  Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.
 2.  Create a JIRA for your patch on the [Parquet Project JIRA](https://issues.apache.org/jira/browse/PARQUET).
