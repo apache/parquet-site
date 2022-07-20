@@ -150,12 +150,12 @@ enable = false
   name = "User mailing list"
   url = "mailto:dev@parquet.apache.org"
   icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users"
+  desc = "Discussion and help from your fellow users. To subscribe please email dev-subscribe@parquet.apache.org. View the archive here: https://lists.apache.org/list.html?dev@parquet.apache.org."
 [[params.links.user]]
   name ="Twitter"
   url = "https://twitter.com/ApacheParquet"
   icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news!"
+  desc = "Follow us on Twitter to get the latest news"
 [[params.links.user]]
   name = "Stack Overflow"
   url = "https://stackoverflow.com/questions/tagged/parquet"
@@ -166,7 +166,7 @@ enable = false
   name = "GitHub"
   url = "https://github.com/apache/parquet-mr"
   icon = "fab fa-github"
-  desc = "Development takes place here!"
+  desc = "Development takes place here"
 [[params.links.developer]]
   name = "Slack"
   url = "https://the-asf.slack.com/"
