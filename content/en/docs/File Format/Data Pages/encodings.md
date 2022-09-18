@@ -68,7 +68,8 @@ repeated-value := value that is repeated, using a fixed-width of round-up-to-nex
 1. The bit-packing here is done in a different order than the one in the [deprecated bit-packing](#BITPACKED) encoding.
    The values are packed from the least significant bit of each byte to the most significant bit,
    though the order of the bits in each value remains in the usual order of most significant to least
-   significant. For example, to pack the same values as the example in the deprecated encoding above:
+   significant. An example of the encoding is presented below. For comparison, the same case is shown 
+   in the example of the deprecated bit-packing encoding in the next section. 
 
    The numbers 1 through 7 using bit width 3:
    ```
