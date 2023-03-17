@@ -3,4 +3,7 @@ title: "Checksumming"
 linkTitle: "Checksumming"
 weight: 7
 ---
-Column chunks are composed of pages written back to back. The pages share a common header and readers can skip over page they are not interested in. The data for the page follows the header and can be compressed and/or encoded. The compression and encoding is specified in the page metadata.
+Pages of all kinds can be individually checksummed. This allows disabling of checksums
+at the HDFS file level, to better support single row lookups. Checksums are calculated
+using the standard CRC32 algorithm - as used in e.g. GZip - on the serialized binary
+representation of a page (not including the page header itself).

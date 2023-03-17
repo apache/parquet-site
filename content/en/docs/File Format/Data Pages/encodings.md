@@ -135,18 +135,27 @@ repetition and definition levels.
 ### <a name="DELTAENC"></a>Delta Encoding (DELTA_BINARY_PACKED = 5)
 Supported Types: INT32, INT64
 
-This encoding is adapted from the Binary packing described in ["Decoding billions of integers per second through vectorization"](http://arxiv.org/pdf/1209.2137v5.pdf) by D. Lemire and L. Boytsov.
+This encoding is adapted from the Binary packing described in
+["Decoding billions of integers per second through vectorization"](http://arxiv.org/pdf/1209.2137v5.pdf)
+by D. Lemire and L. Boytsov.
 
-In delta encoding we make use of variable length integers for storing various numbers (not the deltas themselves). For unsigned values, we use ULEB128, which is the unsigned version of LEB128 (https://en.wikipedia.org/wiki/LEB128#Unsigned_LEB128). For signed values, we use zigzag encoding (https://developers.google.com/protocol-buffers/docs/encoding#signed-integers) to map negative values to positive ones and apply ULEB128 on the result.
+In delta encoding we make use of variable length integers for storing various
+numbers (not the deltas themselves). For unsigned values, we use ULEB128,
+which is the unsigned version of LEB128 (https://en.wikipedia.org/wiki/LEB128#Unsigned_LEB128).
+For signed values, we use zigzag encoding (https://developers.google.com/protocol-buffers/docs/encoding#signed-integers)
+to map negative values to positive ones and apply ULEB128 on the result.
 
-Delta encoding consists of a header followed by blocks of delta encoded values binary packed. Each block is made of miniblocks, each of them binary packed with its own bit width.
+Delta encoding consists of a header followed by blocks of delta encoded values
+binary packed. Each block is made of miniblocks, each of them binary packed with its own bit width.
 
 The header is defined as follows:
 ```
 <block size in values> <number of miniblocks in a block> <total value count> <first value>
 ```
  * the block size is a multiple of 128; it is stored as a ULEB128 int
- * the miniblock count per block is a divisor of the block size such that their quotient, the number of values in a miniblock, is a multiple of 32; it is stored as a ULEB128 int
+ * the miniblock count per block is a divisor of the block size such that their
+   quotient, the number of values in a miniblock, is a multiple of 32; it is
+   stored as a ULEB128 int
  * the total value count is stored as a ULEB128 int
  * the first value is stored as a zigzag ULEB128 int
 
@@ -154,25 +163,53 @@ Each block contains
 ```
 <min delta> <list of bitwidths of miniblocks> <miniblocks>
 ```
- * the min delta is a zigzag ULEB128 int (we compute a minimum as we need positive integers for bit packing)
+ * the min delta is a zigzag ULEB128 int (we compute a minimum as we need
+   positive integers for bit packing)
  * the bitwidth of each block is stored as a byte
- * each miniblock is a list of bit packed ints according to the bit width stored at the begining of the block
+ * each miniblock is a list of bit packed ints according to the bit width
+   stored at the begining of the block
 
 To encode a block, we will:
 
-1. Compute the differences between consecutive elements. For the first element in the block, use the last element in the previous block or, in the case of the first block, use the first value of the whole sequence, stored in the header.
+1. Compute the differences between consecutive elements. For the first
+   element in the block, use the last element in the previous block or, in
+   the case of the first block, use the first value of the whole sequence,
+   stored in the header.
 
-2. Compute the frame of reference (the minimum of the deltas in the block). Subtract this min delta from all deltas in the block. This guarantees that all values are non-negative.
+2. Compute the frame of reference (the minimum of the deltas in the block).
+   Subtract this min delta from all deltas in the block. This guarantees that
+   all values are non-negative.
 
-3. Encode the frame of reference (min delta) as a zigzag ULEB128 int followed by the bit widths of the miniblocks and the delta values (minus the min delta) bit packed per miniblock.
+3. Encode the frame of reference (min delta) as a zigzag ULEB128 int followed
+   by the bit widths of the miniblocks and the delta values (minus the min
+   delta) bit-packed per miniblock.
 
-Having multiple blocks allows us to adapt to changes in the data by changing the frame of reference (the min delta) which can result in smaller values after the subtraction which, again, means we can store them with a lower bit width.
+Having multiple blocks allows us to adapt to changes in the data by changing
+the frame of reference (the min delta) which can result in smaller values
+after the subtraction which, again, means we can store them with a lower bit width.
 
-If there are not enough values to fill the last miniblock, we pad the miniblock so that its length is always the number of values in a full miniblock multiplied by the bit width. The values of the padding bits should be zero, but readers must accept paddings consisting of arbitrary bits as well.
+If there are not enough values to fill the last miniblock, we pad the miniblock
+so that its length is always the number of values in a full miniblock multiplied
+by the bit width. The values of the padding bits should be zero, but readers
+must accept paddings consisting of arbitrary bits as well.
 
-If, in the last block, less than ```<number of miniblocks in a block>``` miniblocks are needed to store the values, the bytes storing the bit widths of the unneeded miniblocks are still present, their value should be zero, but readers must accept arbitrary values as well. There are no additional padding bytes for the miniblock bodies though, as if their bit widths were 0 (regardless of the actual byte values). The reader knows when to stop reading by keeping track of the number of values read.
+If, in the last block, less than ```<number of miniblocks in a block>```
+miniblocks are needed to store the values, the bytes storing the bit widths
+of the unneeded miniblocks are still present, their value should be zero,
+but readers must accept arbitrary values as well. There are no additional
+padding bytes for the miniblock bodies though, as if their bit widths were 0
+(regardless of the actual byte values). The reader knows when to stop reading
+by keeping track of the number of values read.
 
-The following examples use 8 as the block size to keep the examples short, but in real cases it would be invalid.
+Subtractions in steps 1) and 2) may incur signed arithmetic overflow, and so
+will the corresponding additions when decoding. Overflow should be allowed
+and handled as wrapping around in 2's complement notation so that the original
+values are correctly restituted. This may require explicit care in some programming
+languages (for example by doing all arithmetic in the unsigned domain).
+
+The following examples use 8 as the block size to keep the examples short,
+but in real cases it would be invalid.
+
 #### Example 1
 1, 2, 3, 4, 5
 
@@ -180,7 +217,7 @@ After step 1), we compute the deltas as:
 
 1, 1, 1, 1
 
-The minimum delta is 1 and after step 2, the deltas become
+The minimum delta is 1 and after step 2, the relative deltas become:
 
 0, 0, 0, 0
 
@@ -189,7 +226,7 @@ The final encoded data is:
  header:
 8 (block size), 1 (miniblock count), 5 (value count), 1 (first value)
 
- block
+ block:
 1 (minimum delta), 0 (bitwidth), (no data needed for bitwidth 0)
 
 #### Example 2
@@ -206,7 +243,7 @@ The encoded data is
  header:
 8 (block size), 1 (miniblock count), 8 (value count), 7 (first value)
 
- block
+ block:
 -2 (minimum delta), 2 (bitwidth), 00000011111111b (0,0,0,3,3,3,3 packed on 2 bits)
 
 #### Characteristics
@@ -225,16 +262,19 @@ concatenated back to back. The expected savings is from the cost of encoding the
 and possibly better compression in the data (it is no longer interleaved with the lengths).
 
 The data stream looks like:
-
+```
 <Delta Encoded Lengths> <Byte Array Data>
+```
 
-For example, if the data was "Hello", "World", "Foobar", "ABCDEF":
+For example, if the data was "Hello", "World", "Foobar", "ABCDEF"
 
-The encoded data would be DeltaEncoding(5, 5, 6, 6) "HelloWorldFoobarABCDEF"
+then the encoded data would be comprised of the following segments:
+- DeltaEncoding(5, 5, 6, 6) (the string lengths)
+- "HelloWorldFoobarABCDEF"
 
 ### Delta Strings: (DELTA_BYTE_ARRAY = 7)
 
-Supported Types: BYTE_ARRAY
+Supported Types: BYTE_ARRAY, FIXED_LEN_BYTE_ARRAY
 
 This is also known as incremental encoding or front compression: for each element in a
 sequence of strings, store the prefix length of the previous entry plus the suffix.
@@ -244,18 +284,31 @@ For a longer description, see https://en.wikipedia.org/wiki/Incremental_encoding
 This is stored as a sequence of delta-encoded prefix lengths (DELTA_BINARY_PACKED), followed by
 the suffixes encoded as delta length byte arrays (DELTA_LENGTH_BYTE_ARRAY).
 
+For example, if the data was "axis", "axle", "babble", "babyhood"
+
+then the encoded data would be comprised of the following segments:
+- DeltaEncoding(0, 2, 0, 3) (the prefix lengths)
+- DeltaEncoding(4, 2, 6, 5) (the suffix lengths)
+- "axislebabbleyhood"
+
+Note that, even for FIXED_LEN_BYTE_ARRAY, all lengths are encoded despite the redundancy.
+
 ### Byte Stream Split: (BYTE_STREAM_SPLIT = 9)
 
-Supported Types: FLOAT DOUBLE
+Supported Types: FLOAT, DOUBLE
 
 This encoding does not reduce the size of the data but can lead to a significantly better
 compression ratio and speed when a compression algorithm is used afterwards.
 
 This encoding creates K byte-streams of length N where K is the size in bytes of the data
-type and N is the number of elements in the data sequence.
+type and N is the number of elements in the data sequence. Specifically, K is 4 for FLOAT
+type and 8 for DOUBLE type.
 The bytes of each value are scattered to the corresponding streams. The 0-th byte goes to the
 0-th stream, the 1-st byte goes to the 1-st stream and so on.
 The streams are concatenated in the following order: 0-th stream, 1-st stream, etc.
+The total length of encoded streams is K * N bytes. Because it does not have any metadata
+to indicate the total length, the end of the streams is also the end of data page. No padding
+is allowed inside the data page.
 
 Example:
 Original data is three 32-bit floats and for simplicity we look at their raw representation.
