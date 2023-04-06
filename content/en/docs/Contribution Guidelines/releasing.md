@@ -23,13 +23,15 @@ Parquet uses the maven-release-plugin to tag a release and push binary artifacts
 
 Before you start the release process:
 
-1.  Verify that the release is finished (no planned JIRAs are pending)
-2.  Build and test the project
-3.  Update the change log
+1.  Verify that the release is finished (no planned JIRAs are pending and all patches are cherry-picked to the release branch) 
+2.  Resolve all associated JIRAs with correct target version and create the next unreleased version in the JIRA project
+3.  Build and test the project
+4.  Create a new branch for the release if this is a new minor version. For example, if the new minor version is 1.13.0, create a new branch `parquet-1.13.x`
+5.  Update the change log
     *   Go to the release notes for the release in JIRA
     *   Copy the HTML and convert it to markdown with an [online converter](https://domchristie.github.io/turndown/)
     *   Add the content to CHANGES.md and update formatting
-    *   Commit the update to CHANGES.md
+    *   Commit the update to CHANGES.md and make sure it is committed to both release and master branches
 
 #### 1\. Run the prepare script
 
@@ -119,6 +121,13 @@ After a release candidate passes a vote, the candidate needs to be published as 
 This will add the final release tag to the RC tag and sets the new development version in the pom files. If everything is fine push the changes and the new tag to github: `git push --follow-tags`
 
 #### 2\. Release the binary repository in Nexus
+
+Releasing a binary repository publishes the binaries to [public](https://repository.apache.org/content/groups/public/org/apache/parquet/).
+
+1.  Go to [Nexus](https://repository.apache.org/).
+2.  In the menu on the left, choose “Staging Repositories”.
+3.  Select the Parquet repository.
+4.  At the top, click Release and follow the instructions. For the comment use “Apache Parquet \[Format\] ”.
 
 #### 3\. Copy the release artifacts in SVN into releases
 
