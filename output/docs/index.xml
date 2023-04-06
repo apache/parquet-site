@@ -316,14 +316,16 @@ job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.g
 &lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.&lt;/p>
 &lt;p>Before you start the release process:&lt;/p>
 &lt;ol>
-&lt;li>Verify that the release is finished (no planned JIRAs are pending)&lt;/li>
+&lt;li>Verify that the release is finished (no planned JIRAs are pending and all patches are cherry-picked to the release branch)&lt;/li>
+&lt;li>Resolve all associated JIRAs with correct target version and create the next unreleased version in the JIRA project&lt;/li>
 &lt;li>Build and test the project&lt;/li>
+&lt;li>Create a new branch for the release if this is a new minor version. For example, if the new minor version is 1.13.0, create a new branch &lt;code>parquet-1.13.x&lt;/code>&lt;/li>
 &lt;li>Update the change log
 &lt;ul>
 &lt;li>Go to the release notes for the release in JIRA&lt;/li>
 &lt;li>Copy the HTML and convert it to markdown with an &lt;a href="https://domchristie.github.io/turndown/">online converter&lt;/a>&lt;/li>
 &lt;li>Add the content to CHANGES.md and update formatting&lt;/li>
-&lt;li>Commit the update to CHANGES.md&lt;/li>
+&lt;li>Commit the update to CHANGES.md and make sure it is committed to both release and master branches&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ol>
@@ -381,6 +383,13 @@ Please vote in the next 72 hours.
 &lt;/code>&lt;/pre>
 &lt;p>This will add the final release tag to the RC tag and sets the new development version in the pom files. If everything is fine push the changes and the new tag to github: &lt;code>git push --follow-tags&lt;/code>&lt;/p>
 &lt;h4 id="2-release-the-binary-repository-in-nexus">2. Release the binary repository in Nexus&lt;/h4>
+&lt;p>Releasing a binary repository publishes the binaries to &lt;a href="https://repository.apache.org/content/groups/public/org/apache/parquet/">public&lt;/a>.&lt;/p>
+&lt;ol>
+&lt;li>Go to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/li>
+&lt;li>In the menu on the left, choose “Staging Repositories”.&lt;/li>
+&lt;li>Select the Parquet repository.&lt;/li>
+&lt;li>At the top, click Release and follow the instructions. For the comment use “Apache Parquet [Format] ”.&lt;/li>
+&lt;/ol>
 &lt;h4 id="3-copy-the-release-artifacts-in-svn-into-releases">3. Copy the release artifacts in SVN into releases&lt;/h4>
 &lt;p>First, check out the candidates and releases locations in SVN:&lt;/p>
 &lt;pre>&lt;code>mkdir parquet
