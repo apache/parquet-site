@@ -1,32 +1,438 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – File Format</title><link>/docs/file-format/</link><description>Recent content in File Format on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/docs/file-format/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>
 &lt;h3 id="row-group-size">Row Group Size&lt;/h3>
-&lt;p>Larger row groups allow for larger column chunks which makes it possible to do larger sequential IO. Larger groups also require more buffering in the write path (or a two pass write). We recommend large row groups (512MB - 1GB). Since an entire row group might need to be read, we want it to completely fit on one HDFS block. Therefore, HDFS block sizes should also be set to be larger. An optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block per HDFS file.&lt;/p>
+&lt;p>Larger row groups allow for larger column chunks which makes it
+possible to do larger sequential IO. Larger groups also require more buffering in
+the write path (or a two pass write). We recommend large row groups (512MB - 1GB).
+Since an entire row group might need to be read, we want it to completely fit on
+one HDFS block. Therefore, HDFS block sizes should also be set to be larger. An
+optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block
+per HDFS file.&lt;/p>
 &lt;h3 id="data-page--size">Data Page Size&lt;/h3>
-&lt;p>Data pages should be considered indivisible so smaller data pages allow for more fine grained reading (e.g. single row lookup). Larger page sizes incur less space overhead (less page headers) and potentially less parsing overhead (processing headers). Note: for sequential scans, it is not expected to read a page at a time; this is not the IO chunk. We recommend 8KB for page sizes.&lt;/p></description></item><item><title>Docs: Extensibility</title><link>/docs/file-format/extensibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/extensibility/</guid><description>
+&lt;p>Data pages should be considered indivisible so smaller data pages
+allow for more fine grained reading (e.g. single row lookup). Larger page sizes
+incur less space overhead (less page headers) and potentially less parsing overhead
+(processing headers). Note: for sequential scans, it is not expected to read a page
+at a time; this is not the IO chunk. We recommend 8KB for page sizes.&lt;/p></description></item><item><title>Docs: Extensibility</title><link>/docs/file-format/extensibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/extensibility/</guid><description>
 &lt;p>There are many places in the format for compatible extensions:&lt;/p>
-&lt;p>File Version: The file metadata contains a version.
-Encodings: Encodings are specified by enum and more can be added in the future.
-Page types: Additional page types can be added and safely skipped.&lt;/p></description></item><item><title>Docs: Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>
-&lt;p>There are three types of metadata: file metadata, column (chunk) metadata and page header metadata. All thrift structures are serialized using the TCompactProtocol.&lt;/p>
-&lt;p>&lt;img src="/images/FileFormat.gif" alt="File Layout">&lt;/p></description></item><item><title>Docs: Types</title><link>/docs/file-format/types/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/</guid><description>
-&lt;p>The types supported by the file format are intended to be as minimal as possible, with a focus on how the types effect on disk storage. For example, 16-bit ints are not explicitly supported in the storage format since they are covered by 32-bit ints with an efficient encoding. This reduces the complexity of implementing readers and writers for the format. The types are:&lt;/p>
-&lt;pre tabindex="0">&lt;code>BOOLEAN: 1 bit boolean
-INT32: 32 bit signed ints
-INT64: 64 bit signed ints
-INT96: 96 bit signed ints
-FLOAT: IEEE 32-bit floating point values
-DOUBLE: IEEE 64-bit floating point values
-BYTE_ARRAY: arbitrarily long byte arrays.
-&lt;/code>&lt;/pre></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
-&lt;p>To encode nested columns, Parquet uses the Dremel encoding with definition and repetition levels. Definition levels specify how many optional fields in the path for the column are defined. Repetition levels specify at what repeated field in the path has the value repeated. The max definition and repetition levels can be computed from the schema (i.e. how much nesting there is). This defines the maximum number of bits required to store the levels (levels are defined for all values in the column).&lt;/p>
-&lt;p>Two encodings for the levels are supported BITPACKED and RLE. Only RLE is now used as it supersedes BITPACKED.&lt;/p></description></item><item><title>Docs: Data Pages</title><link>/docs/file-format/data-pages/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/</guid><description>
-&lt;p>For data pages, the 3 pieces of information are encoded back to back, after the page header. We have the&lt;/p>
 &lt;ul>
-&lt;li>definition levels data,&lt;/li>
-&lt;li>repetition levels data,&lt;/li>
-&lt;li>encoded values. The size of specified in the header is for all 3 pieces combined.&lt;/li>
+&lt;li>File Version: The file metadata contains a version.&lt;/li>
+&lt;li>Encodings: Encodings are specified by enum and more can be added in the future.&lt;/li>
+&lt;li>Page types: Additional page types can be added and safely skipped.&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>
+&lt;p>There are three types of metadata: file metadata, column (chunk) metadata and page
+header metadata. All thrift structures are serialized using the TCompactProtocol.&lt;/p>
+&lt;p>&lt;img src="/images/FileFormat.gif" alt="File Layout">&lt;/p></description></item><item><title>Docs: Types</title><link>/docs/file-format/types/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/</guid><description>
+&lt;p>The types supported by the file format are intended to be as minimal as possible,
+with a focus on how the types effect on disk storage. For example, 16-bit ints
+are not explicitly supported in the storage format since they are covered by
+32-bit ints with an efficient encoding. This reduces the complexity of implementing
+readers and writers for the format. The types are:&lt;/p>
+&lt;pre tabindex="0">&lt;code> - BOOLEAN: 1 bit boolean
+- INT32: 32 bit signed ints
+- INT64: 64 bit signed ints
+- INT96: 96 bit signed ints
+- FLOAT: IEEE 32-bit floating point values
+- DOUBLE: IEEE 64-bit floating point values
+- BYTE_ARRAY: arbitrarily long byte arrays
+- FIXED_LEN_BYTE_ARRAY: fixed length byte arrays
+&lt;/code>&lt;/pre></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
+&lt;p>To encode nested columns, Parquet uses the Dremel encoding with definition and
+repetition levels. Definition levels specify how many optional fields in the
+path for the column are defined. Repetition levels specify at what repeated field
+in the path has the value repeated. The max definition and repetition levels can
+be computed from the schema (i.e. how much nesting there is). This defines the
+maximum number of bits required to store the levels (levels are defined for all
+values in the column).&lt;/p>
+&lt;p>Two encodings for the levels are supported BIT_PACKED and RLE. Only RLE is now used as it supersedes BIT_PACKED.&lt;/p></description></item><item><title>Docs: Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>
+&lt;h3 id="problem-statement">Problem statement&lt;/h3>
+&lt;p>In their current format, column statistics and dictionaries can be used for predicate
+pushdown. Statistics include minimum and maximum value, which can be used to filter out
+values not in the range. Dictionaries are more specific, and readers can filter out values
+that are between min and max but not in the dictionary. However, when there are too many
+distinct values, writers sometimes choose not to add dictionaries because of the extra
+space they occupy. This leaves columns with large cardinalities and widely separated min
+and max without support for predicate pushdown.&lt;/p>
+&lt;p>A &lt;a href="https://en.wikipedia.org/wiki/Bloom_filter">Bloom filter&lt;/a> is a compact data structure that
+overapproximates a set. It can respond to membership queries with either &amp;ldquo;definitely no&amp;rdquo; or
+&amp;ldquo;probably yes&amp;rdquo;, where the probability of false positives is configured when the filter is
+initialized. Bloom filters do not have false negatives.&lt;/p>
+&lt;p>Because Bloom filters are small compared to dictionaries, they can be used for predicate
+pushdown even in columns with high cardinality and when space is at a premium.&lt;/p>
+&lt;h3 id="goal">Goal&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>Enable predicate pushdown for high-cardinality columns while using less space than
+dictionaries.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Induce no additional I/O overhead when executing queries on columns without Bloom
+filters attached or when executing non-selective queries.&lt;/p>
+&lt;/li>
 &lt;/ul>
-&lt;p>The data for the data page is always required. The definition and repetition levels are optional, based on the schema definition. If the column is not nested (i.e. the path to the column has length 1), we do not encode the repetition levels (it would always have the value 1). For data that is required, the definition levels are skipped (if encoded, it will always have the value of the max definition level).&lt;/p>
-&lt;p>For example, in the case where the column is non-nested and required, the data in the page is only the encoded values.&lt;/p>
-&lt;p>The supported encodings are described in Encodings.md&lt;/p></description></item><item><title>Docs: Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>
-&lt;p>Nullity is encoded in the definition levels (which is run-length encoded). NULL values are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs would be encoded with run-length encoding (0, 1000 times) for the definition levels and nothing else.&lt;/p></description></item></channel></rss>
+&lt;h3 id="technical-approach">Technical Approach&lt;/h3>
+&lt;p>The section describes split block Bloom filters, which is the first
+(and, at time of writing, only) Bloom filter representation supported
+in Parquet.&lt;/p>
+&lt;p>First we will describe a &amp;ldquo;block&amp;rdquo;. This is the main component split
+block Bloom filters are composed of.&lt;/p>
+&lt;p>Each block is 256 bits, broken up into eight contiguous &amp;ldquo;words&amp;rdquo;, each
+consisting of 32 bits. Each word is thought of as an array of bits;
+each bit is either &amp;ldquo;set&amp;rdquo; or &amp;ldquo;not set&amp;rdquo;.&lt;/p>
+&lt;p>When initialized, a block is &amp;ldquo;empty&amp;rdquo;, which means each of the eight
+component words has no bits set. In addition to initialization, a
+block supports two other operations: &lt;code>block_insert&lt;/code> and
+&lt;code>block_check&lt;/code>. Both take a single unsigned 32-bit integer as input;
+&lt;code>block_insert&lt;/code> returns no value, but modifies the block, while
+&lt;code>block_check&lt;/code> returns a boolean. The semantics of &lt;code>block_check&lt;/code> are
+that it must return &lt;code>true&lt;/code> if &lt;code>block_insert&lt;/code> was previously called on
+the block with the same argument, and otherwise it returns &lt;code>false&lt;/code>
+with high probability. For more details of the probability, see below.&lt;/p>
+&lt;p>The operations &lt;code>block_insert&lt;/code> and &lt;code>block_check&lt;/code> depend on some
+auxiliary artifacts. First, there is a sequence of eight odd unsigned
+32-bit integer constants called the &lt;code>salt&lt;/code>. Second, there is a method
+called &lt;code>mask&lt;/code> that takes as its argument a single unsigned 32-bit
+integer and returns a block in which each word has exactly one bit
+set.&lt;/p>
+&lt;pre tabindex="0">&lt;code>unsigned int32 salt[8] = {0x47b6137bU, 0x44974d91U, 0x8824ad5bU,
+0xa2b7289dU, 0x705495c7U, 0x2df1424bU,
+0x9efc4947U, 0x5c6bfb31U}
+block mask(unsigned int32 x) {
+block result
+for i in [0..7] {
+unsigned int32 y = x * salt[i]
+result.getWord(i).setBit(y &amp;gt;&amp;gt; 27)
+}
+return result
+}
+&lt;/code>&lt;/pre>&lt;p>Since there are eight words in the block and eight integers in the
+salt, there is a correspondence between them. To set a bit in the nth
+word of the block, &lt;code>mask&lt;/code> first multiplies its argument by the nth
+integer in the &lt;code>salt&lt;/code>, keeping only the least significant 32 bits of
+the 64-bit product, then divides that 32-bit unsigned integer by 2 to
+the 27th power, denoted above using the C language&amp;rsquo;s right shift
+operator &amp;ldquo;&lt;code>&amp;gt;&amp;gt;&lt;/code>&amp;rdquo;. The resulting integer is between 0 and 31,
+inclusive. That integer is the bit that gets set in the word in the
+block.&lt;/p>
+&lt;p>From the &lt;code>mask&lt;/code> operation, &lt;code>block_insert&lt;/code> is defined as setting every
+bit in the block that was also set in the result from mask. Similarly,
+&lt;code>block_check&lt;/code> returns &lt;code>true&lt;/code> when every bit that is set in the result
+of &lt;code>mask&lt;/code> is also set in the block.&lt;/p>
+&lt;pre tabindex="0">&lt;code>void block_insert(block b, unsigned int32 x) {
+block masked = mask(x)
+for i in [0..7] {
+for j in [0..31] {
+if (masked.getWord(i).isSet(j)) {
+b.getWord(i).setBit(j)
+}
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>boolean block_check(block b, unsigned int32 x) {
+block masked = mask(x)
+for i in [0..7] {
+for j in [0..31] {
+if (masked.getWord(i).isSet(j)) {
+if (not b.getWord(i).setBit(j)) {
+return false
+}
+}
+}
+}
+return true
+}
+&lt;/code>&lt;/pre>&lt;p>The reader will note that a block, as defined here, is actually a
+special kind of Bloom filter. Specifically it is a &amp;ldquo;split&amp;rdquo; Bloom
+filter, as described in section 2.1 of &lt;a href="https://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf">Network Applications of Bloom
+Filters: A
+Survey&lt;/a>. The
+use of multiplication by an odd constant and then shifting right is a
+method of hashing integers as described in section 2.2 of
+Dietzfelbinger et al.&amp;rsquo;s &lt;a href="http://hjemmesider.diku.dk/~jyrki/Paper/CP-11.4.1997.pdf">A reliable randomized algorithm for the
+closest-pair
+problem&lt;/a>.&lt;/p>
+&lt;p>This closes the definition of a block and the operations on it.&lt;/p>
+&lt;p>Now that a block is defined, we can describe Parquet&amp;rsquo;s split block
+Bloom filters. A split block Bloom filter (henceforth &amp;ldquo;SBBF&amp;rdquo;) is
+composed of &lt;code>z&lt;/code> blocks, where &lt;code>z&lt;/code> is greater than or equal to one and
+less than 2 to the 31st power. When an SBBF is initialized, each block
+in it is initialized, which means each bit in each word in each block
+in the SBBF is unset.&lt;/p>
+&lt;p>In addition to initialization, an SBBF supports an operation called
+&lt;code>filter_insert&lt;/code> and one called &lt;code>filter_check&lt;/code>. Each takes as an
+argument a 64-bit unsigned integer; &lt;code>filter_check&lt;/code> returns a boolean
+and &lt;code>filter_insert&lt;/code> does not return a value, but does modify the SBBF.&lt;/p>
+&lt;p>The &lt;code>filter_insert&lt;/code> operation first uses the most significant 32 bits
+of its argument to select a block to operate on. Call the argument
+&amp;ldquo;&lt;code>h&lt;/code>&amp;rdquo;, and recall the use of &amp;ldquo;&lt;code>z&lt;/code>&amp;rdquo; to mean the number of blocks. Then
+a block number &lt;code>i&lt;/code> between &lt;code>0&lt;/code> and &lt;code>z-1&lt;/code> (inclusive) to operate on is
+chosen as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">unsigned&lt;/span> &lt;span style="color:#000">int64&lt;/span> &lt;span style="color:#000">h_top_bits&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">h&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">unsigned&lt;/span> &lt;span style="color:#000">int64&lt;/span> &lt;span style="color:#000">z_as_64_bit&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">z&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">unsigned&lt;/span> &lt;span style="color:#000">int32&lt;/span> &lt;span style="color:#000">i&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">h_top_bits&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">*&lt;/span> &lt;span style="color:#000">z_as_64_bit&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The first line extracts the most significant 32 bits from &lt;code>h&lt;/code> and
+assignes them to a 64-bit unsigned integer. The second line is
+simpler: it just sets an unsigned 64-bit value to the same value as
+the 32-bit unsigned value &lt;code>z&lt;/code>. The purpose of having both &lt;code>h_top_bits&lt;/code>
+and &lt;code>z_as_64_bit&lt;/code> be 64-bit values is so that their product is a
+64-bit value. That product is taken in the third line, and then the
+most significant 32 bits are extracted into the value &lt;code>i&lt;/code>, which is
+the index of the block that will be operated on.&lt;/p>
+&lt;p>After this process to select &lt;code>i&lt;/code>, &lt;code>filter_insert&lt;/code> uses the least
+significant 32 bits of &lt;code>h&lt;/code> as the argument to &lt;code>block_insert&lt;/code> called on
+block &lt;code>i&lt;/code>.&lt;/p>
+&lt;p>The technique for converting the most significant 32 bits to an
+integer between &lt;code>0&lt;/code> and &lt;code>z-1&lt;/code> (inclusive) avoids using the modulo
+operation, which is often very slow. This trick can be found in
+&lt;a href="https://domino.research.ibm.com/library/cyberdig.nsf/papers/DF54E3545C82E8A585257222006FD9A2/$File/rc24100.pdf">Kenneth A. Ross&amp;rsquo;s 2006 IBM research report, &amp;ldquo;Efficient Hash Probes on
+Modern Processors&amp;rdquo;&lt;/a>&lt;/p>
+&lt;p>The &lt;code>filter_check&lt;/code> operation uses the same method as &lt;code>filter_insert&lt;/code>
+to select a block to operate on, then uses the least significant 32
+bits of its argument as an argument to &lt;code>block_check&lt;/code> called on that
+block, returning the result.&lt;/p>
+&lt;p>In the pseudocode below, the modulus operator is represented with the C
+language&amp;rsquo;s &amp;ldquo;&lt;code>%&lt;/code>&amp;rdquo; operator. The &amp;ldquo;&lt;code>&amp;gt;&amp;gt;&lt;/code>&amp;rdquo; operator is used to denote the
+conversion of an unsigned 64-bit integer to an unsigned 32-bit integer
+containing only the most significant 32 bits, and C&amp;rsquo;s cast operator
+&amp;ldquo;&lt;code>(unsigned int32)&lt;/code>&amp;rdquo; is used to denote the conversion of an unsigned
+64-bit integer to an unsigned 32-bit integer containing only the least
+significant 32 bits.&lt;/p>
+&lt;pre tabindex="0">&lt;code>void filter_insert(SBBF filter, unsigned int64 x) {
+unsigned int64 i = ((x &amp;gt;&amp;gt; 32) * filter.numberOfBlocks()) &amp;gt;&amp;gt; 32;
+block b = filter.getBlock(i);
+block_insert(b, (unsigned int32)x)
+}
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>boolean filter_check(SBBF filter, unsigned int64 x) {
+unsigned int64 i = ((x &amp;gt;&amp;gt; 32) * filter.numberOfBlocks()) &amp;gt;&amp;gt; 32;
+block b = filter.getBlock(i);
+return block_check(b, (unsigned int32)x)
+}
+&lt;/code>&lt;/pre>&lt;p>The use of blocks is from Putze et al.&amp;rsquo;s &lt;a href="http://algo2.iti.kit.edu/documents/cacheefficientbloomfilters-jea.pdf">Cache-, Hash- and
+Space-Efficient Bloom
+filters&lt;/a>&lt;/p>
+&lt;p>To use an SBBF for values of arbitrary Parquet types, we apply a hash
+function to that value - at the time of writing,
+&lt;a href="https://cyan4973.github.io/xxHash/">xxHash&lt;/a>, using the function XXH64
+with a seed of 0 and &lt;a href="https://github.com/Cyan4973/xxHash/blob/v0.7.0/doc/xxhash_spec.md">following the specification version
+0.1.1&lt;/a>.&lt;/p>
+&lt;h4 id="sizing-an-sbbf">Sizing an SBBF&lt;/h4>
+&lt;p>The &lt;code>check&lt;/code> operation in SBBFs can return &lt;code>true&lt;/code> for an argument that
+was never inserted into the SBBF. These are called &amp;ldquo;false
+positives&amp;rdquo;. The &amp;ldquo;false positive probabilty&amp;rdquo; is the probability that
+any given hash value that was never &lt;code>insert&lt;/code>ed into the SBBF will
+cause &lt;code>check&lt;/code> to return &lt;code>true&lt;/code> (a false positive). There is not a
+simple closed-form calculation of this probability, but here is an
+example:&lt;/p>
+&lt;p>A filter that uses 1024 blocks and has had 26,214 hash values
+&lt;code>insert&lt;/code>ed will have a false positive probabilty of around 1.26%. Each
+of those 1024 blocks occupies 256 bits of space, so the total space
+usage is 262,144. That means that the ratio of bits of space to hash
+values is 10-to-1. Adding more hash values increases the denominator
+and lowers the ratio, which increases the false positive
+probability. For instance, inserting twice as many hash values
+(52,428) decreases the ratio of bits of space per hash value inserted
+to 5-to-1 and increases the false positive probability to
+18%. Inserting half as many hash values (13,107) increases the ratio
+of bits of space per hash value inserted to 20-to-1 and decreases the
+false positive probability to 0.04%.&lt;/p>
+&lt;p>Here are some sample values of the ratios needed to achieve certain
+false positive rates:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Bits of space per &lt;code>insert&lt;/code>&lt;/th>
+&lt;th>False positive probability&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>6.0&lt;/td>
+&lt;td>10 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>10.5&lt;/td>
+&lt;td>1 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>16.9&lt;/td>
+&lt;td>0.1 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>26.4&lt;/td>
+&lt;td>0.01 %&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>41&lt;/td>
+&lt;td>0.001 %&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="file-format">File Format&lt;/h4>
+&lt;p>Each multi-block Bloom filter is required to work for only one column chunk. The data of a multi-block
+bloom filter consists of the bloom filter header followed by the bloom filter bitset. The bloom filter
+header encodes the size of the bloom filter bit set in bytes that is used to read the bitset.&lt;/p>
+&lt;p>Here are the Bloom filter definitions in thrift:&lt;/p>
+&lt;pre tabindex="0">&lt;code>/** Block-based algorithm type annotation. **/
+struct SplitBlockAlgorithm {}
+/** The algorithm used in Bloom filter. **/
+union BloomFilterAlgorithm {
+/** Block-based Bloom filter. **/
+1: SplitBlockAlgorithm BLOCK;
+}
+/** Hash strategy type annotation. xxHash is an extremely fast non-cryptographic hash
+* algorithm. It uses 64 bits version of xxHash.
+**/
+struct XxHash {}
+/**
+* The hash function used in Bloom filter. This function takes the hash of a column value
+* using plain encoding.
+**/
+union BloomFilterHash {
+/** xxHash Strategy. **/
+1: XxHash XXHASH;
+}
+/**
+* The compression used in the Bloom filter.
+**/
+struct Uncompressed {}
+union BloomFilterCompression {
+1: Uncompressed UNCOMPRESSED;
+}
+/**
+* Bloom filter header is stored at beginning of Bloom filter data of each column
+* and followed by its bitset.
+**/
+struct BloomFilterPageHeader {
+/** The size of bitset in bytes **/
+1: required i32 numBytes;
+/** The algorithm for setting bits. **/
+2: required BloomFilterAlgorithm algorithm;
+/** The hash function used for Bloom filter. **/
+3: required BloomFilterHash hash;
+/** The compression used in the Bloom filter **/
+4: required BloomFilterCompression compression;
+}
+struct ColumnMetaData {
+...
+/** Byte offset from beginning of file to Bloom filter data. **/
+14: optional i64 bloom_filter_offset;
+}
+&lt;/code>&lt;/pre>&lt;p>The Bloom filters are grouped by row group and with data for each column in the same order as the file schema.
+The Bloom filter data can be stored before the page indexes after all row groups. The file layout looks like:
+&lt;img src="/images/FileLayoutBloomFilter2.png" alt="File Layout - Bloom filter footer">&lt;/p>
+&lt;p>Or it can be stored between row groups, the file layout looks like:
+&lt;img src="/images/FileLayoutBloomFilter1.png" alt="File Layout - Bloom filter footer">&lt;/p>
+&lt;h4 id="encryption">Encryption&lt;/h4>
+&lt;p>In the case of columns with sensitive data, the Bloom filter exposes a subset of sensitive
+information such as the presence of value. Therefore the Bloom filter of columns with sensitive
+data should be encrypted with the column key, and the Bloom filter of other (not sensitive) columns
+do not need to be encrypted.&lt;/p>
+&lt;p>Bloom filters have two serializable modules - the PageHeader thrift structure (with its internal
+fields, including the BloomFilterPageHeader &lt;code>bloom_filter_page_header&lt;/code>), and the Bitset. The header
+structure is serialized by Thrift, and written to file output stream; it is followed by the
+serialized Bitset.&lt;/p>
+&lt;p>For Bloom filters in sensitive columns, each of the two modules will be encrypted after
+serialization, and then written to the file. The encryption will be performed using the AES GCM
+cipher, with the same column key, but with different AAD module types - &amp;ldquo;BloomFilter Header&amp;rdquo; (8)
+and &amp;ldquo;BloomFilter Bitset&amp;rdquo; (9). The length of the encrypted buffer is written before the buffer, as
+described in the Parquet encryption specification.&lt;/p></description></item><item><title>Docs: Data Pages</title><link>/docs/file-format/data-pages/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/</guid><description>
+&lt;p>For data pages, the 3 pieces of information are encoded back to back, after the page
+header. No padding is allowed in the data page.
+In order we have:&lt;/p>
+&lt;ol>
+&lt;li>repetition levels data&lt;/li>
+&lt;li>definition levels data&lt;/li>
+&lt;li>encoded values&lt;/li>
+&lt;/ol>
+&lt;p>The value of &lt;code>uncompressed_page_size&lt;/code> specified in the header is for all the 3 pieces combined.&lt;/p>
+&lt;p>The encoded values for the data page is always required. The definition and repetition levels
+are optional, based on the schema definition. If the column is not nested (i.e.
+the path to the column has length 1), we do not encode the repetition levels (it would
+always have the value 1). For data that is required, the definition levels are
+skipped (if encoded, it will always have the value of the max definition level).&lt;/p>
+&lt;p>For example, in the case where the column is non-nested and required, the data in the
+page is only the encoded values.&lt;/p>
+&lt;p>The supported encodings are described in Encodings.md&lt;/p>
+&lt;p>The supported compression codecs are described in Compression.md&lt;/p></description></item><item><title>Docs: Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>
+&lt;p>Nullity is encoded in the definition levels (which is run-length encoded). NULL values
+are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
+would be encoded with run-length encoding (0, 1000 times) for the definition levels and
+nothing else.&lt;/p></description></item><item><title>Docs: Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>
+&lt;p>This document describes the format for column index pages in the Parquet
+footer. These pages contain statistics for DataPages and can be used to skip
+pages when scanning data in ordered and unordered columns.&lt;/p>
+&lt;h2 id="problem-statement">Problem Statement&lt;/h2>
+&lt;p>In previous versions of the format, Statistics are stored for ColumnChunks in
+ColumnMetaData and for individual pages inside DataPageHeader structs. When
+reading pages, a reader had to process the page header to determine
+whether the page could be skipped based on the statistics. This means the reader
+had to access all pages in a column, thus likely reading most of the column
+data from disk.&lt;/p>
+&lt;h2 id="goals">Goals&lt;/h2>
+&lt;ol>
+&lt;li>Make both range scans and point lookups I/O efficient by allowing direct
+access to pages based on their min and max values. In particular:
+&lt;ul>
+&lt;li>A single-row lookup in a row group based on the sort column of that row group
+will only read one data page per the retrieved column.&lt;/li>
+&lt;li>Range scans on the sort column will only need to read the exact data
+pages that contain relevant data.&lt;/li>
+&lt;li>Make other selective scans I/O efficient: if we have a very selective
+predicate on a non-sorting column, for the other retrieved columns we
+should only need to access data pages that contain matching rows.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>No additional decoding effort for scans without selective predicates, e.g.,
+full-row group scans. If a reader determines that it does not need to read
+the index data, it does not incur any overhead.&lt;/li>
+&lt;li>Index pages for sorted columns use minimal storage by storing only the
+boundary elements between pages.&lt;/li>
+&lt;/ol>
+&lt;h2 id="non-goals">Non-Goals&lt;/h2>
+&lt;ul>
+&lt;li>Support for the equivalent of secondary indices, i.e., an index structure
+sorted on the key values over non-sorted data.&lt;/li>
+&lt;/ul>
+&lt;h2 id="technical-approach">Technical Approach&lt;/h2>
+&lt;p>We add two new per-column structures to the row group metadata:&lt;/p>
+&lt;ul>
+&lt;li>ColumnIndex: this allows navigation to the pages of a column based on column
+values and is used to locate data pages that contain matching values for a
+scan predicate&lt;/li>
+&lt;li>OffsetIndex: this allows navigation by row index and is used to retrieve
+values for rows identified as matches via the ColumnIndex. Once rows of a
+column are skipped, the corresponding rows in the other columns have to be
+skipped. Hence the OffsetIndexes for each column in a RowGroup are stored
+together.&lt;/li>
+&lt;/ul>
+&lt;p>The new index structures are stored separately from RowGroup, near the footer.&lt;br>
+This is done so that a reader does not have to pay the I/O and deserialization
+cost for reading them if it is not doing selective scans. The index structures'
+location and length are stored in ColumnChunk.&lt;/p>
+&lt;p>&lt;img src="/images/PageIndexLayout.png" alt="Page Index Layout">&lt;/p>
+&lt;p>Some observations:&lt;/p>
+&lt;ul>
+&lt;li>We don&amp;rsquo;t need to record the lower bound for the first page and the upper
+bound for the last page, because the row group Statistics can provide that.
+We still include those for the sake of uniformity, and the overhead should be
+negligible.&lt;/li>
+&lt;li>We store lower and upper bounds for the values of each page. These may be the
+actual minimum and maximum values found on a page, but can also be (more
+compact) values that do not exist on a page. For example, instead of storing
+&amp;ldquo;&amp;ldquo;Blart Versenwald III&amp;rdquo;, a writer may set &lt;code>min_values[i]=&amp;quot;B&amp;quot;&lt;/code>,
+&lt;code>max_values[i]=&amp;quot;C&amp;quot;&lt;/code>. This allows writers to truncate large values and writers
+should use this to enforce some reasonable bound on the size of the index
+structures.&lt;/li>
+&lt;li>Readers that support ColumnIndex should not also use page statistics. The
+only reason to write page-level statistics when writing ColumnIndex structs
+is to support older readers (not recommended).&lt;/li>
+&lt;/ul>
+&lt;p>For ordered columns, this allows a reader to find matching pages by performing
+a binary search in &lt;code>min_values&lt;/code> and &lt;code>max_values&lt;/code>. For unordered columns, a
+reader can find matching pages by sequentially reading &lt;code>min_values&lt;/code> and
+&lt;code>max_values&lt;/code>.&lt;/p>
+&lt;p>For range scans, this approach can be extended to return ranges of rows, page
+indices, and page offsets to scan in each column. The reader can then
+initialize a scanner for each column and fast forward them to the start row of
+the scan.&lt;/p>
+&lt;p>The &lt;code>min_values&lt;/code> and &lt;code>max_values&lt;/code> are calculated based on the &lt;code>column_orders&lt;/code>
+field in the &lt;code>FileMetaData&lt;/code> struct of the footer.&lt;/p></description></item></channel></rss>
