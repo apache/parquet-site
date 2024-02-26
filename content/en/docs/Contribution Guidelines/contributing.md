@@ -9,7 +9,7 @@ description: >
 Pull Requests
 -------------
 
-We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the [github.com/apache/parquet-mr](https://github.com/apache/parquet-mr) repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to [https://github.com/apache/incubator-parquet-mr.git](https://github.com/apache/incubator-parquet-mr.git) Here are a few tips to get your contribution in:
+We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the [github.com/apache/parquet-mr](https://github.com/apache/parquet-mr) repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to [https://github.com/apache/parquet-mr.git](https://github.com/apache/parquet-mr.git) Here are a few tips to get your contribution in:
 
 1.  Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.
 2.  Create a JIRA for your patch on the [Parquet Project JIRA](https://issues.apache.org/jira/browse/PARQUET).
@@ -95,5 +95,28 @@ For now just say `n` as we have 1 branch
 
 Website
 -------
+### Release Documentation
 
-TODO
+To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.
+
+To create documentation for a new release of `parquet-mr` create a new <releaseNumber>.md file under `content/en/blog/parquet-mr`. Please see existing files in that directory as an example.
+
+### Website development and deployment
+
+#### Staging
+
+To make a change to the `staging` version of the website:
+1. Make a PR against the `staging` branch in the repository
+2. Once the PR is merged, the `Build and Deploy Parquet Site`
+job in the [deployment workflow](https://github.com/apache/parquet-site/blob/staging/.github/workflows/deploy.yml) will be run, populating the `asf-staging` branch on this repo with the necessary files.
+
+**Do not directly edit the `asf-staging` branch of this repo**
+
+#### Production
+
+To make a change to the `production` version of the website:
+1. Make a PR against the `production` branch in the repository
+2. Once the PR is merged, the `Build and Deploy Parquet Site`
+job in the [deployment workflow](https://github.com/apache/parquet-site/blob/production/.github/workflows/deploy.yml) will be run, populating the `asf-site` branch on this repo with the necessary files.
+
+**Do not directly edit the `asf-site` branch of this repo**
