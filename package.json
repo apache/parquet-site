@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/vinooganesh/parquet-hugo-site#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.8",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
     "postcss-cli": "^9.1.0"
   }
 }
