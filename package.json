@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vinooganesh/parquet-hugo-site.git"
+    "url": "git+https://github.com/apache/parquet-site.git"
   },
   "author": "Vinoo Ganesh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vinooganesh/parquet-hugo-site/issues"
+    "url": "https://github.com/apache/parquet-site/issues"
   },
-  "homepage": "https://github.com/vinooganesh/parquet-hugo-site#readme",
+  "homepage": "https://github.com/apache/parquet-site#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
     "postcss-cli": "^9.1.0"
   }
 }

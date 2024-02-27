@@ -50,7 +50,6 @@ weight = 1
 [languages.en.params]
 title = "Apache Parquet"
 description = "The Apache Parquet Website"
-
 contentDir = "content/en"
 # Weight used for sorting.
 weight = 1
@@ -99,7 +98,8 @@ url_latest_version = "https://parquet.apache.org"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/apache/parquet-site"
-github_branch= "staging"
+
+github_branch= "production"
 
 # Comment out to disable search.
 gcs_engine_id = "7e3f91e3eadecceaa"
@@ -148,7 +148,7 @@ enable = false
   name = "User mailing list"
   url = "mailto:dev@parquet.apache.org"
   icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users"
+  desc = "Discussion and help from your fellow users. To subscribe please email dev-subscribe@parquet.apache.org. View the archive here: https://lists.apache.org/list.html?dev@parquet.apache.org."
 [[params.links.user]]
   name ="Twitter"
   url = "https://twitter.com/ApacheParquet"

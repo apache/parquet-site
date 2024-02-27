@@ -4,7 +4,6 @@ This website is built / powered by [Hugo](https://gohugo.io/), and extended from
 
 The following steps assume that you have `hugo` installed and working.
 
-
 ## Building and Running Locally
 
 Clone this repository to run the website locally:
@@ -29,10 +28,15 @@ To run this website site locally, run the following in the root of the directory
 hugo server
 ```
 
+# Release Documentation
+
+To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.
+
+To create documentation for a new release of `parquet-mr` create a new <releaseNumber>.md file under `content/en/blog/parquet-mr`. Please see existing files in that directory as an example.
+
 # Website development and deployment
 
 ## Staging
-
 To make a change to the `staging` version of the website:
 1. Make a PR against the `staging` branch in the repository
 2. Once the PR is merged, the `Build and Deploy Parquet Site`

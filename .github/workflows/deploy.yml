@@ -2,7 +2,7 @@ name: Build and Deploy Parquet Site
 
 on:
   push:
-    branches: [ staging ]
+    branches: [ production ]
 
 jobs:
   Build_and_Deploy_Site:
@@ -43,6 +43,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: public
-          publish_branch: asf-staging
+          publish_branch: asf-site
           destination_dir: ./output
           keep_files: true
