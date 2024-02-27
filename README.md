@@ -37,7 +37,6 @@ To create documentation for a new release of `parquet-mr` create a new <releaseN
 # Website development and deployment
 
 ## Staging
-
 To make a change to the `staging` version of the website:
 1. Make a PR against the `staging` branch in the repository
 2. Once the PR is merged, the `Build and Deploy Parquet Site`

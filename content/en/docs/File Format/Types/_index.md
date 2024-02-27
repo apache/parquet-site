@@ -4,6 +4,7 @@ linkTitle: "Types"
 weight: 5
 ---
 
+
 The types supported by the file format are intended to be as minimal as possible,
 with a focus on how the types effect on disk storage.  For example, 16-bit ints
 are not explicitly supported in the storage format since they are covered by
