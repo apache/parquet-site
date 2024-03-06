@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – Documentation</title><link>/docs/</link><description>Recent content in Documentation on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Documentation</title><link>/docs/</link><description>Recent content in Documentation on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>
 &lt;h3 id="a-nameplainaplain-plain--0">&lt;a name="PLAIN">&lt;/a>Plain: (PLAIN = 0)&lt;/h3>
 &lt;p>Supported Types: all&lt;/p>
 &lt;p>This is the plain encoding that must be supported for types. It is
@@ -6,7 +6,7 @@ intended to be the simplest encoding. Values are encoded back to back.&lt;/p>
 &lt;p>The plain encoding is used whenever a more efficient encoding can not be used. It
 stores the data in the following format:&lt;/p>
 &lt;ul>
-&lt;li>BOOLEAN: &lt;a href="#RLE">Bit Packed&lt;/a>, LSB first&lt;/li>
+&lt;li>BOOLEAN: &lt;a href="/docs/file-format/data-pages/encodings/#RLE">Bit Packed&lt;/a>, LSB first&lt;/li>
 &lt;li>INT32: 4 bytes little endian&lt;/li>
 &lt;li>INT64: 8 bytes little endian&lt;/li>
 &lt;li>INT96: 12 bytes little endian (deprecated)&lt;/li>
@@ -22,10 +22,10 @@ endian, followed by the bytes.&lt;/p>
 &lt;h3 id="dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8">Dictionary Encoding (PLAIN_DICTIONARY = 2 and RLE_DICTIONARY = 8)&lt;/h3>
 &lt;p>The dictionary encoding builds a dictionary of values encountered in a given column. The
 dictionary will be stored in a dictionary page per column chunk. The values are stored as integers
-using the &lt;a href="#RLE">RLE/Bit-Packing Hybrid&lt;/a> encoding. If the dictionary grows too big, whether in size
+using the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/Bit-Packing Hybrid&lt;/a> encoding. If the dictionary grows too big, whether in size
 or number of distinct values, the encoding will fall back to the plain encoding. The dictionary page is
 written first, before the data pages of the column chunk.&lt;/p>
-&lt;p>Dictionary page format: the entries in the dictionary - in dictionary order - using the &lt;a href="#PLAIN">plain&lt;/a> encoding.&lt;/p>
+&lt;p>Dictionary page format: the entries in the dictionary - in dictionary order - using the &lt;a href="/docs/file-format/data-pages/encodings/#PLAIN">plain&lt;/a> encoding.&lt;/p>
 &lt;p>Data page format: the bit width used to encode the entry ids stored as 1 byte (max bit width = 32),
 followed by the values encoded using RLE/Bit packed described above (with the given bit width).&lt;/p>
 &lt;p>Using the PLAIN_DICTIONARY enum value is deprecated in the Parquet 2.0 specification. Prefer using RLE_DICTIONARY
@@ -49,7 +49,7 @@ rle-run-len := *see 3 below*
 repeated-value := value that is repeated, using a fixed-width of round-up-to-next-byte(bit-width)
 &lt;/code>&lt;/pre>&lt;ol>
 &lt;li>
-&lt;p>The bit-packing here is done in a different order than the one in the &lt;a href="#BITPACKED">deprecated bit-packing&lt;/a> encoding.
+&lt;p>The bit-packing here is done in a different order than the one in the &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED">deprecated bit-packing&lt;/a> encoding.
 The values are packed from the least significant bit of each byte to the most significant bit,
 though the order of the bits in each value remains in the usual order of most significant to least
 significant. For example, to pack the same values as the example in the deprecated encoding above:&lt;/p>
@@ -64,7 +64,7 @@ bit label: HIDEFABC RMNOJKLG VWXSTUPQ
 when deserializing more than one byte at at time. This is because 4 bytes can be read into a
 32 bit register (or 8 bytes into a 64 bit register) and values can be unpacked just by
 shifting and ORing with a mask. (to make this optimization work on a big-endian machine,
-you would have to use the ordering used in the &lt;a href="#BITPACKED">deprecated bit-packing&lt;/a> encoding)&lt;/p>
+you would have to use the ordering used in the &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED">deprecated bit-packing&lt;/a> encoding)&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>varint-encode() is ULEB-128 encoding, see &lt;a href="https://en.wikipedia.org/wiki/LEB128">https://en.wikipedia.org/wiki/LEB128&lt;/a>&lt;/p>
@@ -85,14 +85,14 @@ data:&lt;/p>
 &lt;li>Boolean values in data pages, as an alternative to PLAIN encoding&lt;/li>
 &lt;/ul>
 &lt;h3 id="a-namebitpackedabit-packed-deprecated-bit_packed--4">&lt;a name="BITPACKED">&lt;/a>Bit-packed (Deprecated) (BIT_PACKED = 4)&lt;/h3>
-&lt;p>This is a bit-packed only encoding, which is deprecated and will be replaced by the &lt;a href="#RLE">RLE/bit-packing&lt;/a> hybrid encoding.
+&lt;p>This is a bit-packed only encoding, which is deprecated and will be replaced by the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> hybrid encoding.
 Each value is encoded back to back using a fixed width.
 There is no padding between values (except for the last byte) which is padded with 0s.
 For example, if the max repetition level was 3 (2 bits) and the max definition level as 3
 (2 bits), to encode 30 values, we would have 30 * 2 = 60 bits = 8 bytes.&lt;/p>
-&lt;p>This implementation is deprecated because the &lt;a href="#RLE">RLE/bit-packing&lt;/a> hybrid is a superset of this implementation.
+&lt;p>This implementation is deprecated because the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> hybrid is a superset of this implementation.
 For compatibility reasons, this implementation packs values from the most significant bit to the least significant bit,
-which is not the same as the &lt;a href="#RLE">RLE/bit-packing&lt;/a> hybrid.&lt;/p>
+which is not the same as the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> hybrid.&lt;/p>
 &lt;p>For example, the numbers 1 through 7 using bit width 3:&lt;/p>
 &lt;pre tabindex="0">&lt;code>dec value: 0 1 2 3 4 5 6 7
 bit value: 000 001 010 011 100 101 110 111
@@ -160,7 +160,7 @@ repetition and definition levels.&lt;/p>
 &lt;p>block
 -2 (minimum delta), 2 (bitwidth), 00000011111111b (0,0,0,3,3,3,3 packed on 2 bits)&lt;/p>
 &lt;h4 id="characteristics">Characteristics&lt;/h4>
-&lt;p>This encoding is similar to the &lt;a href="#RLE">RLE/bit-packing&lt;/a> encoding. However the &lt;a href="#RLE">RLE/bit-packing&lt;/a> encoding is specifically used when the range of ints is small over the entire page, as is true of repetition and definition levels. It uses a single bit width for the whole page.
+&lt;p>This encoding is similar to the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> encoding. However the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> encoding is specifically used when the range of ints is small over the entire page, as is true of repetition and definition levels. It uses a single bit width for the whole page.
 The delta encoding algorithm described above stores a bit width per miniblock and is less sensitive to variations in the size of encoded integers. It is also somewhat doing RLE encoding as a block containing all the same values will be bit packed to a zero bit width thus being only a header.&lt;/p>
 &lt;h3 id="delta-length-byte-array-delta_length_byte_array--6">Delta-length byte array: (DELTA_LENGTH_BYTE_ARRAY = 6)&lt;/h3>
 &lt;p>Supported Types: BYTE_ARRAY&lt;/p>
@@ -199,7 +199,7 @@ Bytes AA BB CC DD 00 11 22 33 A3 B4 C5 D6
 &lt;p>&lt;a href="https://www.apache.org/licenses/">License&lt;/a>&lt;/p></description></item><item><title>Docs: Modules</title><link>/docs/contribution-guidelines/modules/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/modules/</guid><description>
 &lt;p>The &lt;a href="https://github.com/apache/parquet-format">parquet-format&lt;/a> project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p>
 &lt;p>The &lt;a href="https://github.com/apache/parquet-mr">parquet-mr&lt;/a> project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p>
-&lt;p>The &lt;a href="https://github.com/apache/parquet-cpp">parquet-cpp&lt;/a> project is a C++ library to read-write Parquet files.&lt;/p>
+&lt;p>The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html">parquet-cpp&lt;/a> project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/">Apache Arrow&lt;/a> C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p>
 &lt;p>The &lt;a href="https://github.com/apache/arrow-rs/tree/master/parquet">parquet-rs&lt;/a> project is a Rust library to read-write Parquet files.&lt;/p>
 &lt;p>The &lt;a href="https://github.com/Parquet/parquet-compatibility">parquet-compatibility&lt;/a> project (deprecated) contains compatibility tests that can be used to verify that implementations in different languages can read and write each other’s files. As of January 2022 compatibility tests only exist up to version 1.2.0.&lt;/p></description></item><item><title>Docs: Spark Summit 2020</title><link>/docs/learning-resources/presentations/spark-summit-2020/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/spark-summit-2020/</guid><description>
 &lt;p>&lt;a href="https://www.slideshare.net/databricks/the-apache-spark-file-format-ecosystem">Slides&lt;/a>&lt;/p>
@@ -223,7 +223,7 @@ Java resources can be build using &lt;code>mvn package&lt;/code>. The current st
 &lt;iframe src="https://www.youtube.com/embed/Qfp6Uv1UrA0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div></description></item><item><title>Docs: Contributing to Parquet</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>
 &lt;h2 id="pull-requests">Pull Requests&lt;/h2>
-&lt;p>We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-mr">github.com/apache/parquet-mr&lt;/a> repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/incubator-parquet-mr.git">https://github.com/apache/incubator-parquet-mr.git&lt;/a> Here are a few tips to get your contribution in:&lt;/p>
+&lt;p>We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-mr">github.com/apache/parquet-mr&lt;/a> repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/parquet-mr.git">https://github.com/apache/parquet-mr.git&lt;/a> Here are a few tips to get your contribution in:&lt;/p>
 &lt;ol>
 &lt;li>Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.&lt;/li>
 &lt;li>Create a JIRA for your patch on the &lt;a href="https://issues.apache.org/jira/browse/PARQUET">Parquet Project JIRA&lt;/a>.&lt;/li>
@@ -284,7 +284,26 @@ Would you like to pick 485658a5 into another branch? (y/n):
 &lt;/code>&lt;/pre>
 &lt;p>For now just say &lt;code>n&lt;/code> as we have 1 branch&lt;/p>
 &lt;h2 id="website">Website&lt;/h2>
-&lt;p>TODO&lt;/p></description></item><item><title>Docs: Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>
+&lt;h3 id="release-documentation">Release Documentation&lt;/h3>
+&lt;p>To create documentation for a new release of &lt;code>parquet-format&lt;/code> create a new &lt;releaseNumber>.md file under &lt;code>content/en/blog/parquet-format&lt;/code>. Please see existing files in that directory as an example.&lt;/p>
+&lt;p>To create documentation for a new release of &lt;code>parquet-mr&lt;/code> create a new &lt;releaseNumber>.md file under &lt;code>content/en/blog/parquet-mr&lt;/code>. Please see existing files in that directory as an example.&lt;/p>
+&lt;h3 id="website-development-and-deployment">Website development and deployment&lt;/h3>
+&lt;h4 id="staging">Staging&lt;/h4>
+&lt;p>To make a change to the &lt;code>staging&lt;/code> version of the website:&lt;/p>
+&lt;ol>
+&lt;li>Make a PR against the &lt;code>staging&lt;/code> branch in the repository&lt;/li>
+&lt;li>Once the PR is merged, the &lt;code>Build and Deploy Parquet Site&lt;/code>
+job in the &lt;a href="https://github.com/apache/parquet-site/blob/staging/.github/workflows/deploy.yml">deployment workflow&lt;/a> will be run, populating the &lt;code>asf-staging&lt;/code> branch on this repo with the necessary files.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>Do not directly edit the &lt;code>asf-staging&lt;/code> branch of this repo&lt;/strong>&lt;/p>
+&lt;h4 id="production">Production&lt;/h4>
+&lt;p>To make a change to the &lt;code>production&lt;/code> version of the website:&lt;/p>
+&lt;ol>
+&lt;li>Make a PR against the &lt;code>production&lt;/code> branch in the repository&lt;/li>
+&lt;li>Once the PR is merged, the &lt;code>Build and Deploy Parquet Site&lt;/code>
+job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.github/workflows/deploy.yml">deployment workflow&lt;/a> will be run, populating the &lt;code>asf-site&lt;/code> branch on this repo with the necessary files.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>Do not directly edit the &lt;code>asf-site&lt;/code> branch of this repo&lt;/strong>&lt;/p></description></item><item><title>Docs: Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>
 &lt;p>&lt;a href="https://www.apache.org/foundation/thanks.html">Sponsor&lt;/a>&lt;/p></description></item><item><title>Docs: Donate</title><link>/docs/asf/donate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/donate/</guid><description>
 &lt;p>&lt;a href="https://www.apache.org/foundation/sponsorship.html">Donate&lt;/a>&lt;/p></description></item><item><title>Docs: Releasing Parquet</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>
 &lt;h3 id="setup">Setup&lt;/h3>
@@ -297,14 +316,16 @@ Would you like to pick 485658a5 into another branch? (y/n):
 &lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.&lt;/p>
 &lt;p>Before you start the release process:&lt;/p>
 &lt;ol>
-&lt;li>Verify that the release is finished (no planned JIRAs are pending)&lt;/li>
+&lt;li>Verify that the release is finished (no planned JIRAs are pending and all patches are cherry-picked to the release branch)&lt;/li>
+&lt;li>Resolve all associated JIRAs with correct target version and create the next unreleased version in the JIRA project&lt;/li>
 &lt;li>Build and test the project&lt;/li>
+&lt;li>Create a new branch for the release if this is a new minor version. For example, if the new minor version is 1.13.0, create a new branch &lt;code>parquet-1.13.x&lt;/code>&lt;/li>
 &lt;li>Update the change log
 &lt;ul>
 &lt;li>Go to the release notes for the release in JIRA&lt;/li>
 &lt;li>Copy the HTML and convert it to markdown with an &lt;a href="https://domchristie.github.io/turndown/">online converter&lt;/a>&lt;/li>
 &lt;li>Add the content to CHANGES.md and update formatting&lt;/li>
-&lt;li>Commit the update to CHANGES.md&lt;/li>
+&lt;li>Commit the update to CHANGES.md and make sure it is committed to both release and master branches&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ol>
@@ -362,6 +383,13 @@ Please vote in the next 72 hours.
 &lt;/code>&lt;/pre>
 &lt;p>This will add the final release tag to the RC tag and sets the new development version in the pom files. If everything is fine push the changes and the new tag to github: &lt;code>git push --follow-tags&lt;/code>&lt;/p>
 &lt;h4 id="2-release-the-binary-repository-in-nexus">2. Release the binary repository in Nexus&lt;/h4>
+&lt;p>Releasing a binary repository publishes the binaries to &lt;a href="https://repository.apache.org/content/groups/public/org/apache/parquet/">public&lt;/a>.&lt;/p>
+&lt;ol>
+&lt;li>Go to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/li>
+&lt;li>In the menu on the left, choose “Staging Repositories”.&lt;/li>
+&lt;li>Select the Parquet repository.&lt;/li>
+&lt;li>At the top, click Release and follow the instructions. For the comment use “Apache Parquet [Format] ”.&lt;/li>
+&lt;/ol>
 &lt;h4 id="3-copy-the-release-artifacts-in-svn-into-releases">3. Copy the release artifacts in SVN into releases&lt;/h4>
 &lt;p>First, check out the candidates and releases locations in SVN:&lt;/p>
 &lt;pre>&lt;code>mkdir parquet
@@ -378,7 +406,7 @@ svn add apache-parquet-&amp;lt;version&amp;gt;
 svn ci -m &amp;quot;Parquet: Add release &amp;lt;VERSION&amp;gt;&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;h4 id="4-update-parquetapacheorg">4. Update parquet.apache.org&lt;/h4>
-&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="http://parquet.apache.org/contribute/">contribution page&lt;/a>.&lt;/p>
+&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="http://parquet.apache.org/docs/contribution-guidelines/contributing/">contribution page&lt;/a>.&lt;/p>
 &lt;h4 id="5-send-an-announce-e-mail-to-announceapacheorgmailtoannounceapacheorg-and-the-dev-list">5. Send an ANNOUNCE e-mail to &lt;a href="mailto:announce@apache.org">announce@apache.org&lt;/a> and the dev list&lt;/h4>
 &lt;pre>&lt;code>[ANNOUNCE] Apache Parquet release &amp;lt;VERSION&amp;gt;
 I'm please to announce the release of Parquet &amp;lt;VERSION&amp;gt;!
@@ -402,7 +430,7 @@ Encodings: Encodings are specified by enum and more can be added in the future.
 Page types: Additional page types can be added and safely skipped.&lt;/p></description></item><item><title>Docs: Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>
 &lt;p>Logical types are used to extend the types that parquet can be used to store, by specifying how the primitive types should be interpreted. This keeps the set of primitive types to a minimum and reuses parquet’s efficient encodings. For example, strings are stored as byte arrays (binary) with a UTF8 annotation. These annotations define how to further decode and interpret the data. Annotations are stored as a ConvertedType in the file metadata and are documented in LogicalTypes.md.&lt;/p></description></item><item><title>Docs: Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>
 &lt;p>There are three types of metadata: file metadata, column (chunk) metadata and page header metadata. All thrift structures are serialized using the TCompactProtocol.&lt;/p>
-&lt;p>&lt;img src="/images/FileFormat.gif" alt="File Layout">&lt;/p></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
+&lt;p>&lt;img alt="File Layout" src="/images/FileFormat.gif">&lt;/p></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
 &lt;p>To encode nested columns, Parquet uses the Dremel encoding with definition and repetition levels. Definition levels specify how many optional fields in the path for the column are defined. Repetition levels specify at what repeated field in the path has the value repeated. The max definition and repetition levels can be computed from the schema (i.e. how much nesting there is). This defines the maximum number of bits required to store the levels (levels are defined for all values in the column).&lt;/p>
 &lt;p>Two encodings for the levels are supported BITPACKED and RLE. Only RLE is now used as it supersedes BITPACKED.&lt;/p></description></item><item><title>Docs: Checksumming</title><link>/docs/file-format/data-pages/checksumming/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/checksumming/</guid><description>
 &lt;p>Column chunks are composed of pages written back to back. The pages share a common header and readers can skip over page they are not interested in. The data for the page follows the header and can be compressed and/or encoded. The compression and encoding is specified in the page metadata.&lt;/p></description></item><item><title>Docs: Column Chunks</title><link>/docs/file-format/data-pages/columnchunks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/columnchunks/</guid><description>

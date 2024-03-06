@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache Parquet – Data Pages</title><link>/docs/file-format/data-pages/</link><description>Recent content in Data Pages on Apache Parquet</description><generator>Hugo -- gohugo.io</generator><atom:link href="/docs/file-format/data-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Data Pages</title><link>/docs/file-format/data-pages/</link><description>Recent content in Data Pages on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/docs/file-format/data-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>
 &lt;h3 id="a-nameplainaplain-plain--0">&lt;a name="PLAIN">&lt;/a>Plain: (PLAIN = 0)&lt;/h3>
 &lt;p>Supported Types: all&lt;/p>
 &lt;p>This is the plain encoding that must be supported for types. It is
@@ -6,7 +6,7 @@ intended to be the simplest encoding. Values are encoded back to back.&lt;/p>
 &lt;p>The plain encoding is used whenever a more efficient encoding can not be used. It
 stores the data in the following format:&lt;/p>
 &lt;ul>
-&lt;li>BOOLEAN: &lt;a href="#RLE">Bit Packed&lt;/a>, LSB first&lt;/li>
+&lt;li>BOOLEAN: &lt;a href="/docs/file-format/data-pages/encodings/#RLE">Bit Packed&lt;/a>, LSB first&lt;/li>
 &lt;li>INT32: 4 bytes little endian&lt;/li>
 &lt;li>INT64: 8 bytes little endian&lt;/li>
 &lt;li>INT96: 12 bytes little endian (deprecated)&lt;/li>
@@ -22,10 +22,10 @@ endian, followed by the bytes.&lt;/p>
 &lt;h3 id="dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8">Dictionary Encoding (PLAIN_DICTIONARY = 2 and RLE_DICTIONARY = 8)&lt;/h3>
 &lt;p>The dictionary encoding builds a dictionary of values encountered in a given column. The
 dictionary will be stored in a dictionary page per column chunk. The values are stored as integers
-using the &lt;a href="#RLE">RLE/Bit-Packing Hybrid&lt;/a> encoding. If the dictionary grows too big, whether in size
+using the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/Bit-Packing Hybrid&lt;/a> encoding. If the dictionary grows too big, whether in size
 or number of distinct values, the encoding will fall back to the plain encoding. The dictionary page is
 written first, before the data pages of the column chunk.&lt;/p>
-&lt;p>Dictionary page format: the entries in the dictionary - in dictionary order - using the &lt;a href="#PLAIN">plain&lt;/a> encoding.&lt;/p>
+&lt;p>Dictionary page format: the entries in the dictionary - in dictionary order - using the &lt;a href="/docs/file-format/data-pages/encodings/#PLAIN">plain&lt;/a> encoding.&lt;/p>
 &lt;p>Data page format: the bit width used to encode the entry ids stored as 1 byte (max bit width = 32),
 followed by the values encoded using RLE/Bit packed described above (with the given bit width).&lt;/p>
 &lt;p>Using the PLAIN_DICTIONARY enum value is deprecated in the Parquet 2.0 specification. Prefer using RLE_DICTIONARY
@@ -49,7 +49,7 @@ rle-run-len := *see 3 below*
 repeated-value := value that is repeated, using a fixed-width of round-up-to-next-byte(bit-width)
 &lt;/code>&lt;/pre>&lt;ol>
 &lt;li>
-&lt;p>The bit-packing here is done in a different order than the one in the &lt;a href="#BITPACKED">deprecated bit-packing&lt;/a> encoding.
+&lt;p>The bit-packing here is done in a different order than the one in the &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED">deprecated bit-packing&lt;/a> encoding.
 The values are packed from the least significant bit of each byte to the most significant bit,
 though the order of the bits in each value remains in the usual order of most significant to least
 significant. For example, to pack the same values as the example in the deprecated encoding above:&lt;/p>
@@ -64,7 +64,7 @@ bit label: HIDEFABC RMNOJKLG VWXSTUPQ
 when deserializing more than one byte at at time. This is because 4 bytes can be read into a
 32 bit register (or 8 bytes into a 64 bit register) and values can be unpacked just by
 shifting and ORing with a mask. (to make this optimization work on a big-endian machine,
-you would have to use the ordering used in the &lt;a href="#BITPACKED">deprecated bit-packing&lt;/a> encoding)&lt;/p>
+you would have to use the ordering used in the &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED">deprecated bit-packing&lt;/a> encoding)&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>varint-encode() is ULEB-128 encoding, see &lt;a href="https://en.wikipedia.org/wiki/LEB128">https://en.wikipedia.org/wiki/LEB128&lt;/a>&lt;/p>
@@ -85,14 +85,14 @@ data:&lt;/p>
 &lt;li>Boolean values in data pages, as an alternative to PLAIN encoding&lt;/li>
 &lt;/ul>
 &lt;h3 id="a-namebitpackedabit-packed-deprecated-bit_packed--4">&lt;a name="BITPACKED">&lt;/a>Bit-packed (Deprecated) (BIT_PACKED = 4)&lt;/h3>
-&lt;p>This is a bit-packed only encoding, which is deprecated and will be replaced by the &lt;a href="#RLE">RLE/bit-packing&lt;/a> hybrid encoding.
+&lt;p>This is a bit-packed only encoding, which is deprecated and will be replaced by the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> hybrid encoding.
 Each value is encoded back to back using a fixed width.
 There is no padding between values (except for the last byte) which is padded with 0s.
 For example, if the max repetition level was 3 (2 bits) and the max definition level as 3
 (2 bits), to encode 30 values, we would have 30 * 2 = 60 bits = 8 bytes.&lt;/p>
-&lt;p>This implementation is deprecated because the &lt;a href="#RLE">RLE/bit-packing&lt;/a> hybrid is a superset of this implementation.
+&lt;p>This implementation is deprecated because the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> hybrid is a superset of this implementation.
 For compatibility reasons, this implementation packs values from the most significant bit to the least significant bit,
-which is not the same as the &lt;a href="#RLE">RLE/bit-packing&lt;/a> hybrid.&lt;/p>
+which is not the same as the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> hybrid.&lt;/p>
 &lt;p>For example, the numbers 1 through 7 using bit width 3:&lt;/p>
 &lt;pre tabindex="0">&lt;code>dec value: 0 1 2 3 4 5 6 7
 bit value: 000 001 010 011 100 101 110 111
@@ -160,7 +160,7 @@ repetition and definition levels.&lt;/p>
 &lt;p>block
 -2 (minimum delta), 2 (bitwidth), 00000011111111b (0,0,0,3,3,3,3 packed on 2 bits)&lt;/p>
 &lt;h4 id="characteristics">Characteristics&lt;/h4>
-&lt;p>This encoding is similar to the &lt;a href="#RLE">RLE/bit-packing&lt;/a> encoding. However the &lt;a href="#RLE">RLE/bit-packing&lt;/a> encoding is specifically used when the range of ints is small over the entire page, as is true of repetition and definition levels. It uses a single bit width for the whole page.
+&lt;p>This encoding is similar to the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> encoding. However the &lt;a href="/docs/file-format/data-pages/encodings/#RLE">RLE/bit-packing&lt;/a> encoding is specifically used when the range of ints is small over the entire page, as is true of repetition and definition levels. It uses a single bit width for the whole page.
 The delta encoding algorithm described above stores a bit width per miniblock and is less sensitive to variations in the size of encoded integers. It is also somewhat doing RLE encoding as a block containing all the same values will be bit packed to a zero bit width thus being only a header.&lt;/p>
 &lt;h3 id="delta-length-byte-array-delta_length_byte_array--6">Delta-length byte array: (DELTA_LENGTH_BYTE_ARRAY = 6)&lt;/h3>
 &lt;p>Supported Types: BYTE_ARRAY&lt;/p>
