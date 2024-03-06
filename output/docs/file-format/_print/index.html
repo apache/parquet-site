@@ -1,4 +1,4 @@
-<!doctype html><html lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.121.2"><link rel=canonical type=text/html href=/docs/file-format/><link rel=alternate type=application/rss+xml href=/docs/file-format/index.xml><meta name=robots content="noindex, nofollow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>File Format | Apache Parquet</title>
+<!doctype html><html lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.123.7"><link rel=canonical type=text/html href=/docs/file-format/><link rel=alternate type=application/rss+xml href=/docs/file-format/index.xml><meta name=robots content="noindex, nofollow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>File Format | Apache Parquet</title>
 <meta name=description content="Documentation about the Parquet File Format.
 "><meta property="og:title" content="File Format"><meta property="og:description" content="Documentation about the Parquet File Format.
 "><meta property="og:type" content="website"><meta property="og:url" content="/docs/file-format/"><meta itemprop=name content="File Format"><meta itemprop=description content="Documentation about the Parquet File Format.
@@ -27,7 +27,7 @@ start locations. More details on what is contained in the metadata can be found
 in the Thrift definition.</p><p>Metadata is written after the data to allow for single pass writing.</p><p>Readers are expected to first read the file metadata to find all the column
 chunks they are interested in. The columns chunks should then be read sequentially.</p><p>The format is explicitly designed to separate the metadata from the data. This
 allows splitting columns into multiple files, as well as having a single metadata
-file reference multiple parquet files.</p><p><img src=/images/FileLayout.gif alt="File Layout"></p></div></div><div class=td-content style=page-break-before:always><h1 id=pg-de128b03a7277c17c6dec2cef97af32d>1 - Configurations</h1><h3 id=row-group-size>Row Group Size</h3><p>Larger row groups allow for larger column chunks which makes it
+file reference multiple parquet files.</p><p><img alt="File Layout" src=/images/FileLayout.gif></p></div></div><div class=td-content style=page-break-before:always><h1 id=pg-de128b03a7277c17c6dec2cef97af32d>1 - Configurations</h1><h3 id=row-group-size>Row Group Size</h3><p>Larger row groups allow for larger column chunks which makes it
 possible to do larger sequential IO. Larger groups also require more buffering in
 the write path (or a two pass write). We recommend large row groups (512MB - 1GB).
 Since an entire row group might need to be read, we want it to completely fit on
@@ -38,7 +38,7 @@ allow for more fine grained reading (e.g. single row lookup). Larger page sizes
 incur less space overhead (less page headers) and potentially less parsing overhead
 (processing headers). Note: for sequential scans, it is not expected to read a page
 at a time; this is not the IO chunk. We recommend 8KB for page sizes.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-6762d78210357c1df172dfddcc6fd307>2 - Extensibility</h1><p>There are many places in the format for compatible extensions:</p><ul><li>File Version: The file metadata contains a version.</li><li>Encodings: Encodings are specified by enum and more can be added in the future.</li><li>Page types: Additional page types can be added and safely skipped.</li></ul></div><div class=td-content style=page-break-before:always><h1 id=pg-e1f24cbf7bc8c4ddd1cc8213993795a7>3 - Metadata</h1><p>There are three types of metadata: file metadata, column (chunk) metadata and page
-header metadata. All thrift structures are serialized using the TCompactProtocol.</p><p><img src=/images/FileFormat.gif alt="File Layout"></p></div><div class=td-content style=page-break-before:always><h1 id=pg-140f2d6d5609da0af9dcaa92233086b5>4 - Types</h1><p>The types supported by the file format are intended to be as minimal as possible,
+header metadata. All thrift structures are serialized using the TCompactProtocol.</p><p><img alt="File Layout" src=/images/FileFormat.gif></p></div><div class=td-content style=page-break-before:always><h1 id=pg-140f2d6d5609da0af9dcaa92233086b5>4 - Types</h1><p>The types supported by the file format are intended to be as minimal as possible,
 with a focus on how the types effect on disk storage. For example, 16-bit ints
 are not explicitly supported in the storage format since they are covered by
 32-bit ints with an efficient encoding. This reduces the complexity of implementing
@@ -272,8 +272,8 @@ struct ColumnMetaData {
 }
 </code></pre><p>The Bloom filters are grouped by row group and with data for each column in the same order as the file schema.
 The Bloom filter data can be stored before the page indexes after all row groups. The file layout looks like:
-<img src=/images/FileLayoutBloomFilter2.png alt="File Layout - Bloom filter footer"></p><p>Or it can be stored between row groups, the file layout looks like:
-<img src=/images/FileLayoutBloomFilter1.png alt="File Layout - Bloom filter footer"></p><h4 id=encryption>Encryption</h4><p>In the case of columns with sensitive data, the Bloom filter exposes a subset of sensitive
+<img alt="File Layout - Bloom filter footer" src=/images/FileLayoutBloomFilter2.png></p><p>Or it can be stored between row groups, the file layout looks like:
+<img alt="File Layout - Bloom filter footer" src=/images/FileLayoutBloomFilter1.png></p><h4 id=encryption>Encryption</h4><p>In the case of columns with sensitive data, the Bloom filter exposes a subset of sensitive
 information such as the presence of value. Therefore the Bloom filter of columns with sensitive
 data should be encrypted with the column key, and the Bloom filter of other (not sensitive) columns
 do not need to be encrypted.</p><p>Bloom filters have two serializable modules - the PageHeader thrift structure (with its internal
@@ -325,13 +325,13 @@ is authoritative.</p><h3 id=lz4_raw>LZ4_RAW</h3><p>A codec based on the <a href=
 If any ambiguity arises when implementing this format, the implementation
 provided by the <a href=http://www.lz4.org/>LZ4 compression library</a> is authoritative.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-9aa971e751fdd370158d525ad337ef7a>7.2 - Encodings</h1><p><a name=PLAIN></a></p><h3 id=plain-plain--0>Plain: (PLAIN = 0)</h3><p>Supported Types: all</p><p>This is the plain encoding that must be supported for types. It is
 intended to be the simplest encoding. Values are encoded back to back.</p><p>The plain encoding is used whenever a more efficient encoding can not be used. It
-stores the data in the following format:</p><ul><li>BOOLEAN: <a href=#BITPACKED>Bit Packed</a>, LSB first</li><li>INT32: 4 bytes little endian</li><li>INT64: 8 bytes little endian</li><li>INT96: 12 bytes little endian (deprecated)</li><li>FLOAT: 4 bytes IEEE little endian</li><li>DOUBLE: 8 bytes IEEE little endian</li><li>BYTE_ARRAY: length in 4 bytes little endian followed by the bytes contained in the array</li><li>FIXED_LEN_BYTE_ARRAY: the bytes contained in the array</li></ul><p>For native types, this outputs the data as little endian. Floating
+stores the data in the following format:</p><ul><li>BOOLEAN: <a href=/docs/file-format/data-pages/encodings/#BITPACKED>Bit Packed</a>, LSB first</li><li>INT32: 4 bytes little endian</li><li>INT64: 8 bytes little endian</li><li>INT96: 12 bytes little endian (deprecated)</li><li>FLOAT: 4 bytes IEEE little endian</li><li>DOUBLE: 8 bytes IEEE little endian</li><li>BYTE_ARRAY: length in 4 bytes little endian followed by the bytes contained in the array</li><li>FIXED_LEN_BYTE_ARRAY: the bytes contained in the array</li></ul><p>For native types, this outputs the data as little endian. Floating
 point types are encoded in IEEE.</p><p>For the byte array type, it encodes the length as a 4 byte little
 endian, followed by the bytes.</p><h3 id=dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8>Dictionary Encoding (PLAIN_DICTIONARY = 2 and RLE_DICTIONARY = 8)</h3><p>The dictionary encoding builds a dictionary of values encountered in a given column. The
 dictionary will be stored in a dictionary page per column chunk. The values are stored as integers
-using the <a href=#RLE>RLE/Bit-Packing Hybrid</a> encoding. If the dictionary grows too big, whether in size
+using the <a href=/docs/file-format/data-pages/encodings/#RLE>RLE/Bit-Packing Hybrid</a> encoding. If the dictionary grows too big, whether in size
 or number of distinct values, the encoding will fall back to the plain encoding. The dictionary page is
-written first, before the data pages of the column chunk.</p><p>Dictionary page format: the entries in the dictionary using the <a href=#PLAIN>plain</a> encoding.</p><p>Data page format: the bit width used to encode the entry ids stored as 1 byte (max bit width = 32),
+written first, before the data pages of the column chunk.</p><p>Dictionary page format: the entries in the dictionary using the <a href=/docs/file-format/data-pages/encodings/#PLAIN>plain</a> encoding.</p><p>Data page format: the bit width used to encode the entry ids stored as 1 byte (max bit width = 32),
 followed by the values encoded using RLE/Bit packed described above (with the given bit width).</p><p>Using the PLAIN_DICTIONARY enum value is deprecated in the Parquet 2.0 specification. Prefer using RLE_DICTIONARY
 in a data page and PLAIN in a dictionary page for Parquet 2.0+ files.</p><p><a name=RLE></a></p><h3 id=run-length-encoding--bit-packing-hybrid-rle--3>Run Length Encoding / Bit-Packing Hybrid (RLE = 3)</h3><p>This encoding uses a combination of bit-packing and run length encoding to more efficiently store repeated values.</p><p>The grammar for this encoding looks like this, given a fixed bit-width known in advance:</p><pre tabindex=0><code>rle-bit-packed-hybrid: &lt;length&gt; &lt;encoded-data&gt;
 // length is not always prepended, please check the table below for more detail
@@ -348,7 +348,7 @@ rle-run := &lt;rle-header&gt; &lt;repeated-value&gt;
 rle-header := varint-encode( (rle-run-len) &lt;&lt; 1)
 rle-run-len := *see 3 below*
 repeated-value := value that is repeated, using a fixed-width of round-up-to-next-byte(bit-width)
-</code></pre><ol><li><p>The bit-packing here is done in a different order than the one in the <a href=#BITPACKED>deprecated bit-packing</a> encoding.
+</code></pre><ol><li><p>The bit-packing here is done in a different order than the one in the <a href=/docs/file-format/data-pages/encodings/#BITPACKED>deprecated bit-packing</a> encoding.
 The values are packed from the least significant bit of each byte to the most significant bit,
 though the order of the bits in each value remains in the usual order of most significant to least
 significant. For example, to pack the same values as the example in the deprecated encoding above:</p><p>The numbers 1 through 7 using bit width 3:</p><pre tabindex=0><code>dec value: 0   1   2   3   4   5   6   7
@@ -360,7 +360,7 @@ bit label: HIDEFABC RMNOJKLG VWXSTUPQ
 when deserializing more than one byte at at time. This is because 4 bytes can be read into a
 32 bit register (or 8 bytes into a 64 bit register) and values can be unpacked just by
 shifting and ORing with a mask. (to make this optimization work on a big-endian machine,
-you would have to use the ordering used in the <a href=#BITPACKED>deprecated bit-packing</a> encoding)</p></li><li><p>varint-encode() is ULEB-128 encoding, see <a href=https://en.wikipedia.org/wiki/LEB128>https://en.wikipedia.org/wiki/LEB128</a></p></li><li><p>bit-packed-run-len and rle-run-len must be in the range [1, 2<sup>31</sup> - 1].
+you would have to use the ordering used in the <a href=/docs/file-format/data-pages/encodings/#BITPACKED>deprecated bit-packing</a> encoding)</p></li><li><p>varint-encode() is ULEB-128 encoding, see <a href=https://en.wikipedia.org/wiki/LEB128>https://en.wikipedia.org/wiki/LEB128</a></p></li><li><p>bit-packed-run-len and rle-run-len must be in the range [1, 2<sup>31</sup> - 1].
 This means that a Parquet implementation can always store the run length in a signed
 32-bit integer. This length restriction was not part of the Parquet 2.5.0 and earlier
 specifications, but longer runs were not readable by the most common Parquet
@@ -378,13 +378,13 @@ data:</p><ul><li>Repetition and definition levels</li><li>Dictionary indices</li
 |              | Dictionary indices     | N               |
 |              | Boolean values         | Y               |
 +--------------+------------------------+-----------------+
-</code></pre><p><a name=BITPACKED></a></p><h3 id=bit-packed-deprecated-bit_packed--4>Bit-packed (Deprecated) (BIT_PACKED = 4)</h3><p>This is a bit-packed only encoding, which is deprecated and will be replaced by the <a href=#RLE>RLE/bit-packing</a> hybrid encoding.
+</code></pre><p><a name=BITPACKED></a></p><h3 id=bit-packed-deprecated-bit_packed--4>Bit-packed (Deprecated) (BIT_PACKED = 4)</h3><p>This is a bit-packed only encoding, which is deprecated and will be replaced by the <a href=/docs/file-format/data-pages/encodings/#RLE>RLE/bit-packing</a> hybrid encoding.
 Each value is encoded back to back using a fixed width.
 There is no padding between values (except for the last byte, which is padded with 0s).
 For example, if the max repetition level was 3 (2 bits) and the max definition level as 3
-(2 bits), to encode 30 values, we would have 30 * 2 = 60 bits = 8 bytes.</p><p>This implementation is deprecated because the <a href=#RLE>RLE/bit-packing</a> hybrid is a superset of this implementation.
+(2 bits), to encode 30 values, we would have 30 * 2 = 60 bits = 8 bytes.</p><p>This implementation is deprecated because the <a href=/docs/file-format/data-pages/encodings/#RLE>RLE/bit-packing</a> hybrid is a superset of this implementation.
 For compatibility reasons, this implementation packs values from the most significant bit to the least significant bit,
-which is not the same as the <a href=#RLE>RLE/bit-packing</a> hybrid.</p><p>For example, the numbers 1 through 7 using bit width 3:</p><pre tabindex=0><code>dec value: 0   1   2   3   4   5   6   7
+which is not the same as the <a href=/docs/file-format/data-pages/encodings/#RLE>RLE/bit-packing</a> hybrid.</p><p>For example, the numbers 1 through 7 using bit width 3:</p><pre tabindex=0><code>dec value: 0   1   2   3   4   5   6   7
 bit value: 000 001 010 011 100 101 110 111
 bit label: ABC DEF GHI JKL MNO PQR STU VWX
 </code></pre><p>would be encoded like this where spaces mark byte boundaries (3 bytes):</p><pre tabindex=0><code>bit value: 00000101 00111001 01110111
@@ -430,7 +430,7 @@ but in real cases it would be invalid.</p><h4 id=example-1>Example 1</h4><p>1, 2
 8 (block size), 1 (miniblock count), 5 (value count), 1 (first value)</p><p>block:
 1 (minimum delta), 0 (bitwidth), (no data needed for bitwidth 0)</p><h4 id=example-2>Example 2</h4><p>7, 5, 3, 1, 2, 3, 4, 5, the deltas would be</p><p>-2, -2, -2, 1, 1, 1, 1</p><p>The minimum is -2, so the relative deltas are:</p><p>0, 0, 0, 3, 3, 3, 3</p><p>The encoded data is</p><p>header:
 8 (block size), 1 (miniblock count), 8 (value count), 7 (first value)</p><p>block:
--2 (minimum delta), 2 (bitwidth), 00000011111111b (0,0,0,3,3,3,3 packed on 2 bits)</p><h4 id=characteristics>Characteristics</h4><p>This encoding is similar to the <a href=#RLE>RLE/bit-packing</a> encoding. However the <a href=#RLE>RLE/bit-packing</a> encoding is specifically used when the range of ints is small over the entire page, as is true of repetition and definition levels. It uses a single bit width for the whole page.
+-2 (minimum delta), 2 (bitwidth), 00000011111111b (0,0,0,3,3,3,3 packed on 2 bits)</p><h4 id=characteristics>Characteristics</h4><p>This encoding is similar to the <a href=/docs/file-format/data-pages/encodings/#RLE>RLE/bit-packing</a> encoding. However the <a href=/docs/file-format/data-pages/encodings/#RLE>RLE/bit-packing</a> encoding is specifically used when the range of ints is small over the entire page, as is true of repetition and definition levels. It uses a single bit width for the whole page.
 The delta encoding algorithm described above stores a bit width per miniblock and is less sensitive to variations in the size of encoded integers. It is also somewhat doing RLE encoding as a block containing all the same values will be bit packed to a zero bit width thus being only a header.</p><h3 id=delta-length-byte-array-delta_length_byte_array--6>Delta-length byte array: (DELTA_LENGTH_BYTE_ARRAY = 6)</h3><p>Supported Types: BYTE_ARRAY</p><p>This encoding is always preferred over PLAIN for byte array columns.</p><p>For this encoding, we will take all the byte array lengths and encode them using delta
 encoding (DELTA_BINARY_PACKED). The byte array data follows all of the length data just
 concatenated back to back. The expected savings is from the cost of encoding the lengths
@@ -682,7 +682,7 @@ bytes) that they can’t parse this file.</p><div class=highlight><pre tabindex=
 </span></span></span><span style=display:flex><span><span style=color:#8f5902;font-style:italic>   *  and (possibly) columns **/</span>
 </span></span><span style=display:flex><span>  <span style=color:#0000cf;font-weight:700>2</span><span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>optional</span> <span style=color:#000>binary</span> <span style=color:#000>key_metadata</span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>}</span>
-</span></span></code></pre></div><p><img src=/images/FileLayoutEncryptionEF.png alt="File Layout - Encrypted footer"></p><h3 id=55-plaintext-footer-mode>5.5 Plaintext footer mode</h3><p>This mode allows legacy Parquet versions (released before the encryption support) to access
+</span></span></code></pre></div><p><img alt="File Layout - Encrypted footer" src=/images/FileLayoutEncryptionEF.png></p><h3 id=55-plaintext-footer-mode>5.5 Plaintext footer mode</h3><p>This mode allows legacy Parquet versions (released before the encryption support) to access
 unencrypted columns in encrypted files - at a price of leaving certain metadata fields
 unprotected in these files.</p><p>The plaintext footer mode can be useful during a transitional period in organizations where
 some frameworks can&rsquo;t be upgraded to a new Parquet library for a while. Data writers will
@@ -726,7 +726,7 @@ that contains the combined length of the footer and its signature. A final magic
 &ldquo;PAR1&rdquo;, is written at the end of the
 file. The same magic string is written at the beginning of the file (offset 0). The magic bytes
 for plaintext footer mode are ‘PAR1’ to allow legacy readers to read projections of the file
-that do not include encrypted columns.</p><p><img src=/images/FileLayoutEncryptionPF.png alt="File Layout - Encrypted footer"></p><h2 id=6-encryption-overhead>6. Encryption Overhead</h2><p>The size overhead of Parquet modular encryption is negligible, since most of the encryption
+that do not include encrypted columns.</p><p><img alt="File Layout - Encrypted footer" src=/images/FileLayoutEncryptionPF.png></p><h2 id=6-encryption-overhead>6. Encryption Overhead</h2><p>The size overhead of Parquet modular encryption is negligible, since most of the encryption
 operations are performed on pages (the minimal unit of Parquet data storage and compression).
 The overhead order of magnitude is adding 1 byte per each ~30,000 bytes of original
 data - calculated by comparing the page encryption overhead (nonce + tag + length = 32 bytes)
@@ -782,7 +782,7 @@ column are skipped, the corresponding rows in the other columns have to be
 skipped. Hence the OffsetIndexes for each column in a RowGroup are stored
 together.</li></ul><p>The new index structures are stored separately from RowGroup, near the footer.<br>This is done so that a reader does not have to pay the I/O and deserialization
 cost for reading them if it is not doing selective scans. The index structures'
-location and length are stored in ColumnChunk.</p><p><img src=/images/PageIndexLayout.png alt="Page Index Layout"></p><p>Some observations:</p><ul><li>We don&rsquo;t need to record the lower bound for the first page and the upper
+location and length are stored in ColumnChunk.</p><p><img alt="Page Index Layout" src=/images/PageIndexLayout.png></p><p>Some observations:</p><ul><li>We don&rsquo;t need to record the lower bound for the first page and the upper
 bound for the last page, because the row group Statistics can provide that.
 We still include those for the sake of uniformity, and the overhead should be
 negligible.</li><li>We store lower and upper bounds for the values of each page. These may be the
