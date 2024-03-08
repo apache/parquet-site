@@ -205,7 +205,7 @@ boolean filter_check(SBBF filter, unsigned int64 x) {
 
 The use of blocks is from Putze et al.'s [Cache-, Hash- and
 Space-Efficient Bloom
-filters](http://algo2.iti.kit.edu/documents/cacheefficientbloomfilters-jea.pdf)
+filters](https://www.cs.amherst.edu/~ccmcgeoch/cs34/papers/cacheefficientbloomfilters-jea.pdf)
 
 To use an SBBF for values of arbitrary Parquet types, we apply a hash
 function to that value - at the time of writing,
