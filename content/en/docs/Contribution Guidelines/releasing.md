@@ -19,7 +19,7 @@ If you have problems, read the [publishing Maven artifacts documentation](https:
 
 ### Release process
 
-Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.
+Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.
 
 Before you start the release process:
 

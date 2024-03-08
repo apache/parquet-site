@@ -189,7 +189,7 @@ Each block contains
    positive integers for bit packing)
  * the bitwidth of each block is stored as a byte
  * each miniblock is a list of bit packed ints according to the bit width
-   stored at the begining of the block
+   stored at the beginning of the block
 
 To encode a block, we will:
 

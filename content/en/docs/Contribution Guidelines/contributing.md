@@ -23,7 +23,7 @@ If you’d like to report a bug but don’t have time to fix it, you can still p
 Committers
 ----------
 
-Merging a pull request requires being a comitter on the project.
+Merging a pull request requires being a committer on the project.
 
 How to merge a Pull request (have an apache and github-apache remote setup):
 
