@@ -20,7 +20,7 @@ Java resources can be build using &lt;code>mvn package&lt;/code>. The current st
 &lt;/ol>
 &lt;p>If you’d like to report a bug but don’t have time to fix it, you can still post it to our &lt;a href="https://issues.apache.org/jira/browse/PARQUET">issue tracker&lt;/a>, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org&lt;/a>).&lt;/p>
 &lt;h2 id="committers">Committers&lt;/h2>
-&lt;p>Merging a pull request requires being a comitter on the project.&lt;/p>
+&lt;p>Merging a pull request requires being a committer on the project.&lt;/p>
 &lt;p>How to merge a Pull request (have an apache and github-apache remote setup):&lt;/p>
 &lt;pre>&lt;code>git remote add github-apache git@github.com:apache/parquet-mr.git
 git remote add apache https://gitbox.apache.org/repos/asf?p=parquet-mr.git
@@ -97,7 +97,7 @@ job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.g
 &lt;/code>&lt;/pre>
 &lt;p>If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html">publishing Maven artifacts documentation&lt;/a>&lt;/p>
 &lt;h3 id="release-process">Release process&lt;/h3>
-&lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.&lt;/p>
+&lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p>
 &lt;p>Before you start the release process:&lt;/p>
 &lt;ol>
 &lt;li>Verify that the release is finished (no planned JIRAs are pending and all patches are cherry-picked to the release branch)&lt;/li>
@@ -190,7 +190,7 @@ svn add apache-parquet-&amp;lt;version&amp;gt;
 svn ci -m &amp;quot;Parquet: Add release &amp;lt;VERSION&amp;gt;&amp;quot;
 &lt;/code>&lt;/pre>
 &lt;h4 id="4-update-parquetapacheorg">4. Update parquet.apache.org&lt;/h4>
-&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="http://parquet.apache.org/docs/contribution-guidelines/contributing/">contribution page&lt;/a>.&lt;/p>
+&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="https://parquet.apache.org/docs/contribution-guidelines/contributing/">contribution page&lt;/a>.&lt;/p>
 &lt;h4 id="5-send-an-announce-e-mail-to-announceapacheorgmailtoannounceapacheorg-and-the-dev-list">5. Send an ANNOUNCE e-mail to &lt;a href="mailto:announce@apache.org">announce@apache.org&lt;/a> and the dev list&lt;/h4>
 &lt;pre>&lt;code>[ANNOUNCE] Apache Parquet release &amp;lt;VERSION&amp;gt;
 I'm please to announce the release of Parquet &amp;lt;VERSION&amp;gt;!

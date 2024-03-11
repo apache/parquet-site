@@ -30,7 +30,7 @@ as this has historically not been supported by all implementations, it is recomm
 that writers refrain from creating such pages by default for better interoperability.&lt;/p>
 &lt;h3 id="lzo">LZO&lt;/h3>
 &lt;p>A codec based on or interoperable with the
-&lt;a href="http://www.oberhumer.com/opensource/lzo/">LZO compression library&lt;/a>.&lt;/p>
+&lt;a href="https://www.oberhumer.com/opensource/lzo/">LZO compression library&lt;/a>.&lt;/p>
 &lt;h3 id="brotli">BROTLI&lt;/h3>
 &lt;p>A codec based on the Brotli format defined by
 &lt;a href="https://tools.ietf.org/html/rfc7932">RFC 7932&lt;/a>.
@@ -49,12 +49,12 @@ switch to the newer, interoperable &lt;code>LZ4_RAW&lt;/code> codec.&lt;/p>
 &lt;p>A codec based on the Zstandard format defined by
 &lt;a href="https://tools.ietf.org/html/rfc8478">RFC 8478&lt;/a>. If any ambiguity arises
 when implementing this format, the implementation provided by the
-&lt;a href="https://facebook.github.io/zstd/">ZStandard compression library&lt;/a>
+&lt;a href="https://facebook.github.io/zstd/">Zstandard compression library&lt;/a>
 is authoritative.&lt;/p>
 &lt;h3 id="lz4_raw">LZ4_RAW&lt;/h3>
 &lt;p>A codec based on the &lt;a href="https://github.com/lz4/lz4/blob/dev/doc/lz4_Block_format.md">LZ4 block format&lt;/a>.
 If any ambiguity arises when implementing this format, the implementation
-provided by the &lt;a href="http://www.lz4.org/">LZ4 compression library&lt;/a> is authoritative.&lt;/p></description></item><item><title>Docs: Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>
+provided by the &lt;a href="https://www.lz4.org/">LZ4 compression library&lt;/a> is authoritative.&lt;/p></description></item><item><title>Docs: Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>
 &lt;p>&lt;a name="PLAIN">&lt;/a>&lt;/p>
 &lt;h3 id="plain-plain--0">Plain: (PLAIN = 0)&lt;/h3>
 &lt;p>Supported Types: all&lt;/p>
@@ -180,7 +180,7 @@ repetition and definition levels.&lt;/p>
 &lt;h3 id="delta-encoding-delta_binary_packed--5">Delta Encoding (DELTA_BINARY_PACKED = 5)&lt;/h3>
 &lt;p>Supported Types: INT32, INT64&lt;/p>
 &lt;p>This encoding is adapted from the Binary packing described in
-&lt;a href="http://arxiv.org/pdf/1209.2137v5.pdf">&amp;ldquo;Decoding billions of integers per second through vectorization&amp;rdquo;&lt;/a>
+&lt;a href="https://arxiv.org/pdf/1209.2137v5.pdf">&amp;ldquo;Decoding billions of integers per second through vectorization&amp;rdquo;&lt;/a>
 by D. Lemire and L. Boytsov.&lt;/p>
 &lt;p>In delta encoding we make use of variable length integers for storing various
 numbers (not the deltas themselves). For unsigned values, we use ULEB128,
@@ -206,7 +206,7 @@ stored as a ULEB128 int&lt;/li>
 positive integers for bit packing)&lt;/li>
 &lt;li>the bitwidth of each block is stored as a byte&lt;/li>
 &lt;li>each miniblock is a list of bit packed ints according to the bit width
-stored at the begining of the block&lt;/li>
+stored at the beginning of the block&lt;/li>
 &lt;/ul>
 &lt;p>To encode a block, we will:&lt;/p>
 &lt;ol>
@@ -483,7 +483,7 @@ data set (table). This string is optionally passed by a writer upon file creatio
 the AAD prefix is stored in an &lt;code>aad_prefix&lt;/code> field in the file, and is made available to the readers.
 This field is not encrypted. If a user is concerned about keeping the file identity inside the file,
 the writer code can explicitly request Parquet not to store the AAD prefix. Then the aad_prefix field
-will be empty; AAD prefixes must be fully managed by the caller code and supplied explictly to Parquet
+will be empty; AAD prefixes must be fully managed by the caller code and supplied explicitly to Parquet
 readers for each file.&lt;/p>
 &lt;p>The protection against swapping full files is optional. It is not enabled by default because
 it requires the writers to generate and pass an AAD prefix.&lt;/p>

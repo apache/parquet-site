@@ -170,7 +170,7 @@ chosen as follows:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">unsigned&lt;/span> &lt;span style="color:#000">int64&lt;/span> &lt;span style="color:#000">z_as_64_bit&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">z&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">unsigned&lt;/span> &lt;span style="color:#000">int32&lt;/span> &lt;span style="color:#000">i&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">h_top_bits&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">*&lt;/span> &lt;span style="color:#000">z_as_64_bit&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">32&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The first line extracts the most significant 32 bits from &lt;code>h&lt;/code> and
-assignes them to a 64-bit unsigned integer. The second line is
+assigns them to a 64-bit unsigned integer. The second line is
 simpler: it just sets an unsigned 64-bit value to the same value as
 the 32-bit unsigned value &lt;code>z&lt;/code>. The purpose of having both &lt;code>h_top_bits&lt;/code>
 and &lt;code>z_as_64_bit&lt;/code> be 64-bit values is so that their product is a
@@ -206,7 +206,7 @@ unsigned int64 i = ((x &amp;gt;&amp;gt; 32) * filter.numberOfBlocks()) &amp;gt;&
 block b = filter.getBlock(i);
 return block_check(b, (unsigned int32)x)
 }
-&lt;/code>&lt;/pre>&lt;p>The use of blocks is from Putze et al.&amp;rsquo;s &lt;a href="http://algo2.iti.kit.edu/documents/cacheefficientbloomfilters-jea.pdf">Cache-, Hash- and
+&lt;/code>&lt;/pre>&lt;p>The use of blocks is from Putze et al.&amp;rsquo;s &lt;a href="https://www.cs.amherst.edu/~ccmcgeoch/cs34/papers/cacheefficientbloomfilters-jea.pdf">Cache-, Hash- and
 Space-Efficient Bloom
 filters&lt;/a>&lt;/p>
 &lt;p>To use an SBBF for values of arbitrary Parquet types, we apply a hash
@@ -217,13 +217,13 @@ with a seed of 0 and &lt;a href="https://github.com/Cyan4973/xxHash/blob/v0.7.0/
 &lt;h4 id="sizing-an-sbbf">Sizing an SBBF&lt;/h4>
 &lt;p>The &lt;code>check&lt;/code> operation in SBBFs can return &lt;code>true&lt;/code> for an argument that
 was never inserted into the SBBF. These are called &amp;ldquo;false
-positives&amp;rdquo;. The &amp;ldquo;false positive probabilty&amp;rdquo; is the probability that
+positives&amp;rdquo;. The &amp;ldquo;false positive probability&amp;rdquo; is the probability that
 any given hash value that was never &lt;code>insert&lt;/code>ed into the SBBF will
 cause &lt;code>check&lt;/code> to return &lt;code>true&lt;/code> (a false positive). There is not a
 simple closed-form calculation of this probability, but here is an
 example:&lt;/p>
 &lt;p>A filter that uses 1024 blocks and has had 26,214 hash values
-&lt;code>insert&lt;/code>ed will have a false positive probabilty of around 1.26%. Each
+&lt;code>insert&lt;/code>ed will have a false positive probability of around 1.26%. Each
 of those 1024 blocks occupies 256 bits of space, so the total space
 usage is 262,144. That means that the ratio of bits of space to hash
 values is 10-to-1. Adding more hash values increases the denominator

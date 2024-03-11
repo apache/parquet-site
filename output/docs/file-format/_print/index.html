@@ -163,7 +163,7 @@ chosen as follows:</p><div class=highlight><pre tabindex=0 style=background-colo
 </span></span><span style=display:flex><span><span style=color:#204a87;font-weight:700>unsigned</span> <span style=color:#000>int64</span> <span style=color:#000>z_as_64_bit</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>z</span><span style=color:#000;font-weight:700>;</span>
 </span></span><span style=display:flex><span><span style=color:#204a87;font-weight:700>unsigned</span> <span style=color:#000>int32</span> <span style=color:#000>i</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000;font-weight:700>(</span><span style=color:#000>h_top_bits</span> <span style=color:#ce5c00;font-weight:700>*</span> <span style=color:#000>z_as_64_bit</span><span style=color:#000;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>&gt;&gt;</span> <span style=color:#0000cf;font-weight:700>32</span><span style=color:#000;font-weight:700>;</span>
 </span></span></code></pre></div><p>The first line extracts the most significant 32 bits from <code>h</code> and
-assignes them to a 64-bit unsigned integer. The second line is
+assigns them to a 64-bit unsigned integer. The second line is
 simpler: it just sets an unsigned 64-bit value to the same value as
 the 32-bit unsigned value <code>z</code>. The purpose of having both <code>h_top_bits</code>
 and <code>z_as_64_bit</code> be 64-bit values is so that their product is a
@@ -194,7 +194,7 @@ significant 32 bits.</p><pre tabindex=0><code>void filter_insert(SBBF filter, un
   block b = filter.getBlock(i);
   return block_check(b, (unsigned int32)x)
 }
-</code></pre><p>The use of blocks is from Putze et al.&rsquo;s <a href=http://algo2.iti.kit.edu/documents/cacheefficientbloomfilters-jea.pdf>Cache-, Hash- and
+</code></pre><p>The use of blocks is from Putze et al.&rsquo;s <a href=https://www.cs.amherst.edu/~ccmcgeoch/cs34/papers/cacheefficientbloomfilters-jea.pdf>Cache-, Hash- and
 Space-Efficient Bloom
 filters</a></p><p>To use an SBBF for values of arbitrary Parquet types, we apply a hash
 function to that value - at the time of writing,
@@ -202,12 +202,12 @@ function to that value - at the time of writing,
 with a seed of 0 and <a href=https://github.com/Cyan4973/xxHash/blob/v0.7.0/doc/xxhash_spec.md>following the specification version
 0.1.1</a>.</p><h4 id=sizing-an-sbbf>Sizing an SBBF</h4><p>The <code>check</code> operation in SBBFs can return <code>true</code> for an argument that
 was never inserted into the SBBF. These are called &ldquo;false
-positives&rdquo;. The &ldquo;false positive probabilty&rdquo; is the probability that
+positives&rdquo;. The &ldquo;false positive probability&rdquo; is the probability that
 any given hash value that was never <code>insert</code>ed into the SBBF will
 cause <code>check</code> to return <code>true</code> (a false positive). There is not a
 simple closed-form calculation of this probability, but here is an
 example:</p><p>A filter that uses 1024 blocks and has had 26,214 hash values
-<code>insert</code>ed will have a false positive probabilty of around 1.26%. Each
+<code>insert</code>ed will have a false positive probability of around 1.26%. Each
 of those 1024 blocks occupies 256 bits of space, so the total space
 usage is 262,144. That means that the ratio of bits of space to hash
 values is 10-to-1. Adding more hash values increases the denominator
@@ -308,7 +308,7 @@ If any ambiguity arises when implementing this format, the implementation
 provided by the <a href=https://zlib.net/>zlib compression library</a> is authoritative.</p><p>Readers should support reading pages containing multiple GZIP members, however,
 as this has historically not been supported by all implementations, it is recommended
 that writers refrain from creating such pages by default for better interoperability.</p><h3 id=lzo>LZO</h3><p>A codec based on or interoperable with the
-<a href=http://www.oberhumer.com/opensource/lzo/>LZO compression library</a>.</p><h3 id=brotli>BROTLI</h3><p>A codec based on the Brotli format defined by
+<a href=https://www.oberhumer.com/opensource/lzo/>LZO compression library</a>.</p><h3 id=brotli>BROTLI</h3><p>A codec based on the Brotli format defined by
 <a href=https://tools.ietf.org/html/rfc7932>RFC 7932</a>.
 If any ambiguity arises when implementing this format, the implementation
 provided by the <a href=https://github.com/google/brotli>Brotli compression library</a>
@@ -320,10 +320,10 @@ this compression codec in their user-facing APIs, and advise users to
 switch to the newer, interoperable <code>LZ4_RAW</code> codec.</p><h3 id=zstd>ZSTD</h3><p>A codec based on the Zstandard format defined by
 <a href=https://tools.ietf.org/html/rfc8478>RFC 8478</a>. If any ambiguity arises
 when implementing this format, the implementation provided by the
-<a href=https://facebook.github.io/zstd/>ZStandard compression library</a>
+<a href=https://facebook.github.io/zstd/>Zstandard compression library</a>
 is authoritative.</p><h3 id=lz4_raw>LZ4_RAW</h3><p>A codec based on the <a href=https://github.com/lz4/lz4/blob/dev/doc/lz4_Block_format.md>LZ4 block format</a>.
 If any ambiguity arises when implementing this format, the implementation
-provided by the <a href=http://www.lz4.org/>LZ4 compression library</a> is authoritative.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-9aa971e751fdd370158d525ad337ef7a>7.2 - Encodings</h1><p><a name=PLAIN></a></p><h3 id=plain-plain--0>Plain: (PLAIN = 0)</h3><p>Supported Types: all</p><p>This is the plain encoding that must be supported for types. It is
+provided by the <a href=https://www.lz4.org/>LZ4 compression library</a> is authoritative.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-9aa971e751fdd370158d525ad337ef7a>7.2 - Encodings</h1><p><a name=PLAIN></a></p><h3 id=plain-plain--0>Plain: (PLAIN = 0)</h3><p>Supported Types: all</p><p>This is the plain encoding that must be supported for types. It is
 intended to be the simplest encoding. Values are encoded back to back.</p><p>The plain encoding is used whenever a more efficient encoding can not be used. It
 stores the data in the following format:</p><ul><li>BOOLEAN: <a href=/docs/file-format/data-pages/encodings/#BITPACKED>Bit Packed</a>, LSB first</li><li>INT32: 4 bytes little endian</li><li>INT64: 8 bytes little endian</li><li>INT96: 12 bytes little endian (deprecated)</li><li>FLOAT: 4 bytes IEEE little endian</li><li>DOUBLE: 8 bytes IEEE little endian</li><li>BYTE_ARRAY: length in 4 bytes little endian followed by the bytes contained in the array</li><li>FIXED_LEN_BYTE_ARRAY: the bytes contained in the array</li></ul><p>For native types, this outputs the data as little endian. Floating
 point types are encoded in IEEE.</p><p>For the byte array type, it encodes the length as a 4 byte little
@@ -391,7 +391,7 @@ bit label: ABC DEF GHI JKL MNO PQR STU VWX
 bit label: ABCDEFGH IJKLMNOP QRSTUVWX
 </code></pre><p>Note that the BIT_PACKED encoding method is only supported for encoding
 repetition and definition levels.</p><p><a name=DELTAENC></a></p><h3 id=delta-encoding-delta_binary_packed--5>Delta Encoding (DELTA_BINARY_PACKED = 5)</h3><p>Supported Types: INT32, INT64</p><p>This encoding is adapted from the Binary packing described in
-<a href=http://arxiv.org/pdf/1209.2137v5.pdf>&ldquo;Decoding billions of integers per second through vectorization&rdquo;</a>
+<a href=https://arxiv.org/pdf/1209.2137v5.pdf>&ldquo;Decoding billions of integers per second through vectorization&rdquo;</a>
 by D. Lemire and L. Boytsov.</p><p>In delta encoding we make use of variable length integers for storing various
 numbers (not the deltas themselves). For unsigned values, we use ULEB128,
 which is the unsigned version of LEB128 (<a href=https://en.wikipedia.org/wiki/LEB128#Unsigned_LEB128)>https://en.wikipedia.org/wiki/LEB128#Unsigned_LEB128)</a>.
@@ -403,7 +403,7 @@ quotient, the number of values in a miniblock, is a multiple of 32; it is
 stored as a ULEB128 int</li><li>the total value count is stored as a ULEB128 int</li><li>the first value is stored as a zigzag ULEB128 int</li></ul><p>Each block contains</p><pre tabindex=0><code>&lt;min delta&gt; &lt;list of bitwidths of miniblocks&gt; &lt;miniblocks&gt;
 </code></pre><ul><li>the min delta is a zigzag ULEB128 int (we compute a minimum as we need
 positive integers for bit packing)</li><li>the bitwidth of each block is stored as a byte</li><li>each miniblock is a list of bit packed ints according to the bit width
-stored at the begining of the block</li></ul><p>To encode a block, we will:</p><ol><li><p>Compute the differences between consecutive elements. For the first
+stored at the beginning of the block</li></ul><p>To encode a block, we will:</p><ol><li><p>Compute the differences between consecutive elements. For the first
 element in the block, use the last element in the previous block or, in
 the case of the first block, use the first value of the whole sequence,
 stored in the header.</p></li><li><p>Compute the frame of reference (the minimum of the deltas in the block).
@@ -552,7 +552,7 @@ data set (table). This string is optionally passed by a writer upon file creatio
 the AAD prefix is stored in an <code>aad_prefix</code> field in the file, and is made available to the readers.
 This field is not encrypted. If a user is concerned about keeping the file identity inside the file,
 the writer code can explicitly request Parquet not to store the AAD prefix. Then the aad_prefix field
-will be empty; AAD prefixes must be fully managed by the caller code and supplied explictly to Parquet
+will be empty; AAD prefixes must be fully managed by the caller code and supplied explicitly to Parquet
 readers for each file.</p><p>The protection against swapping full files is optional. It is not enabled by default because
 it requires the writers to generate and pass an AAD prefix.</p><p>A reader of a file created with an AAD prefix, should be able to verify the prefix (file identity)
 by comparing it with e.g. the target table name, using a convention accepted in the organization.
