@@ -19,7 +19,7 @@ If you have problems, read the [publishing Maven artifacts documentation](https:
 
 ### Release process
 
-Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the offical source tarball is built from the tag.
+Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.
 
 Before you start the release process:
 
@@ -153,7 +153,7 @@ Then add and commit the release artifacts:
 
 #### 4\. Update parquet.apache.org
 
-Update the downloads page on parquet.apache.org. Instructions for updating the site are on the [contribution page](http://parquet.apache.org/docs/contribution-guidelines/contributing/).
+Update the downloads page on parquet.apache.org. Instructions for updating the site are on the [contribution page](https://parquet.apache.org/docs/contribution-guidelines/contributing/).
 
 #### 5\. Send an ANNOUNCE e-mail to [announce@apache.org](mailto:announce@apache.org) and the dev list
 

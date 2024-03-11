@@ -189,7 +189,7 @@ data set (table). This string is optionally passed by a writer upon file creatio
 the AAD prefix is stored in an `aad_prefix` field in the file, and is made available to the readers. 
 This field is not encrypted. If a user is concerned about keeping the file identity inside the file, 
 the writer code can explicitly request Parquet not to store the AAD prefix. Then the aad_prefix field 
-will be empty; AAD prefixes must be fully managed by the caller code and supplied explictly to Parquet 
+will be empty; AAD prefixes must be fully managed by the caller code and supplied explicitly to Parquet 
 readers for each file.
 
 The protection against swapping full files is optional. It is not enabled by default because 
