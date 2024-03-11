@@ -1,6 +1,25 @@
+github:
+  description: "Apache Parquet"
+  homepage: https://parquet.apache.org/
+  labels:
+    - parquet
+    - apache
+    - parquet-site
+  
+  enabled_merge_buttons:
+    merge: false
+    squash: true
+    rebase: false
+  
+  features:
+    wiki: false
+    issues: true
+    projects: false
+  collaborators:  # Note: the number of collaborators is limited to 10
+    - vinooganesh
+
 staging:
   profile: ~
-  whoami:  asf-staging
-
+  whoami:  asf-staging 
 publish:
   whoami:  asf-site
