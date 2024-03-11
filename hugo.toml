@@ -10,9 +10,6 @@ enableMissingTranslationPlaceholders = true
 
 enableRobotsTXT = true
 
-# Base theme for website
-theme = ["docsy"]
-
 # Will give values to .Lastmod etc.
 enableGitInfo = true
 
@@ -44,16 +41,17 @@ quality = 75
 anchor = "smart"
 
 # Language configuration
-
 [languages]
 [languages.en]
-title = "Apache Parquet"
 languageName ="English"
-contentDir = "content/en"
 # Weight used for sorting.
 weight = 1
 [languages.en.params]
+title = "Apache Parquet"
 description = "The Apache Parquet Website"
+contentDir = "content/en"
+# Weight used for sorting.
+weight = 1
 
 [markup]
   [markup.goldmark]
@@ -98,6 +96,7 @@ url_latest_version = "https://parquet.apache.org"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/apache/parquet-site"
+
 github_branch= "production"
 
 # Comment out to disable search.
@@ -118,7 +117,7 @@ prism_syntax_highlighting = false
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 # Set to true to disable the About link in the site footer
-footer_about_disable = false
+footer_about_enable = true
 # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
 navbar_logo = true
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
@@ -155,7 +154,7 @@ enable = false
   name ="Twitter"
   url = "https://twitter.com/ApacheParquet"
   icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news"
+  desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
   name = "Stack Overflow"
   url = "https://stackoverflow.com/questions/tagged/parquet"
@@ -166,7 +165,7 @@ enable = false
   name = "GitHub"
   url = "https://github.com/apache/parquet-mr"
   icon = "fab fa-github"
-  desc = "Development takes place here"
+  desc = "Development takes place here!"
 [[params.links.developer]]
   name = "Slack"
   url = "https://the-asf.slack.com/"
@@ -182,3 +181,13 @@ enable = false
   url = "https://issues.apache.org/jira/projects/PARQUET/issues"
   icon = "fas fa-bug"
   desc = "File/Track Open Bugs"
+
+[module]
+  # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:
+  # workspace = "docsy.work"
+  [module.hugoVersion]
+    extended = true
+    min = "0.110.0"
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false

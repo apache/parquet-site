@@ -3,7 +3,6 @@ title: "Parquet Modular Encryption"
 linkTitle: "Encryption"
 weight: 1
 ---
-
 Parquet files containing sensitive information can be protected by the modular encryption 
 mechanism that encrypts and authenticates the file data and metadata - while allowing 
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding 

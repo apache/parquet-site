@@ -3,7 +3,6 @@ title: "Compression"
 linkTitle: "Compression"
 weight: 1
 ---
-
 ## Overview
 
 Parquet allows the data block inside dictionary pages and data pages to
