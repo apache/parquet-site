@@ -18,13 +18,13 @@ The "Parquet Format" project hosts the official specification of the Parquet fil
 As a repository focused on specification, the parquet-format repository does not contain source code. 
 
 
-### Parquet MR 
+### Parquet-MR 
 
 The parquet-mr GitHub repository is part of the Apache Parquet project and specifically focuses on providing Java tools for handling the Parquet file format within the Hadoop ecosystem. Essentially, this repository includes all the necessary Java libraries and modules that allow developers to read and write Parquet files.
 
- Parquet MR can be thought of the a "reference" implementation of parquet-format. There are a number of other Parquet Format implementations, such as [parquet-cpp](https://github.com/apache/parquet-cpp) and [parquet rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md). 
+Parquet-MR can be seen as a "reference" implementation of parquet-format. There are a number of other Parquet Format implementations, which are listed below. 
 
-
+Included in parquet-mr:
 * Java/Scala Implementation: It contains the core Java/Scala implementation of the Parquet format, making it possible to use Parquet files in Java applications, particularly those based on Hadoop.
 
 * Utilities and APIs: It provides various utilities and APIs for working with Parquet files, including tools for data import/export, schema management, and data conversion.
@@ -34,3 +34,10 @@ The parquet-mr GitHub repository is part of the Apache Parquet project and speci
 
 The Parquet ecosystem is rich and varied, encompassing a wide array of tools, libraries, and clients, each offering different levels of feature support. It's important to note that not all implementations support the same features of the Parquet format. When integrating multiple Parquet implementations within your workflow, it is crucial to conduct thorough testing to ensure compatibility and performance across different platforms and tools.
 
+Here is a non-exhaustive list of Parquet implementations:
+
+* [parquet-mr](https://github.com/apache/parquet-mr)
+* [parquet-cpp](https://github.com/apache/parquet-cpp)
+* [parquet rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md)
+* [cudf](https://github.com/rapidsai/cudf)
+* [impala](https://github.com/apache/impala)
