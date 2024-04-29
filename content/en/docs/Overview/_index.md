@@ -37,8 +37,10 @@ The Parquet ecosystem is rich and varied, encompassing a wide array of tools, li
 Here is a non-exhaustive list of Parquet implementations:
 
 * [parquet-mr](https://github.com/apache/parquet-mr)
-* [parquet-cpp](https://github.com/apache/parquet-cpp)
+* [parquet-cpp](https://github.com/apache/arrow/tree/main/cpp/src/parquet)
 * [parquet rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md)
 * [cudf](https://github.com/rapidsai/cudf)
 * [impala](https://github.com/apache/impala)
 * [duckdb](https://github.com/duckdb/duckdb)
+* [fast-parquet python](https://github.com/dask/fastparquet)
+* [parquet go](https://github.com/apache/arrow/tree/main/go/parquet)
