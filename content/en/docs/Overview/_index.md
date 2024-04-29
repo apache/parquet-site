@@ -41,3 +41,4 @@ Here is a non-exhaustive list of Parquet implementations:
 * [parquet rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md)
 * [cudf](https://github.com/rapidsai/cudf)
 * [impala](https://github.com/apache/impala)
+* [duckdb](https://github.com/duckdb/duckdb)
