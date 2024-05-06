@@ -11,18 +11,18 @@ Apache Parquet is a columnar storage format available to any project in the Hado
 This documentation contains information about both the [parquet-mr](https://github.com/apache/parquet-mr) and [parquet-format](https://github.com/apache/parquet-format) projects. 
 
 
-### Parquet Format
+### parquet-format
 
-The "Parquet Format" project hosts the official specification of the Parquet file format, defining how data is structured and stored. This specification, along with Thrift metadata definitions and other crucial components, is essential for developers to effectively read and write Parquet files. The parquet-format project specifically contains the format specifications needed to understand and properly utilize Parquet files.
+The parquet-format project hosts the official specification of the Parquet file format, defining how data is structured and stored. This specification, along with Thrift metadata definitions and other crucial components, is essential for developers to effectively read and write Parquet files. The parquet-format project specifically contains the format specifications needed to understand and properly utilize Parquet files.
 
 As a repository focused on specification, the parquet-format repository does not contain source code. 
 
 
-### Parquet-MR 
+### parquet-mr
 
 The parquet-mr GitHub repository is part of the Apache Parquet project and specifically focuses on providing Java tools for handling the Parquet file format within the Hadoop ecosystem. Essentially, this repository includes all the necessary Java libraries and modules that allow developers to read and write Parquet files.
 
-Parquet-MR can be seen as a "reference" implementation of parquet-format. There are a number of other Parquet Format implementations, which are listed below. 
+The parquet-mr repo contains a "reference" implementation of the Parquet format. There are a number of other Parquet format implementations, which are listed below. 
 
 Included in parquet-mr:
 * Java/Scala Implementation: It contains the core Java/Scala implementation of the Parquet format, making it possible to use Parquet files in Java applications, particularly those based on Hadoop.
@@ -37,10 +37,10 @@ The Parquet ecosystem is rich and varied, encompassing a wide array of tools, li
 Here is a non-exhaustive list of Parquet implementations:
 
 * [parquet-mr](https://github.com/apache/parquet-mr)
-* [parquet-cpp](https://github.com/apache/arrow/tree/main/cpp/src/parquet)
+* [Parquet C++, a subproject of Arrow C++](https://github.com/apache/arrow/tree/main/cpp/src/parquet) ([documentation](https://arrow.apache.org/docs/cpp/parquet.html))
 * [parquet rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md)
 * [cudf](https://github.com/rapidsai/cudf)
-* [impala](https://github.com/apache/impala)
+* [apache impala](https://github.com/apache/impala)
 * [duckdb](https://github.com/duckdb/duckdb)
 * [fast-parquet python](https://github.com/dask/fastparquet)
 * [parquet go](https://github.com/apache/arrow/tree/main/go/parquet)
