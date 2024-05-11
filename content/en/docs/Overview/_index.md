@@ -38,6 +38,7 @@ Here is a non-exhaustive list of Parquet implementations:
 
 * [parquet-mr](https://github.com/apache/parquet-mr)
 * [Parquet C++, a subproject of Arrow C++](https://github.com/apache/arrow/tree/main/cpp/src/parquet) ([documentation](https://arrow.apache.org/docs/cpp/parquet.html))
+* [parquet go](https://github.com/apache/arrow/tree/main/go/parquet)
 * [parquet rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md)
 * [cudf](https://github.com/rapidsai/cudf)
 * [apache impala](https://github.com/apache/impala)
