@@ -31,7 +31,7 @@ hugo server
 
 ## Building and Running in Docker
 
-If you don't want to install `hugo` and its dependencies local machine, you can use
+If you don't want to install `hugo` and its dependencies on local machine, you can use
 docker to preview locally.  First checkout the `parquet-site` explained above 
 and then run:
 
