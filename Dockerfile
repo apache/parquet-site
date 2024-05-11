@@ -37,6 +37,7 @@ RUN apt-get install wget git -y xz-utils
 # See releases https://github.com/gohugoio/hugo/releases/tag/v0.124.1
 # Note, if on amd64 use https://github.com/gohugoio/hugo/releases/download/v0.124.1/hugo_extended_0.124.1_linux-amd64.tar.gz
 RUN wget -O - https://github.com/gohugoio/hugo/releases/download/v0.124.1/hugo_extended_0.124.1_linux-arm64.tar.gz  | tar xz
+RUN mv /hugo /usr/local/bin/hugo
 
 # install golang to /go
 RUN wget -O - https://go.dev/dl/go1.22.3.linux-amd64.tar.gz | tar xz
@@ -45,6 +46,6 @@ RUN wget -O - https://go.dev/dl/go1.22.3.linux-amd64.tar.gz | tar xz
 RUN wget -O - https://nodejs.org/dist/v20.13.1/node-v20.13.1-linux-arm64.tar.xz | xz -d | tar x
 
 # setup path to find binaries
-ENV PATH=.:/go/bin:/node-v20.13.1-linux-arm64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/go/bin:/node-v20.13.1-linux-arm64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 

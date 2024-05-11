@@ -32,8 +32,8 @@ hugo server
 ## Building and Running in Docker
 
 If you don't want to install `hugo` and its dependencies on your local machine,
-you can use docker as well. To do so, checkout the `parquet-site` explained
-above and then build an image from [Dockerfile](Dockerfile) with the required
+you can use docker. To do so, checkout the `parquet-site` repo as explained
+above and then use [Dockerfile](Dockerfile) to build an image with the required
 tools:
 
 ```shell
@@ -47,16 +47,14 @@ exposing local port 1313:
 docker run -it -v `pwd`:/parquet-site -p 1313:1313  parquet-site
 ```
 
-Once inside the container, you can run the following to preview the site:
+Once inside the container, run the following to preview the site:
 ```shell
 # Install necessary npm modules in parquet-site directory
 cd parquet-site
 npm install -D autoprefixer
 npm install -D postcss-cli
 npm install -D postcss
-
-# Run server
-hugo server --bind 0.0.0.0
+hugo server --bind 0.0.0.0 # run the server
 ```
 
 You can now preview the site locally on http://localhost:1313/
