@@ -31,32 +31,24 @@ hugo server
 
 ## Building and Running in Docker
 
-If you don't want to install `hugo` and its dependencies on local machine, you can use
-docker to preview locally.  First checkout the `parquet-site` explained above 
-and then run:
+If you don't want to install `hugo` and its dependencies on your local machine,
+you can use docker as well. To do so, checkout the `parquet-site` explained
+above and then build an image from [Dockerfile](Dockerfile) with the required
+tools:
 
 ```shell
-# run docker container mounting the current directory to /parquet-site and exposing port 1313
-docker run -it -v `pwd`:/parquet-site -p 1313:1313  debian:bullseye-slim  bash
+docker build -t parquet-site .
+````
 
-# Install necessary utilities
-apt-get update
-apt-get install wget git -y xz-utils
+Then run the container mounting the current directory to `/parquet-site` and
+exposing local port 1313:
 
-# Install extended version of hugo to /hugo
-# See releases https://github.com/gohugoio/hugo/releases/tag/v0.124.1
-# Note, if on amd64 use https://github.com/gohugoio/hugo/releases/download/v0.124.1/hugo_extended_0.124.1_linux-amd64.tar.gz
-wget -O - https://github.com/gohugoio/hugo/releases/download/v0.124.1/hugo_extended_0.124.1_linux-arm64.tar.gz  | tar xz
+```shell
+docker run -it -v `pwd`:/parquet-site -p 1313:1313  parquet-site
+```
 
-# install golang to /go
-wget -O - https://go.dev/dl/go1.22.3.linux-amd64.tar.gz | tar xz
-
-# install nodejs to /node-v20.13.1-linux-arm64
-wget -O - https://nodejs.org/dist/v20.13.1/node-v20.13.1-linux-arm64.tar.xz | xz -d | tar x
-
-# setup path to find binaries
-export PATH=/:/go/bin:/node-v20.13.1-linux-arm64/bin:$PATH
-
+Once inside the container, you can run the following to preview the site:
+```shell
 # Install necessary npm modules in parquet-site directory
 cd parquet-site
 npm install -D autoprefixer
