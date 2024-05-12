@@ -22,10 +22,10 @@ As a repository focused on specification, the parquet-format repository does not
 
 The parquet-mr GitHub repository is part of the Apache Parquet project and specifically focuses on providing Java tools for handling the Parquet file format within the Hadoop ecosystem. Essentially, this repository includes all the necessary Java libraries and modules that allow developers to read and write Parquet files.
 
-The parquet-mr repo contains a "reference" implementation of the Parquet format. There are a number of other Parquet format implementations, which are listed below. 
+The parquet-mr repo contains a reference implementation of the Parquet format. There are a number of other Parquet format implementations, which are listed below. 
 
 Included in parquet-mr:
-* Java/Scala Implementation: It contains the core Java/Scala implementation of the Parquet format, making it possible to use Parquet files in Java applications, particularly those based on Hadoop.
+* Java Implementation: It contains the core Java implementation of the Parquet format, making it possible to use Parquet files in Java applications, particularly those based on Hadoop.
 
 * Utilities and APIs: It provides various utilities and APIs for working with Parquet files, including tools for data import/export, schema management, and data conversion.
 
