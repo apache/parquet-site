@@ -20,7 +20,7 @@ As a repository focused on specification, the parquet-format repository does not
 
 ### parquet-mr
 
-The parquet-mr repository is part of the Apache Parquet project and specifically focuses on providing Java tools for handling the Parquet file format within the Hadoop ecosystem. Essentially, this repository includes all the necessary Java libraries and modules that allow developers to read and write Apache Parquet files.
+The parquet-mr repository is part of the Apache Parquet project and specifically focuses on providing Java tools for handling the Parquet file format within the Hadoop ecosystem. The "mr" stands for MapReduce. Essentially, this repository includes all the necessary Java libraries and modules that allow developers to read and write Apache Parquet files.
 
 The parquet-mr repository contains an implementation of the Apache Parquet format. There are a number of other Parquet format implementations, which are listed below. 
 
