@@ -9,7 +9,10 @@ title: Parquet
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="/blog/">
   Download <i class="fab fa-github ms-2 "></i>
 </a>
-<p class="lead mt-5">Apache Parquet is a columnar storage format available to any project in the Hadoop ecosystem, regardless of the choice of data processing framework, data model or programming language.</p>
+<p class="lead mt-5">
+Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. 
+It provides high performance data compression and encoding schemes with to handle complex data in bulk.
+</p>
 {{< blocks/link-down color="info" >}}
 {{< /blocks/cover >}}
 
