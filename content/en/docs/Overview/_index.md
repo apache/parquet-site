@@ -40,7 +40,7 @@ Here is a non-exhaustive list of Parquet implementations:
 * [Parquet C++, a subproject of Arrow C++](https://github.com/apache/arrow/tree/main/cpp/src/parquet) ([documentation](https://arrow.apache.org/docs/cpp/parquet.html))
 * [Parquet Go, a subproject for Arrow Go](https://github.com/apache/arrow/tree/main/go/parquet) ([documentation](https://github.com/apache/arrow/tree/main/go))
 * [Parquet Rust](https://github.com/apache/arrow-rs/blob/master/parquet/README.md)
-* [cudf](https://github.com/rapidsai/cudf)
+* [cuDF](https://github.com/rapidsai/cudf)
 * [Apache Impala](https://github.com/apache/impala)
 * [DuckDB](https://github.com/duckdb/duckdb)
 * [fastparquet, a Python implementation of the Apache Parquet format](https://github.com/dask/fastparquet)
