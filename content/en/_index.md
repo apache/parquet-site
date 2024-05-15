@@ -11,7 +11,7 @@ title: Parquet
 </a>
 <p class="lead mt-5">
 Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. 
-It provides high performance data compression and encoding schemes to handle complex data in bulk.
+It provides high performance compression and encoding schemes to handle complex data in bulk and is supported in many programming language and analytics tools.
 </p>
 {{< blocks/link-down color="info" >}}
 {{< /blocks/cover >}}
