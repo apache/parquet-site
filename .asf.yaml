@@ -18,8 +18,5 @@ github:
   collaborators:  # Note: the number of collaborators is limited to 10
     - vinooganesh
 
-staging:
-  profile: ~
-  whoami:  asf-staging 
 publish:
   whoami:  asf-site
