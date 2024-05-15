@@ -44,4 +44,3 @@ Here is a non-exhaustive list of Parquet implementations:
 * [Apache Impala](https://github.com/apache/impala)
 * [DuckDB](https://github.com/duckdb/duckdb)
 * [fastparquet, a Python implementation of the Apache Parquet format](https://github.com/dask/fastparquet)
->>>>>>> origin/production
