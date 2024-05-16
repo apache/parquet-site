@@ -28,7 +28,7 @@
     <homepage rdf:resource="http://parquet.apache.org" />
     <asfext:pmc rdf:resource="http://parquet.apache.org" />
     <shortdesc>Apache Parquet is a general-purpose columnar storage format.</shortdesc>
-    <description>Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides efficient data compression and encoding schemes with enhanced performance to handle complex data in bulk. Parquet is available in multiple languages including Java, C++, and Python.</description>
+    <description>Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides high performance compression and encoding schemes to handle complex data in bulk and is supported in many programming language and analytics tools.</description>
     <bug-database rdf:resource="https://issues.apache.org/jira/browse/PARQUET" />
     <mailing-list rdf:resource="https://parquet.apache.org/community/" />
     <download-page rdf:resource="https://parquet.apache.org/blog/2023/05/18/1.13.1/" />
