@@ -12,26 +12,26 @@ an indivisible unit (in terms of compression and encoding). There can
 be multiple page types which are interleaved in a column chunk.</p></li></ul><p>Hierarchically, a file consists of one or more row groups. A row group
 contains exactly one column chunk per column. Column chunks contain one or
 more pages.</p><h2 id=unit-of-parallelization>Unit of parallelization</h2><ul><li>MapReduce - File/Row Group</li><li>IO - Column chunk</li><li>Encoding/Compression - Page</li></ul></div><div class=td-content style=page-break-before:always><h1 id=pg-52ee54aeff1ffc82031ec74e9a626eba>3 - File Format</h1><div class=lead>Documentation about the Parquet File Format.</div><p>This file and the thrift definition should be read together to understand the format.</p><pre tabindex=0><code>    4-byte magic number &#34;PAR1&#34;
-    &lt;Column 1 Chunk 1 + Column Metadata&gt;
-    &lt;Column 2 Chunk 1 + Column Metadata&gt;
+    &lt;Column 1 Chunk 1&gt;
+    &lt;Column 2 Chunk 1&gt;
     ...
-    &lt;Column N Chunk 1 + Column Metadata&gt;
-    &lt;Column 1 Chunk 2 + Column Metadata&gt;
-    &lt;Column 2 Chunk 2 + Column Metadata&gt;
+    &lt;Column N Chunk 1&gt;
+    &lt;Column 1 Chunk 2&gt;
+    &lt;Column 2 Chunk 2&gt;
     ...
-    &lt;Column N Chunk 2 + Column Metadata&gt;
+    &lt;Column N Chunk 2&gt;
     ...
-    &lt;Column 1 Chunk M + Column Metadata&gt;
-    &lt;Column 2 Chunk M + Column Metadata&gt;
+    &lt;Column 1 Chunk M&gt;
+    &lt;Column 2 Chunk M&gt;
     ...
-    &lt;Column N Chunk M + Column Metadata&gt;
+    &lt;Column N Chunk M&gt;
     File Metadata
     4-byte length in bytes of file metadata (little endian)
     4-byte magic number &#34;PAR1&#34;
 </code></pre><p>In the above example, there are N columns in this table, split into M row
-groups. The file metadata contains the locations of all the column metadata
+groups. The file metadata contains the locations of all the column chunk
 start locations. More details on what is contained in the metadata can be found
-in the Thrift definition.</p><p>Metadata is written after the data to allow for single pass writing.</p><p>Readers are expected to first read the file metadata to find all the column
+in the Thrift definition.</p><p>File metadata is written after the data to allow for single pass writing.</p><p>Readers are expected to first read the file metadata to find all the column
 chunks they are interested in. The columns chunks should then be read sequentially.</p><p>The format is explicitly designed to separate the metadata from the data. This
 allows splitting columns into multiple files, as well as having a single metadata
 file reference multiple parquet files.</p><p><img alt="File Layout" src=/images/FileLayout.gif></p></div><div class=td-content style=page-break-before:always><h1 id=pg-de128b03a7277c17c6dec2cef97af32d>3.1 - Configurations</h1><h3 id=row-group-size>Row Group Size</h3><p>Larger row groups allow for larger column chunks which makes it
@@ -44,8 +44,14 @@ per HDFS file.</p><h3 id=data-page--size>Data Page Size</h3><p>Data pages should
 allow for more fine grained reading (e.g. single row lookup). Larger page sizes
 incur less space overhead (less page headers) and potentially less parsing overhead
 (processing headers). Note: for sequential scans, it is not expected to read a page
-at a time; this is not the IO chunk. We recommend 8KB for page sizes.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-6762d78210357c1df172dfddcc6fd307>3.2 - Extensibility</h1><p>There are many places in the format for compatible extensions:</p><ul><li>File Version: The file metadata contains a version.</li><li>Encodings: Encodings are specified by enum and more can be added in the future.</li><li>Page types: Additional page types can be added and safely skipped.</li></ul></div><div class=td-content style=page-break-before:always><h1 id=pg-e1f24cbf7bc8c4ddd1cc8213993795a7>3.3 - Metadata</h1><p>There are three types of metadata: file metadata, column (chunk) metadata and page
-header metadata. All thrift structures are serialized using the TCompactProtocol.</p><p><img alt="File Layout" src=/images/FileFormat.gif></p></div><div class=td-content style=page-break-before:always><h1 id=pg-140f2d6d5609da0af9dcaa92233086b5>3.4 - Types</h1><p>The types supported by the file format are intended to be as minimal as possible,
+at a time; this is not the IO chunk. We recommend 8KB for page sizes.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-6762d78210357c1df172dfddcc6fd307>3.2 - Extensibility</h1><p>There are many places in the format for compatible extensions:</p><ul><li>File Version: The file metadata contains a version.</li><li>Encodings: Encodings are specified by enum and more can be added in the future.</li><li>Page types: Additional page types can be added and safely skipped.</li></ul></div><div class=td-content style=page-break-before:always><h1 id=pg-e1f24cbf7bc8c4ddd1cc8213993795a7>3.3 - Metadata</h1><p>There are two types of metadata: file metadata, and page header metadata.
+In the diagram below, file metadata is described by the <code>FileMetaData</code>
+structure. This file metadata provides offset and size information useful
+when navigating the Parquet file. Page header metadata (<code>PageHeader</code> and
+children in the diagram) is stored in-line with the page data, and is
+used in the reading and decoding of said data.</p><p>All thrift structures are serialized using the TCompactProtocol. The full
+definition of these structures is given in the Parquet
+<a href=https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift>Thrift definition</a>.</p><p><img alt="File Layout" src=/images/FileFormat.gif></p></div><div class=td-content style=page-break-before:always><h1 id=pg-140f2d6d5609da0af9dcaa92233086b5>3.4 - Types</h1><p>The types supported by the file format are intended to be as minimal as possible,
 with a focus on how the types effect on disk storage. For example, 16-bit ints
 are not explicitly supported in the storage format since they are covered by
 32-bit ints with an efficient encoding. This reduces the complexity of implementing
