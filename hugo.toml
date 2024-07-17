@@ -146,10 +146,20 @@ enable = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-  name = "User mailing list"
+  name = "Post to Mailing List"
   url = "mailto:dev@parquet.apache.org"
   icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users. To subscribe please email dev-subscribe@parquet.apache.org. View the archive here: https://lists.apache.org/list.html?dev@parquet.apache.org."
+  desc = "Discussion and help from your fellow users"
+[[params.links.user]]
+  name = "Subscribe to Mailing List"
+  url = "mailto:dev-subscribe@parquet.apache.org"
+  icon = "fa fa-envelope-circle-check"
+  desc = "Subscribe to the mailing list to participate."
+[[params.links.user]]
+  name = "View Mailing List Archives"
+  url = "https://lists.apache.org/list.html?dev@parquet.apache.org"
+  icon = "fa fa-box-archive"
+  desc = "View archives of past discussions."
 [[params.links.user]]
   name ="Twitter"
   url = "https://twitter.com/ApacheParquet"
