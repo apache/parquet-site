@@ -1,6 +1,6 @@
 ---
-title: "Modules"
-linkTitle: "Modules"
+title: "Sub-Projects"
+linkTitle: "Sub-Projects"
 weight: 1
 description: >
 
