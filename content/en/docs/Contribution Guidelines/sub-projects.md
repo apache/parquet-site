@@ -8,7 +8,7 @@ description: >
 
 The [parquet-format](https://github.com/apache/parquet-format) project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.
 
-The [parquet-mr](https://github.com/apache/parquet-mr) project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.
+The [parquet-java](https://github.com/apache/parquet-java) project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.
 
 The [parquet-cpp](https://arrow.apache.org/docs/cpp/parquet.html) project is a C++ library to read-write Parquet files. It is part of the [Apache Arrow](https://arrow.apache.org/) C++ implementation, with bindings to Python, R, Ruby and C/GLib.
 
