@@ -160,7 +160,7 @@ Add a [new release to GitHub](https://github.com/apache/parquet-java/releases/ne
     [ANNOUNCE] Apache Parquet release <VERSION>
 
 
-    I'm please to announce the release of Parquet <VERSION>!
+    I'm pleased to announce the release of Parquet <VERSION>!
 
     Parquet is a general-purpose columnar file format for nested data. It uses
     space-efficient encodings and a compressed and splittable structure for
