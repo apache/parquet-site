@@ -1,6 +1,6 @@
 
 ---
-title: "Parquet-mr Releases"
-linkTitle: "parquet-mr"
+title: "Parquet-Java Releases"
+linkTitle: "parquet-Java"
 weight: 20
 ---
