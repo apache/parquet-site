@@ -31,6 +31,30 @@ A pull request can be merged through the GitHub UI. By default, only [squash and
 
 When the PR solves an existing issue, ensure that it references the issue in the Pull-Request template `Closes #1234`. This way the issue is linked to the PR, and GitHub will automatically close the relevant issue when the PR is being merged.
 
+### Semantic versioning
+
+Parquet-Java leverages [semantic versioning](https://semver.org/#semantic-versioning-200) to ensure compatibility for developers and users of the libraries as APIs and implementations evolve. The Maven plugin [`japicmp`](https://github.com/siom79/japicmp) enforces this, and will fail when an API is being changed without going through the correct deprecation cycle. This includes for all the modules, excluding: `parquet-benchmarks`, `parquet-cli`, `parquet-tools`, `parquet-format-structures`, `parquet-hadoop-bundle` and `parquet-pig-bundle`.
+
+All interfaces, classes, and methods targeted for deprecation must include the following:
+
+- `@Deprecated` annotation on the appropriate element
+- `@depreceted` javadoc comment including: the version for removal, the appropriate alternative for usage
+- Replacement of existing code paths that use the deprecated behavior
+
+```java
+/**
+ * @param c the current class
+ * @return the corresponding logger
+ * @deprecated will be removed in 2.0.0; use org.slf4j.LoggerFactory instead.
+ */
+@Deprecated
+public static Log getLog(Class<?> c) {
+    return new Log(c);
+}
+```
+
+Checking for any voilations can be done by running `mvn verify`.
+
 ### Tracking issues using Milestones
 
 When a PR is raised that fixes a bug, or a feature that you want to target a certain version, make sure to attach a [milestone](https://github.com/apache/parquet-java/milestones). This way other committers can track certain versions, and see what is still pending. For information on the actual release, please check [the release page](releasing.md).
