@@ -1001,7 +1001,7 @@ Please vote in the next 72 hours.
 &lt;p>Add a &lt;a href="https://github.com/apache/parquet-java/releases/new">new release to GitHub&lt;/a>. First select the newly tag (ex: &lt;code>apache-parquet-1.15.0&lt;/code>), and then the previous release (ex. &lt;code>apache-parquet-1.14.1&lt;/code>). You can copy the release notes from the RC that passed the vote.&lt;/p>
 &lt;h4 id="6-send-an-announce-e-mail-to-announceapacheorgmailtoannounceapacheorg-and-the-dev-list">6. Send an ANNOUNCE e-mail to &lt;a href="mailto:announce@apache.org">announce@apache.org&lt;/a> and the dev list&lt;/h4>
 &lt;pre>&lt;code>[ANNOUNCE] Apache Parquet release &amp;lt;VERSION&amp;gt;
-I'm please to announce the release of Parquet &amp;lt;VERSION&amp;gt;!
+I'm pleased to announce the release of Parquet &amp;lt;VERSION&amp;gt;!
 Parquet is a general-purpose columnar file format for nested data. It uses
 space-efficient encodings and a compressed and splittable structure for
 processing frameworks like Hadoop.
