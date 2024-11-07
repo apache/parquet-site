@@ -51,7 +51,7 @@ find ./ -type f -name 'pom.xml' -exec git checkout {} \;
 Upload binary artifacts for the release tag to [Nexus](https://repository.apache.org/):
 
 ```sh
-mvn release:perform
+mvn release:perform -DskipTests -Darguments=-DskipTests
 ```
 
 #### 3\. In Nexus, close the staging repository
