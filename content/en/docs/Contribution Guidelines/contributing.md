@@ -53,7 +53,7 @@ public static Log getLog(Class<?> c) {
 }
 ```
 
-Checking for any voilations can be done by running `mvn verify`.
+Checking for API violations can be done by running `mvn verify -Dmaven.test.skip=true japicmp:cmp`.
 
 ### Tracking issues using Milestones
 
