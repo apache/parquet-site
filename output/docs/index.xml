@@ -844,7 +844,7 @@ instead of on much smaller individual data values causes AES to work at its maxi
 &lt;iframe src="https://www.youtube.com/embed/auNAzC3AU18" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
 &lt;/div></description></item><item><title>Docs: Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>
 &lt;p>The &lt;a href="https://github.com/apache/parquet-format">parquet-format&lt;/a> project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p>
-&lt;p>The &lt;a href="https://github.com/apache/parquet-java">parquet-java&lt;/a> project contains multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, map this core onto the parquet format, and provide Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p>
+&lt;p>The &lt;a href="https://github.com/apache/parquet-java">parquet-java&lt;/a> project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p>
 &lt;p>The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html">parquet-cpp&lt;/a> project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/">Apache Arrow&lt;/a> C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p>
 &lt;p>The &lt;a href="https://github.com/apache/arrow-rs/tree/master/parquet">parquet-rs&lt;/a> project is a Rust library to read-write Parquet files.&lt;/p>
 &lt;p>The &lt;a href="https://github.com/Parquet/parquet-compatibility">parquet-compatibility&lt;/a> project (deprecated) contains compatibility tests that can be used to verify that implementations in different languages can read and write each other’s files. As of January 2022 compatibility tests only exist up to version 1.2.0.&lt;/p></description></item><item><title>Docs: Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>
@@ -932,8 +932,9 @@ job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.g
 &lt;/ol>
 &lt;p>&lt;strong>Do not directly edit the &lt;code>asf-site&lt;/code> branch of this repo&lt;/strong>&lt;/p></description></item><item><title>Docs: Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>
 &lt;p>&lt;a href="https://www.apache.org/foundation/thanks.html">Sponsor&lt;/a>&lt;/p></description></item><item><title>Docs: Donate</title><link>/docs/asf/donate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/donate/</guid><description>
-&lt;p>&lt;a href="https://www.apache.org/foundation/sponsorship.html">Donate&lt;/a>&lt;/p></description></item><item><title>Docs: Releasing Parquet</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>
+&lt;p>&lt;a href="https://www.apache.org/foundation/sponsorship.html">Donate&lt;/a>&lt;/p></description></item><item><title>Docs: Releasing Parquet-Java</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>
 &lt;h3 id="setup">Setup&lt;/h3>
+&lt;p>N.B. The mechanics of releasing parquet-format is the same (e.g. setting up keys, branching, votes, etc)&lt;/p>
 &lt;p>You will need:&lt;/p>
 &lt;ul>
 &lt;li>PGP code signing keys, published in &lt;a href="https://downloads.apache.org/parquet/KEYS">KEYS&lt;/a>.&lt;/li>
@@ -1027,7 +1028,17 @@ Changes are listed at: https://github.com/apache/parquet-java/releases/tag/apach
 This release can be downloaded from: https://parquet.apache.org/downloads/
 Java artifacts are available from Maven Central.
 Thanks to everyone for contributing!
-&lt;/code>&lt;/pre></description></item><item><title>Docs: Strata 2013</title><link>/docs/learning-resources/presentations/strata-2013/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/strata-2013/</guid><description>
+&lt;/code>&lt;/pre>
+&lt;h4 id="6-update-parquet-format-with-feature-enablement-guidance">6. Update parquet-format with feature enablement guidance&lt;/h4>
+&lt;p>The recommendations for other feature enablement is generally tied to releases of
+parquet-java (details are in the parquet-format repo). As releases are made the
+specification should be updated to indicate the recommended dates for when a new
+feature may be enabled.&lt;/p>
+&lt;h3 id="release-cadence">Release Cadence&lt;/h3>
+&lt;p>Provided enough volunteers are available the Parquet community aims to have
+releases on a quarterly basis (Targets months are January, April, July and
+October). If a new major version is necessary it will be targetted for the
+October release.&lt;/p></description></item><item><title>Docs: Strata 2013</title><link>/docs/learning-resources/presentations/strata-2013/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/strata-2013/</guid><description>
 &lt;p>&lt;a href="https://www.slideshare.net/julienledem/parquet-stratany-hadoopworld2013">Slides&lt;/a>&lt;/p></description></item><item><title>Docs: Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>
 &lt;h3 id="row-group-size">Row Group Size&lt;/h3>
 &lt;p>Larger row groups allow for larger column chunks which makes it
