@@ -87,7 +87,7 @@ job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.g
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html">publishing Maven artifacts documentation&lt;/a>.&lt;/p>
 &lt;h3 id="release-process">Release process&lt;/h3>
 &lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p>
-&lt;p>Before you start the release process:&lt;/p>
+&lt;h4 id="0-before-you-start-the-release-process">0. Before you start the release process&lt;/h4>
 &lt;ol>
 &lt;li>Verify that the release is finished (no planned Issues/PRs are pending &lt;a href="https://github.com/apache/parquet-java/milestones">on the milestone&lt;/a>)&lt;/li>
 &lt;li>Build and test the project&lt;/li>
@@ -124,7 +124,7 @@ Hi everyone,
 I propose the following RC to be released as official Apache Parquet &amp;lt;VERSION&amp;gt; release.
 The commit id is &amp;lt;SHA1&amp;gt;
 * This corresponds to the tag: apache-parquet-&amp;lt;VERSION&amp;gt;-rc&amp;lt;NUM&amp;gt;
-* https://github.com/apache/parquet-mr/tree/&amp;lt;SHA1&amp;gt;
+* https://github.com/apache/parquet-java/tree/&amp;lt;SHA1&amp;gt;
 The release tarball, signature, and checksums are here:
 * https://dist.apache.org/repos/dist/dev/parquet/&amp;lt;PATH&amp;gt;
 You can find the KEYS file here:
