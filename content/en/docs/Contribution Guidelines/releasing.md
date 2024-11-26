@@ -94,7 +94,7 @@ Here is a template you can use. Make sure everything applies to your release.
 
     The commit id is <SHA1>
     * This corresponds to the tag: apache-parquet-<VERSION>-rc<NUM>
-    * https://github.com/apache/parquet-mr/tree/<SHA1>
+    * https://github.com/apache/parquet-java/tree/<SHA1>
 
     The release tarball, signature, and checksums are here:
     * https://dist.apache.org/repos/dist/dev/parquet/<PATH>
