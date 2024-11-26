@@ -27,7 +27,7 @@ If you have problems, read the [publishing Maven artifacts documentation](https:
 
 Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.
 
-Before you start the release process:
+#### 0\. Before you start the release process
 
 1. Verify that the release is finished (no planned Issues/PRs are pending [on the milestone](https://github.com/apache/parquet-java/milestones)) 
 1. Build and test the project 
