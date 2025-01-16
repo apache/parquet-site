@@ -457,8 +457,8 @@ implementations.&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>C++&lt;/code>: &lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet">parquet-cpp&lt;/a>&lt;/li>
 &lt;li>&lt;code>Java&lt;/code>: &lt;a href="https://github.com/apache/parquet-java">parquet-java&lt;/a>&lt;/li>
-&lt;li>&lt;code>Go&lt;/code>: &lt;a href="https://github.com/apache/arrow/tree/main/go/parquet">parquet-go&lt;/a>&lt;/li>
-&lt;li>&lt;code>Rust&lt;/code>: &lt;a href="https://github.com/apache/arrow-rs/blob/master/parquet/README.md">parquet-rs&lt;/a>&lt;/li>
+&lt;li>&lt;code>Go&lt;/code>: &lt;a href="https://github.com/apache/arrow-go/tree/main/parquet">parquet-go&lt;/a>&lt;/li>
+&lt;li>&lt;code>Rust&lt;/code>: &lt;a href="https://github.com/apache/arrow-rs/blob/main/parquet/README.md">parquet-rs&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h3 id="physical-types">Physical types&lt;/h3>
 &lt;table>
