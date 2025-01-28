@@ -194,7 +194,7 @@ October release.
 ### Release Verification
 
 The Apache Arrow Release Approval process follows the guidelines defined at the
-`Apache Software Foundation Release Approval <https://www.apache.org/legal/release-policy.html#release-approval>`_.
+Apache Software Foundation [Release Approval](https://www.apache.org/legal/release-policy.html#release-approval) page.
 
 For a release vote to pass, a minimum of three positive binding votes and more
 positive binding votes than negative binding votes MUST be cast.
