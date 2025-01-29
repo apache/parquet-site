@@ -72,7 +72,7 @@ Implementations:
 | PLAIN                                     |       |        |       |       |    ✅    |
 | PLAIN_DICTIONARY                          |       |        |       |       |    ✅    |
 | RLE_DICTIONARY                            |       |        |       |       |    ✅    |
-| RLE                                       |       |        |       |       |    ❌    |
+| RLE                                       |       |        |       |       |    ✅    |
 | BIT_PACKED (deprecated)                   |       |        |       |       |    ❌    |
 | DELTA_BINARY_PACKED                       |       |        |       |       |    ✅    |
 | DELTA_LENGTH_BYTE_ARRAY                   |       |        |       |       |    ✅    |
@@ -84,10 +84,10 @@ Implementations:
 | Compression                               | C++   | Java   | Go    | Rust  | CUDA C++ |
 | ----------------------------------------- | ----- | ------ | ----- | ----- | -------- |
 | UNCOMPRESSED                              |       |        |       |       |    ✅    |
-| BROTLI                                    |       |        |       |       |    ❌    |
-| GZIP                                      |       |        |       |       |    ❌    |
-| LZ4 (deprecated)                          |       |        |       |       |    ✅    |
-| LZ4_RAW                                   |       |        |       |       |    ❌    |
+| BROTLI                                    |       |        |       |       |    (R)   |
+| GZIP                                      |       |        |       |       |    (R)   |
+| LZ4 (deprecated)                          |       |        |       |       |    ❌    |
+| LZ4_RAW                                   |       |        |       |       |    ✅    |
 | LZO                                       |       |        |       |       |    ❌    |
 | SNAPPY                                    |       |        |       |       |    ✅    |
 | ZSTD                                      |       |        |       |       |    ✅    |
