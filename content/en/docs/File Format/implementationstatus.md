@@ -96,7 +96,7 @@ Implementations:
 
 |                                           | C++   | Java   | Go    | Rust  | CUDA C++ |
 | ----------------------------------------- | ----- | ------ | ----- | ----- | -------- |
-| xxHash-based bloom filters                |       |        |       |       |    ✅    |
+| xxHash-based bloom filters                |       |        |       |       |    (R)   |
 | Bloom filter length (1)                   |       |        |       |       |    (R)   |
 | Statistics min_value, max_value           |       |        |       |       |    ✅    |
 | Page index                                |       |        |       |       |    ❌    |
