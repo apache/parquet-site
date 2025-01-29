@@ -13,7 +13,7 @@ implementations.
 The value in each box means:
 * ✅: supported
 * ❌: not supported
-* (R/W): partial reader/writer support
+* (R/W): partial reader/writer only support
 * (blank) no data
 
 Implementations:
@@ -73,7 +73,7 @@ Implementations:
 | PLAIN_DICTIONARY                          |       |        |       |       |    ✅    |
 | RLE_DICTIONARY                            |       |        |       |       |    ✅    |
 | RLE                                       |       |        |       |       |    ✅    |
-| BIT_PACKED (deprecated)                   |       |        |       |       |    ❌    |
+| BIT_PACKED (deprecated)                   |       |        |       |       |    (R)   |
 | DELTA_BINARY_PACKED                       |       |        |       |       |    ✅    |
 | DELTA_LENGTH_BYTE_ARRAY                   |       |        |       |       |    ✅    |
 | DELTA_BYTE_ARRAY                          |       |        |       |       |    ✅    |
