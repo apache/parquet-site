@@ -99,10 +99,10 @@ Implementations:
 | xxHash-based bloom filters                |       |        |       |       |    (R)   |
 | Bloom filter length (1)                   |       |        |       |       |    (R)   |
 | Statistics min_value, max_value           |       |        |       |       |    ✅    |
-| Page index                                |       |        |       |       |    ❌    |
+| Page index                                |       |        |       |       |    ✅    |
 | Page CRC32 checksum                       |       |        |       |       |    ❌    |
 | Modular encryption                        |       |        |       |       |    ❌    |
-| Size statistics (2)                       |       |        |       |       |    ❌    |
+| Size statistics (2)                       |       |        |       |       |    ✅    |
 
 
 * \(1) In parquet.thrift: ColumnMetaData->bloom_filter_length
