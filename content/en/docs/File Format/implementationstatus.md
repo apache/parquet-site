@@ -75,11 +75,13 @@ Implementations:
 | PLAIN_DICTIONARY                          |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | RLE_DICTIONARY                            |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | RLE                                       |  ✅   |  ✅   |       |  ✅   |  ✅   |
-| BIT_PACKED (deprecated)                   |  ✅   |  ✅   |       |  ❌   |  (R)  |
+| BIT_PACKED (deprecated)                   |  ✅   |  ✅   |       |  ❌(*)|  (R)  |
 | DELTA_BINARY_PACKED                       |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | DELTA_LENGTH_BYTE_ARRAY                   |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | DELTA_BYTE_ARRAY                          |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | BYTE_STREAM_SPLIT                         |  ✅   |  ✅   |       |  ✅   |  ✅   |
+
+(*): Partial read support, but only in the case of level data with a bitwidth of 0
 
 ### Compressions
 
