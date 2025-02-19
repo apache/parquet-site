@@ -480,7 +480,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -488,7 +488,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -496,7 +496,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -504,7 +504,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -512,7 +512,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -520,7 +520,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -528,7 +528,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -536,7 +536,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;/tbody>
@@ -562,7 +562,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -570,7 +570,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅(*)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -578,7 +578,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅(*)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -586,7 +586,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -594,7 +594,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -602,7 +602,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -610,7 +610,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -618,7 +618,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -626,7 +626,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -634,7 +634,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -642,7 +642,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -650,7 +650,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -658,7 +658,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅(*)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -666,7 +666,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅(*)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅(*)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -674,7 +674,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅(*)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅(*)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -682,7 +682,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -690,7 +690,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -698,7 +698,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -706,7 +706,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅(*)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;/tbody>
@@ -730,7 +730,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -738,7 +738,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -746,7 +746,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -754,7 +754,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -762,7 +762,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌(*)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -770,7 +770,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -778,7 +778,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -786,7 +786,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -794,11 +794,12 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>(*): Partial read support, but only in the case of level data with a bitwidth of 0&lt;/p>
 &lt;h3 id="compressions">Compressions&lt;/h3>
 &lt;table>
 &lt;thead>
@@ -817,7 +818,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -825,7 +826,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -833,7 +834,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -841,7 +842,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -849,7 +850,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -857,7 +858,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -865,7 +866,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -873,7 +874,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;/tbody>
@@ -896,7 +897,7 @@ implementations.&lt;/p>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -904,7 +905,7 @@ implementations.&lt;/p>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -912,7 +913,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -920,7 +921,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -928,7 +929,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -936,7 +937,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -944,7 +945,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;/tbody>
@@ -975,7 +976,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>(W)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -983,7 +984,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>(W)&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -991,7 +992,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -999,7 +1000,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -1007,7 +1008,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -1015,7 +1016,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;/tbody>
