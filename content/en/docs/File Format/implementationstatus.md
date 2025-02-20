@@ -46,8 +46,8 @@ Implementations:
 | Data type                                 | C++   | Java  | Go    | Rust  | cuDF  |
 | ----------------------------------------- | ----- | ----- | ----- | ----- | ----- |
 | STRING                                    |  ✅   |  ✅   |       |  ✅   |  ✅   |
-| ENUM                                      |  ❌   |  ✅   |       |  ✅(*)|  ❌   |
-| UUID                                      |  ❌   |  ✅   |       |  ✅(*)|  ❌   |
+| ENUM                                      |  ❌   |  ✅   |       |  ✅(1)|  ❌   |
+| UUID                                      |  ❌   |  ✅   |       |  ✅(1)|  ❌   |
 | 8, 16, 32, 64 bit signed and unsigned INT |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | DECIMAL (INT32)                           |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | DECIMAL (INT64)                           |  ✅   |  ✅   |       |  ✅   |  ✅   |
@@ -57,15 +57,15 @@ Implementations:
 | TIME (INT32)                              |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | TIME (INT64)                              |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | TIMESTAMP (INT64)                         |  ✅   |  ✅   |       |  ✅   |  ✅   |
-| INTERVAL                                  |  ✅   |  ✅(*)|       |  ✅   |  ❌   |
-| JSON                                      |  ✅   |  ✅(*)|       |  ✅(*)|  ❌   |
-| BSON                                      |  ❌   |  ✅(*)|       |  ✅(*)|  ❌   |
+| INTERVAL                                  |  ✅   |  ✅(1)|       |  ✅   |  ❌   |
+| JSON                                      |  ✅   |  ✅(1)|       |  ✅(1)|  ❌   |
+| BSON                                      |  ❌   |  ✅(1)|       |  ✅(1)|  ❌   |
 | LIST                                      |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | MAP                                       |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | UNKNOWN (always null)                     |  ✅   |  ✅   |       |  ✅   |  ✅   |
-| FLOAT16                                   |  ✅   |  ✅(*)|       |  ✅   |  ✅   |
+| FLOAT16                                   |  ✅   |  ✅(1)|       |  ✅   |  ✅   |
 
-(*): Only supported to use its annotated physical type
+* \(1) Only supported to use its annotated physical type
 
 ### Encodings
 
@@ -75,13 +75,13 @@ Implementations:
 | PLAIN_DICTIONARY                          |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | RLE_DICTIONARY                            |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | RLE                                       |  ✅   |  ✅   |       |  ✅   |  ✅   |
-| BIT_PACKED (deprecated)                   |  ✅   |  ✅   |       |  ❌(*)|  (R)  |
+| BIT_PACKED (deprecated)                   |  ✅   |  ✅   |       |  ❌(1)|  (R)  |
 | DELTA_BINARY_PACKED                       |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | DELTA_LENGTH_BYTE_ARRAY                   |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | DELTA_BYTE_ARRAY                          |  ✅   |  ✅   |       |  ✅   |  ✅   |
 | BYTE_STREAM_SPLIT                         |  ✅   |  ✅   |       |  ✅   |  ✅   |
 
-(*): Partial read support, but only in the case of level data with a bitwidth of 0
+* \(1) Partial read support, but only in the case of level data with a bitwidth of 0
 
 ### Compressions
 
