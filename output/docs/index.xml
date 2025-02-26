@@ -1628,7 +1628,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
@@ -1637,7 +1637,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
@@ -1725,7 +1725,7 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>INTERVAL&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1734,18 +1734,18 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>JSON&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>BSON&lt;/td>
 &lt;td>❌&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
@@ -1779,7 +1779,7 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>FLOAT16&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅(1)&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -1787,7 +1787,9 @@ implementations.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>(*): Only supported to use its annotated physical type&lt;/p>
+&lt;ul>
+&lt;li>(1) Only supported to use its annotated physical type&lt;/li>
+&lt;/ul>
 &lt;h3 id="encodings">Encodings&lt;/h3>
 &lt;table>
 &lt;thead>
@@ -1843,7 +1845,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>❌(*)&lt;/td>
+&lt;td>❌(1)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
@@ -1885,7 +1887,9 @@ implementations.&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>(*): Partial read support, but only in the case of level data with a bitwidth of 0&lt;/p>
+&lt;ul>
+&lt;li>(1) Partial read support, but only in the case of level data with a bitwidth of 0&lt;/li>
+&lt;/ul>
 &lt;h3 id="compressions">Compressions&lt;/h3>
 &lt;table>
 &lt;thead>
