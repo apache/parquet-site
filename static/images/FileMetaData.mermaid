@@ -1,0 +1,173 @@
+classDiagram
+    FileMetaData --> SchemaElement
+    FileMetaData --> RowGroup
+    
+    RowGroup --> ColumnChunk
+    
+    ColumnChunk --> ColumnMetaData
+    
+    ColumnMetaData --> Statistics
+    ColumnMetaData --> Type
+    ColumnMetaData --> Encoding
+    ColumnMetaData --> CompressionCodec
+    
+    SchemaElement --> LogicalTypes
+    SchemaElement --> Type
+    SchemaElement --> ConvertedType
+    
+    class FileMetaData {
+        int32 version
+        list~SchemaElement~ schema
+        int64 num_rows
+        list~RowGroup~ row_groups
+        list~KeyValue~ key_value_metadata
+        string created_by
+        list~ColumnOrder~ column_orders
+        EncryptionAlgorithm encryption_algorithm
+        binary footer_signing_key_metadata
+    }
+    
+    class SchemaElement {
+        Type type
+        int32 type_length
+        FieldRepetitionType repetition_type
+        string name
+        int32 num_children
+        ConvertedType converted_type
+        int32 scale
+        int32 precision
+        int32 field_id
+        LogicalType logicalType
+    }
+    
+    class Type {
+        BOOLEAN
+        INT32
+        INT64
+        INT96
+        FLOAT
+        DOUBLE
+        BYTE_ARRAY
+        FIXED_LEN_BYTE_ARRAY
+    }
+    
+    class LogicalTypes {
+        StringType
+        MapType
+        ListType
+        EnumType
+        DecimalType
+        DateType
+        TimeType
+        TimestampType
+        IntType
+        NullType
+        JsonType
+        BsonType
+        UUIDType
+        Float16Type
+        VariantType
+        GeometryType
+        GeographyType
+    }
+    
+    class ConvertedType {
+        UTF8
+        MAP
+        MAP_KEY_VALUE
+        LIST
+        ENUM
+        DECIMAL
+        DATE
+        TIME_MILLIS
+        TIME_MICROS
+        TIMESTAMP_MILLIS
+        TIMESTAMP_MICROS
+        UINT_8
+        UINT_16
+        UINT_32
+        UINT_64
+        INT_8
+        INT_16
+        INT_32
+        INT_64
+        JSON
+        BSON
+        INTERVAL
+    }
+    
+    class Encoding {
+        PLAIN
+        PLAIN_DICTIONARY
+        RLE
+        BIT_PACKED
+        DELTA_BINARY_PACKED
+        DELTA_LENGTH_BYTE_ARRAY
+        DELTA_BYTE_ARRAY
+        RLE_DICTIONARY
+        BYTE_STREAM_SPLIT
+    }
+    
+    class CompressionCodec {
+        UNCOMPRESSED
+        SNAPPY
+        GZIP
+        LZO
+        BROTLI
+        LZ4
+        ZSTD
+        LZ4_RAW
+    }
+    
+    class RowGroup {
+        list~ColumnChunk~ columns
+        int64 total_byte_size
+        int64 num_rows
+        list~SortingColumn~ sorting_columns
+        int64 file_offset
+        int64 total_compressed_size
+        int16 ordinal
+    }
+    
+    class ColumnChunk {
+        string file_path
+        int64 file_offset
+        ColumnMetaData meta_data
+        int64 offset_index_offset
+        int32 offset_index_length
+        int64 column_index_offset
+        int32 column_index_length
+        ColumnCryptoMetaData crypto_metadata
+        binary encrypted_column_metadata
+    }
+    
+    class ColumnMetaData {
+        Type type
+        list~Encoding~ encodings
+        list~string~ path_in_schema
+        CompressionCodec codec
+        int64 num_values
+        int64 total_uncompressed_size
+        int64 total_compressed_size
+        list~KeyValue~ key_value_metadata
+        int64 data_page_offset
+        int64 index_page_offset
+        int64 dictionary_page_offset
+        Statistics statistics
+        list~PageEncodingStats~ encoding_stats
+        int64 bloom_filter_offset
+        int32 bloom_filter_length
+        SizeStatistics size_statistics
+        GeospatialStatistics geospatial_statistics
+    }
+    
+    class Statistics {
+        binary max
+        binary min
+        int64 null_count
+        int64 distinct_count
+        binary max_value
+        binary min_value
+        bool is_max_value_exact
+        bool is_min_value_exact
+    }
