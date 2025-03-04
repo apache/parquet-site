@@ -456,26 +456,26 @@ implementations.&lt;/p>
 &lt;/ul>
 &lt;p>Implementations:&lt;/p>
 &lt;ul>
-&lt;li>&lt;code>C++&lt;/code>: &lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet">parquet-cpp&lt;/a>&lt;/li>
-&lt;li>&lt;code>Java&lt;/code>: &lt;a href="https://github.com/apache/parquet-java">parquet-java&lt;/a>&lt;/li>
-&lt;li>&lt;code>Go&lt;/code>: &lt;a href="https://github.com/apache/arrow-go/tree/main/parquet">parquet-go&lt;/a>&lt;/li>
-&lt;li>&lt;code>Rust&lt;/code>: &lt;a href="https://github.com/apache/arrow-rs/blob/main/parquet/README.md">parquet-rs&lt;/a>&lt;/li>
-&lt;li>&lt;code>cuDF&lt;/code>: &lt;a href="https://github.com/rapidsai/cudf">cudf&lt;/a>&lt;/li>
-&lt;li>&lt;code>JavaScript&lt;/code>: &lt;a href="https://github.com/hyparam/hyparquet">hyparquet&lt;/a>&lt;/li>
-&lt;li>&lt;code>DuckDB&lt;/code>: &lt;a href="https://github.com/duckdb/duckdb">duckdb&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet">arrow&lt;/a> (C++)&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/parquet-java">parquet-java&lt;/a> (Java)&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/arrow-go/tree/main/parquet">arrow-go&lt;/a> (Go)&lt;/li>
+&lt;li>&lt;a href="https://github.com/apache/arrow-rs/blob/main/parquet/README.md">arrow-rs&lt;/a> (Rust)&lt;/li>
+&lt;li>&lt;a href="https://github.com/rapidsai/cudf">cudf&lt;/a> (cuDF C++)&lt;/li>
+&lt;li>&lt;a href="https://github.com/hyparam/hyparquet">hyparquet&lt;/a> (JavaScript)&lt;/li>
+&lt;li>&lt;a href="https://github.com/duckdb/duckdb">duckdb&lt;/a> (C++)&lt;/li>
 &lt;/ul>
 &lt;h3 id="physical-types">Physical types&lt;/h3>
 &lt;table>
 &lt;thead>
 &lt;tr>
 &lt;th>Data type&lt;/th>
-&lt;th>C++&lt;/th>
-&lt;th>Java&lt;/th>
-&lt;th>Go&lt;/th>
-&lt;th>Rust&lt;/th>
-&lt;th>cuDF&lt;/th>
+&lt;th>arrow&lt;/th>
+&lt;th>parquet-java&lt;/th>
+&lt;th>arrow-go&lt;/th>
+&lt;th>arrow-rs&lt;/th>
+&lt;th>cudf&lt;/th>
 &lt;th>hyparquet&lt;/th>
-&lt;th>DuckDB&lt;/th>
+&lt;th>duckdb&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -569,13 +569,13 @@ implementations.&lt;/p>
 &lt;thead>
 &lt;tr>
 &lt;th>Data type&lt;/th>
-&lt;th>C++&lt;/th>
-&lt;th>Java&lt;/th>
-&lt;th>Go&lt;/th>
-&lt;th>Rust&lt;/th>
-&lt;th>cuDF&lt;/th>
+&lt;th>arrow&lt;/th>
+&lt;th>parquet-java&lt;/th>
+&lt;th>arrow-go&lt;/th>
+&lt;th>arrow-rs&lt;/th>
+&lt;th>cudf&lt;/th>
 &lt;th>hyparquet&lt;/th>
-&lt;th>DuckDB&lt;/th>
+&lt;th>duckdb&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -594,7 +594,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
@@ -604,7 +604,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
@@ -702,7 +702,7 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>INTERVAL&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
@@ -712,9 +712,9 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>JSON&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
@@ -722,9 +722,9 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>BSON&lt;/td>
 &lt;td>❌&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>❌&lt;/td>
@@ -762,7 +762,7 @@ implementations.&lt;/p>
 &lt;tr>
 &lt;td>FLOAT16&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅(1)&lt;/td>
+&lt;td>✅ (1)&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -779,13 +779,13 @@ implementations.&lt;/p>
 &lt;thead>
 &lt;tr>
 &lt;th>Encoding&lt;/th>
-&lt;th>C++&lt;/th>
-&lt;th>Java&lt;/th>
-&lt;th>Go&lt;/th>
-&lt;th>Rust&lt;/th>
-&lt;th>cuDF&lt;/th>
+&lt;th>arrow&lt;/th>
+&lt;th>parquet-java&lt;/th>
+&lt;th>arrow-go&lt;/th>
+&lt;th>arrow-rs&lt;/th>
+&lt;th>cudf&lt;/th>
 &lt;th>hyparquet&lt;/th>
-&lt;th>DuckDB&lt;/th>
+&lt;th>duckdb&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -834,7 +834,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>❌(1)&lt;/td>
+&lt;td>❌ (1)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>❌&lt;/td>
@@ -889,13 +889,13 @@ implementations.&lt;/p>
 &lt;thead>
 &lt;tr>
 &lt;th>Compression&lt;/th>
-&lt;th>C++&lt;/th>
-&lt;th>Java&lt;/th>
-&lt;th>Go&lt;/th>
-&lt;th>Rust&lt;/th>
-&lt;th>cuDF&lt;/th>
+&lt;th>arrow&lt;/th>
+&lt;th>parquet-java&lt;/th>
+&lt;th>arrow-go&lt;/th>
+&lt;th>arrow-rs&lt;/th>
+&lt;th>cudf&lt;/th>
 &lt;th>hyparquet&lt;/th>
-&lt;th>DuckDB&lt;/th>
+&lt;th>duckdb&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -985,14 +985,14 @@ implementations.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>&lt;/th>
-&lt;th>C++&lt;/th>
-&lt;th>Java&lt;/th>
-&lt;th>Go&lt;/th>
-&lt;th>Rust&lt;/th>
-&lt;th>cuDF&lt;/th>
+&lt;th>Feature&lt;/th>
+&lt;th>arrow&lt;/th>
+&lt;th>parquet-java&lt;/th>
+&lt;th>arrow-go&lt;/th>
+&lt;th>arrow-rs&lt;/th>
+&lt;th>cudf&lt;/th>
 &lt;th>hyparquet&lt;/th>
-&lt;th>DuckDB&lt;/th>
+&lt;th>duckdb&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -1054,7 +1054,7 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
-&lt;td>✅(*)&lt;/td>
+&lt;td>✅ (*)&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Size statistics (2)&lt;/td>
@@ -1083,14 +1083,14 @@ implementations.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>Format&lt;/th>
-&lt;th>C++&lt;/th>
-&lt;th>Java&lt;/th>
-&lt;th>Go&lt;/th>
-&lt;th>Rust&lt;/th>
-&lt;th>cuDF&lt;/th>
+&lt;th>Feature&lt;/th>
+&lt;th>arrow&lt;/th>
+&lt;th>parquet-java&lt;/th>
+&lt;th>arrow-go&lt;/th>
+&lt;th>arrow-rs&lt;/th>
+&lt;th>cudf&lt;/th>
 &lt;th>hyparquet&lt;/th>
-&lt;th>DuckDB&lt;/th>
+&lt;th>duckdb&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
