@@ -29,6 +29,22 @@ To preview this website site locally, run the following in the root of the direc
 hugo server
 ```
 
+### Building metadata diagrams
+
+To build the metadata svg diagrams, you need mermaid.js installed. You can install it using npm:
+
+```
+npm install -D @mermaid-js/mermaid-cli
+```
+
+Then you can build the diagrams using the following command:
+
+```
+cd static/images
+npx mmdc -i FileMetaData.mermaid -o FileMetaData.svg
+npx mmdc -i PageHeader.mermaid -o PageHeader.svg
+```
+
 ## Building and Running in Docker
 
 If you don't want to install `hugo` and its dependencies on your local machine,
