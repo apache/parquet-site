@@ -37,14 +37,12 @@ per HDFS file.</p><h3 id=data-page--size>Data Page Size</h3><p>Data pages should
 allow for more fine grained reading (e.g. single row lookup). Larger page sizes
 incur less space overhead (less page headers) and potentially less parsing overhead
 (processing headers). Note: for sequential scans, it is not expected to read a page
-at a time; this is not the IO chunk. We recommend 8KB for page sizes.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-6762d78210357c1df172dfddcc6fd307>2 - Extensibility</h1><p>There are many places in the format for compatible extensions:</p><ul><li>File Version: The file metadata contains a version.</li><li>Encodings: Encodings are specified by enum and more can be added in the future.</li><li>Page types: Additional page types can be added and safely skipped.</li></ul></div><div class=td-content style=page-break-before:always><h1 id=pg-e1f24cbf7bc8c4ddd1cc8213993795a7>3 - Metadata</h1><p>There are two types of metadata: file metadata, and page header metadata.
-In the diagram below, file metadata is described by the <code>FileMetaData</code>
-structure. This file metadata provides offset and size information useful
-when navigating the Parquet file. Page header metadata (<code>PageHeader</code> and
-children in the diagram) is stored in-line with the page data, and is
-used in the reading and decoding of said data.</p><p>All thrift structures are serialized using the TCompactProtocol. The full
+at a time; this is not the IO chunk. We recommend 8KB for page sizes.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-6762d78210357c1df172dfddcc6fd307>2 - Extensibility</h1><p>There are many places in the format for compatible extensions:</p><ul><li>File Version: The file metadata contains a version.</li><li>Encodings: Encodings are specified by enum and more can be added in the future.</li><li>Page types: Additional page types can be added and safely skipped.</li></ul></div><div class=td-content style=page-break-before:always><h1 id=pg-e1f24cbf7bc8c4ddd1cc8213993795a7>3 - Metadata</h1><p>There are two types of metadata: file metadata, and page header metadata.</p><p>All thrift structures are serialized using the TCompactProtocol. The full
 definition of these structures is given in the Parquet
-<a href=https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift>Thrift definition</a>.</p><p><img alt="File Layout" src=/images/FileFormat.gif></p></div><div class=td-content style=page-break-before:always><h1 id=pg-140f2d6d5609da0af9dcaa92233086b5>4 - Types</h1><p>The types supported by the file format are intended to be as minimal as possible,
+<a href=https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift>Thrift definition</a>.</p><h2 id=file-metadata>File metadata</h2><p>In the diagram below, file metadata is described by the <code>FileMetaData</code>
+structure. This file metadata provides offset and size information useful
+when navigating the Parquet file.</p><p><img alt="Parquet Metadata format" src=/images/FileMetaData.svg></p><h2 id=page-header>Page header</h2><p>Page header metadata (<code>PageHeader</code> and children in the diagram) is stored
+in-line with the page data, and is used in the reading and decoding of data.</p><p><img alt="Parquet PageHeader format" src=/images/PageHeader.svg></p></div><div class=td-content style=page-break-before:always><h1 id=pg-140f2d6d5609da0af9dcaa92233086b5>4 - Types</h1><p>The types supported by the file format are intended to be as minimal as possible,
 with a focus on how the types effect on disk storage. For example, 16-bit ints
 are not explicitly supported in the storage format since they are covered by
 32-bit ints with an efficient encoding. This reduces the complexity of implementing

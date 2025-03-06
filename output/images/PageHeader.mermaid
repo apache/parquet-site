@@ -1,0 +1,62 @@
+classDiagram
+    PageHeader --> PageType
+    PageHeader --> DictionaryPageHeader
+    PageHeader --> DataPageHeader
+    PageHeader --> DataPageHeaderV2
+
+    DataPageHeader --> Statistics
+    DataPageHeaderV2 --> Statistics
+
+    class PageHeader {
+        PageType type
+        int32 uncompressed_page_size
+        int32 compressed_page_size
+        int32 crc
+        DataPageHeader data_page_header
+        IndexPageHeader index_page_header
+        DictionaryPageHeader dictionary_page_header
+        DataPageHeaderV2 data_page_header_v2
+    }
+
+    class PageType {
+        DATA_PAGE = 0
+        INDEX_PAGE = 1
+        DICTIONARY_PAGE = 2
+        DATA_PAGE_V2 = 3
+    }
+
+    class DataPageHeader {
+        int32 num_values
+        Encoding encoding
+        Encoding definition_level_encoding
+        Encoding repetition_level_encoding
+        Statistics statistics
+    }
+
+    class DictionaryPageHeader {
+        int32 num_values
+        Encoding encoding
+        bool is_sorted
+    }
+
+    class DataPageHeaderV2 {
+        int32 num_values
+        int32 num_nulls
+        int32 num_rows
+        Encoding encoding
+        int32 definition_levels_byte_length
+        int32 repetition_levels_byte_length
+        bool is_compressed
+        Statistics statistics
+    }
+
+    class Statistics {
+        binary max
+        binary min
+        int64 null_count
+        int64 distinct_count
+        binary max_value
+        binary min_value
+        bool is_max_value_exact
+        bool is_min_value_exact
+    }

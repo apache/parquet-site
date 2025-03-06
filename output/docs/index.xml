@@ -1069,16 +1069,19 @@ example, strings are stored as byte arrays (binary) with a UTF8 annotation.
 These annotations define how to further decode and interpret the data.
 Annotations are stored as &lt;code>LogicalType&lt;/code> fields in the file metadata and are
 documented in LogicalTypes.md.&lt;/p></description></item><item><title>Docs: Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>
-&lt;p>There are two types of metadata: file metadata, and page header metadata.
-In the diagram below, file metadata is described by the &lt;code>FileMetaData&lt;/code>
-structure. This file metadata provides offset and size information useful
-when navigating the Parquet file. Page header metadata (&lt;code>PageHeader&lt;/code> and
-children in the diagram) is stored in-line with the page data, and is
-used in the reading and decoding of said data.&lt;/p>
+&lt;p>There are two types of metadata: file metadata, and page header metadata.&lt;/p>
 &lt;p>All thrift structures are serialized using the TCompactProtocol. The full
 definition of these structures is given in the Parquet
 &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift">Thrift definition&lt;/a>.&lt;/p>
-&lt;p>&lt;img alt="File Layout" src="/images/FileFormat.gif">&lt;/p></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
+&lt;h2 id="file-metadata">File metadata&lt;/h2>
+&lt;p>In the diagram below, file metadata is described by the &lt;code>FileMetaData&lt;/code>
+structure. This file metadata provides offset and size information useful
+when navigating the Parquet file.&lt;/p>
+&lt;p>&lt;img alt="Parquet Metadata format" src="/images/FileMetaData.svg">&lt;/p>
+&lt;h2 id="page-header">Page header&lt;/h2>
+&lt;p>Page header metadata (&lt;code>PageHeader&lt;/code> and children in the diagram) is stored
+in-line with the page data, and is used in the reading and decoding of data.&lt;/p>
+&lt;p>&lt;img alt="Parquet PageHeader format" src="/images/PageHeader.svg">&lt;/p></description></item><item><title>Docs: Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>
 &lt;p>To encode nested columns, Parquet uses the Dremel encoding with definition and
 repetition levels. Definition levels specify how many optional fields in the
 path for the column are defined. Repetition levels specify at what repeated field
