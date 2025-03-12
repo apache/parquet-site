@@ -105,7 +105,7 @@ Implementations:
 | Statistics min_value, max_value           |  ✅   |  ✅           |          |  ✅      |  ✅   |  (R)      |  ✅    |
 | Page index                                |  ✅   |  ✅           |          |  ✅      |  ✅   |  (R)      |  (R)   |
 | Page CRC32 checksum                       |  ✅   |  ✅           |          |  ✅      |  ❌   |  ❌       |  (R)   |
-| Modular encryption                        |  ✅   |  ✅           |          |  ❌      |  ❌   |  ❌       | ✅ (*) |
+| Modular encryption                        |  ✅   |  ✅           |          |  (R)     |  ❌   |  ❌       | ✅ (*) |
 | Size statistics (2)                       |  ✅   |  ✅           |          |  ✅      |  ✅   |           |  (R)   |
 
 * \(1) In parquet.thrift: ColumnMetaData->bloom_filter_length
