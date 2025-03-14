@@ -102,7 +102,7 @@ job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.g
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>find ./ -type f -name &lt;span style="color:#4e9a06">&amp;#39;pom.xml&amp;#39;&lt;/span> -exec git checkout &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span> &lt;span style="color:#4e9a06">\;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="2-run-releaseperform-to-stage-binaries">2. Run release:perform to stage binaries&lt;/h4>
 &lt;p>Upload binary artifacts for the release tag to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>mvn release:perform
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>mvn release:perform -DskipTests -Darguments&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>-DskipTests
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-in-nexus-close-the-staging-repository">3. In Nexus, close the staging repository&lt;/h4>
 &lt;p>Closing a staging repository makes the binaries available in &lt;a href="https://repository.apache.org/content/groups/staging/org/apache/parquet/">staging&lt;/a>, but does not publish them.&lt;/p>
 &lt;ol>
