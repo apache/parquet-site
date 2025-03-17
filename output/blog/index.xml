@@ -1,4 +1,33 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Release</title><link>/blog/</link><description>Recent content in Release on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 1.15.0</title><link>/blog/2024/12/02/1.15.0/</link><pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate><guid>/blog/2024/12/02/1.15.0/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Release</title><link>/blog/</link><description>Recent content in Release on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 1.15.1</title><link>/blog/2025/03/16/1.15.1/</link><pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/16/1.15.1/</guid><description>
+&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz">latest version of parquet-java is 1.15.1&lt;/a>.&lt;/p>
+&lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.1">Release on Github&lt;/a>.&lt;/p>
+&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz">latest version of parquet-java on the previous minor branch is 1.14.4&lt;/a>.&lt;/p>
+&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
+&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
+&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
+&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
+...
+&amp;lt;dependency&amp;gt;
+&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+&amp;lt;version&amp;gt;1.15.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+&amp;lt;/dependency&amp;gt;
+...
+&amp;lt;/dependencies&amp;gt;
+&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
+&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.15.0</title><link>/blog/2024/12/02/1.15.0/</link><pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate><guid>/blog/2024/12/02/1.15.0/</guid><description>
 &lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz">latest version of parquet-java is 1.15.0&lt;/a>.&lt;/p>
 &lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.0">Release on Github&lt;/a>.&lt;/p>
 &lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
