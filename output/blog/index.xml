@@ -1,4 +1,13 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Release</title><link>/blog/</link><description>Recent content in Release on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 1.15.1</title><link>/blog/2025/03/16/1.15.1/</link><pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/16/1.15.1/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Release</title><link>/blog/</link><description>Recent content in Release on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 2.11.0</title><link>/blog/2025/03/23/2.11.0/</link><pubDate>Sun, 23 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/23/2.11.0/</guid><description>
+&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.11.0">Github Release Link&lt;/a>.&lt;/p>
+&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz">latest version of parquet-format is 2.11.0&lt;/a>.&lt;/p>
+&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.15.1</title><link>/blog/2025/03/16/1.15.1/</link><pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/16/1.15.1/</guid><description>
 &lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz">latest version of parquet-java is 1.15.1&lt;/a>.&lt;/p>
 &lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.1">Release on Github&lt;/a>.&lt;/p>
 &lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
