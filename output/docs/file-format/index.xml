@@ -486,7 +486,7 @@ implementations.&lt;/p>
 &lt;td>BOOLEAN&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -496,7 +496,7 @@ implementations.&lt;/p>
 &lt;td>INT32&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -506,7 +506,7 @@ implementations.&lt;/p>
 &lt;td>INT64&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -516,7 +516,7 @@ implementations.&lt;/p>
 &lt;td>INT96 (1)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -526,7 +526,7 @@ implementations.&lt;/p>
 &lt;td>FLOAT&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -536,7 +536,7 @@ implementations.&lt;/p>
 &lt;td>DOUBLE&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -546,7 +546,7 @@ implementations.&lt;/p>
 &lt;td>BYTE_ARRAY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -556,7 +556,7 @@ implementations.&lt;/p>
 &lt;td>FIXED_LEN_BYTE_ARRAY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -586,7 +586,7 @@ implementations.&lt;/p>
 &lt;td>STRING&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -596,7 +596,7 @@ implementations.&lt;/p>
 &lt;td>ENUM&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -606,7 +606,7 @@ implementations.&lt;/p>
 &lt;td>UUID&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -616,7 +616,7 @@ implementations.&lt;/p>
 &lt;td>8, 16, 32, 64 bit signed and unsigned INT&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -626,7 +626,7 @@ implementations.&lt;/p>
 &lt;td>DECIMAL (INT32)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -636,7 +636,7 @@ implementations.&lt;/p>
 &lt;td>DECIMAL (INT64)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -646,7 +646,7 @@ implementations.&lt;/p>
 &lt;td>DECIMAL (BYTE_ARRAY)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -656,7 +656,7 @@ implementations.&lt;/p>
 &lt;td>DECIMAL (FIXED_LEN_BYTE_ARRAY)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -666,7 +666,7 @@ implementations.&lt;/p>
 &lt;td>DATE&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -676,7 +676,7 @@ implementations.&lt;/p>
 &lt;td>TIME (INT32)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -686,7 +686,7 @@ implementations.&lt;/p>
 &lt;td>TIME (INT64)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -696,7 +696,7 @@ implementations.&lt;/p>
 &lt;td>TIMESTAMP (INT64)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -706,7 +706,7 @@ implementations.&lt;/p>
 &lt;td>INTERVAL&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -716,7 +716,7 @@ implementations.&lt;/p>
 &lt;td>JSON&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -726,7 +726,7 @@ implementations.&lt;/p>
 &lt;td>BSON&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>✅ (1)&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -736,7 +736,7 @@ implementations.&lt;/p>
 &lt;td>LIST&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -746,7 +746,7 @@ implementations.&lt;/p>
 &lt;td>MAP&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -756,7 +756,7 @@ implementations.&lt;/p>
 &lt;td>UNKNOWN (always null)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -766,7 +766,7 @@ implementations.&lt;/p>
 &lt;td>FLOAT16&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅ (1)&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -796,7 +796,7 @@ implementations.&lt;/p>
 &lt;td>PLAIN&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -806,7 +806,7 @@ implementations.&lt;/p>
 &lt;td>PLAIN_DICTIONARY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -816,7 +816,7 @@ implementations.&lt;/p>
 &lt;td>RLE_DICTIONARY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -826,7 +826,7 @@ implementations.&lt;/p>
 &lt;td>RLE&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -836,7 +836,7 @@ implementations.&lt;/p>
 &lt;td>BIT_PACKED (deprecated)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>❌ (1)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -846,7 +846,7 @@ implementations.&lt;/p>
 &lt;td>DELTA_BINARY_PACKED&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -856,7 +856,7 @@ implementations.&lt;/p>
 &lt;td>DELTA_LENGTH_BYTE_ARRAY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -866,7 +866,7 @@ implementations.&lt;/p>
 &lt;td>DELTA_BYTE_ARRAY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -876,7 +876,7 @@ implementations.&lt;/p>
 &lt;td>BYTE_STREAM_SPLIT&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -906,7 +906,7 @@ implementations.&lt;/p>
 &lt;td>UNCOMPRESSED&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -916,7 +916,7 @@ implementations.&lt;/p>
 &lt;td>BROTLI&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -926,7 +926,7 @@ implementations.&lt;/p>
 &lt;td>GZIP&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -936,7 +936,7 @@ implementations.&lt;/p>
 &lt;td>LZ4 (deprecated)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -946,7 +946,7 @@ implementations.&lt;/p>
 &lt;td>LZ4_RAW&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -956,7 +956,7 @@ implementations.&lt;/p>
 &lt;td>LZO&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
@@ -966,7 +966,7 @@ implementations.&lt;/p>
 &lt;td>SNAPPY&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -976,7 +976,7 @@ implementations.&lt;/p>
 &lt;td>ZSTD&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -1003,7 +1003,7 @@ implementations.&lt;/p>
 &lt;td>xxHash-based bloom filters&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>&lt;/td>
@@ -1013,7 +1013,7 @@ implementations.&lt;/p>
 &lt;td>Bloom filter length (1)&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>&lt;/td>
@@ -1023,7 +1023,7 @@ implementations.&lt;/p>
 &lt;td>Statistics min_value, max_value&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -1033,7 +1033,7 @@ implementations.&lt;/p>
 &lt;td>Page index&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
@@ -1043,7 +1043,7 @@ implementations.&lt;/p>
 &lt;td>Page CRC32 checksum&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1053,7 +1053,7 @@ implementations.&lt;/p>
 &lt;td>Modular encryption&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1063,7 +1063,7 @@ implementations.&lt;/p>
 &lt;td>Size statistics (2)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>&lt;/td>
@@ -1101,7 +1101,7 @@ implementations.&lt;/p>
 &lt;td>External column data (1)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>(W)&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1111,7 +1111,7 @@ implementations.&lt;/p>
 &lt;td>Row group &amp;ldquo;Sorting column&amp;rdquo; metadata (2)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>(W)&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1121,7 +1121,7 @@ implementations.&lt;/p>
 &lt;td>Row group pruning using statistics&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅ (*)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1131,7 +1131,7 @@ implementations.&lt;/p>
 &lt;td>Row group pruning using bloom filter&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅ (*)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1141,7 +1141,7 @@ implementations.&lt;/p>
 &lt;td>Reading select columns only&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -1151,7 +1151,7 @@ implementations.&lt;/p>
 &lt;td>Page pruning using statistics&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>✅ (*)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>❌&lt;/td>
 &lt;td>❌&lt;/td>
@@ -1165,5 +1165,8 @@ implementations.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>(2) In parquet.thrift: RowGroup-&amp;gt;sorting_columns&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>(*) Partial Support&lt;/p>
 &lt;/li>
 &lt;/ul></description></item></channel></rss>
