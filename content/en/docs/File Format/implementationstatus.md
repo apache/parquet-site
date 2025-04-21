@@ -29,14 +29,14 @@ Implementations:
 
 | Data type                                 | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| BOOLEAN                                   |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
-| INT32                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
-| INT64                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
+| BOOLEAN                                   |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
+| INT32                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
+| INT64                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
 | INT96 (1)                                 |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  (R)  |
-| FLOAT                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
-| DOUBLE                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
-| BYTE_ARRAY                                |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
-| FIXED_LEN_BYTE_ARRAY                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅   |
+| FLOAT                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
+| DOUBLE                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
+| BYTE_ARRAY                                |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
+| FIXED_LEN_BYTE_ARRAY                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅   |
 
 * \(1) This type is deprecated, but as of 2024 it's common in currently produced parquet files
 
@@ -45,25 +45,25 @@ Implementations:
 
 | Data type                                 | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| STRING                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| ENUM                                      |  ❌   |  ✅           |  ✅      |  ✅ (1)  |  ❌   |  (R)      |   ✅   |
-| UUID                                      |  ❌   |  ✅           |  ✅      |  ✅ (1)  |  ❌   |  (R)      |   ✅   |
-| 8, 16, 32, 64 bit signed and unsigned INT |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| DECIMAL (INT32)                           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| DECIMAL (INT64)                           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| DECIMAL (BYTE_ARRAY)                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   (R)  |
-| DECIMAL (FIXED_LEN_BYTE_ARRAY)            |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| DATE                                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| TIME (INT32)                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| TIME (INT64)                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| TIMESTAMP (INT64)                         |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| INTERVAL                                  |  ✅   |  ✅ (1)       |  ✅      |  ✅      |  ❌   |  (R)      |   ✅   |
-| JSON                                      |  ✅   |  ✅ (1)       |  ✅      |  ✅ (1)  |  ❌   |  (R)      |   ✅   |
-| BSON                                      |  ❌   |  ✅ (1)       |  ✅      |  ✅ (1)  |  ❌   |  (R)      |   ❌   |
+| STRING                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| ENUM                                      |  ❌   |  ✅           |  ✅      |  ✅ (1)  |  ❌   |  ✅       |   ✅   |
+| UUID                                      |  ❌   |  ✅           |  ✅      |  ✅ (1)  |  ❌   |  ✅       |   ✅   |
+| 8, 16, 32, 64 bit signed and unsigned INT |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| DECIMAL (INT32)                           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| DECIMAL (INT64)                           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| DECIMAL (BYTE_ARRAY)                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   (R)  |
+| DECIMAL (FIXED_LEN_BYTE_ARRAY)            |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| DATE                                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| TIME (INT32)                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| TIME (INT64)                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| TIMESTAMP (INT64)                         |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| INTERVAL                                  |  ✅   |  ✅ (1)       |  ✅      |  ✅      |  ❌   |  ✅       |   ✅   |
+| JSON                                      |  ✅   |  ✅ (1)       |  ✅      |  ✅ (1)  |  ❌   |  ✅       |   ✅   |
+| BSON                                      |  ❌   |  ✅ (1)       |  ✅      |  ✅ (1)  |  ❌   |  ❌       |   ❌   |
 | LIST                                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
 | MAP                                       |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| UNKNOWN (always null)                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| FLOAT16                                   |  ✅   |  ✅ (1)       |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
+| UNKNOWN (always null)                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| FLOAT16                                   |  ✅   |  ✅ (1)       |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
 
 * \(1) Only supported to use its annotated physical type
 
@@ -71,10 +71,10 @@ Implementations:
 
 | Encoding                                  | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| PLAIN                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| PLAIN_DICTIONARY                          |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  (R)   |
-| RLE_DICTIONARY                            |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| RLE                                       |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
+| PLAIN                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| PLAIN_DICTIONARY                          |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  (R)   |
+| RLE_DICTIONARY                            |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+| RLE                                       |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
 | BIT_PACKED (deprecated)                   |  ✅   |  ✅           |  ✅      |  ❌ (1)  |  (R)  |  (R)      |   ❌   |
 | DELTA_BINARY_PACKED                       |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
 | DELTA_LENGTH_BYTE_ARRAY                   |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
@@ -87,13 +87,13 @@ Implementations:
 
 | Compression                               | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| UNCOMPRESSED                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
+| UNCOMPRESSED                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
 | BROTLI                                    |  ✅   |  ✅           |  ✅      |  ✅      |  (R)  |  (R)      |   ✅   |
 | GZIP                                      |  ✅   |  ✅           |  ✅      |  ✅      |  (R)  |  (R)      |   ✅   |
 | LZ4 (deprecated)                          |  ✅   |  ❌           |  ❌      |  ✅      |  ❌   |  (R)      |   ❌   |
 | LZ4_RAW                                   |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
 | LZO                                       |  ❌   |  ❌           |  ❌      |  ❌      |  ❌   |  ❌       |   ❌   |
-| SNAPPY                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
+| SNAPPY                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
 | ZSTD                                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
 
 ### Other format level features
@@ -102,7 +102,7 @@ Implementations:
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
 | xxHash-based bloom filters                |  (R)  |  ✅           |  ✅      |  ✅      |  (R)  |           |  ✅    |
 | Bloom filter length (1)                   |  (R)  |  ✅           |  ✅      |  ✅      |  (R)  |           |  ✅    |
-| Statistics min_value, max_value           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  ✅    |
+| Statistics min_value, max_value           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅    |
 | Page index                                |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  (R)   |
 | Page CRC32 checksum                       |  ✅   |  ✅           |  ❌      |  ✅      |  ❌   |  ❌       |  (R)   |
 | Modular encryption                        |  ✅   |  ✅           |  ✅      |  ✅      |  ❌   |  ❌       | ✅ (*) |
@@ -118,7 +118,7 @@ Implementations:
 
 | Feature                                   | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| External column data (1)                  |  ✅   |  ✅           |  ❌      |  ❌      |  (W)  |  ❌       |   ❌   |
+| External column data (1)                  |  ✅   |  ✅ (*)       |  ❌      |  ❌      |  (W)  |  ✅       |   ❌   |
 | Row group "Sorting column" metadata (2)   |  ✅   |  ❌           |  ✅      |  ✅      |  (W)  |  ❌       |   (R)  |
 | Row group pruning using statistics        |  ❌   |  ✅           |  ✅ (*)  |  ✅      |  ✅   |  ❌       |   ✅   |
 | Row group pruning using bloom filter      |  ❌   |  ✅           |  ✅ (*)  |  ✅      |  ✅   |  ❌       |   ✅   |
