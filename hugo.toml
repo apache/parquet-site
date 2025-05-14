@@ -172,6 +172,11 @@ enable = false
   url = "https://stackoverflow.com/questions/tagged/parquet"
   icon = "fab fa-stack-overflow"
   desc = "Practical questions and curated answers"
+[[params.links.user]]
+  name = "Parquet Community Sync"
+  url = "https://groups.google.com/g/apache-parquet-community-sync/about"
+  icon = "fa fa-calendar"
+  desc = "Join for calendar events and community sync"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
   name = "GitHub"
