@@ -118,7 +118,7 @@ Implementations:
 
 | Feature                                   | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| External column data (1)                  |  ✅   |  ✅ (*)       |  ❌      |  ❌      |  (W)  |  ✅       |   ❌   |
+| External column data (1)                  |  ✅   |  ✅           |  ❌      |  ❌      |  (W)  |  ✅       |   ❌   |
 | Row group "Sorting column" metadata (2)   |  ✅   |  ❌           |  ✅      |  ✅      |  (W)  |  ❌       |   (R)  |
 | Row group pruning using statistics        |  ❌   |  ✅           |  ✅ (*)  |  ✅      |  ✅   |  ❌       |   ✅   |
 | Row group pruning using bloom filter      |  ❌   |  ✅           |  ✅ (*)  |  ✅      |  ✅   |  ❌       |   ✅   |
