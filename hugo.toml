@@ -194,10 +194,10 @@ enable = false
   icon = "fa fa-envelope"
   desc = "Discuss development issues around the project"
 [[params.links.developer]]
-  name = "Jira"
-  url = "https://issues.apache.org/jira/projects/PARQUET/issues"
-  icon = "fas fa-bug"
-  desc = "File/Track Open Bugs"
+  name = "Parquet specification"
+  url = "https://github.com/apache/parquet-format"
+  icon = "fas fa-jira"
+  desc = "Parquet specification"
 
 [module]
   # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:

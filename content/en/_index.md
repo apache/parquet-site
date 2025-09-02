@@ -18,8 +18,8 @@ It provides high performance compression and encoding schemes to handle complex 
 
 
 {{< blocks/section color="white" type="row">}}
-{{% blocks/feature icon="fab fa-jira" title="File an Issue" url="https://issues.apache.org/jira/projects/PARQUET/issues" %}}
-Or Search Open Issues
+{{% blocks/feature icon="fab fa-jira" title="Parquet Specification" url="https://github.com/apache/parquet-format" %}}
+Browse the Parquet Specification
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/apache/parquet-java" %}}
