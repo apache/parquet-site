@@ -28,9 +28,9 @@ Implementations:
 
 ### Physical types
 
-Physical types are defined by the [`enum Type` parquet.thrift]
+Physical types are defined by the [`enum Type` in parquet.thrift]
 
-[`enum Type` parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32
+[`enum Type` in parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32
 
 
 | Data type                                 | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
