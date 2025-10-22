@@ -7,14 +7,15 @@ weight: 8
 This page summarizes the features supported by different Parquet
 implementations.
 
-*Note*: This is a work in progress and we would welcome help expanding its scope.
+*Note*: If you find out of date information, please help us improve the accuracy
+of this page by opening an issue or submitting a pull request.
 
 ### Legend
 The value in each box means:
 * ✅: supported
 * ❌: not supported
 * (R/W): partial reader/writer only support
-* (blank) no data
+* (blank): no data
 
 Implementations:
 * [arrow](https://github.com/apache/arrow/tree/main/cpp/src/parquet) (C++)
@@ -26,6 +27,11 @@ Implementations:
 * [duckdb](https://github.com/duckdb/duckdb) (C++)
 
 ### Physical types
+
+Physical types are defined by the [`enum Type` parquet.thrift]
+
+[`enum Type` parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32
+
 
 | Data type                                 | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
@@ -43,27 +49,35 @@ Implementations:
 
 ### Logical types
 
-| Data type                                 | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
-| ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| STRING                                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| ENUM                                      |  ❌   |  ✅           |  ✅      |  ✅ (1)  |  ❌   |  ✅       |   ✅   |
-| UUID                                      |  ❌   |  ✅           |  ✅      |  ✅ (1)  |  ❌   |  ✅       |   ✅   |
-| 8, 16, 32, 64 bit signed and unsigned INT |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| DECIMAL (INT32)                           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| DECIMAL (INT64)                           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| DECIMAL (BYTE_ARRAY)                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   (R)  |
-| DECIMAL (FIXED_LEN_BYTE_ARRAY)            |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| DATE                                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| TIME (INT32)                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| TIME (INT64)                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| TIMESTAMP (INT64)                         |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| INTERVAL                                  |  ✅   |  ✅ (1)       |  ✅      |  ✅      |  ❌   |  ✅       |   ✅   |
-| JSON                                      |  ✅   |  ✅ (1)       |  ✅      |  ✅ (1)  |  ❌   |  ✅       |   ✅   |
-| BSON                                      |  ❌   |  ✅ (1)       |  ✅      |  ✅ (1)  |  ❌   |  ❌       |   ❌   |
-| LIST                                      |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| MAP                                       |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |   ✅   |
-| UNKNOWN (always null)                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
-| FLOAT16                                   |  ✅   |  ✅ (1)       |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
+Logical types are defined by the [`union LogicalType` in parquet.thrift] and described in [LogicalTypes.md]
+
+[`union LogicalType` in parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L471
+[LogicalTypes.md]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md
+
+| Data type                                 | arrow | parquet-java | arrow-go | arrow-rs | cudf | hyparquet | duckdb |
+|-------------------------------------------|------| ------- | ------- | ------- | ---- | -------- |--------|
+| STRING                                    | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| ENUM                                      | ❌    |  ✅     |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
+| UUID                                      | ❌    |  ✅     |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
+| 8, 16, 32, 64 bit signed and unsigned INT | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DECIMAL (INT32)                           | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DECIMAL (INT64)                           | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DECIMAL (BYTE_ARRAY)                      | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | (R)    |
+| DECIMAL (FIXED_LEN_BYTE_ARRAY)            | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| FLOAT16                                   | ✅    |  ✅ (1) |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DATE                                      | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| TIME (INT32)                              | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| TIME (INT64)                              | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| TIMESTAMP (INT64)                         | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| INTERVAL                                  | ✅    |  ✅ (1) |  ✅     |  ✅     |  ❌  |  ✅      | ✅      |
+| JSON                                      | ✅    |  ✅ (1) |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
+| BSON                                      | ❌    |  ✅ (1) |  ✅     |  ✅ (1) |  ❌  |  ❌      | ❌      |
+| VARIANT                                   |      |        |        |        |     |         |        |
+| GEOMETRY                                  |      |        |        |        |     |         |        |
+| GEOGRAPHY                                 |      |        |        |        |     |         |        |
+| LIST                                      | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  (R)     | ✅      |
+| MAP                                       | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  (R)     | ✅      |
+| UNKNOWN (always null)                     | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
 
 * \(1) Only supported to use its annotated physical type
 
