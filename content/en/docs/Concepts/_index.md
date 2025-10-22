@@ -5,6 +5,7 @@ weight: 4
 description: >
   Glossary of relevant terminology.
 ---
+
   - *Block (HDFS block)*: This means a block in HDFS and the meaning is
     unchanged for describing this file format.  The file format is
     designed to work well on top of HDFS.

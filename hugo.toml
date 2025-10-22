@@ -10,9 +10,6 @@ enableMissingTranslationPlaceholders = true
 
 enableRobotsTXT = true
 
-# Base theme for website
-theme = ["docsy"]
-
 # Will give values to .Lastmod etc.
 enableGitInfo = true
 
@@ -23,7 +20,7 @@ enableGitInfo = true
 [[menu.main]]
     name = "GitHub"
     weight = 50
-    url = "https://github.com/apache/parquet-mr/"
+    url = "https://github.com/apache/parquet-java/"
     pre = "<i class='fab fa-github'></i>"
 
 # Configure how URLs look like per section.
@@ -44,16 +41,17 @@ quality = 75
 anchor = "smart"
 
 # Language configuration
-
 [languages]
 [languages.en]
+languageName ="English"
+# Weight used for sorting.
+weight = 1
+[languages.en.params]
 title = "Apache Parquet"
 description = "The Apache Parquet Website"
-languageName ="English"
 contentDir = "content/en"
 # Weight used for sorting.
 weight = 1
-
 
 [markup]
   [markup.goldmark]
@@ -98,13 +96,11 @@ url_latest_version = "https://parquet.apache.org"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 github_repo = "https://github.com/apache/parquet-site"
+
 github_branch= "production"
 
 # Comment out to disable search.
 # gcs_engine_id = "7e3f91e3eadecceaa"
-
-# Enable Algolia DocSearch
-algolia_docsearch = true
 
 # Enable Lunr.js offline search
 offlineSearch = false
@@ -114,11 +110,16 @@ prism_syntax_highlighting = false
 
 # User interface configuration
 
+[params.search.algolia]
+appId = '399WOPSE6Q'
+apiKey = '437a8e172549357b6ca768248caecff9'
+indexName = 'parquet-apache'
+
 [params.ui]
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 # Set to true to disable the About link in the site footer
-footer_about_disable = false
+footer_about_enable = true
 # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
 navbar_logo = true
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
@@ -147,26 +148,41 @@ enable = false
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
 [[params.links.user]]
-  name = "User mailing list"
+  name = "Post to Mailing List"
   url = "mailto:dev@parquet.apache.org"
   icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users. To subscribe please email dev-subscribe@parquet.apache.org. View the archive here: https://lists.apache.org/list.html?dev@parquet.apache.org."
+  desc = "Discussion and help from your fellow users"
+[[params.links.user]]
+  name = "Subscribe to Mailing List"
+  url = "mailto:dev-subscribe@parquet.apache.org"
+  icon = "fa fa-envelope-circle-check"
+  desc = "Subscribe to the mailing list to participate."
+[[params.links.user]]
+  name = "View Mailing List Archives"
+  url = "https://lists.apache.org/list.html?dev@parquet.apache.org"
+  icon = "fa fa-box-archive"
+  desc = "View archives of past discussions."
 [[params.links.user]]
   name ="Twitter"
   url = "https://twitter.com/ApacheParquet"
   icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news"
+  desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
   name = "Stack Overflow"
   url = "https://stackoverflow.com/questions/tagged/parquet"
   icon = "fab fa-stack-overflow"
   desc = "Practical questions and curated answers"
+[[params.links.user]]
+  name = "Parquet Community Sync"
+  url = "https://groups.google.com/g/apache-parquet-community-sync/about"
+  icon = "fa fa-calendar"
+  desc = "Join for calendar events and community sync"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
   name = "GitHub"
-  url = "https://github.com/apache/parquet-mr"
+  url = "https://github.com/apache/parquet-java"
   icon = "fab fa-github"
-  desc = "Development takes place here"
+  desc = "Development takes place here!"
 [[params.links.developer]]
   name = "Slack"
   url = "https://the-asf.slack.com/"
@@ -178,7 +194,17 @@ enable = false
   icon = "fa fa-envelope"
   desc = "Discuss development issues around the project"
 [[params.links.developer]]
-  name = "Jira"
-  url = "https://issues.apache.org/jira/projects/PARQUET/issues"
-  icon = "fas fa-bug"
-  desc = "File/Track Open Bugs"
+  name = "Parquet specification"
+  url = "https://github.com/apache/parquet-format"
+  icon = "fas fa-jira"
+  desc = "Parquet specification"
+
+[module]
+  # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:
+  # workspace = "docsy.work"
+  [module.hugoVersion]
+    extended = true
+    min = "0.110.0"
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false

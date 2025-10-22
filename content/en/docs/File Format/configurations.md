@@ -5,6 +5,7 @@ weight: 5
 ---
 
 ### Row Group Size
+
 Larger row groups allow for larger column chunks which makes it
 possible to do larger sequential IO.  Larger groups also require more buffering in
 the write path (or a two pass write).  We recommend large row groups (512MB - 1GB).
