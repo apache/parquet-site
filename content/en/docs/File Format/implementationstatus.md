@@ -117,7 +117,7 @@ Compressions are defined by the [`enum CompressionCodec` in parquet.thrift] and 
 | Page CRC32 checksum             |  ✅   |  ✅           |  ❌    |  ✅      |  ❌ |  ❌       |  (R) |
 | [Modular encryption]            |  ✅   |  ✅           |  ✅    |  ✅      |  ❌ |  ❌       | ✅ (*) |
 | Size statistics (2)             |  ✅   |  ✅           |  (R)  |  ✅      |  ✅ |           |  (R) |
-| Data Page V2 (3)                |  ✅   |  ✅           |       |  ✅      |   |           |     |
+| Data Page V2 (3)                |  ✅   |  ✅           |  ✅   |  ✅      |   |           |     |
 
 * \(1) In [parquet.thrift]: ColumnMetaData->bloom_filter_length
 
