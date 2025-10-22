@@ -54,32 +54,37 @@ Logical types are defined by the [`union LogicalType` in parquet.thrift] and des
 [`union LogicalType` in parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L471
 [LogicalTypes.md]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md
 
-| Data type                                 | arrow | parquet-java | arrow-go | arrow-rs | cudf | hyparquet | duckdb |
-|-------------------------------------------|------| ------- | ------- | ------- | ---- | -------- |--------|
-| STRING                                    | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| ENUM                                      | ❌    |  ✅     |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
-| UUID                                      | ❌    |  ✅     |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
+| Data type                               | arrow | parquet-java | arrow-go | arrow-rs | cudf | hyparquet | duckdb |
+|-----------------------------------------|------| ------- | ------- | ------- | ---- | -------- |--------|
+| STRING                                  | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| ENUM                                    | ❌    |  ✅     |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
+| UUID                                    | ❌    |  ✅     |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
 | 8, 16, 32, 64 bit signed and unsigned INT | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| DECIMAL (INT32)                           | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| DECIMAL (INT64)                           | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| DECIMAL (BYTE_ARRAY)                      | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | (R)    |
-| DECIMAL (FIXED_LEN_BYTE_ARRAY)            | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| FLOAT16                                   | ✅    |  ✅ (1) |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| DATE                                      | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| TIME (INT32)                              | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| TIME (INT64)                              | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| TIMESTAMP (INT64)                         | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
-| INTERVAL                                  | ✅    |  ✅ (1) |  ✅     |  ✅     |  ❌  |  ✅      | ✅      |
-| JSON                                      | ✅    |  ✅ (1) |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
-| BSON                                      | ❌    |  ✅ (1) |  ✅     |  ✅ (1) |  ❌  |  ❌      | ❌      |
-| VARIANT                                   |      |        |        |        |     |         |        |
-| GEOMETRY                                  |      |        |        |        |     |         |        |
-| GEOGRAPHY                                 |      |        |        |        |     |         |        |
-| LIST                                      | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  (R)     | ✅      |
-| MAP                                       | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  (R)     | ✅      |
-| UNKNOWN (always null)                     | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DECIMAL (INT32)                         | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DECIMAL (INT64)                         | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DECIMAL (BYTE_ARRAY)                    | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | (R)    |
+| DECIMAL (FIXED_LEN_BYTE_ARRAY)          | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| FLOAT16                                 | ✅    |  ✅ (1) |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| DATE                                    | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| TIME (INT32)                            | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| TIME (INT64)                            | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| TIMESTAMP (INT64)                       | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
+| INTERVAL                                | ✅    |  ✅ (1) |  ✅     |  ✅     |  ❌  |  ✅      | ✅      |
+| JSON                                    | ✅    |  ✅ (1) |  ✅     |  ✅ (1) |  ❌  |  ✅      | ✅      |
+| BSON                                    | ❌    |  ✅ (1) |  ✅     |  ✅ (1) |  ❌  |  ❌      | ❌      |
+| [VARIANT]                               |      |        |        |        |     |         |        |
+| [GEOMETRY]                              |      |        |        |        |     |         |        |
+| [GEOGRAPHY]                             |      |        |        |        |     |         |        |
+| LIST                                    | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  (R)     | ✅      |
+| MAP                                     | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  (R)     | ✅      |
+| UNKNOWN (always null)                   | ✅    |  ✅     |  ✅     |  ✅     |  ✅  |  ✅      | ✅      |
 
 * \(1) Only supported to use its annotated physical type
+
+[VARIANT]: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
+[GEOMETRY]: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
+[GEOGRAPHY]: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
+
 
 ### Encodings
 
