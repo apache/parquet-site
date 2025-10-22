@@ -90,7 +90,7 @@ Encodings are defined by the [`enum Encoding` in parquet.thrift] and described i
 
 ### Compressions
 
-Compressions are defined by the [`enum CompressionCodec` in parquet.thrift] and described in [Encodings.md]
+Compressions are defined by the [`enum CompressionCodec` in parquet.thrift] and described in [Compression.md]
 
 [`enum CompressionCodec` in parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L642
 [Compression.md]: https://github.com/apache/parquet-format/blob/master/Compression.md
