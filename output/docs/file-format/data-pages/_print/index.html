@@ -68,7 +68,8 @@ repeated-value := value that is repeated, using a fixed-width of round-up-to-nex
 </code></pre><ol><li><p>The bit-packing here is done in a different order than the one in the <a href=/docs/file-format/data-pages/encodings/#BITPACKED>deprecated bit-packing</a> encoding.
 The values are packed from the least significant bit of each byte to the most significant bit,
 though the order of the bits in each value remains in the usual order of most significant to least
-significant. For example, to pack the same values as the example in the deprecated encoding above:</p><p>The numbers 1 through 7 using bit width 3:</p><pre tabindex=0><code>dec value: 0   1   2   3   4   5   6   7
+significant. An example of the encoding is presented below. For comparison, the same case is shown
+in the example of the deprecated bit-packing encoding in the next section.</p><p>The numbers 1 through 7 using bit width 3:</p><pre tabindex=0><code>dec value: 0   1   2   3   4   5   6   7
 bit value: 000 001 010 011 100 101 110 111
 bit label: ABC DEF GHI JKL MNO PQR STU VWX
 </code></pre><p>would be encoded like this where spaces mark byte boundaries (3 bytes):</p><pre tabindex=0><code>bit value: 10001000 11000110 11111010
