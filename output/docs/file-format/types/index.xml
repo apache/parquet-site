@@ -5,4 +5,4 @@ of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodin
 example, strings are stored as byte arrays (binary) with a UTF8 annotation.
 These annotations define how to further decode and interpret the data.
 Annotations are stored as &lt;code>LogicalType&lt;/code> fields in the file metadata and are
-documented in LogicalTypes.md.&lt;/p></description></item></channel></rss>
+documented in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md">LogicalTypes.md&lt;/a>&lt;/p></description></item></channel></rss>

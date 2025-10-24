@@ -60,7 +60,7 @@ of primitive types to a minimum and reuses parquet&rsquo;s efficient encodings. 
 example, strings are stored as byte arrays (binary) with a UTF8 annotation.
 These annotations define how to further decode and interpret the data.
 Annotations are stored as <code>LogicalType</code> fields in the file metadata and are
-documented in LogicalTypes.md.</p></div><div class=td-content style=page-break-before:always><h1 id=pg-0d8efcf7d4835e2ce724ae57b02d4318>5 - Nested Encoding</h1><p>To encode nested columns, Parquet uses the Dremel encoding with definition and
+documented in <a href=https://github.com/apache/parquet-format/blob/master/LogicalTypes.md>LogicalTypes.md</a></p></div><div class=td-content style=page-break-before:always><h1 id=pg-0d8efcf7d4835e2ce724ae57b02d4318>5 - Nested Encoding</h1><p>To encode nested columns, Parquet uses the Dremel encoding with definition and
 repetition levels. Definition levels specify how many optional fields in the
 path for the column are defined. Repetition levels specify at what repeated field
 in the path has the value repeated. The max definition and repetition levels can
