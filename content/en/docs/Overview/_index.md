@@ -12,7 +12,7 @@ It provides high performance compression and encoding schemes to handle complex 
 
 ### parquet-format (Specification)
 
-The [parquet-format] repository hosts the official specification of the Parquet file format, defining how data is structured and stored. This specification, along with the [parquet.thrift] Thrift metadata definitions, is necessary for developing software effectively read and write Parquet files. 
+The [parquet-format] repository hosts the official specification of the Parquet file format, defining how data is structured and stored. This specification, along with the [parquet.thrift] Thrift metadata definitions, is necessary for developing software to effectively read and write Parquet files. 
 
 Note that the parquet-format repository does not contain source code for libraries to read or write Parquet files, but rather the formal definitions and documentation of the file format itself.
 
