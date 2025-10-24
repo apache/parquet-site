@@ -109,15 +109,15 @@ Compressions are defined by the [`enum CompressionCodec` in parquet.thrift] and 
 ### Other format level features
 
 | Feature                         | arrow | parquet-java  | arrow-go | arrow-rs | cudf | hyparquet | duckdb |
-|---------------------------------| ----- | ------------- | ----- | -------- | -- | --------- | --- |
-| [xxHash-based bloom filters]    |  (R)  |  ✅           |  ✅    |  ✅      |  (R) |           |  ✅  |
-| Bloom filter length (1)         |  (R)  |  ✅           |  ✅    |  ✅      |  (R) |           |  ✅  |
-| Statistics min_value, max_value |  ✅   |  ✅           |  ✅    |  ✅      |  ✅ |  ✅       |  ✅  |
-| [Page index]                    |  ✅   |  ✅           |  ✅    |  ✅      |  ✅ |  (R)      |  (R) |
-| Page CRC32 checksum             |  ✅   |  ✅           |  ❌    |  ✅      |  ❌ |  ❌       |  (R) |
-| [Modular encryption]            |  ✅   |  ✅           |  ✅    |  ✅      |  ❌ |  ❌       | ✅ (*) |
-| Size statistics (2)             |  ✅   |  ✅           |  (R)  |  ✅      |  ✅ |           |  (R) |
-| Data Page V2 (3)                |  ✅   |  ✅           |  ✅   |  ✅      |  ✅  |  ✅          |  ✅    |
+|---------------------------------| ----- | ------------- | -------- | -------- | ---- | --------- | ------ |
+| [xxHash-based bloom filters]    |  (R)  |  ✅           |  ✅      |  ✅      |  (R) |           |  ✅    |
+| Bloom filter length (1)         |  (R)  |  ✅           |  ✅      |  ✅      |  (R) |           |  ✅    |
+| Statistics min_value, max_value |  ✅   |  ✅           |  ✅      |  ✅      |  ✅  |  ✅       |  ✅    |
+| [Page index]                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅  |  (R)      |  (R)   |
+| Page CRC32 checksum             |  ✅   |  ✅           |  ❌      |  ✅      |  ❌  |  ❌       |  (R)   |
+| [Modular encryption]            |  ✅   |  ✅           |  ✅      |  ✅      |  ❌  |  ❌       |  ✅ (*) |
+| Size statistics (2)             |  ✅   |  ✅           |  (R)     |  ✅      |  ✅  |           |  (R)   |
+| Data Page V2 (3)                |  ✅   |  ✅           |  ✅      |  ✅      |  ✅  |  ✅       |  ✅    |
 
 * \(1) In [parquet.thrift]: ColumnMetaData->bloom_filter_length
 
