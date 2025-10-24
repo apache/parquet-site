@@ -88,6 +88,11 @@ Logical types are defined by the [`union LogicalType` in parquet.thrift] and des
 
 ### Encodings
 
+Encodings are defined by the [`enum Encoding` in parquet.thrift] and described in [Encodings.md]
+
+[`enum Encoding` in parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L566
+[Encodings.md]: https://github.com/apache/parquet-format/blob/master/Encodings.md
+
 | Encoding                                  | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
 | PLAIN                                     |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
@@ -104,6 +109,11 @@ Logical types are defined by the [`union LogicalType` in parquet.thrift] and des
 
 ### Compressions
 
+Compressions are defined by the [`enum CompressionCodec` in parquet.thrift] and described in [Compression.md]
+
+[`enum CompressionCodec` in parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L642
+[Compression.md]: https://github.com/apache/parquet-format/blob/master/Compression.md
+
 | Compression                               | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
 | ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
 | UNCOMPRESSED                              |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |   ✅   |
@@ -117,19 +127,28 @@ Logical types are defined by the [`union LogicalType` in parquet.thrift] and des
 
 ### Other format level features
 
-| Feature                                   | arrow | parquet-java  | arrow-go | arrow-rs | cudf  | hyparquet | duckdb |
-| ----------------------------------------- | ----- | ------------- | -------- | -------- | ----- | --------- | ------ |
-| xxHash-based bloom filters                |  (R)  |  ✅           |  ✅      |  ✅      |  (R)  |           |  ✅    |
-| Bloom filter length (1)                   |  (R)  |  ✅           |  ✅      |  ✅      |  (R)  |           |  ✅    |
-| Statistics min_value, max_value           |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  ✅       |  ✅    |
-| Page index                                |  ✅   |  ✅           |  ✅      |  ✅      |  ✅   |  (R)      |  (R)   |
-| Page CRC32 checksum                       |  ✅   |  ✅           |  ❌      |  ✅      |  ❌   |  ❌       |  (R)   |
-| Modular encryption                        |  ✅   |  ✅           |  ✅      |  ✅      |  ❌   |  ❌       | ✅ (*) |
-| Size statistics (2)                       |  ✅   |  ✅           |  (R)     |  ✅      |  ✅   |           |  (R)   |
+| Feature                         | arrow | parquet-java  | arrow-go | arrow-rs | cudf | hyparquet | duckdb |
+|---------------------------------| ----- | ------------- | -------- | -------- | ---- | --------- | ------ |
+| [xxHash-based bloom filters]    |  (R)  |  ✅           |  ✅      |  ✅      |  (R) |           |  ✅    |
+| Bloom filter length (1)         |  (R)  |  ✅           |  ✅      |  ✅      |  (R) |           |  ✅    |
+| Statistics min_value, max_value |  ✅   |  ✅           |  ✅      |  ✅      |  ✅  |  ✅       |  ✅    |
+| [Page index]                    |  ✅   |  ✅           |  ✅      |  ✅      |  ✅  |  (R)      |  (R)   |
+| Page CRC32 checksum             |  ✅   |  ✅           |  ❌      |  ✅      |  ❌  |  ❌       |  (R)   |
+| [Modular encryption]            |  ✅   |  ✅           |  ✅      |  ✅      |  ❌  |  ❌       |  ✅ (*) |
+| Size statistics (2)             |  ✅   |  ✅           |  (R)     |  ✅      |  ✅  |           |  (R)   |
+| Data Page V2 (3)                |  ✅   |  ✅           |  ✅      |  ✅      |  ✅  |  ✅       |  ✅    |
 
-* \(1) In parquet.thrift: ColumnMetaData->bloom_filter_length
+* \(1) In [parquet.thrift]: ColumnMetaData->bloom_filter_length
 
-* \(2) In parquet.thrift: ColumnMetaData->size_statistics
+* \(2) In [parquet.thrift]: ColumnMetaData->size_statistics
+
+* \(3) In [parquet.thrift]: DataPageHeaderV2
+
+[xxHash-based bloom filters]: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
+[parquet.thrift]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift
+[Page index]: https://github.com/apache/parquet-format/blob/master/PageIndex.md
+[Modular encryption]: https://github.com/apache/parquet-format/blob/master/Encryption.md
+
 
 * (*) Partial support
 
