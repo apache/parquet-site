@@ -778,6 +778,7 @@ implementations.&lt;/p>
 &lt;li>(1) Only supported to use its annotated physical type&lt;/li>
 &lt;/ul>
 &lt;h3 id="encodings">Encodings&lt;/h3>
+&lt;p>Encodings are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L566">&lt;code>enum Encoding&lt;/code> in parquet.thrift&lt;/a> and described in &lt;a href="https://github.com/apache/parquet-format/blob/master/Encodings.md">Encodings.md&lt;/a>&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -888,6 +889,7 @@ implementations.&lt;/p>
 &lt;li>(1) Partial read support, but only in the case of level data with a bitwidth of 0&lt;/li>
 &lt;/ul>
 &lt;h3 id="compressions">Compressions&lt;/h3>
+&lt;p>Compressions are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L642">&lt;code>enum CompressionCodec&lt;/code> in parquet.thrift&lt;/a> and described in &lt;a href="https://github.com/apache/parquet-format/blob/master/Compression.md">Compression.md&lt;/a>&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1000,7 +1002,7 @@ implementations.&lt;/p>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>xxHash-based bloom filters&lt;/td>
+&lt;td>&lt;a href="https://github.com/apache/parquet-format/blob/master/BloomFilter.md">xxHash-based bloom filters&lt;/a>&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -1030,7 +1032,7 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>Page index&lt;/td>
+&lt;td>&lt;a href="https://github.com/apache/parquet-format/blob/master/PageIndex.md">Page index&lt;/a>&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -1050,7 +1052,7 @@ implementations.&lt;/p>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>Modular encryption&lt;/td>
+&lt;td>&lt;a href="https://github.com/apache/parquet-format/blob/master/Encryption.md">Modular encryption&lt;/a>&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -1069,18 +1071,31 @@ implementations.&lt;/p>
 &lt;td>&lt;/td>
 &lt;td>(R)&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>Data Page V2 (3)&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;ul>
 &lt;li>
-&lt;p>(1) In parquet.thrift: ColumnMetaData-&amp;gt;bloom_filter_length&lt;/p>
+&lt;p>(1) In &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift">parquet.thrift&lt;/a>: ColumnMetaData-&amp;gt;bloom_filter_length&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>(2) In parquet.thrift: ColumnMetaData-&amp;gt;size_statistics&lt;/p>
+&lt;p>(2) In &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift">parquet.thrift&lt;/a>: ColumnMetaData-&amp;gt;size_statistics&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>(*) Partial support&lt;/p>
+&lt;p>(3) In &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift">parquet.thrift&lt;/a>: DataPageHeaderV2&lt;/p>
 &lt;/li>
+&lt;/ul>
+&lt;ul>
+&lt;li>(*) Partial support&lt;/li>
 &lt;/ul>
 &lt;h3 id="high-level-data-apis-for-parquet-feature-usage">High level data APIs for Parquet feature usage&lt;/h3>
 &lt;table>
