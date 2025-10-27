@@ -73,8 +73,8 @@ Logical types are defined by the [`union LogicalType` in parquet.thrift] and des
 | JSON                                    | ✅    |  ✅ (1)      |  ✅     |  ✅ (1)   |  ❌  |  ✅      | ✅      |
 | BSON                                    | ❌    |  ✅ (1)      |  ✅     |  ✅ (1)   |  ❌  |  ❌      | ❌      |
 | [VARIANT]                               |       |              |  ✅     |  ✅       |      |  ❌      | ✅      |
-| [GEOMETRY]                              |       |              |         |           |      |  ✅      | ✅      |
-| [GEOGRAPHY]                             |       |              |         |           |      |  ✅      | ✅      |
+| [GEOMETRY]                              | ✅    |  ✅          |         |  ✅       |      |  ✅      | ✅      |
+| [GEOGRAPHY]                             | ✅    |  ✅          |         |  ✅       |      |  ✅      | ✅      |
 | LIST                                    | ✅    |  ✅          |  ✅     |  ✅       |  ✅  |  (R)     | ✅      |
 | MAP                                     | ✅    |  ✅          |  ✅     |  ✅       |  ✅  |  (R)     | ✅      |
 | UNKNOWN (always null)                   | ✅    |  ✅          |  ✅     |  ✅       |  ✅  |  ✅      | ✅      |
