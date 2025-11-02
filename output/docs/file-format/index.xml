@@ -448,14 +448,15 @@ the scan.&lt;/p>
 field in the &lt;code>FileMetaData&lt;/code> struct of the footer.&lt;/p></description></item><item><title>Docs: Implementation status</title><link>/docs/file-format/implementationstatus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/implementationstatus/</guid><description>
 &lt;p>This page summarizes the features supported by different Parquet
 implementations.&lt;/p>
-&lt;p>&lt;em>Note&lt;/em>: This is a work in progress and we would welcome help expanding its scope.&lt;/p>
+&lt;p>&lt;em>Note&lt;/em>: If you find out of date information, please help us improve the accuracy
+of this page by opening an issue or submitting a pull request.&lt;/p>
 &lt;h3 id="legend">Legend&lt;/h3>
 &lt;p>The value in each box means:&lt;/p>
 &lt;ul>
 &lt;li>✅: supported&lt;/li>
 &lt;li>❌: not supported&lt;/li>
 &lt;li>(R/W): partial reader/writer only support&lt;/li>
-&lt;li>(blank) no data&lt;/li>
+&lt;li>(blank): no data&lt;/li>
 &lt;/ul>
 &lt;p>Implementations:&lt;/p>
 &lt;ul>
@@ -468,6 +469,7 @@ implementations.&lt;/p>
 &lt;li>&lt;a href="https://github.com/duckdb/duckdb">duckdb&lt;/a> (C++)&lt;/li>
 &lt;/ul>
 &lt;h3 id="physical-types">Physical types&lt;/h3>
+&lt;p>Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32">&lt;code>enum Type&lt;/code> in parquet.thrift&lt;/a>&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -568,6 +570,7 @@ implementations.&lt;/p>
 &lt;li>(1) This type is deprecated, but as of 2024 it&amp;rsquo;s common in currently produced parquet files&lt;/li>
 &lt;/ul>
 &lt;h3 id="logical-types">Logical types&lt;/h3>
+&lt;p>Logical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L471">&lt;code>union LogicalType&lt;/code> in parquet.thrift&lt;/a> and described in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md">LogicalTypes.md&lt;/a>&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -663,6 +666,16 @@ implementations.&lt;/p>
 &lt;td>✅&lt;/td>
 &lt;/tr>
 &lt;tr>
+&lt;td>FLOAT16&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅ (1)&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
 &lt;td>DATE&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -733,6 +746,36 @@ implementations.&lt;/p>
 &lt;td>❌&lt;/td>
 &lt;/tr>
 &lt;tr>
+&lt;td>&lt;a href="https://github.com/apache/parquet-format/blob/master/VariantEncoding.md">VARIANT&lt;/a>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types">GEOMETRY&lt;/a>&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types">GEOGRAPHY&lt;/a>&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
 &lt;td>LIST&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
@@ -756,16 +799,6 @@ implementations.&lt;/p>
 &lt;td>UNKNOWN (always null)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
-&lt;td>✅&lt;/td>
-&lt;td>✅&lt;/td>
-&lt;td>✅&lt;/td>
-&lt;td>✅&lt;/td>
-&lt;td>✅&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>FLOAT16&lt;/td>
-&lt;td>✅&lt;/td>
-&lt;td>✅ (1)&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
 &lt;td>✅&lt;/td>
