@@ -18,7 +18,7 @@ It provides high performance compression and encoding schemes to handle complex 
 
 
 {{< blocks/section color="white" type="row">}}
-{{% blocks/feature icon="fab fa-jira" title="Documentation" url="docs" %}}
+{{% blocks/feature icon="fa fa-book" title="Documentation" url="docs" %}}
 Browse project documentation including the format specification.
 {{% /blocks/feature %}}
 

@@ -16,11 +16,11 @@ enableGitInfo = true
 # Comment out to enable taxonomies in Docsy
 # disableKinds = ["taxonomy", "taxonomyTerm"]
 
-# Link to Github
+# Link to Github (top right link in navbar)
 [[menu.main]]
     name = "GitHub"
     weight = 50
-    url = "https://github.com/apache/parquet-java/"
+    url = "https://github.com/apache/parquet-format/"
     pre = "<i class='fab fa-github'></i>"
 
 # Configure how URLs look like per section.
@@ -162,41 +162,11 @@ enable = false
   url = "https://lists.apache.org/list.html?dev@parquet.apache.org"
   icon = "fa fa-box-archive"
   desc = "View archives of past discussions."
-[[params.links.user]]
-  name ="Twitter"
-  url = "https://twitter.com/ApacheParquet"
-  icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news!"
-[[params.links.user]]
-  name = "Stack Overflow"
-  url = "https://stackoverflow.com/questions/tagged/parquet"
-  icon = "fab fa-stack-overflow"
-  desc = "Practical questions and curated answers"
-[[params.links.user]]
-  name = "Parquet Community Sync"
-  url = "https://groups.google.com/g/apache-parquet-community-sync/about"
-  icon = "fa fa-calendar"
-  desc = "Join for calendar events and community sync"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
-[[params.links.developer]]
-  name = "GitHub"
-  url = "https://github.com/apache/parquet-java"
-  icon = "fab fa-github"
-  desc = "Development takes place here!"
-[[params.links.developer]]
-  name = "Slack"
-  url = "https://the-asf.slack.com/"
-  icon = "fab fa-slack"
-  desc = "Chat with other project developers"
-[[params.links.developer]]
-  name = "Developer mailing list"
-  url = "mailto:dev@parquet.apache.org"
-  icon = "fa fa-envelope"
-  desc = "Discuss development issues around the project"
 [[params.links.developer]]
   name = "Parquet specification"
   url = "https://github.com/apache/parquet-format"
-  icon = "fas fa-jira"
+  icon = "fab fa-github"
   desc = "Parquet specification"
 
 [module]
