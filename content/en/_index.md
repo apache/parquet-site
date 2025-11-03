@@ -7,7 +7,7 @@ title: Parquet
   Documentation <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="/blog/">
-  Download <i class="fab fa-github ms-2 "></i>
+  Releases <i class="fa fa-arrow-circle-down ms-2 "></i>
 </a>
 <p class="lead mt-5">
 Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. 
