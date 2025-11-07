@@ -38,7 +38,7 @@ latexDashes = true
 [imaging]
 resampleFilter = "CatmullRom"
 quality = 75
-anchor = "smart"
+anchor = "Smart"
 
 # Language configuration
 [languages]
@@ -208,3 +208,20 @@ min = "0.152.0"
 [[module.imports]]
 path = "github.com/google/docsy"
 disable = false
+# Override mounts to avoid problematic ../../node_modules paths
+[[module.imports.mounts]]
+source = "assets"
+target = "assets"
+[[module.imports.mounts]]
+source = "i18n"
+target = "i18n"
+[[module.imports.mounts]]
+source = "layouts"
+target = "layouts"
+[[module.imports.mounts]]
+source = "static"
+target = "static"
+[[module.imports.mounts]]
+source = "assets/_vendor/bootstrap/scss"
+target = "assets/vendor/bootstrap/scss/vendor"
+# Bootstrap and Font Awesome are imported via Docsy's nested imports (see Docsy's hugo.yaml lines 49-63)
