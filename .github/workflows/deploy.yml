@@ -41,6 +41,11 @@ jobs:
           hugo-version: '0.152.0'
           extended: true
 
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -54,6 +59,9 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm install
+
+      - name: Download Hugo modules
+        run: hugo mod get
 
       - name: Build
         run: hugo --minify --panicOnWarning
