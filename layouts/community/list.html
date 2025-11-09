@@ -1,0 +1,89 @@
+{{ define "main" -}}
+
+<!-- based off of https://github.com/google/docsy/blob/main/layouts/community/list.html -->
+
+<div><a class="td-offset-anchor"></a></div>
+<section
+        class="row td-box td-box--primary position-relative td-box--height-auto"
+>
+    <div class="col-12">
+        <div class="container text-center td-arrow-down">
+      <span class="h4 mb-0">
+        <h1>Join the Apache Parquet Community</h1>
+          <h2>"If you want to go fast, go alone; if you want to go far, go together"</h2>
+
+        <p>Apache Parquet is part of the
+            <a href="https://www.apache.org">Apache Software Foundation</a>
+            and is developed and maintained by a contributors from around the world.
+            We'd love you to join us!</p>
+      </span>
+        </div>
+    </div>
+</section>
+
+<!--
+In the real docsy theme, the content is generated via the partial "community_links.html".
+Here we inline it for simplicity (aka I am not enough of a hugo expert
+to figure out how to do it "correctly")
+-->
+<!--
+{{ partial "community_links.html" . -}}
+-->
+
+<section class="row td-box td-box--white td-box--height-auto linkbox">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <h2>Learn and Connect</h2>
+        <p><b>Development Mailing List</b>
+            Most Parquet related discussion occurs on the developer mailing list,
+            <a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org</a>:
+        </p>
+        <ul>
+            <li title="Subscribe">
+                <a href="mailto:dev-subscribe@parquet.apache.org"><i class="fa fa-envelope-circle-check"></i> Subscribe</a>:
+                Send an email to subscribe to the list
+            </li>
+            <li title="Post">
+                <a href="mailto:dev@parquet.apache.org"><i class="fa fa-envelope"></i> Post</a>:
+                Send a message to the list
+            </li>
+            <li title="Archives">
+                <a href="https://lists.apache.org/list.html?dev@parquet.apache.org"><i class="fa fa-box-archive"></i> Archives</a>:
+                View archives of past discussions.
+            </li>
+        </ul>
+        <p> We also hold bi-weekly video calls to coordinate efforts.
+            Everybody is welcome to bring a topic or just listen in.
+            We send meeting reminders with links to the
+            developer mailing list before each meeting, and a summary after each meeting.
+            See
+            <a href="https://lists.apache.org/thread/bjdkscmx7zvgfbw0wlfttxy8h6v3f71t">here</a>
+            for more details on how the meeting is run, the
+            <a href="https://www.youtube.com/playlist?list=PLsc4WKPCP34Q6RFVeqEVXJshpAReTmgUj">archives</a>
+            for recordings of past meetings, and
+            <a href="https://docs.google.com/document/d/e/2PACX-1vSDHW7gvG8eO6aIxaIVPrZSqYYhtRDb5W1imnbpM4QRYNPsTwEO1fU5z7SEhVIFa4YqWJeSRJ9tcXYS">here</a>
+            for agendas of past meetings.
+        </p>
+        <ul>
+            <li title="Subscribe">
+                <a href="https://groups.google.com/g/apache-parquet-community-sync/about"><i class="fa fa-users"></i> Join Group</a>:
+                Join the Google group to access the calendar invite, agenda, and recordings of past calls.
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <h2>Develop and Contribute</h2>
+        <p>If you want to get more involved by contributing to Parquet, please see our
+            <a href="/docs/contribution-guidelines/">Developer Guide.</a>
+        </p>
+    </div>
+</section>
+
+
+{{ with .Content -}}
+<div class="td-content">
+    {{ . }}
+</div>
+{{- end -}}
+
+{{ end }}

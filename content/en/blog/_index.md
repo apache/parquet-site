@@ -1,6 +1,6 @@
 ---
-title: "Release"
-linkTitle: "Release"
+title: "Releases"
+linkTitle: "Releases"
 menu:
   main:
     weight: 3
