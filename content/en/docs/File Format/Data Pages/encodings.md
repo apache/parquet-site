@@ -12,7 +12,7 @@ Supported Types: all
 This is the plain encoding that must be supported for types.  It is
 intended to be the simplest encoding.  Values are encoded back to back.
 
-The plain encoding is used whenever a more efficient encoding can not be used. It
+The plain encoding is used whenever a more efficient encoding cannot be used. It
 stores the data in the following format:
  - BOOLEAN: [Bit Packed](#BITPACKED), LSB first
  - INT32: 4 bytes little endian

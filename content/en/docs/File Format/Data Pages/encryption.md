@@ -453,7 +453,7 @@ because it is not required for footer integrity verification by readers.
 |------------------|-----------------|
 
 
-The plaintext footer mode sets the following fields in the the FileMetaData structure:
+The plaintext footer mode sets the following fields in the FileMetaData structure:
 
 ```c
 struct FileMetaData {

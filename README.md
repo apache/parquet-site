@@ -23,7 +23,7 @@ npm install -D postcss-cli
 npm install -D postcss
 ```
 
-To preview this website site locally, run the following in the root of the directory:
+To preview this website locally, run the following in the root of the directory:
 
 ```shell
 hugo server

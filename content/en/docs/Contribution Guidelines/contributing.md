@@ -38,7 +38,7 @@ Parquet-Java leverages [semantic versioning](https://semver.org/#semantic-versio
 All interfaces, classes, and methods targeted for deprecation must include the following:
 
 - `@Deprecated` annotation on the appropriate element
-- `@depreceted` javadoc comment including: the version for removal, the appropriate alternative for usage
+- `@deprecated` javadoc comment including: the version for removal, the appropriate alternative for usage
 - Replacement of existing code paths that use the deprecated behavior
 
 ```java
@@ -72,7 +72,7 @@ git remote add github-apache git@github.com:apache/parquet-java.git
 Now you can cherry-pick a PR to a previous branch:
 
 ```sh
-get fetch --all
+git fetch --all
 git checkout parquet-1.14.x
 git reset --hard github-apache/parquet-1.14.x
 git cherry-pick <hash-from-the-commit>
