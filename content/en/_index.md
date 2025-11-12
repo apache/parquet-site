@@ -22,8 +22,8 @@ It provides high performance compression and encoding schemes to handle complex 
 Browse project documentation including the format specification.
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="https://github.com/apache/parquet-java" %}}
-We do a [Pull Request](https://github.com/apache/parquet-java/pulls) contributions workflow on **GitHub**. New users are always welcome!
+{{% blocks/feature icon="fab fa-github" title="Contributions welcome!" url="community" %}}
+Join the community to help us improve Parquet together. New users and contributors are always welcome!
 {{% /blocks/feature %}}
 
 
