@@ -1,8 +1,10 @@
 # Parquet Website
 
-This website is built / powered by [Hugo](https://gohugo.io/), and extended from the [Docsy Theme](https://www.docsy.dev/).
+This repository contains the source code for https://parquet.apache.org/
 
-The following steps assume that you have `hugo` installed and working. 
+This website is built / powered by [Hugo](https://gohugo.io/) with the [Docsy Theme](https://www.docsy.dev/).
+
+The following steps assume that you have `hugo` installed and working.
 You can also use docker, see the [Docker section](#docker) for more information.
 
 ## Building and Running Locally
