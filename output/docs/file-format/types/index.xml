@@ -1,8 +1,7 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Types</title><link>/docs/file-format/types/</link><description>Recent content in Types on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/docs/file-format/types/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>
-&lt;p>Logical types are used to extend the types that parquet can be used to store,
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Types on Parquet</title><link>/docs/file-format/types/</link><description>Recent content in Types on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/types/index.xml" rel="self" type="application/rss+xml"/><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
 by specifying how the primitive types should be interpreted. This keeps the set
 of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodings. For
 example, strings are stored as byte arrays (binary) with a UTF8 annotation.
 These annotations define how to further decode and interpret the data.
-Annotations are stored as &lt;code>LogicalType&lt;/code> fields in the file metadata and are
-documented in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md">LogicalTypes.md&lt;/a>&lt;/p></description></item></channel></rss>
+Annotations are stored as &lt;code&gt;LogicalType&lt;/code&gt; fields in the file metadata and are
+documented in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md"&gt;LogicalTypes.md&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

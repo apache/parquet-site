@@ -1,432 +1,518 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 1.16.0</title><link>/blog/2025/09/03/1.16.0/</link><pubDate>Wed, 03 Sep 2025 00:00:00 +0000</pubDate><guid>/blog/2025/09/03/1.16.0/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz">latest version of parquet-java is 1.16.0&lt;/a>.&lt;/p>
-&lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.16.0">Release on Github&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz">latest version of parquet-java on the previous minor branch is 1.15.2&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.16.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 2.12.0</title><link>/blog/2025/08/28/2.12.0/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/2025/08/28/2.12.0/</guid><description>
-&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.12.0">Github Release Link&lt;/a>.&lt;/p>
-&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz">latest version of parquet-format is 2.12.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.15.2</title><link>/blog/2025/05/01/1.15.2/</link><pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate><guid>/blog/2025/05/01/1.15.2/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz">latest version of parquet-java is 1.15.2&lt;/a>.&lt;/p>
-&lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.2">Release on Github&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz">latest version of parquet-java on the previous minor branch is 1.14.4&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.15.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 2.11.0</title><link>/blog/2025/03/23/2.11.0/</link><pubDate>Sun, 23 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/23/2.11.0/</guid><description>
-&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.11.0">Github Release Link&lt;/a>.&lt;/p>
-&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz">latest version of parquet-format is 2.11.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.15.1</title><link>/blog/2025/03/16/1.15.1/</link><pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/16/1.15.1/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz">latest version of parquet-java is 1.15.1&lt;/a>.&lt;/p>
-&lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.1">Release on Github&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz">latest version of parquet-java on the previous minor branch is 1.14.4&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.15.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.15.0</title><link>/blog/2024/12/02/1.15.0/</link><pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate><guid>/blog/2024/12/02/1.15.0/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz">latest version of parquet-java is 1.15.0&lt;/a>.&lt;/p>
-&lt;p>For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.0">Release on Github&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz">latest version of parquet-java on the previous minor branch is 1.15.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/iceberg/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.15.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.14.4</title><link>/blog/2024/11/11/1.14.4/</link><pubDate>Mon, 11 Nov 2024 00:00:00 +0000</pubDate><guid>/blog/2024/11/11/1.14.4/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz">latest version of parquet-java is 1.14.4&lt;/a>.&lt;/p>
-&lt;p>With the following bugfixes:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/apache/parquet-java/issues/3040">GH-3040&lt;/a>: DictionaryFilter.canDrop may return false positive result when dict size exceeds 8k&lt;/li>
-&lt;li>&lt;a href="https://github.com/apache/parquet-java/issues/3029">GH-3029&lt;/a>: Fix EncryptionPropertiesHelper not to use &lt;code>java.nio.file.Path&lt;/code>&lt;/li>
-&lt;li>&lt;a href="https://github.com/apache/parquet-java/pull/3042">GH-3042&lt;/a>: Throw exception in BytesInput&lt;/li>
-&lt;/ul>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz">latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.14.4&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.14.3</title><link>/blog/2024/10/05/1.14.3/</link><pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate><guid>/blog/2024/10/05/1.14.3/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz">latest version of parquet-java is 1.14.3&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz">latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.14.3&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.14.2</title><link>/blog/2024/08/26/1.14.2/</link><pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate><guid>/blog/2024/08/26/1.14.2/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz">latest version of parquet-java is 1.14.2&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz">latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.14.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.14.1</title><link>/blog/2024/06/16/1.14.1/</link><pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate><guid>/blog/2024/06/16/1.14.1/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz">latest version of parquet-java is 1.14.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz">latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.14.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.14.0</title><link>/blog/2024/05/07/1.14.0/</link><pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate><guid>/blog/2024/05/07/1.14.0/</guid><description>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz">latest version of parquet-java is 1.14.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz">latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.14.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 2.10.0</title><link>/blog/2023/11/20/2.10.0/</link><pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate><guid>/blog/2023/11/20/2.10.0/</guid><description>
-&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.10.0">Github Release Link&lt;/a>.&lt;/p>
-&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz">latest version of parquet-format is 2.10.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.13.1</title><link>/blog/2023/05/18/1.13.1/</link><pubDate>Thu, 18 May 2023 00:00:00 +0000</pubDate><guid>/blog/2023/05/18/1.13.1/</guid><description>
-&lt;p>The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz">latest version of parquet-java is 1.13.1&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz">latest version of parquet-java on the previous minor branch is 1.12.3&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.13.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.13.0</title><link>/blog/2023/04/06/1.13.0/</link><pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate><guid>/blog/2023/04/06/1.13.0/</guid><description>
-&lt;p>The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz">latest version of parquet-java is 1.13.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz">latest version of parquet-java on the previous minor branch is 1.12.3&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.13.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.12.3</title><link>/blog/2022/05/26/1.12.3/</link><pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate><guid>/blog/2022/05/26/1.12.3/</guid><description>
-&lt;p>The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz">latest version of parquet-java is 1.12.3&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz">latest version of parquet-java on the previous minor branch is 1.11.2&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.12.3&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 1.12.2</title><link>/blog/2021/10/06/1.12.2/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/1.12.2/</guid><description>
-&lt;p>The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz">latest version of parquet-java is 1.12.2&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz">latest version of parquet-java on the previous minor branch is 1.11.2&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="downloading-from-the-maven-central-repository">Downloading from the Maven central repository&lt;/h3>
-&lt;p>The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet">releases to Maven Central&lt;/a>.&lt;/p>
-&lt;p>Add the following dependency section to your pom.xml:&lt;/p>
-&lt;pre tabindex="0">&lt;code> &amp;lt;dependencies&amp;gt;
-...
-&amp;lt;dependency&amp;gt;
-&amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
-&amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
-&amp;lt;version&amp;gt;1.12.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
-&amp;lt;/dependency&amp;gt;
-...
-&amp;lt;/dependencies&amp;gt;
-&lt;/code>&lt;/pre>&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 2.9.0</title><link>/blog/2021/10/06/2.9.0/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/2.9.0/</guid><description>
-&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.9.0">Github Release Link&lt;/a>.&lt;/p>
-&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz">latest version of parquet-format is 2.9.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 2.8.0</title><link>/blog/2020/01/13/2.8.0/</link><pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate><guid>/blog/2020/01/13/2.8.0/</guid><description>
-&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.8.0">Github Release Link&lt;/a>.&lt;/p>
-&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz">latest version of parquet-format is 2.8.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item><item><title>Blog: 2.7.0</title><link>/blog/2019/09/25/2.7.0/</link><pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate><guid>/blog/2019/09/25/2.7.0/</guid><description>
-&lt;p>&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.7.0">Github Release Link&lt;/a>.&lt;/p>
-&lt;p>The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz">latest version of parquet-format is 2.7.0&lt;/a>.&lt;/p>
-&lt;p>To &lt;a href="https://www.apache.org/info/verification.html">check the validity&lt;/a> of this release, use its:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://downloads.apache.org/parquet/KEYS">Release manager OpenPGP key&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.asc">OpenPGP signature&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.sha512">SHA-512&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h3 id="older-releases">Older Releases&lt;/h3>
-&lt;p>Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/">https://archive.apache.org/dist/parquet/&lt;/a>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Parquet allows the data block inside dictionary pages and data pages to
+be compressed for better space efficiency. The Parquet format supports
+several compression covering different areas in the compression ratio /
+processing cost spectrum.&lt;/p&gt;
+&lt;p&gt;The detailed specifications of compression codecs are maintained externally
+by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;
+&lt;p&gt;For all compression codecs except the deprecated &lt;code&gt;LZ4&lt;/code&gt; codec, the raw data
+of a (data or dictionary) page is fed &lt;em&gt;as-is&lt;/em&gt; to the underlying compression
+library, without any additional framing or padding. The information required
+for precise allocation of compressed and decompressed buffers is written
+in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="plain-plain--0"&gt;Plain: (PLAIN = 0)&lt;/h3&gt;
+&lt;p&gt;Supported Types: all&lt;/p&gt;
+&lt;p&gt;This is the plain encoding that must be supported for types. It is
+intended to be the simplest encoding. Values are encoded back to back.&lt;/p&gt;
+&lt;p&gt;The plain encoding is used whenever a more efficient encoding can not be used. It
+stores the data in the following format:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BOOLEAN: &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED"&gt;Bit Packed&lt;/a&gt;, LSB first&lt;/li&gt;
+&lt;li&gt;INT32: 4 bytes little endian&lt;/li&gt;
+&lt;li&gt;INT64: 8 bytes little endian&lt;/li&gt;
+&lt;li&gt;INT96: 12 bytes little endian (deprecated)&lt;/li&gt;
+&lt;li&gt;FLOAT: 4 bytes IEEE little endian&lt;/li&gt;
+&lt;li&gt;DOUBLE: 8 bytes IEEE little endian&lt;/li&gt;
+&lt;li&gt;BYTE_ARRAY: length in 4 bytes little endian followed by the bytes contained in the array&lt;/li&gt;
+&lt;li&gt;FIXED_LEN_BYTE_ARRAY: the bytes contained in the array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For native types, this outputs the data as little endian. Floating
+point types are encoded in IEEE.&lt;/p&gt;</description></item><item><title>Parquet Modular Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
+mechanism that encrypts and authenticates the file data and metadata - while allowing
+for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
+and compression).&lt;/p&gt;
+&lt;h2 id="1-problem-statement"&gt;1 Problem Statement&lt;/h2&gt;
+&lt;p&gt;Existing data protection solutions (such as flat encryption of files, in-storage encryption,
+or use of an encrypting storage client) can be applied to Parquet files, but have various
+security or performance issues. An encryption mechanism, integrated in the Parquet format,
+allows for an optimal combination of data security, processing speed and encryption granularity.&lt;/p&gt;</description></item><item><title>License</title><link>/docs/asf/license/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/license/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/licenses/"&gt;License&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Spark Summit 2020</title><link>/docs/learning-resources/presentations/spark-summit-2020/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/spark-summit-2020/</guid><description>&lt;p&gt;&lt;a href="https://www.slideshare.net/databricks/the-apache-spark-file-format-ecosystem"&gt;Slides&lt;/a&gt;&lt;/p&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+ &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/auNAzC3AU18?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
+ &lt;/div&gt;</description></item><item><title>Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-format"&gt;parquet-format&lt;/a&gt; project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>&lt;p&gt;Building
+Java resources can be build using &lt;code&gt;mvn package&lt;/code&gt;. The current stable version should always be available from Maven Central.&lt;/p&gt;
+&lt;p&gt;C++ thrift resources can be generated via make.&lt;/p&gt;
+&lt;p&gt;Thrift can be also code-genned into any other thrift-supported language.&lt;/p&gt;</description></item><item><title>Hadoop Summit 2014</title><link>/docs/learning-resources/presentations/hadoop-summit-2014/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/hadoop-summit-2014/</guid><description>&lt;p&gt;&lt;a href="https://www.slideshare.net/cloudera/hadoop-summit-36479635"&gt;Slides&lt;/a&gt;&lt;/p&gt;
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+ &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/MZNjmfx4LMc?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
+ &lt;/div&gt;</description></item><item><title>Motivation</title><link>/docs/overview/motivation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/overview/motivation/</guid><description>&lt;p&gt;We created Parquet to make the advantages of compressed, efficient columnar data representation available to any project in the Hadoop ecosystem.&lt;/p&gt;
+&lt;p&gt;Parquet is built from the ground up with complex nested data structures in mind, and uses the &lt;a href="https://github.com/julienledem/redelm/wiki/The-striping-and-assembly-algorithms-from-the-Dremel-paper"&gt;record shredding and assembly algorithm&lt;/a&gt; described in the Dremel paper. We believe this approach is superior to simple flattening of nested name spaces.&lt;/p&gt;
+&lt;p&gt;Parquet is built to support very efficient compression and encoding schemes. Multiple projects have demonstrated the performance impact of applying the right compression and encoding scheme to the data. Parquet allows compression schemes to be specified on a per-column level, and is future-proofed to allow adding more encodings as they are invented and implemented.&lt;/p&gt;</description></item><item><title>Security</title><link>/docs/asf/security/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/security/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/security/"&gt;Security&lt;/a&gt;&lt;/p&gt;</description></item><item><title>#CONF 2014</title><link>/docs/learning-resources/presentations/conf-2014-parquet-summit-twitter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/conf-2014-parquet-summit-twitter/</guid><description>&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
+ &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/Qfp6Uv1UrA0?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
+ &lt;/div&gt;</description></item><item><title>Contributing to Parquet-Java</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>&lt;h2 id="pull-requests"&gt;Pull Requests&lt;/h2&gt;
+&lt;p&gt;We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-java"&gt;github.com/apache/parquet-java&lt;/a&gt; repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/parquet-java.git"&gt;https://github.com/apache/parquet-java.git&lt;/a&gt;. Here are a few tips to get your contribution in:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.&lt;/li&gt;
+&lt;li&gt;Create an Issue on the &lt;a href="https://github.com/apache/parquet-java/issues"&gt;Parquet-Java issues&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the Issue &lt;code&gt;GH-2935&lt;/code&gt;: (ex: &lt;a href="https://github.com/apache/parquet-java/pull/2951"&gt;https://github.com/apache/parquet-java/pull/2951&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Make sure that your code passes the unit tests. You can run the tests with &lt;code&gt;mvn test&lt;/code&gt; in the root directory.&lt;/li&gt;
+&lt;li&gt;Add new unit tests for your code.&lt;/li&gt;
+&lt;li&gt;All Pull Requests are tested automatically on &lt;a href="https://github.com/apache/parquet-java/actions"&gt;GitHub Actions&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you’d like to report a bug but don’t have time to fix it, you can still &lt;a href="https://github.com/apache/parquet-java/issues"&gt;raise an issue&lt;/a&gt;, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org"&gt;dev@parquet.apache.org&lt;/a&gt;).&lt;/p&gt;</description></item><item><title>Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/foundation/thanks.html"&gt;Sponsor&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Donate</title><link>/docs/asf/donate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/donate/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/foundation/sponsorship.html"&gt;Donate&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Releasing Parquet-Java</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>&lt;h3 id="setup"&gt;Setup&lt;/h3&gt;
+&lt;p&gt;N.B. The mechanics of releasing parquet-format is the same (e.g. setting up keys, branching, votes, etc)&lt;/p&gt;
+&lt;p&gt;You will need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PGP code signing keys, published in &lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;KEYS&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Permission to stage artifacts in &lt;a href="https://repository.apache.org/"&gt;Nexus&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mvn deploy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html"&gt;publishing Maven artifacts documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="release-process"&gt;Release process&lt;/h3&gt;
+&lt;p&gt;Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p&gt;</description></item><item><title>Strata 2013</title><link>/docs/learning-resources/presentations/strata-2013/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/strata-2013/</guid><description>&lt;p&gt;&lt;a href="https://www.slideshare.net/julienledem/parquet-stratany-hadoopworld2013"&gt;Slides&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>&lt;h3 id="row-group-size"&gt;Row Group Size&lt;/h3&gt;
+&lt;p&gt;Larger row groups allow for larger column chunks which makes it
+possible to do larger sequential IO. Larger groups also require more buffering in
+the write path (or a two pass write). We recommend large row groups (512MB - 1GB).
+Since an entire row group might need to be read, we want it to completely fit on
+one HDFS block. Therefore, HDFS block sizes should also be set to be larger. An
+optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block
+per HDFS file.&lt;/p&gt;</description></item><item><title>Events</title><link>/docs/asf/events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/events/</guid><description>&lt;p&gt;&lt;a href="https://apachecon.com/?ref=parquet.apache.org"&gt;Events&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Extensibility</title><link>/docs/file-format/extensibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/extensibility/</guid><description>&lt;p&gt;There are many places in the format for compatible extensions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;File Version: The file metadata contains a version.&lt;/li&gt;
+&lt;li&gt;Encodings: Encodings are specified by enum and more can be added in the future.&lt;/li&gt;
+&lt;li&gt;Page types: Additional page types can be added and safely skipped.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
+by specifying how the primitive types should be interpreted. This keeps the set
+of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodings. For
+example, strings are stored as byte arrays (binary) with a UTF8 annotation.
+These annotations define how to further decode and interpret the data.
+Annotations are stored as &lt;code&gt;LogicalType&lt;/code&gt; fields in the file metadata and are
+documented in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md"&gt;LogicalTypes.md&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
+&lt;p&gt;All thrift structures are serialized using the TCompactProtocol. The full
+definition of these structures is given in the Parquet
+&lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift"&gt;Thrift definition&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="file-metadata"&gt;File metadata&lt;/h2&gt;
+&lt;p&gt;In the diagram below, file metadata is described by the &lt;code&gt;FileMetaData&lt;/code&gt;
+structure. This file metadata provides offset and size information useful
+when navigating the Parquet file.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;
+&lt;h2 id="page-header"&gt;Page header&lt;/h2&gt;
+&lt;p&gt;Page header metadata (&lt;code&gt;PageHeader&lt;/code&gt; and children in the diagram) is stored
+in-line with the page data, and is used in the reading and decoding of data.&lt;/p&gt;</description></item><item><title>Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>&lt;p&gt;To encode nested columns, Parquet uses the Dremel encoding with definition and
+repetition levels. Definition levels specify how many optional fields in the
+path for the column are defined. Repetition levels specify at what repeated field
+in the path has the value repeated. The max definition and repetition levels can
+be computed from the schema (i.e. how much nesting there is). This defines the
+maximum number of bits required to store the levels (levels are defined for all
+values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h3 id="problem-statement"&gt;Problem statement&lt;/h3&gt;
+&lt;p&gt;In their current format, column statistics and dictionaries can be used for predicate
+pushdown. Statistics include minimum and maximum value, which can be used to filter out
+values not in the range. Dictionaries are more specific, and readers can filter out values
+that are between min and max but not in the dictionary. However, when there are too many
+distinct values, writers sometimes choose not to add dictionaries because of the extra
+space they occupy. This leaves columns with large cardinalities and widely separated min
+and max without support for predicate pushdown.&lt;/p&gt;</description></item><item><title>Checksumming</title><link>/docs/file-format/data-pages/checksumming/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/checksumming/</guid><description>&lt;p&gt;Pages of all kinds can be individually checksummed. This allows disabling of checksums
+at the HDFS file level, to better support single row lookups. Checksums are calculated
+using the standard CRC32 algorithm - as used in e.g. GZip - on the serialized binary
+representation of a page (not including the page header itself).&lt;/p&gt;</description></item><item><title>Column Chunks</title><link>/docs/file-format/data-pages/columnchunks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/columnchunks/</guid><description>&lt;p&gt;Column chunks are composed of pages written back to back. The pages share a common
+header and readers can skip over pages they are not interested in. The data for the
+page follows the header and can be compressed and/or encoded. The compression and
+encoding is specified in the page metadata.&lt;/p&gt;
+&lt;p&gt;A column chunk might be partly or completely dictionary encoded. It means that
+dictionary indexes are saved in the data pages instead of the actual values. The
+actual values are stored in the dictionary page. See details in Encodings.md.
+The dictionary page must be placed at the first position of the column chunk. At
+most one dictionary page can be placed in a column chunk.&lt;/p&gt;</description></item><item><title>Error Recovery</title><link>/docs/file-format/data-pages/errorrecovery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/errorrecovery/</guid><description>&lt;p&gt;If the file metadata is corrupt, the file is lost. If the column metadata is corrupt,
+that column chunk is lost (but column chunks for this column in other row groups are
+okay). If a page header is corrupt, the remaining pages in that chunk are lost. If
+the data within a page is corrupt, that page is lost. The file will be more
+resilient to corruption with smaller row groups.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
+are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
+would be encoded with run-length encoding (0, 1000 times) for the definition levels and
+nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;p&gt;This document describes the format for column index pages in the Parquet
+footer. These pages contain statistics for DataPages and can be used to skip
+pages when scanning data in ordered and unordered columns.&lt;/p&gt;
+&lt;h2 id="problem-statement"&gt;Problem Statement&lt;/h2&gt;
+&lt;p&gt;In previous versions of the format, Statistics are stored for ColumnChunks in
+ColumnMetaData and for individual pages inside DataPageHeader structs. When
+reading pages, a reader had to process the page header to determine
+whether the page could be skipped based on the statistics. This means the reader
+had to access all pages in a column, thus likely reading most of the column
+data from disk.&lt;/p&gt;</description></item><item><title>Implementation status</title><link>/docs/file-format/implementationstatus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/implementationstatus/</guid><description>&lt;p&gt;This page summarizes the features supported by different Parquet
+implementations.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: If you find out of date information, please help us improve the accuracy
+of this page by opening an issue or submitting a pull request.&lt;/p&gt;
+&lt;h3 id="legend"&gt;Legend&lt;/h3&gt;
+&lt;p&gt;The value in each box means:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅: supported&lt;/li&gt;
+&lt;li&gt;❌: not supported&lt;/li&gt;
+&lt;li&gt;(R/W): partial reader/writer only support&lt;/li&gt;
+&lt;li&gt;(blank): no data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Implementations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet"&gt;arrow&lt;/a&gt; (C++)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; (Java)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/arrow-go/tree/main/parquet"&gt;arrow-go&lt;/a&gt; (Go)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/arrow-rs/blob/main/parquet/README.md"&gt;arrow-rs&lt;/a&gt; (Rust)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/rapidsai/cudf"&gt;cudf&lt;/a&gt; (cuDF C++)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/hyparam/hyparquet"&gt;hyparquet&lt;/a&gt; (JavaScript)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/duckdb/duckdb"&gt;duckdb&lt;/a&gt; (C++)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="physical-types"&gt;Physical types&lt;/h3&gt;
+&lt;p&gt;Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32"&gt;&lt;code&gt;enum Type&lt;/code&gt; in parquet.thrift&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.16.0</title><link>/blog/2025/09/03/1.16.0/</link><pubDate>Wed, 03 Sep 2025 00:00:00 +0000</pubDate><guid>/blog/2025/09/03/1.16.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz"&gt;latest version of parquet-java is 1.16.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.16.0"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.15.2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.12.0</title><link>/blog/2025/08/28/2.12.0/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/2025/08/28/2.12.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.12.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz"&gt;latest version of parquet-format is 2.12.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.15.2</title><link>/blog/2025/05/01/1.15.2/</link><pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate><guid>/blog/2025/05/01/1.15.2/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz"&gt;latest version of parquet-java is 1.15.2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.2"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.14.4&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.11.0</title><link>/blog/2025/03/23/2.11.0/</link><pubDate>Sun, 23 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/23/2.11.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.11.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz"&gt;latest version of parquet-format is 2.11.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.15.1</title><link>/blog/2025/03/16/1.15.1/</link><pubDate>Sun, 16 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/16/1.15.1/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz"&gt;latest version of parquet-java is 1.15.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.1"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.1/apache-parquet-1.15.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.14.4&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.15.0</title><link>/blog/2024/12/02/1.15.0/</link><pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate><guid>/blog/2024/12/02/1.15.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz"&gt;latest version of parquet-java is 1.15.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.0"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.15.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/iceberg/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.4</title><link>/blog/2024/11/11/1.14.4/</link><pubDate>Mon, 11 Nov 2024 00:00:00 +0000</pubDate><guid>/blog/2024/11/11/1.14.4/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz"&gt;latest version of parquet-java is 1.14.4&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With the following bugfixes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/parquet-java/issues/3040"&gt;GH-3040&lt;/a&gt;: DictionaryFilter.canDrop may return false positive result when dict size exceeds 8k&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/parquet-java/issues/3029"&gt;GH-3029&lt;/a&gt;: Fix EncryptionPropertiesHelper not to use &lt;code&gt;java.nio.file.Path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/parquet-java/pull/3042"&gt;GH-3042&lt;/a&gt;: Throw exception in BytesInput&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.3</title><link>/blog/2024/10/05/1.14.3/</link><pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate><guid>/blog/2024/10/05/1.14.3/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz"&gt;latest version of parquet-java is 1.14.3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.14.3&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.14.2</title><link>/blog/2024/08/26/1.14.2/</link><pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate><guid>/blog/2024/08/26/1.14.2/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz"&gt;latest version of parquet-java is 1.14.2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.14.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.14.1</title><link>/blog/2024/06/16/1.14.1/</link><pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate><guid>/blog/2024/06/16/1.14.1/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz"&gt;latest version of parquet-java is 1.14.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.14.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.14.0</title><link>/blog/2024/05/07/1.14.0/</link><pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate><guid>/blog/2024/05/07/1.14.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz"&gt;latest version of parquet-java is 1.14.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.13.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.14.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.10.0</title><link>/blog/2023/11/20/2.10.0/</link><pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate><guid>/blog/2023/11/20/2.10.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.10.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz"&gt;latest version of parquet-format is 2.10.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.13.1</title><link>/blog/2023/05/18/1.13.1/</link><pubDate>Thu, 18 May 2023 00:00:00 +0000</pubDate><guid>/blog/2023/05/18/1.13.1/</guid><description>&lt;p&gt;The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz"&gt;latest version of parquet-java is 1.13.1&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.12.3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.13.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.13.0</title><link>/blog/2023/04/06/1.13.0/</link><pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate><guid>/blog/2023/04/06/1.13.0/</guid><description>&lt;p&gt;The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz"&gt;latest version of parquet-java is 1.13.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.12.3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.13.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.12.3</title><link>/blog/2022/05/26/1.12.3/</link><pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate><guid>/blog/2022/05/26/1.12.3/</guid><description>&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz"&gt;latest version of parquet-java is 1.12.3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.11.2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.12.3&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.12.2</title><link>/blog/2021/10/06/1.12.2/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/1.12.2/</guid><description>&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz"&gt;latest version of parquet-java is 1.12.2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz"&gt;latest version of parquet-java on the previous minor branch is 1.11.2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
+ ...
+ &amp;lt;dependency&amp;gt;
+ &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
+ &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
+ &amp;lt;version&amp;gt;1.12.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ ...
+ &amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.9.0</title><link>/blog/2021/10/06/2.9.0/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/2.9.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.9.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz"&gt;latest version of parquet-format is 2.9.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.8.0</title><link>/blog/2020/01/13/2.8.0/</link><pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate><guid>/blog/2020/01/13/2.8.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.8.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz"&gt;latest version of parquet-format is 2.8.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.7.0</title><link>/blog/2019/09/25/2.7.0/</link><pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate><guid>/blog/2019/09/25/2.7.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.7.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz"&gt;latest version of parquet-format is 2.7.0&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

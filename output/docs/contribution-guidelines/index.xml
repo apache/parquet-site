@@ -1,184 +1,27 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet – Developer Guide</title><link>/docs/contribution-guidelines/</link><description>Recent content in Developer Guide on Parquet</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="/docs/contribution-guidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>
-&lt;p>The &lt;a href="https://github.com/apache/parquet-format">parquet-format&lt;/a> project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p>
-&lt;p>The &lt;a href="https://github.com/apache/parquet-java">parquet-java&lt;/a> project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p>
-&lt;p>The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html">parquet-cpp&lt;/a> project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/">Apache Arrow&lt;/a> C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p>
-&lt;p>The &lt;a href="https://github.com/apache/arrow-rs/tree/main/parquet">parquet-rs&lt;/a> project is a Rust library to read-write Parquet files.&lt;/p>
-&lt;p>The &lt;a href="https://github.com/apache/arrow-go/tree/main/parquet">parquet-go&lt;/a> project is a Golang library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/">Apache Arrow&lt;/a> Go implementation.&lt;/p>
-&lt;p>The &lt;a href="https://github.com/Parquet/parquet-compatibility">parquet-compatibility&lt;/a> project (deprecated) contains compatibility tests that can be used to verify that implementations in different languages can read and write each other’s files. As of January 2022 compatibility tests only exist up to version 1.2.0.&lt;/p></description></item><item><title>Docs: Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>
-&lt;p>Building
-Java resources can be build using &lt;code>mvn package&lt;/code>. The current stable version should always be available from Maven Central.&lt;/p>
-&lt;p>C++ thrift resources can be generated via make.&lt;/p>
-&lt;p>Thrift can be also code-genned into any other thrift-supported language.&lt;/p></description></item><item><title>Docs: Contributing to Parquet-Java</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>
-&lt;h2 id="pull-requests">Pull Requests&lt;/h2>
-&lt;p>We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-java">github.com/apache/parquet-java&lt;/a> repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/parquet-java.git">https://github.com/apache/parquet-java.git&lt;/a>. Here are a few tips to get your contribution in:&lt;/p>
-&lt;ol>
-&lt;li>Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.&lt;/li>
-&lt;li>Create an Issue on the &lt;a href="https://github.com/apache/parquet-java/issues">Parquet-Java issues&lt;/a>.&lt;/li>
-&lt;li>Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the Issue &lt;code>GH-2935&lt;/code>: (ex: &lt;a href="https://github.com/apache/parquet-java/pull/2951">https://github.com/apache/parquet-java/pull/2951&lt;/a>).&lt;/li>
-&lt;li>Make sure that your code passes the unit tests. You can run the tests with &lt;code>mvn test&lt;/code> in the root directory.&lt;/li>
-&lt;li>Add new unit tests for your code.&lt;/li>
-&lt;li>All Pull Requests are tested automatically on &lt;a href="https://github.com/apache/parquet-java/actions">GitHub Actions&lt;/a>.&lt;/li>
-&lt;/ol>
-&lt;p>If you’d like to report a bug but don’t have time to fix it, you can still &lt;a href="https://github.com/apache/parquet-java/issues">raise an issue&lt;/a>, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org&lt;/a>).&lt;/p>
-&lt;h2 id="committers">Committers&lt;/h2>
-&lt;h3 id="merging-a-pull-request">Merging a Pull Request&lt;/h3>
-&lt;p>Merging a pull request requires being a committer on the project and approval of the PR by a committer who is not the author.&lt;/p>
-&lt;p>A pull request can be merged through the GitHub UI. By default, only &lt;a href="https://github.com/apache/parquet-java/blob/824b7d009eb41539cb0e2f73110efc0ac5694251/.asf.yaml#L29">squash and merge&lt;/a> is enabled on the project.&lt;/p>
-&lt;p>When the PR solves an existing issue, ensure that it references the issue in the Pull-Request template &lt;code>Closes #1234&lt;/code>. This way the issue is linked to the PR, and GitHub will automatically close the relevant issue when the PR is being merged.&lt;/p>
-&lt;h3 id="semantic-versioning">Semantic versioning&lt;/h3>
-&lt;p>Parquet-Java leverages &lt;a href="https://semver.org/#semantic-versioning-200">semantic versioning&lt;/a> to ensure compatibility for developers and users of the libraries as APIs and implementations evolve. The Maven plugin &lt;a href="https://github.com/siom79/japicmp">&lt;code>japicmp&lt;/code>&lt;/a> enforces this, and will fail when an API is being changed without going through the correct deprecation cycle. This includes for all the modules, excluding: &lt;code>parquet-benchmarks&lt;/code>, &lt;code>parquet-cli&lt;/code>, &lt;code>parquet-tools&lt;/code>, &lt;code>parquet-format-structures&lt;/code>, &lt;code>parquet-hadoop-bundle&lt;/code> and &lt;code>parquet-pig-bundle&lt;/code>.&lt;/p>
-&lt;p>All interfaces, classes, and methods targeted for deprecation must include the following:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>@Deprecated&lt;/code> annotation on the appropriate element&lt;/li>
-&lt;li>&lt;code>@depreceted&lt;/code> javadoc comment including: the version for removal, the appropriate alternative for usage&lt;/li>
-&lt;li>Replacement of existing code paths that use the deprecated behavior&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">/**
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> * @param c the current class
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> * @return the corresponding logger
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> * @deprecated will be removed in 2.0.0; use org.slf4j.LoggerFactory instead.
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> */&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@Deprecated&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">static&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Log&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">getLog&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;lt;?&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">c&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">return&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">new&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Log&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">c&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Checking for API violations can be done by running &lt;code>mvn verify -Dmaven.test.skip=true japicmp:cmp&lt;/code>.&lt;/p>
-&lt;h3 id="tracking-issues-using-milestones">Tracking issues using Milestones&lt;/h3>
-&lt;p>When a PR is raised that fixes a bug, or a feature that you want to target a certain version, make sure to attach a &lt;a href="https://github.com/apache/parquet-java/milestones">milestone&lt;/a>. This way other committers can track certain versions, and see what is still pending. For information on the actual release, please check &lt;a href="/docs/contribution-guidelines/releasing/">the release page&lt;/a>.&lt;/p>
-&lt;h3 id="maintenance-branches">Maintenance branches&lt;/h3>
-&lt;p>Once a PR has been merged to master, it can be that the commit needs to be backported to maintenance &lt;a href="https://github.com/apache/parquet-java/branches">branches&lt;/a>, (ex: &lt;a href="https://github.com/apache/parquet-java/tree/parquet-1.14.x">1.14.x&lt;/a>). The easiest way is to do this locally:&lt;/p>
-&lt;p>Make sure that the remote is set up correctly:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>git remote add github-apache git@github.com:apache/parquet-java.git
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now you can cherry-pick a PR to a previous branch:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>get fetch --all
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git checkout parquet-1.14.x
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git reset --hard github-apache/parquet-1.14.x
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git cherry-pick &amp;lt;hash-from-the-commit&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git push github-apache/parquet-1.14.x
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="website">Website&lt;/h2>
-&lt;h3 id="release-documentation">Release Documentation&lt;/h3>
-&lt;p>To create documentation for a new release of &lt;code>parquet-format&lt;/code> create a new &lt;releaseNumber>.md file under &lt;code>content/en/blog/parquet-format&lt;/code>. Please see existing files in that directory as an example.&lt;/p>
-&lt;p>To create documentation for a new release of &lt;code>parquet-java&lt;/code> create a new &lt;releaseNumber>.md file under &lt;code>content/en/blog/parquet-java&lt;/code>. Please see existing files in that directory as an example.&lt;/p>
-&lt;h3 id="website-development-and-deployment">Website development and deployment&lt;/h3>
-&lt;h4 id="staging">Staging&lt;/h4>
-&lt;p>To make a change to the &lt;code>staging&lt;/code> version of the website:&lt;/p>
-&lt;ol>
-&lt;li>Make a PR against the &lt;code>staging&lt;/code> branch in the repository&lt;/li>
-&lt;li>Once the PR is merged, the &lt;code>Build and Deploy Parquet Site&lt;/code>
-job in the &lt;a href="https://github.com/apache/parquet-site/blob/staging/.github/workflows/deploy.yml">deployment workflow&lt;/a> will be run, populating the &lt;code>asf-staging&lt;/code> branch on this repo with the necessary files.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;strong>Do not directly edit the &lt;code>asf-staging&lt;/code> branch of this repo&lt;/strong>&lt;/p>
-&lt;h4 id="production">Production&lt;/h4>
-&lt;p>To make a change to the &lt;code>production&lt;/code> version of the website:&lt;/p>
-&lt;ol>
-&lt;li>Make a PR against the &lt;code>production&lt;/code> branch in the repository&lt;/li>
-&lt;li>Once the PR is merged, the &lt;code>Build and Deploy Parquet Site&lt;/code>
-job in the &lt;a href="https://github.com/apache/parquet-site/blob/production/.github/workflows/deploy.yml">deployment workflow&lt;/a> will be run, populating the &lt;code>asf-site&lt;/code> branch on this repo with the necessary files.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;strong>Do not directly edit the &lt;code>asf-site&lt;/code> branch of this repo&lt;/strong>&lt;/p></description></item><item><title>Docs: Releasing Parquet-Java</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>
-&lt;h3 id="setup">Setup&lt;/h3>
-&lt;p>N.B. The mechanics of releasing parquet-format is the same (e.g. setting up keys, branching, votes, etc)&lt;/p>
-&lt;p>You will need:&lt;/p>
-&lt;ul>
-&lt;li>PGP code signing keys, published in &lt;a href="https://downloads.apache.org/parquet/KEYS">KEYS&lt;/a>.&lt;/li>
-&lt;li>Permission to stage artifacts in &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/li>
-&lt;/ul>
-&lt;p>Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>mvn deploy
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html">publishing Maven artifacts documentation&lt;/a>.&lt;/p>
-&lt;h3 id="release-process">Release process&lt;/h3>
-&lt;p>Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p>
-&lt;h4 id="0-before-you-start-the-release-process">0. Before you start the release process&lt;/h4>
-&lt;ol>
-&lt;li>Verify that the release is finished (no planned Issues/PRs are pending &lt;a href="https://github.com/apache/parquet-java/milestones">on the milestone&lt;/a>)&lt;/li>
-&lt;li>Build and test the project&lt;/li>
-&lt;li>Create a new branch for the release if this is a new minor version. For example, if the new minor version is 1.14.0, create a new branch &lt;code>parquet-1.14.x&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;h4 id="1-run-the-prepare-script">1. Run the prepare script&lt;/h4>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>./dev/prepare-release.sh &amp;lt;version&amp;gt; &amp;lt;rc-number&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This runs maven’s release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.&lt;/p>
-&lt;p>If this step fails, you can roll back the changes by running these commands.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>find ./ -type f -name &lt;span style="color:#4e9a06">&amp;#39;*.releaseBackup&amp;#39;&lt;/span> -exec rm &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span> &lt;span style="color:#4e9a06">\;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>find ./ -type f -name &lt;span style="color:#4e9a06">&amp;#39;pom.xml&amp;#39;&lt;/span> -exec git checkout &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span> &lt;span style="color:#4e9a06">\;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="2-run-releaseperform-to-stage-binaries">2. Run release:perform to stage binaries&lt;/h4>
-&lt;p>Upload binary artifacts for the release tag to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>mvn release:perform -DskipTests -Darguments&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>-DskipTests
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-in-nexus-close-the-staging-repository">3. In Nexus, close the staging repository&lt;/h4>
-&lt;p>Closing a staging repository makes the binaries available in &lt;a href="https://repository.apache.org/content/groups/staging/org/apache/parquet/">staging&lt;/a>, but does not publish them.&lt;/p>
-&lt;ol>
-&lt;li>Go to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/li>
-&lt;li>In the menu on the left, choose “Staging Repositories”.&lt;/li>
-&lt;li>Select the Parquet repository.&lt;/li>
-&lt;li>At the top, click “Close” and follow the instructions. For the comment use “Apache Parquet [Format] ”.&lt;/li>
-&lt;/ol>
-&lt;h4 id="4-run-the-source-tarball-script">4. Run the source tarball script&lt;/h4>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>dev/source-release.sh &amp;lt;version&amp;gt; &amp;lt;rc-number&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This script builds the source tarball from the release tag’s SHA1, signs it, and uploads the necessary files with SVN.&lt;/p>
-&lt;p>The source release is pushed to &lt;a href="https://dist.apache.org/repos/dist/dev/parquet/">https://dist.apache.org/repos/dist/dev/parquet/&lt;/a>&lt;/p>
-&lt;p>The last message from the script is the release commit’s SHA1 hash and URL for the VOTE e-mail.&lt;/p>
-&lt;h3 id="5-prepare-the-pre-release">5. Prepare the pre-release&lt;/h3>
-&lt;p>Creating the &lt;a href="https://github.com/apache/parquet-java/releases/new">pre-release&lt;/a> will give the users the changelog to see if they need to validate certain functionality. First select the newly created &lt;code>rc&lt;/code> (ex: &lt;code>apache-parquet-1.15.0-rc0&lt;/code>) tag, and then the previous release (ex. &lt;code>apache-parquet-1.14.1&lt;/code>). Hit the &lt;code>Generate release notes&lt;/code> button to auto generate the notes. You can curate the notes a bit by removing unrelated changes (whitespace, test-only changes) and sorting them to make them easier to digest. Make sure to check the &lt;code>Set as pre-release&lt;/code> checkbox as this is a release candidate.&lt;/p>
-&lt;h4 id="5-send-a-vote-e-mail-to-devparquetapacheorgmailtodevparquetapacheorg">5. Send a VOTE e-mail to &lt;a href="mailto:dev@parquet.apache.org">dev@parquet.apache.org&lt;/a>&lt;/h4>
-&lt;p>Here is a template you can use. Make sure everything applies to your release.&lt;/p>
-&lt;pre>&lt;code>Subject: [VOTE] Release Apache Parquet &amp;lt;VERSION&amp;gt; RC&amp;lt;NUM&amp;gt;
-Hi everyone,
-I propose the following RC to be released as official Apache Parquet &amp;lt;VERSION&amp;gt; release.
-The commit id is &amp;lt;SHA1&amp;gt;
-* This corresponds to the tag: apache-parquet-&amp;lt;VERSION&amp;gt;-rc&amp;lt;NUM&amp;gt;
-* https://github.com/apache/parquet-java/tree/&amp;lt;SHA1&amp;gt;
-The release tarball, signature, and checksums are here:
-* https://dist.apache.org/repos/dist/dev/parquet/&amp;lt;PATH&amp;gt;
-You can find the KEYS file here:
-* https://downloads.apache.org/parquet/KEYS
-You can find the changelog here:
-https://github.com/apache/parquet-java/releases/tag/apache-parquet-&amp;lt;VERSION&amp;gt;-rc&amp;lt;NUM&amp;gt;
-Binary artifacts are staged in Nexus here:
-* https://repository.apache.org/content/groups/staging/org/apache/parquet/
-This release includes important changes that I should have summarized here, but I'm lazy.
-Please download, verify, and test.
-Please vote in the next 72 hours.
-[ ] +1 Release this as Apache Parquet &amp;lt;VERSION&amp;gt;
-[ ] +0
-[ ] -1 Do not release this because...
-&lt;/code>&lt;/pre>
-&lt;h3 id="publishing-after-the-vote-passes">Publishing after the vote passes&lt;/h3>
-&lt;p>After a release candidate passes a vote, the candidate needs to be published as the final release.&lt;/p>
-&lt;h4 id="1-tag-final-release-and-set-development-version">1. Tag final release and set development version&lt;/h4>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>./dev/finalize-release &amp;lt;release-version&amp;gt; &amp;lt;rc-num&amp;gt; &amp;lt;new-development-version-without-SNAPSHOT-suffix&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will add the final release tag to the RC tag and sets the new development version in the pom files. If everything is fine push the changes and the new tag to GitHub: &lt;code>git push --follow-tags&lt;/code>&lt;/p>
-&lt;h4 id="2-release-the-binary-repository-in-nexus">2. Release the binary repository in Nexus&lt;/h4>
-&lt;p>Releasing a binary repository publishes the binaries to &lt;a href="https://repository.apache.org/content/groups/public/org/apache/parquet/">public&lt;/a>.&lt;/p>
-&lt;ol>
-&lt;li>Go to &lt;a href="https://repository.apache.org/">Nexus&lt;/a>.&lt;/li>
-&lt;li>In the menu on the left, choose “Staging Repositories”.&lt;/li>
-&lt;li>Select the Parquet repository.&lt;/li>
-&lt;li>At the top, click Release and follow the instructions. For the comment use “Apache Parquet [Format] ”.&lt;/li>
-&lt;/ol>
-&lt;h4 id="3-copy-the-release-artifacts-in-svn-into-releases">3. Copy the release artifacts in SVN into releases&lt;/h4>
-&lt;p>First, check out the candidates and releases locations in SVN:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>svn mv https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-&amp;lt;VERSION&amp;gt;-rcN/ https://dist.apache.org/repos/dist/release/parquet/apache-parquet-&amp;lt;VERSION&amp;gt; -m &lt;span style="color:#4e9a06">&amp;#34;Parquet: Add release &amp;lt;VERSION&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="4-update-parquetapacheorg">4. Update parquet.apache.org&lt;/h4>
-&lt;p>Update the downloads page on parquet.apache.org. Instructions for updating the site are on the &lt;a href="https://parquet.apache.org/docs/contribution-guidelines/contributing/">contribution page&lt;/a>.&lt;/p>
-&lt;h3 id="5-add-the-release-to-github">5. Add the release to GitHub&lt;/h3>
-&lt;p>Add a &lt;a href="https://github.com/apache/parquet-java/releases/new">new release to GitHub&lt;/a>. First select the newly tag (ex: &lt;code>apache-parquet-1.15.0&lt;/code>), and then the previous release (ex. &lt;code>apache-parquet-1.14.1&lt;/code>). You can copy the release notes from the RC that passed the vote.&lt;/p>
-&lt;h4 id="6-send-an-announce-e-mail-to-announceapacheorgmailtoannounceapacheorg-and-the-dev-list">6. Send an ANNOUNCE e-mail to &lt;a href="mailto:announce@apache.org">announce@apache.org&lt;/a> and the dev list&lt;/h4>
-&lt;pre>&lt;code>[ANNOUNCE] Apache Parquet release &amp;lt;VERSION&amp;gt;
-I'm pleased to announce the release of Parquet &amp;lt;VERSION&amp;gt;!
-Parquet is a general-purpose columnar file format for nested data. It uses
-space-efficient encodings and a compressed and splittable structure for
-processing frameworks like Hadoop.
-Changes are listed at: https://github.com/apache/parquet-java/releases/tag/apache-parquet-&amp;lt;VERSION&amp;gt;
-This release can be downloaded from: https://parquet.apache.org/downloads/
-Java artifacts are available from Maven Central.
-Thanks to everyone for contributing!
-&lt;/code>&lt;/pre>
-&lt;h4 id="6-update-parquet-format-with-feature-enablement-guidance">6. Update parquet-format with feature enablement guidance&lt;/h4>
-&lt;p>The recommendations for other feature enablement is generally tied to releases of
-parquet-java (details are in the parquet-format repo). As releases are made the
-specification should be updated to indicate the recommended dates for when a new
-feature may be enabled.&lt;/p>
-&lt;h3 id="release-cadence">Release Cadence&lt;/h3>
-&lt;p>Provided enough volunteers are available the Parquet community aims to have
-releases on a quarterly basis (Targets months are January, April, July and
-October). If a new major version is necessary it will be targetted for the
-October release.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Developer Guide on Parquet</title><link>/docs/contribution-guidelines/</link><description>Recent content in Developer Guide on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/contribution-guidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-format"&gt;parquet-format&lt;/a&gt; project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>&lt;p&gt;Building
+Java resources can be build using &lt;code&gt;mvn package&lt;/code&gt;. The current stable version should always be available from Maven Central.&lt;/p&gt;
+&lt;p&gt;C++ thrift resources can be generated via make.&lt;/p&gt;
+&lt;p&gt;Thrift can be also code-genned into any other thrift-supported language.&lt;/p&gt;</description></item><item><title>Contributing to Parquet-Java</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>&lt;h2 id="pull-requests"&gt;Pull Requests&lt;/h2&gt;
+&lt;p&gt;We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-java"&gt;github.com/apache/parquet-java&lt;/a&gt; repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/parquet-java.git"&gt;https://github.com/apache/parquet-java.git&lt;/a&gt;. Here are a few tips to get your contribution in:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.&lt;/li&gt;
+&lt;li&gt;Create an Issue on the &lt;a href="https://github.com/apache/parquet-java/issues"&gt;Parquet-Java issues&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the Issue &lt;code&gt;GH-2935&lt;/code&gt;: (ex: &lt;a href="https://github.com/apache/parquet-java/pull/2951"&gt;https://github.com/apache/parquet-java/pull/2951&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Make sure that your code passes the unit tests. You can run the tests with &lt;code&gt;mvn test&lt;/code&gt; in the root directory.&lt;/li&gt;
+&lt;li&gt;Add new unit tests for your code.&lt;/li&gt;
+&lt;li&gt;All Pull Requests are tested automatically on &lt;a href="https://github.com/apache/parquet-java/actions"&gt;GitHub Actions&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you’d like to report a bug but don’t have time to fix it, you can still &lt;a href="https://github.com/apache/parquet-java/issues"&gt;raise an issue&lt;/a&gt;, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org"&gt;dev@parquet.apache.org&lt;/a&gt;).&lt;/p&gt;</description></item><item><title>Releasing Parquet-Java</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>&lt;h3 id="setup"&gt;Setup&lt;/h3&gt;
+&lt;p&gt;N.B. The mechanics of releasing parquet-format is the same (e.g. setting up keys, branching, votes, etc)&lt;/p&gt;
+&lt;p&gt;You will need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PGP code signing keys, published in &lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;KEYS&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Permission to stage artifacts in &lt;a href="https://repository.apache.org/"&gt;Nexus&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mvn deploy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html"&gt;publishing Maven artifacts documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="release-process"&gt;Release process&lt;/h3&gt;
+&lt;p&gt;Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p&gt;</description></item></channel></rss>
