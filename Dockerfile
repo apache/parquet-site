@@ -25,7 +25,7 @@
 # docker run -it -v `pwd`:/parquet-site -p 1313:1313  parquet-site
 #
 # Now you can run npm and hugo commands in the container
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 # run docker container mounting the current directory to /parquet-site and exposing port 1313
 
@@ -47,5 +47,3 @@ RUN wget -O - https://nodejs.org/dist/v20.13.1/node-v20.13.1-linux-arm64.tar.xz 
 
 # setup path to find binaries
 ENV PATH=/go/bin:/node-v20.13.1-linux-arm64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-
