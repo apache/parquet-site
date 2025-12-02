@@ -1,0 +1,3 @@
+[submodule "assets/parquet-format"]
+	path = assets/parquet-format
+	url = https://github.com/apache/parquet-format.git

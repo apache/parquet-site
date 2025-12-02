@@ -188,6 +188,10 @@ enable = false
   [module.hugoVersion]
     extended = true
     min = "0.110.0"
+
+  # parquet-format files are available via git submodule at assets/parquet-format
+  # No module import needed - the shortcode reads directly from the submodule
+
   [[module.imports]]
     path = "github.com/google/docsy"
     disable = false
