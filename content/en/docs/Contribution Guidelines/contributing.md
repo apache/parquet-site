@@ -1,97 +1,83 @@
 ---
-title: "Contributing to Parquet"
-linkTitle: "Contributing to Parquet"
+title: "Contributing to Parquet-Java"
+linkTitle: "Contributing to Parquet-Java"
 weight: 3
 description: >
-  How to contribute to Parquet
+  How to contribute to Parquet-Java
 ---
 
 Pull Requests
 -------------
 
-We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the [github.com/apache/parquet-mr](https://github.com/apache/parquet-mr) repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to [https://github.com/apache/parquet-mr.git](https://github.com/apache/parquet-mr.git) Here are a few tips to get your contribution in:
+We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the [github.com/apache/parquet-java](https://github.com/apache/parquet-java) repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to [https://github.com/apache/parquet-java.git](https://github.com/apache/parquet-java.git). Here are a few tips to get your contribution in:
 
 1.  Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.
-2.  Create a JIRA for your patch on the [Parquet Project JIRA](https://issues.apache.org/jira/browse/PARQUET).
-3.  Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the JIRA name (ex: [https://github.com/apache/parquet-mr/pull/5](https://github.com/apache/parquet-mr/pull/5)).
+2.  Create an Issue on the [Parquet-Java issues](https://github.com/apache/parquet-java/issues).
+3.  Submit the patch as a GitHub pull request against the master branch. For a tutorial, see the GitHub guides on forking a repo and sending a pull request. Prefix your pull request name with the Issue `GH-2935`: (ex: [https://github.com/apache/parquet-java/pull/2951](https://github.com/apache/parquet-java/pull/2951)).
 4.  Make sure that your code passes the unit tests. You can run the tests with `mvn test` in the root directory.
 5.  Add new unit tests for your code.
-6.  All Pull Requests are tested automatically on [GitHub Actions](https://github.com/apache/parquet-mr/actions). [TravisCI](https://travis-ci.org/github/apache/parquet-mr) is also used to run the tests on ARM64 CPU architecture
+6.  All Pull Requests are tested automatically on [GitHub Actions](https://github.com/apache/parquet-java/actions).
 
-If you’d like to report a bug but don’t have time to fix it, you can still post it to our [issue tracker](https://issues.apache.org/jira/browse/PARQUET), or email the mailing list ([dev@parquet.apache.org](mailto:dev@parquet.apache.org)).
+If you’d like to report a bug but don’t have time to fix it, you can still [raise an issue](https://github.com/apache/parquet-java/issues), or email the mailing list ([dev@parquet.apache.org](mailto:dev@parquet.apache.org)).
 
 Committers
 ----------
 
-Merging a pull request requires being a committer on the project.
+### Merging a Pull Request
 
-How to merge a Pull request (have an apache and github-apache remote setup):
+Merging a pull request requires being a committer on the project and approval of the PR by a committer who is not the author.
 
-    git remote add github-apache git@github.com:apache/parquet-mr.git
-    git remote add apache https://gitbox.apache.org/repos/asf?p=parquet-mr.git
+A pull request can be merged through the GitHub UI. By default, only [squash and merge](https://github.com/apache/parquet-java/blob/824b7d009eb41539cb0e2f73110efc0ac5694251/.asf.yaml#L29) is enabled on the project.
 
+When the PR solves an existing issue, ensure that it references the issue in the Pull-Request template `Closes #1234`. This way the issue is linked to the PR, and GitHub will automatically close the relevant issue when the PR is being merged.
 
-run the following command
+### Semantic versioning
 
-    dev/merge_parquet_pr.py
+Parquet-Java leverages [semantic versioning](https://semver.org/#semantic-versioning-200) to ensure compatibility for developers and users of the libraries as APIs and implementations evolve. The Maven plugin [`japicmp`](https://github.com/siom79/japicmp) enforces this, and will fail when an API is being changed without going through the correct deprecation cycle. This includes for all the modules, excluding: `parquet-benchmarks`, `parquet-cli`, `parquet-tools`, `parquet-format-structures`, `parquet-hadoop-bundle` and `parquet-pig-bundle`.
 
+All interfaces, classes, and methods targeted for deprecation must include the following:
 
-example output:
+- `@Deprecated` annotation on the appropriate element
+- `@deprecated` javadoc comment including: the version for removal, the appropriate alternative for usage
+- Replacement of existing code paths that use the deprecated behavior
 
-    Which pull request would you like to merge? (e.g. 34):
+```java
+/**
+ * @param c the current class
+ * @return the corresponding logger
+ * @deprecated will be removed in 2.0.0; use org.slf4j.LoggerFactory instead.
+ */
+@Deprecated
+public static Log getLog(Class<?> c) {
+    return new Log(c);
+}
+```
 
+Checking for API violations can be done by running `mvn verify -Dmaven.test.skip=true japicmp:cmp`.
 
-Type the pull request number (from [https://github.com/apache/parquet-mr/pulls](https://github.com/apache/parquet-mr/pulls)) and hit enter.
+### Tracking issues using Milestones
 
-    === Pull Request #X ===
-    title   Blah Blah Blah
-    source  repo/branch
-    target  master
-    url https://api.github.com/repos/apache/parquet-mr/pulls/X
+When a PR is raised that fixes a bug, or a feature that you want to target a certain version, make sure to attach a [milestone](https://github.com/apache/parquet-java/milestones). This way other committers can track certain versions, and see what is still pending. For information on the actual release, please check [the release page](releasing.md).
 
-    Proceed with merging pull request #3? (y/n):
+### Maintenance branches
 
+Once a PR has been merged to master, it can be that the commit needs to be backported to maintenance [branches](https://github.com/apache/parquet-java/branches), (ex: [1.14.x](https://github.com/apache/parquet-java/tree/parquet-1.14.x)). The easiest way is to do this locally:
 
-If this looks good, type `y` and hit enter.
+Make sure that the remote is set up correctly:
 
-    From gitbox.apache.org:/repos/asf/parquet-mr.git
-    * [new branch]      master     -> PR_TOOL_MERGE_PR_3_MASTER
-    Switched to branch 'PR_TOOL_MERGE_PR_3_MASTER'
+```sh
+git remote add github-apache git@github.com:apache/parquet-java.git
+```
 
-    Merge complete (local ref PR_TOOL_MERGE_PR_3_MASTER). Push to apache? (y/n):
+Now you can cherry-pick a PR to a previous branch:
 
-
-A local branch with the merge has been created. Type `y` and hit enter to push it to apache master
-
-    Counting objects: 67, done.
-    Delta compression using up to 4 threads.
-    Compressing objects: 100% (26/26), done.
-    Writing objects: 100% (36/36), 5.32 KiB, done.
-    Total 36 (delta 17), reused 0 (delta 0)
-    To gitbox.apache.org:/repos/asf/parquet-mr.git
-       b767ac4..485658a  PR_TOOL_MERGE_PR_X_MASTER -> master
-    Restoring head pointer to b767ac4e
-    Note: checking out 'b767ac4e'.
-
-    You are in 'detached HEAD' state. You can look around, make experimental
-    changes and commit them, and you can discard any commits you make in this
-    state without impacting any branches by performing another checkout.
-
-    If you want to create a new branch to retain commits you create, you may
-    do so (now or later) by using -b with the checkout command again. Example:
-
-      git checkout -b new_branch_name
-
-    HEAD is now at b767ac4... Update README.md
-    Deleting local branch PR_TOOL_MERGE_PR_X
-    Deleting local branch PR_TOOL_MERGE_PR_X_MASTER
-    Pull request #X merged!
-    Merge hash: 485658a5
-
-    Would you like to pick 485658a5 into another branch? (y/n):
-
-
-For now just say `n` as we have 1 branch
+```sh
+git fetch --all
+git checkout parquet-1.14.x
+git reset --hard github-apache/parquet-1.14.x
+git cherry-pick <hash-from-the-commit>
+git push github-apache/parquet-1.14.x
+```
 
 Website
 -------
@@ -99,7 +85,7 @@ Website
 
 To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.
 
-To create documentation for a new release of `parquet-mr` create a new <releaseNumber>.md file under `content/en/blog/parquet-mr`. Please see existing files in that directory as an example.
+To create documentation for a new release of `parquet-java` create a new <releaseNumber>.md file under `content/en/blog/parquet-java`. Please see existing files in that directory as an example.
 
 ### Website development and deployment
 

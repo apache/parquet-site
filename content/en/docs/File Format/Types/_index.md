@@ -15,7 +15,7 @@ readers and writers for the format.  The types are:
   - BOOLEAN: 1 bit boolean
   - INT32: 32 bit signed ints
   - INT64: 64 bit signed ints
-  - INT96: 96 bit signed ints
+  - INT96: 96 bit signed ints (deprecated; only used by legacy implementations)
   - FLOAT: IEEE 32-bit floating point values
   - DOUBLE: IEEE 64-bit floating point values
   - BYTE_ARRAY: arbitrarily long byte arrays

@@ -1,8 +1,10 @@
 # Parquet Website
 
-This website is built / powered by [Hugo](https://gohugo.io/), and extended from the [Docsy Theme](https://www.docsy.dev/).
+This repository contains the source code for https://parquet.apache.org/
 
-The following steps assume that you have `hugo` installed and working. 
+This website is built / powered by [Hugo](https://gohugo.io/) with the [Docsy Theme](https://www.docsy.dev/).
+
+The following steps assume that you have `hugo` installed and working.
 You can also use docker, see the [Docker section](#docker) for more information.
 
 ## Building and Running Locally
@@ -23,10 +25,26 @@ npm install -D postcss-cli
 npm install -D postcss
 ```
 
-To preview this website site locally, run the following in the root of the directory:
+To preview this website locally, run the following in the root of the directory:
 
 ```shell
 hugo server
+```
+
+### Building metadata diagrams
+
+To build the metadata svg diagrams, you need mermaid.js installed. You can install it using npm:
+
+```
+npm install -D @mermaid-js/mermaid-cli
+```
+
+Then you can build the diagrams using the following command:
+
+```
+cd static/images
+npx mmdc -i FileMetaData.mermaid -o FileMetaData.svg
+npx mmdc -i PageHeader.mermaid -o PageHeader.svg
 ```
 
 ## Building and Running in Docker

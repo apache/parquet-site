@@ -4,4 +4,14 @@ resources/
 node_modules/
 package-lock.json
 .hugo_build.lock
+_vendor/
 *~
+
+# intellij files
+.idea
+.idea_modules/
+*.ipr
+*.iws
+*.iml
+out
+
