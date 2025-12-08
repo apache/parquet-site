@@ -196,4 +196,3 @@ target = "static"
 source = "assets/_vendor/bootstrap/scss"
 target = "assets/vendor/bootstrap/scss/vendor"
 # Bootstrap and Font Awesome are imported via Docsy's nested imports (see Docsy's hugo.yaml lines 49-63)
-
