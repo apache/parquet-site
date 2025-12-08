@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Local redirect to latest parquet-thrift file -->
 <html lang="en">
 <head>
     <meta charset="utf-8">

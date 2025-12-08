@@ -37,6 +37,12 @@ under the License.
   {{- /* Strip Apache license header (HTML comment) */ -}}
   {{- $content = replaceRE `(?s)<!--.*?-->(\n*)` "" $content -}}
 
+  {{- /* Rewrite relative urls */ -}}
+  {{ $imagesUrl := "parquet-format/doc/images"  | relURL }}
+  {{ $imageReplacementUrl := print "(" $imagesUrl  }}
+  {{- $content = replaceRE `\(doc/images` $imageReplacementUrl $content -}}
+
+
   {{- /* Strip any leading whitespace/newlines */ -}}
   {{- $content = trim $content "\n\r " -}}
 
