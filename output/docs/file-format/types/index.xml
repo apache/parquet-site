@@ -1,7 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Types on Parquet</title><link>/docs/file-format/types/</link><description>Recent content in Types on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/types/index.xml" rel="self" type="application/rss+xml"/><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Types on Parquet</title><link>/docs/file-format/types/</link><description>Recent content in Types on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/types/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/docs/file-format/types/geospatial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/geospatial/</guid><description>&lt;h1 id="geospatial-definitions"&gt;Geospatial Definitions&lt;/h1&gt;
+&lt;p&gt;This document contains the specification of geospatial types and statistics.&lt;/p&gt;
+&lt;h1 id="background"&gt;Background&lt;/h1&gt;
+&lt;p&gt;The Geometry and Geography class hierarchy and its Well-Known Text (WKT) and
+Well-Known Binary (WKB) serializations (ISO variant supporting XY, XYZ, XYM,
+XYZM) are defined by &lt;a href="https://portal.ogc.org/files/?artifact_id=25355"&gt;OpenGIS Implementation Specification for Geographic
+information - Simple feature access - Part 1: Common architecture&lt;/a&gt;,
+from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC(Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The version of the OGC standard first used here is 1.2.1, but future versions
+may also be used if the WKB representation remains wire-compatible.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;/h1&gt;
+&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
 by specifying how the primitive types should be interpreted. This keeps the set
 of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodings. For
-example, strings are stored as byte arrays (binary) with a UTF8 annotation.
-These annotations define how to further decode and interpret the data.
-Annotations are stored as &lt;code&gt;LogicalType&lt;/code&gt; fields in the file metadata and are
-documented in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md"&gt;LogicalTypes.md&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+example, strings are stored with the primitive type &lt;code&gt;BYTE_ARRAY&lt;/code&gt; with a &lt;code&gt;STRING&lt;/code&gt;
+annotation.&lt;/p&gt;
+&lt;p&gt;This file contains the specification for all logical types.&lt;/p&gt;
+&lt;h3 id="metadata"&gt;Metadata&lt;/h3&gt;
+&lt;p&gt;The parquet format&amp;rsquo;s &lt;code&gt;LogicalType&lt;/code&gt; stores the type annotation. The annotation
+may require additional metadata fields, as well as rules for those fields.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/types/variantshredding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantshredding/</guid><description>&lt;h1 id="variant-shredding"&gt;Variant Shredding&lt;/h1&gt;
+&lt;p&gt;The Variant type is designed to store and process semi-structured data efficiently, even with heterogeneous values.
+Query engines encode each Variant value in a self-describing format, and store it as a group containing &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;metadata&lt;/code&gt; binary fields in Parquet.
+Since data is often partially homogeneous, it can be beneficial to extract certain fields into separate Parquet columns to further improve performance.
+This process is called &lt;strong&gt;shredding&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Shredding enables the use of Parquet&amp;rsquo;s columnar representation for more compact data encoding, column statistics for data skipping, and partial projections.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/types/variantencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantencoding/</guid><description>&lt;h1 id="variant-binary-encoding"&gt;Variant Binary Encoding&lt;/h1&gt;
+&lt;p&gt;A Variant represents a type that contains one of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Primitive: A type and corresponding value (e.g. INT, STRING)&lt;/li&gt;
+&lt;li&gt;Array: An ordered list of Variant values&lt;/li&gt;
+&lt;li&gt;Object: An unordered collection of string/Variant pairs (i.e. key/value pairs). An object may not contain duplicate keys.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A Variant is encoded with 2 binary values, the &lt;a href="/docs/file-format/types/variantencoding/#value-encoding"&gt;value&lt;/a&gt; and the &lt;a href="/docs/file-format/types/variantencoding/#metadata-encoding"&gt;metadata&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are a fixed number of allowed primitive types, provided in the table below.
+These represent a commonly supported subset of the &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md"&gt;logical types&lt;/a&gt; allowed by the Parquet format.&lt;/p&gt;</description></item></channel></rss>

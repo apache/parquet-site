@@ -1,20 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;/h1&gt;
+&lt;p&gt;The extension mechanism of the &lt;code&gt;binary&lt;/code&gt; Thrift field-id &lt;code&gt;32767&lt;/code&gt; has some desirable properties:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Existing readers will ignore these extensions without any modifications&lt;/li&gt;
+&lt;li&gt;Existing readers will ignore the extension bytes with little processing overhead&lt;/li&gt;
+&lt;li&gt;The content of the extension is freeform and can be encoded in any format. This format is not restricted to Thrift.&lt;/li&gt;
+&lt;li&gt;Extensions can be appended to existing Thrift serialized structs &lt;a href="/docs/file-format/binaryprotocolextensions/#appending-extensions-to-thrift"&gt;without requiring Thrift libraries&lt;/a&gt; for manipulation (or changes to the thrift IDL).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because only one field-id is reserved the extension bytes themselves require disambiguation; otherwise readers will not be able to decode extensions safely. This is left to implementers which MUST put enough unique state in their extension bytes for disambiguation. This can be relatively easily achieved by adding a &lt;a href="https://en.wikipedia.org/wiki/Universally%5C_unique%5C_identifier"&gt;UUID&lt;/a&gt; at the start or end of the extension bytes. The extension does not specify a disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;/h1&gt;
+&lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Parquet allows the data block inside dictionary pages and data pages to
 be compressed for better space efficiency. The Parquet format supports
-several compression covering different areas in the compression ratio /
-processing cost spectrum.&lt;/p&gt;
+several compression codecs covering different areas in the compression
+ratio / processing cost spectrum.&lt;/p&gt;
 &lt;p&gt;The detailed specifications of compression codecs are maintained externally
 by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;
 &lt;p&gt;For all compression codecs except the deprecated &lt;code&gt;LZ4&lt;/code&gt; codec, the raw data
 of a (data or dictionary) page is fed &lt;em&gt;as-is&lt;/em&gt; to the underlying compression
 library, without any additional framing or padding. The information required
 for precise allocation of compressed and decompressed buffers is written
-in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;
+in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;/h1&gt;
+&lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
+&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="plain-plain--0"&gt;Plain: (PLAIN = 0)&lt;/h3&gt;
 &lt;p&gt;Supported Types: all&lt;/p&gt;
 &lt;p&gt;This is the plain encoding that must be supported for types. It is
 intended to be the simplest encoding. Values are encoded back to back.&lt;/p&gt;
-&lt;p&gt;The plain encoding is used whenever a more efficient encoding cannot be used. It
+&lt;p&gt;The plain encoding is used whenever a more efficient encoding can not be used. It
 stores the data in the following format:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;BOOLEAN: &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED"&gt;Bit Packed&lt;/a&gt;, LSB first&lt;/li&gt;
@@ -27,7 +39,8 @@ stores the data in the following format:&lt;/p&gt;
 &lt;li&gt;FIXED_LEN_BYTE_ARRAY: the bytes contained in the array&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For native types, this outputs the data as little endian. Floating
-point types are encoded in IEEE.&lt;/p&gt;</description></item><item><title>Parquet Modular Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
+point types are encoded in IEEE.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;/h1&gt;
+&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
 mechanism that encrypts and authenticates the file data and metadata - while allowing
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
 and compression).&lt;/p&gt;
@@ -83,13 +96,25 @@ per HDFS file.&lt;/p&gt;</description></item><item><title>Events</title><link>/d
 &lt;li&gt;File Version: The file metadata contains a version.&lt;/li&gt;
 &lt;li&gt;Encodings: Encodings are specified by enum and more can be added in the future.&lt;/li&gt;
 &lt;li&gt;Page types: Additional page types can be added and safely skipped.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
+&lt;/ul&gt;</description></item><item><title/><link>/docs/file-format/types/geospatial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/geospatial/</guid><description>&lt;h1 id="geospatial-definitions"&gt;Geospatial Definitions&lt;/h1&gt;
+&lt;p&gt;This document contains the specification of geospatial types and statistics.&lt;/p&gt;
+&lt;h1 id="background"&gt;Background&lt;/h1&gt;
+&lt;p&gt;The Geometry and Geography class hierarchy and its Well-Known Text (WKT) and
+Well-Known Binary (WKB) serializations (ISO variant supporting XY, XYZ, XYM,
+XYZM) are defined by &lt;a href="https://portal.ogc.org/files/?artifact_id=25355"&gt;OpenGIS Implementation Specification for Geographic
+information - Simple feature access - Part 1: Common architecture&lt;/a&gt;,
+from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC(Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The version of the OGC standard first used here is 1.2.1, but future versions
+may also be used if the WKB representation remains wire-compatible.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;/h1&gt;
+&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
 by specifying how the primitive types should be interpreted. This keeps the set
 of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodings. For
-example, strings are stored as byte arrays (binary) with a UTF8 annotation.
-These annotations define how to further decode and interpret the data.
-Annotations are stored as &lt;code&gt;LogicalType&lt;/code&gt; fields in the file metadata and are
-documented in &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md"&gt;LogicalTypes.md&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
+example, strings are stored with the primitive type &lt;code&gt;BYTE_ARRAY&lt;/code&gt; with a &lt;code&gt;STRING&lt;/code&gt;
+annotation.&lt;/p&gt;
+&lt;p&gt;This file contains the specification for all logical types.&lt;/p&gt;
+&lt;h3 id="metadata"&gt;Metadata&lt;/h3&gt;
+&lt;p&gt;The parquet format&amp;rsquo;s &lt;code&gt;LogicalType&lt;/code&gt; stores the type annotation. The annotation
+may require additional metadata fields, as well as rules for those fields.&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
 &lt;p&gt;All thrift structures are serialized using the TCompactProtocol. The full
 definition of these structures is given in the Parquet
 &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift"&gt;Thrift definition&lt;/a&gt;.&lt;/p&gt;
@@ -100,13 +125,28 @@ when navigating the Parquet file.&lt;/p&gt;
 &lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;
 &lt;h2 id="page-header"&gt;Page header&lt;/h2&gt;
 &lt;p&gt;Page header metadata (&lt;code&gt;PageHeader&lt;/code&gt; and children in the diagram) is stored
-in-line with the page data, and is used in the reading and decoding of data.&lt;/p&gt;</description></item><item><title>Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>&lt;p&gt;To encode nested columns, Parquet uses the Dremel encoding with definition and
+in-line with the page data, and is used in the reading and decoding of data.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/types/variantshredding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantshredding/</guid><description>&lt;h1 id="variant-shredding"&gt;Variant Shredding&lt;/h1&gt;
+&lt;p&gt;The Variant type is designed to store and process semi-structured data efficiently, even with heterogeneous values.
+Query engines encode each Variant value in a self-describing format, and store it as a group containing &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;metadata&lt;/code&gt; binary fields in Parquet.
+Since data is often partially homogeneous, it can be beneficial to extract certain fields into separate Parquet columns to further improve performance.
+This process is called &lt;strong&gt;shredding&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Shredding enables the use of Parquet&amp;rsquo;s columnar representation for more compact data encoding, column statistics for data skipping, and partial projections.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/types/variantencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantencoding/</guid><description>&lt;h1 id="variant-binary-encoding"&gt;Variant Binary Encoding&lt;/h1&gt;
+&lt;p&gt;A Variant represents a type that contains one of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Primitive: A type and corresponding value (e.g. INT, STRING)&lt;/li&gt;
+&lt;li&gt;Array: An ordered list of Variant values&lt;/li&gt;
+&lt;li&gt;Object: An unordered collection of string/Variant pairs (i.e. key/value pairs). An object may not contain duplicate keys.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A Variant is encoded with 2 binary values, the &lt;a href="/docs/file-format/types/variantencoding/#value-encoding"&gt;value&lt;/a&gt; and the &lt;a href="/docs/file-format/types/variantencoding/#metadata-encoding"&gt;metadata&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are a fixed number of allowed primitive types, provided in the table below.
+These represent a commonly supported subset of the &lt;a href="https://github.com/apache/parquet-format/blob/master/LogicalTypes.md"&gt;logical types&lt;/a&gt; allowed by the Parquet format.&lt;/p&gt;</description></item><item><title>Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>&lt;p&gt;To encode nested columns, Parquet uses the Dremel encoding with definition and
 repetition levels. Definition levels specify how many optional fields in the
 path for the column are defined. Repetition levels specify at what repeated field
 in the path has the value repeated. The max definition and repetition levels can
 be computed from the schema (i.e. how much nesting there is). This defines the
 maximum number of bits required to store the levels (levels are defined for all
-values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h3 id="problem-statement"&gt;Problem statement&lt;/h3&gt;
+values in the column).&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;/h1&gt;
+&lt;h3 id="problem-statement"&gt;Problem statement&lt;/h3&gt;
 &lt;p&gt;In their current format, column statistics and dictionaries can be used for predicate
 pushdown. Statistics include minimum and maximum value, which can be used to filter out
 values not in the range. Dictionaries are more specific, and readers can filter out values
@@ -131,9 +171,12 @@ the data within a page is corrupt, that page is lost. The file will be more
 resilient to corruption with smaller row groups.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
 are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
 would be encoded with run-length encoding (0, 1000 times) for the definition levels and
-nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;p&gt;This document describes the format for column index pages in the Parquet
-footer. These pages contain statistics for DataPages and can be used to skip
-pages when scanning data in ordered and unordered columns.&lt;/p&gt;
+nothing else.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet page index: Layout to Support Page Skipping&lt;/h1&gt;
+&lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
+ColumnChunk, containing statistics for DataPages that can be used
+to skip those pages when scanning in ordered and unordered columns.
+The page index is stored using the OffsetIndex and ColumnIndex structures,
+defined in &lt;a href="src/main/thrift/parquet.thrift"&gt;&lt;code&gt;parquet.thrift&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="problem-statement"&gt;Problem Statement&lt;/h2&gt;
 &lt;p&gt;In previous versions of the format, Statistics are stored for ColumnChunks in
 ColumnMetaData and for individual pages inside DataPageHeader structs. When

@@ -1,20 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Pages on Parquet</title><link>/docs/file-format/data-pages/</link><description>Recent content in Data Pages on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/data-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Pages on Parquet</title><link>/docs/file-format/data-pages/</link><description>Recent content in Data Pages on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/data-pages/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;/h1&gt;
+&lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Parquet allows the data block inside dictionary pages and data pages to
 be compressed for better space efficiency. The Parquet format supports
-several compression covering different areas in the compression ratio /
-processing cost spectrum.&lt;/p&gt;
+several compression codecs covering different areas in the compression
+ratio / processing cost spectrum.&lt;/p&gt;
 &lt;p&gt;The detailed specifications of compression codecs are maintained externally
 by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;
 &lt;p&gt;For all compression codecs except the deprecated &lt;code&gt;LZ4&lt;/code&gt; codec, the raw data
 of a (data or dictionary) page is fed &lt;em&gt;as-is&lt;/em&gt; to the underlying compression
 library, without any additional framing or padding. The information required
 for precise allocation of compressed and decompressed buffers is written
-in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;
+in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;/h1&gt;
+&lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
+&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="plain-plain--0"&gt;Plain: (PLAIN = 0)&lt;/h3&gt;
 &lt;p&gt;Supported Types: all&lt;/p&gt;
 &lt;p&gt;This is the plain encoding that must be supported for types. It is
 intended to be the simplest encoding. Values are encoded back to back.&lt;/p&gt;
-&lt;p&gt;The plain encoding is used whenever a more efficient encoding cannot be used. It
+&lt;p&gt;The plain encoding is used whenever a more efficient encoding can not be used. It
 stores the data in the following format:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;BOOLEAN: &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED"&gt;Bit Packed&lt;/a&gt;, LSB first&lt;/li&gt;
@@ -27,7 +31,8 @@ stores the data in the following format:&lt;/p&gt;
 &lt;li&gt;FIXED_LEN_BYTE_ARRAY: the bytes contained in the array&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For native types, this outputs the data as little endian. Floating
-point types are encoded in IEEE.&lt;/p&gt;</description></item><item><title>Parquet Modular Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
+point types are encoded in IEEE.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;/h1&gt;
+&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
 mechanism that encrypts and authenticates the file data and metadata - while allowing
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
 and compression).&lt;/p&gt;
