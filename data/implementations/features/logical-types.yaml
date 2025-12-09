@@ -1,0 +1,70 @@
+category_id: logical-types
+features:
+  - id: logical-string
+    display_name: STRING
+
+  - id: logical-enum
+    display_name: ENUM
+
+  - id: logical-uuid
+    display_name: UUID
+
+  - id: logical-int-types
+    display_name: 8, 16, 32, 64 bit signed and unsigned INT
+
+  - id: logical-decimal-int32
+    display_name: DECIMAL (INT32)
+
+  - id: logical-decimal-int64
+    display_name: DECIMAL (INT64)
+
+  - id: logical-decimal-byte-array
+    display_name: DECIMAL (BYTE_ARRAY)
+
+  - id: logical-decimal-fixed-len-byte-array
+    display_name: DECIMAL (FIXED_LEN_BYTE_ARRAY)
+
+  - id: logical-float16
+    display_name: FLOAT16
+
+  - id: logical-date
+    display_name: DATE
+
+  - id: logical-time-int32
+    display_name: TIME (INT32)
+
+  - id: logical-time-int64
+    display_name: TIME (INT64)
+
+  - id: logical-timestamp-int64
+    display_name: TIMESTAMP (INT64)
+
+  - id: logical-interval
+    display_name: INTERVAL
+
+  - id: logical-json
+    display_name: JSON
+
+  - id: logical-bson
+    display_name: BSON
+
+  - id: logical-variant
+    display_name: VARIANT
+    spec_url: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
+
+  - id: logical-geometry
+    display_name: GEOMETRY
+    spec_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
+
+  - id: logical-geography
+    display_name: GEOGRAPHY
+    spec_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
+
+  - id: logical-list
+    display_name: LIST
+
+  - id: logical-map
+    display_name: MAP
+
+  - id: logical-unknown
+    display_name: UNKNOWN (always null)

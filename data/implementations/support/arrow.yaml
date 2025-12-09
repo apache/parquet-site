@@ -1,0 +1,186 @@
+engine_id: arrow
+last_updated: "2025-12-09"
+support:
+  physical-boolean:
+    status: full
+    since_version: null
+  physical-int32:
+    status: full
+    since_version: null
+  physical-int64:
+    status: full
+    since_version: null
+  physical-int96:
+    status: full
+    since_version: null
+  physical-float:
+    status: full
+    since_version: null
+  physical-double:
+    status: full
+    since_version: null
+  physical-byte-array:
+    status: full
+    since_version: null
+  physical-fixed-len-byte-array:
+    status: full
+    since_version: null
+  logical-string:
+    status: full
+    since_version: null
+  logical-enum:
+    status: none
+    since_version: null
+  logical-uuid:
+    status: none
+    since_version: null
+  logical-int-types:
+    status: full
+    since_version: null
+  logical-decimal-int32:
+    status: full
+    since_version: null
+  logical-decimal-int64:
+    status: full
+    since_version: null
+  logical-decimal-byte-array:
+    status: full
+    since_version: null
+  logical-decimal-fixed-len-byte-array:
+    status: full
+    since_version: null
+  logical-float16:
+    status: full
+    since_version: null
+  logical-date:
+    status: full
+    since_version: null
+  logical-time-int32:
+    status: full
+    since_version: null
+  logical-time-int64:
+    status: full
+    since_version: null
+  logical-timestamp-int64:
+    status: full
+    since_version: null
+  logical-interval:
+    status: full
+    since_version: null
+  logical-json:
+    status: full
+    since_version: null
+  logical-bson:
+    status: none
+    since_version: null
+  logical-variant:
+    status: unknown
+    since_version: null
+  logical-geometry:
+    status: full
+    since_version: null
+  logical-geography:
+    status: full
+    since_version: null
+  logical-list:
+    status: full
+    since_version: null
+  logical-map:
+    status: full
+    since_version: null
+  logical-unknown:
+    status: full
+    since_version: null
+  encoding-plain:
+    status: full
+    since_version: null
+  encoding-plain-dictionary:
+    status: full
+    since_version: null
+  encoding-rle-dictionary:
+    status: full
+    since_version: null
+  encoding-rle:
+    status: full
+    since_version: null
+  encoding-bit-packed:
+    status: full
+    since_version: null
+  encoding-delta-binary-packed:
+    status: full
+    since_version: null
+  encoding-delta-length-byte-array:
+    status: full
+    since_version: null
+  encoding-delta-byte-array:
+    status: full
+    since_version: null
+  encoding-byte-stream-split:
+    status: full
+    since_version: null
+  compression-uncompressed:
+    status: full
+    since_version: null
+  compression-brotli:
+    status: full
+    since_version: null
+  compression-gzip:
+    status: full
+    since_version: null
+  compression-lz4-deprecated:
+    status: full
+    since_version: null
+  compression-lz4-raw:
+    status: full
+    since_version: null
+  compression-lzo:
+    status: none
+    since_version: null
+  compression-snappy:
+    status: full
+    since_version: null
+  compression-zstd:
+    status: full
+    since_version: null
+  format-bloom-filters:
+    status: read
+    since_version: null
+  format-bloom-filter-length:
+    status: read
+    since_version: null
+  format-stats-min-max:
+    status: full
+    since_version: null
+  format-page-index:
+    status: full
+    since_version: null
+  format-page-crc32:
+    status: full
+    since_version: null
+  format-modular-encryption:
+    status: full
+    since_version: null
+  format-size-statistics:
+    status: full
+    since_version: null
+  format-data-page-v2:
+    status: full
+    since_version: null
+  api-external-column-data:
+    status: full
+    since_version: null
+  api-sorting-columns:
+    status: full
+    since_version: null
+  api-rowgroup-pruning-stats:
+    status: none
+    since_version: null
+  api-rowgroup-pruning-bloom:
+    status: none
+    since_version: null
+  api-column-projection:
+    status: full
+    since_version: null
+  api-page-pruning-stats:
+    status: none
+    since_version: null

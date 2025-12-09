@@ -1,0 +1,25 @@
+symbols:
+  full:
+    display: "✅"
+    description: supported
+    class: status-full
+
+  read:
+    display: "(R)"
+    description: partial reader only support
+    class: status-read
+
+  write:
+    display: "(W)"
+    description: partial writer only support
+    class: status-write
+
+  none:
+    display: "❌"
+    description: not supported
+    class: status-none
+
+  unknown:
+    display: ""
+    description: no data
+    class: status-unknown

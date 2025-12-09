@@ -1,0 +1,28 @@
+category_id: encodings
+features:
+  - id: encoding-plain
+    display_name: PLAIN
+
+  - id: encoding-plain-dictionary
+    display_name: PLAIN_DICTIONARY
+
+  - id: encoding-rle-dictionary
+    display_name: RLE_DICTIONARY
+
+  - id: encoding-rle
+    display_name: RLE
+
+  - id: encoding-bit-packed
+    display_name: BIT_PACKED (deprecated)
+
+  - id: encoding-delta-binary-packed
+    display_name: DELTA_BINARY_PACKED
+
+  - id: encoding-delta-length-byte-array
+    display_name: DELTA_LENGTH_BYTE_ARRAY
+
+  - id: encoding-delta-byte-array
+    display_name: DELTA_BYTE_ARRAY
+
+  - id: encoding-byte-stream-split
+    display_name: BYTE_STREAM_SPLIT

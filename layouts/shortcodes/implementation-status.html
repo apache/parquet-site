@@ -1,0 +1,136 @@
+{{- /*
+  Shortcode to render implementation status tables from structured data.
+  Usage: {{< implementation-status >}}
+
+*/ -}}
+
+{{- $engines := site.Data.implementations.engines -}}
+{{- $categories := site.Data.implementations.categories -}}
+{{- $legend := site.Data.implementations.legend -}}
+
+
+{{- /* Render each category */ -}}
+{{- range $categories -}}
+
+  {{- $noteMap := slice -}}
+  {{- $category := . -}}
+  {{- $categoryId := .id -}}
+  {{- $featuresData := index site.Data.implementations.features $categoryId -}}
+
+  {{- if $featuresData -}}
+    {{- $features := $featuresData.features -}}
+
+    {{- /* Render category header */ -}}
+    <h3>{{ $category.name }}</h3>
+
+    {{- /* Render category description */ -}}
+    {{- if $category.description -}}
+      <p>{{ $category.description | markdownify }}</p>
+      {{- if $category.spec_url -}}
+        <p><a href="{{ $category.spec_url }}"><code>{{ path.Base $category.spec_url }}</code></a></p>
+      {{- end -}}
+      {{- if $category.spec_doc_url -}}
+        <p><a href="{{ $category.spec_doc_url }}">{{ path.Base $category.spec_doc_url }}</a></p>
+      {{- end -}}
+    {{- end -}}
+
+    {{- /* Render table */ -}}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Data type</th>
+          {{- range $engines -}}
+            <th>{{ .name }}</th>
+          {{- end -}}
+        </tr>
+      </thead>
+      <tbody>
+        {{- range $features -}}
+          {{- $feature := . -}}
+          {{- $featureId := .id -}}
+
+          <tr>
+            <td>
+              {{- if .spec_url -}}
+                <a href="{{ .spec_url }}">{{ .display_name }}</a>
+              {{- else -}}
+                {{ .display_name }}
+              {{- end -}}
+              
+              {{- if .note -}}
+               {{- $present := false }}
+               {{- $noteCounter := 0 -}}
+               {{- range $noteRowIndex, $noteRow :=  $noteMap -}}
+                   {{- $noteStr := $feature.note -}}
+                   {{- if ne $noteStr (index $noteRow 1)  -}}
+                     {{- $noteCounter = add $noteCounter 1 -}}
+                   {{- end -}}
+               {{- end -}}
+               {{- if eq $noteCounter (len $noteMap)}}
+                 {{- $noteRow := slice (cast.ToString $noteCounter) .note $category.id }}
+                 {{- if eq (len $noteMap) 0 -}}
+                   {{- $noteMap = $noteMap | append (slice $noteRow) -}}
+                 {{- else -}}
+                    {{- $noteMap = $noteMap | append $noteRow -}}
+                 {{- end -}}
+               {{- end -}}
+                <a href="#note-{{ $category.id }}-{{ $noteCounter }}"><sup>{{ add $noteCounter 1 }}</sup></a>
+              {{- end -}}
+            </td>
+            {{- range $engines -}}
+              {{- $engineId := .id -}}
+
+              {{- /* Get support status inline */ -}}
+              {{- $supportData := index site.Data.implementations.support $engineId -}}
+              {{- $status := "unknown" -}}
+              {{- $noteHtml := "" -}}
+
+              {{- $noteCounter := 0 -}}
+              {{- $newNote := false -}}
+              {{- if $supportData -}}
+                {{- $support := index $supportData.support $featureId -}}
+                {{- if $support -}}
+                  {{- $status = $support.status -}}
+                  {{- if $support.note -}}
+                     {{- $newNote = true -}}
+                     {{- $present := false }}
+                     {{- range $noteRowIndex, $noteRow :=  $noteMap -}}
+                       {{- $noteStr := $support.note -}}
+                       {{- if ne $noteStr (index $noteRow 1)  -}}
+                         {{- $noteCounter = add $noteCounter 1 -}}
+                       {{- end -}}
+                     {{- end -}}
+                     {{- if eq $noteCounter (len $noteMap)}}
+                       {{- $noteRow := slice (cast.ToString $noteCounter) $support.note $category.id }}
+                       {{- if eq (len $noteMap) 0 -}}
+                         {{- $noteMap = $noteMap | append (slice $noteRow) -}}
+                       {{- else -}}
+                         {{- $noteMap = $noteMap | append $noteRow -}}
+                       {{- end -}}
+                     {{- end -}}
+              {{- end -}}
+
+                {{- end -}}
+              {{- end -}}
+
+              {{- $statusInfo := index $legend.symbols $status -}}
+              <td class="{{ $statusInfo.class }}">
+                {{ $statusInfo.display }}
+                {{- if $newNote -}}
+                  <a href="#note-{{ $category.id }}-{{ $noteCounter }}">({{ add $noteCounter 1 }})</a>
+                {{- end -}}
+              </td>
+            {{- end -}}
+          </tr>
+        {{- end -}}
+      </tbody>
+    </table>
+    {{- /* Render footnotes if any */ -}}
+    {{- if gt (len $noteMap) 0 -}}   
+      <b>Notes:</b>
+      {{- range $noteRowIndex, $noteRow := $noteMap }}
+        <div id="note-{{ index $noteRow 2}}-{{index $noteRow 0 }}">({{ add $noteRowIndex 1}})&nbsp{{ index $noteRow 1 }}</div>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

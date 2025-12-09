@@ -1,0 +1,24 @@
+- id: physical-types
+  name: Physical types
+  description: "Physical types are defined by the [`enum Type` in parquet.thrift](https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32)"
+  spec_doc_url: null
+
+- id: logical-types
+  name: Logical types
+  description: "Logical types are defined by the [`union LogicalType` in parquet.thrift](https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L471) and described in [LogicalTypes.md](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md)"
+
+- id: encodings
+  name: Encodings
+  description: "Encodings are defined by the [`enum Encoding` in parquet.thrift](https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L566) and described in [Encodings.md](https://github.com/apache/parquet-format/blob/master/Encodings.md)"
+
+- id: compressions
+  name: Compressions
+  description: "Compressions are defined by the [`enum CompressionCodec` in parquet.thrift](https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L642) and described in [Compression.md](https://github.com/apache/parquet-format/blob/master/Compression.md)"
+
+- id: format-features
+  name: Other format level features
+  description: null
+
+- id: api-features
+  name: High level data APIs for Parquet feature usage
+  description: null

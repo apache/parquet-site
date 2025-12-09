@@ -1,0 +1,22 @@
+category_id: api-features
+features:
+  - id: api-external-column-data
+    display_name: External column data
+    note: "In parquet.thrift: ColumnChunk->file_path"
+
+  - id: api-sorting-columns
+    display_name: Row group "Sorting column" metadata
+    note: "In parquet.thrift: RowGroup->sorting_columns"
+
+  - id: api-rowgroup-pruning-stats
+    display_name: Row group pruning using statistics
+
+  - id: api-rowgroup-pruning-bloom
+    display_name: Row group pruning using bloom filter
+
+  - id: api-column-projection
+    display_name: Reading select columns only
+
+  - id: api-page-pruning-stats
+    name: Page pruning using statistics
+    display_name: Page pruning using statistics

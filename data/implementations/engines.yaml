@@ -1,0 +1,55 @@
+- id: arrow
+  name: arrow
+  display_name: Apache Arrow C++
+  language: C++
+  repo_url: https://github.com/apache/arrow/tree/main/cpp/src/parquet
+  docs_url: https://arrow.apache.org/docs/cpp/parquet.html
+  versions: {}
+
+- id: parquet-java
+  name: parquet-java
+  display_name: Parquet Java
+  language: Java
+  repo_url: https://github.com/apache/parquet-java
+  docs_url: null
+  versions: {}
+
+- id: arrow-go
+  name: arrow-go
+  display_name: Apache Arrow Go
+  language: Go
+  repo_url: https://github.com/apache/arrow-go/tree/main/parquet
+  docs_url: null
+  versions: {}
+
+- id: arrow-rs
+  name: arrow-rs
+  display_name: Apache Arrow Rust
+  language: Rust
+  repo_url: https://github.com/apache/arrow-rs/blob/main/parquet/README.md
+  docs_url: null
+  versions: {}
+
+- id: cudf
+  name: cudf
+  display_name: cuDF
+  language: C++
+  repo_url: https://github.com/rapidsai/cudf
+  docs_url: null
+  versions: {}
+
+- id: hyparquet
+  name: hyparquet
+  display_name: Hyparquet
+  language: JavaScript
+  repo_url: https://github.com/hyparam/hyparquet
+  docs_url: null
+  versions: {}
+
+- id: duckdb
+  name: duckdb
+  display_name: DuckDB
+  language: C++
+  repo_url: https://github.com/duckdb/duckdb
+  docs_url: null
+  versions: {}

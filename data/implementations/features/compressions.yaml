@@ -1,0 +1,25 @@
+category_id: compressions
+features:
+  - id: compression-uncompressed
+    display_name: UNCOMPRESSED
+
+  - id: compression-brotli
+    display_name: BROTLI
+
+  - id: compression-gzip
+    display_name: GZIP
+
+  - id: compression-lz4-deprecated
+    display_name: LZ4 (deprecated)
+
+  - id: compression-lz4-raw
+    display_name: LZ4_RAW
+
+  - id: compression-lzo
+    display_name: LZO
+
+  - id: compression-snappy
+    display_name: SNAPPY
+
+  - id: compression-zstd
+    display_name: ZSTD

@@ -1,0 +1,26 @@
+category_id: physical-types
+features:
+  - id: physical-boolean
+    display_name: BOOLEAN
+
+  - id: physical-int32
+    display_name: INT32
+
+  - id: physical-int64
+    display_name: INT64
+
+  - id: physical-int96
+    display_name: INT96
+    note: "This type is deprecated, but as of 2024 it's common in currently produced parquet files"
+
+  - id: physical-float
+    display_name: FLOAT
+
+  - id: physical-double
+    display_name: DOUBLE
+
+  - id: physical-byte-array
+    display_name: BYTE_ARRAY
+
+  - id: physical-fixed-len-byte-array
+    display_name: FIXED_LEN_BYTE_ARRAY

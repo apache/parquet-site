@@ -1,0 +1,31 @@
+category_id: format-features
+features:
+  - id: format-bloom-filters
+    display_name: xxHash-based bloom filters
+    spec_url: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
+
+  - id: format-bloom-filter-length
+    display_name: Bloom filter length
+    note: "In parquet.thrift: ColumnMetaData->bloom_filter_length"
+
+  - id: format-stats-min-max
+    display_name: Statistics min_value, max_value
+
+  - id: format-page-index
+    display_name: Page index
+    spec_url: https://github.com/apache/parquet-format/blob/master/PageIndex.md
+
+  - id: format-page-crc32
+    display_name: Page CRC32 checksum
+
+  - id: format-modular-encryption
+    display_name: Modular encryption
+    spec_url: https://github.com/apache/parquet-format/blob/master/Encryption.md
+
+  - id: format-size-statistics
+    display_name: Size statistics
+    note: "In parquet.thrift: ColumnMetaData->size_statistics"
+
+  - id: format-data-page-v2
+    display_name: Data Page V2
+    note: "In parquet.thrift: DataPageHeaderV2"
