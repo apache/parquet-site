@@ -18,5 +18,4 @@ features:
     display_name: Reading select columns only
 
   - id: api-page-pruning-stats
-    name: Page pruning using statistics
     display_name: Page pruning using statistics
