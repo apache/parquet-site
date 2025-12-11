@@ -27,4 +27,5 @@ The value in each box means:
 * [hyparquet](https://github.com/hyparam/hyparquet) (JavaScript)
 * [duckdb](https://github.com/duckdb/duckdb) (C++)
 
+<!-- Status source in data/implementations -->
 {{< implementation-status >}}

@@ -1,7 +1,6 @@
 {{- /*
-  Shortcode to render implementation status tables from structured data.
+  Render implementation status tables from structured data in `data/implementation`
   Usage: {{< implementation-status >}}
-
 */ -}}
 
 {{- $engines := site.Data.implementations.engines -}}
@@ -21,7 +20,7 @@
     {{- $features := $featuresData.features -}}
 
     {{- /* Render category header */ -}}
-    <h3>{{ $category.name }}</h3>
+    <h3 id="{{ $categoryId }}"><a href="#{{ $categoryId }}">{{ $category.name }}</a></h3>
 
     {{- /* Render category description */ -}}
     {{- if $category.description -}}
