@@ -65,12 +65,13 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;h3 id="legend"&gt;Legend&lt;/h3&gt;
 &lt;p&gt;The value in each box means:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;✅: supported&lt;/li&gt;
+&lt;li&gt;✅: supported. Footnote added when support is partial.&lt;/li&gt;
 &lt;li&gt;❌: not supported&lt;/li&gt;
-&lt;li&gt;(R/W): partial reader/writer only support&lt;/li&gt;
+&lt;li&gt;(R): only read support&lt;/li&gt;
+&lt;li&gt;(W): only write support&lt;/li&gt;
 &lt;li&gt;(blank): no data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Implementations:&lt;/p&gt;
+&lt;h3 id="implementations"&gt;Implementations&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet"&gt;arrow&lt;/a&gt; (C++)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; (Java)&lt;/li&gt;
@@ -80,5 +81,5 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/hyparam/hyparquet"&gt;hyparquet&lt;/a&gt; (JavaScript)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/duckdb/duckdb"&gt;duckdb&lt;/a&gt; (C++)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="physical-types"&gt;Physical types&lt;/h3&gt;
-&lt;p&gt;Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32"&gt;&lt;code&gt;enum Type&lt;/code&gt; in parquet.thrift&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;!-- Status source in data/implementations --&gt;
+&lt;h3 id="physical-types"&gt;&lt;a href="#physical-types"&gt;Physical types&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32"&gt;&lt;code&gt;enum Type&lt;/code&gt; in parquet.thrift&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
