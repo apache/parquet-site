@@ -12,7 +12,7 @@ of this page by opening an issue or submitting a pull request.
 
 ### Legend
 The value in each box means:
-* ✅: supported. Footnote added when support is partial.
+* ✅: supported. Footnote added when support is partial. When data is available links to release notes are provided on the implementing version.
 * ❌: not supported
 * (R): only read support
 * (W): only write support

@@ -55,7 +55,30 @@
               {{- else -}}
                 {{ .display_name }}
               {{- end -}}
-              
+
+              {{- /* Render format version inline if present */ -}}
+              {{- if .format_version -}}
+                {{- $year := "" -}}
+                {{- $dateStr := .format_version.date -}}
+                {{- if hasPrefix $dateStr "2025" -}}
+                  {{- $year = "2025" -}}
+                {{- else if hasPrefix $dateStr "2024" -}}
+                  {{- $year = "2024" -}}
+                {{- else if hasPrefix $dateStr "2023" -}}
+                  {{- $year = "2023" -}}
+                {{- else if hasPrefix $dateStr "2020" -}}
+                  {{- $year = "2020" -}}
+                {{- else if hasPrefix $dateStr "2019" -}}
+                  {{- $year = "2019" -}}
+                {{- else if hasPrefix $dateStr "2018" -}}
+                  {{- $year = "2018" -}}
+                {{- else -}}
+                  {{- $year = substr $dateStr 0 4 -}}
+                {{- end -}}
+                {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-%s" .format_version.version -}}
+                <span class="format-version"> (<a href="{{ $releaseUrl }}">{{ $year }}</a>)</span>
+              {{- end -}}
+
               {{- if .note -}}
                {{- $present := false }}
                {{- $noteCounter := 0 -}}
@@ -81,13 +104,14 @@
 
               {{- /* Get support status inline */ -}}
               {{- $supportData := index site.Data.implementations.support $engineId -}}
+              {{- $support := false -}}
               {{- $status := "unknown" -}}
               {{- $noteHtml := "" -}}
 
               {{- $noteCounter := 0 -}}
               {{- $newNote := false -}}
               {{- if $supportData -}}
-                {{- $support := index $supportData.support $featureId -}}
+                {{- $support = index $supportData.support $featureId -}}
                 {{- if $support -}}
                   {{- $status = $support.status -}}
                   {{- if $support.note -}}
@@ -113,8 +137,98 @@
               {{- end -}}
 
               {{- $statusInfo := index $legend.symbols $status -}}
+              {{- $releaseNotesUrl := "" -}}
+              {{- $sinceVersion := "" -}}
+              {{- $earlierReleaseNotesUrl := "" -}}
+              {{- $earlierIsRead := false -}}
+
+              {{- /* Determine which version to use based on status */ -}}
+              {{- if $support -}}
+                {{- if eq $status "full" -}}
+                  {{- /* For full support, use the max of read and write versions */ -}}
+                  {{- $readVersion := $support.since_version_read -}}
+                  {{- $writeVersion := $support.since_version_write -}}
+
+                  {{- if and $readVersion $writeVersion -}}
+                    {{- /* Find dates to compare */ -}}
+                    {{- $readDate := "" -}}
+                    {{- $writeDate := "" -}}
+                    {{- $currentEngine := . -}}
+
+                    {{- /* Get read version date */ -}}
+                    {{- $readRelease := index $currentEngine.versions.releases $readVersion -}}
+                    {{- if $readRelease -}}
+                      {{- $readDate = $readRelease.release_date -}}
+                    {{- end -}}
+
+                    {{- /* Get write version date */ -}}
+                    {{- $writeRelease := index $currentEngine.versions.releases $writeVersion -}}
+                    {{- if $writeRelease -}}
+                      {{- $writeDate = $writeRelease.release_date -}}
+                    {{- end -}}
+
+                    {{- /* Use the later version, track earlier if different */ -}}
+                    {{- if and $readDate $writeDate -}}
+                      {{- if gt $writeDate $readDate -}}
+                        {{- $sinceVersion = $writeVersion -}}
+                        {{- if ne $readVersion $writeVersion -}}
+                          {{- $earlierReleaseNotesUrl = $readRelease.release_notes_url -}}
+                          {{- $earlierIsRead = true -}}
+                        {{- end -}}
+                      {{- else if lt $writeDate $readDate -}}
+                        {{- $sinceVersion = $readVersion -}}
+                        {{- if ne $readVersion $writeVersion -}}
+                          {{- $earlierReleaseNotesUrl = $writeRelease.release_notes_url -}}
+                          {{- $earlierIsRead = false -}}
+                        {{- end -}}
+                      {{- else -}}
+                        {{- $sinceVersion = $readVersion -}}
+                      {{- end -}}
+                    {{- else if $readDate -}}
+                      {{- $sinceVersion = $readVersion -}}
+                    {{- else if $writeDate -}}
+                      {{- $sinceVersion = $writeVersion -}}
+                    {{- end -}}
+                  {{- else if $readVersion -}}
+                    {{- $sinceVersion = $readVersion -}}
+                  {{- else if $writeVersion -}}
+                    {{- $sinceVersion = $writeVersion -}}
+                  {{- end -}}
+                {{- else if eq $status "read" -}}
+                  {{- if $support.since_version_read -}}
+                    {{- $sinceVersion = $support.since_version_read -}}
+                  {{- end -}}
+                {{- else if eq $status "write" -}}
+                  {{- if $support.since_version_write -}}
+                    {{- $sinceVersion = $support.since_version_write -}}
+                  {{- end -}}
+                {{- end -}}
+
+                {{- /* Find the release notes URL for this version */ -}}
+                {{- if $sinceVersion -}}
+                  {{- $currentEngine := . -}}
+                  {{- $release := index $currentEngine.versions.releases $sinceVersion -}}
+                  {{- if $release -}}
+                    {{- $releaseNotesUrl = $release.release_notes_url -}}
+                  {{- end -}}
+                {{- end -}}
+              {{- end -}}
+
               <td class="{{ $statusInfo.class }}">
-                {{ $statusInfo.display }}
+                {{- /* Hyperlink status symbol if release notes URL exists */ -}}
+                {{- if $releaseNotesUrl -}}
+                  <a href="{{ $releaseNotesUrl }}">{{ $statusInfo.display }}</a>
+                  {{- /* Add superscript link for earlier version if different */ -}}
+                  {{- if $earlierReleaseNotesUrl -}}
+                    {{- if $earlierIsRead -}}
+                      <sup><a href="{{ $earlierReleaseNotesUrl }}">R</a></sup>
+                    {{- else -}}
+                      <sup><a href="{{ $earlierReleaseNotesUrl }}">W</a></sup>
+                    {{- end -}}
+                  {{- end -}}
+                {{- else -}}
+                  {{ $statusInfo.display }}
+                {{- end -}}
                 {{- if $newNote -}}
                   <a href="#note-{{ $category.id }}-{{ $noteCounter }}">({{ add $noteCounter 1 }})</a>
                 {{- end -}}
@@ -125,7 +239,7 @@
       </tbody>
     </table>
     {{- /* Render footnotes if any */ -}}
-    {{- if gt (len $noteMap) 0 -}}   
+    {{- if gt (len $noteMap) 0 -}}
       <b>Notes:</b>
       {{- range $noteRowIndex, $noteRow := $noteMap }}
         <div id="note-{{ index $noteRow 2}}-{{index $noteRow 0 }}">({{ add $noteRowIndex 1}})&nbsp{{ index $noteRow 1 }}</div>
@@ -133,3 +247,175 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
+
+{{- /* Render minimum version table by year */ -}}
+<h3 id="read-support-by-year"><a href="#read-support-by-year">Minimum Version for Read Support by Year</a></h3>
+<p>This table shows the minimum engine version required to read Parquet files using features introduced in each year. Only includes compression, encodings, physical types, and logical types.</p>
+
+Note this data was originally collected in December 2025, and not all data was backfilled. It is possible older versions of a library might support reading a specific year's features. Generally, versions are expected to be accurate for any year after 2025.
+
+{{- /* Collect all features with format_version and group by year */ -}}
+{{- $featuresByYear := dict "2023" (slice) "2024" (slice) "2025" (slice) -}}
+{{- $deprecatedFeatures := slice "encoding-bit-packed" -}}
+{{- $includedCategories := slice "compressions" "encodings" "physical-types" "logical-types" -}}
+
+{{- range $categories -}}
+  {{- $categoryId := .id -}}
+  {{- /* Only include specific categories */ -}}
+  {{- if in $includedCategories $categoryId -}}
+    {{- $featuresData := index site.Data.implementations.features $categoryId -}}
+    {{- if $featuresData -}}
+      {{- range $featuresData.features -}}
+        {{- $feature := . -}}
+        {{- /* Skip deprecated features */ -}}
+        {{- if not (in $deprecatedFeatures .id) -}}
+          {{- if .format_version -}}
+            {{- $year := "" -}}
+            {{- $dateStr := .format_version.date -}}
+            {{- if hasPrefix $dateStr "2025" -}}
+              {{- $year = "2025" -}}
+            {{- else if hasPrefix $dateStr "2024" -}}
+              {{- $year = "2024" -}}
+            {{- else -}}
+              {{- $year = "2023" -}}
+            {{- end -}}
+
+            {{- $currentList := index $featuresByYear $year -}}
+            {{- $featuresByYear = merge $featuresByYear (dict $year ($currentList | append $feature)) -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Calculate minimum version for each engine and year */ -}}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Engine</th>
+      <th>≤2023 Features</th>
+      <th>2024 Features</th>
+      <th>2025 Features</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $engines -}}
+      {{- $engine := . -}}
+      {{- $engineId := .id -}}
+      {{- $supportData := index site.Data.implementations.support $engineId -}}
+
+      <tr>
+        <td>{{ .display_name }}</td>
+
+        {{- /* Process each year bucket cumulatively */ -}}
+        {{- $cumulativeMinVersion := "" -}}
+        {{- $cumulativeMinReleaseDate := "" -}}
+        {{- $cumulativeMissingFeatures := slice -}}
+        {{- $hasPriorMissingFeatures := false -}}
+
+        {{- range $year := slice "2023" "2024" "2025" -}}
+          {{- $features := index $featuresByYear $year -}}
+          {{- $minVersion := $cumulativeMinVersion -}}
+          {{- $minReleaseDate := $cumulativeMinReleaseDate -}}
+          {{- $releaseNotesUrl := "" -}}
+          {{- $missingFeatures := slice -}}
+
+          {{- /* If prior years had missing features, carry them forward */ -}}
+          {{- if $hasPriorMissingFeatures -}}
+            {{- $missingFeatures = $cumulativeMissingFeatures -}}
+          {{- end -}}
+
+          {{- /* Find minimum version that supports all features in this year */ -}}
+          {{- if $supportData -}}
+            {{- range $features -}}
+              {{- $featureId := .id -}}
+              {{- $support := index $supportData.support $featureId -}}
+
+              {{- /* Check if this feature has full or read support */ -}}
+              {{- if and $support (or (eq $support.status "full") (eq $support.status "read")) -}}
+                {{- $featureVersion := "" -}}
+                {{- $featureReleaseDate := "" -}}
+
+                {{- /* Use since_version_read if available, otherwise use default version */ -}}
+                {{- if $support.since_version_read -}}
+                  {{- $featureVersion = $support.since_version_read -}}
+
+                  {{- /* Find release date for this version */ -}}
+                  {{- if and $engine.versions $engine.versions.releases -}}
+                    {{- $release := index $engine.versions.releases $featureVersion -}}
+                    {{- if $release -}}
+                      {{- $featureReleaseDate = $release.release_date -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- else if and $engine.versions $engine.versions.default -}}
+                  {{- $featureVersion = $engine.versions.default -}}
+                  {{- if $engine.versions.releases -}}
+                    {{- $release := index $engine.versions.releases $featureVersion -}}
+                    {{- if $release -}}
+                      {{- $featureReleaseDate = $release.release_date -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+
+                {{- /* Update minimum if this is later than current minimum */ -}}
+                {{- if $featureVersion -}}
+                  {{- if not $minVersion -}}
+                    {{- $minVersion = $featureVersion -}}
+                    {{- $minReleaseDate = $featureReleaseDate -}}
+                  {{- else if and $featureReleaseDate $minReleaseDate -}}
+                    {{- if gt $featureReleaseDate $minReleaseDate -}}
+                      {{- $minVersion = $featureVersion -}}
+                      {{- $minReleaseDate = $featureReleaseDate -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+              {{- else -}}
+                {{- /* Feature is not supported or only has write support */ -}}
+                {{- $missingFeatures = $missingFeatures | append .display_name -}}
+              {{- end -}}
+            {{- end -}}
+
+            {{- /* Find release notes URL for minimum version */ -}}
+            {{- if $minVersion -}}
+              {{- if and $engine.versions $engine.versions.releases -}}
+                {{- $release := index $engine.versions.releases $minVersion -}}
+                {{- if $release -}}
+                  {{- $releaseNotesUrl = $release.release_notes_url -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+
+          {{- /* Update cumulative state for next iteration */ -}}
+          {{- $cumulativeMinVersion = $minVersion -}}
+          {{- $cumulativeMinReleaseDate = $minReleaseDate -}}
+          {{- if gt (len $missingFeatures) 0 -}}
+            {{- $hasPriorMissingFeatures = true -}}
+            {{- $cumulativeMissingFeatures = $missingFeatures -}}
+          {{- end -}}
+
+          <td>
+            {{- if gt (len $missingFeatures) 0 -}}
+              {{- /* Has missing features - show X with tooltip */ -}}
+              {{- $tooltip := delimit $missingFeatures ", " -}}
+              <span class="status-none" title="Missing: {{ $tooltip }}">❌</span>
+            {{- else if $minVersion -}}
+              {{- /* Has full support - show version */ -}}
+              {{- if $releaseNotesUrl -}}
+                <a href="{{ $releaseNotesUrl }}">{{ $minVersion }}</a>
+              {{- else -}}
+                {{ $minVersion }}
+              {{- end -}}
+              {{- if $minReleaseDate -}}
+                <br><small>({{ $minReleaseDate }})</small>
+              {{- end -}}
+            {{- else -}}
+              -
+            {{- end -}}
+          </td>
+        {{- end -}}
+      </tr>
+    {{- end -}}
+  </tbody>
+</table>

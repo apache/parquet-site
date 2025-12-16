@@ -35,6 +35,8 @@ support:
     status: full
   logical-float16:
     status: full
+    since_version_read: "15.0.0"
+    since_version_write: "15.0.0"
   logical-date:
     status: full
   logical-time-int32:
@@ -47,14 +49,20 @@ support:
     status: full
   logical-json:
     status: full
+    since_version_read: "18.0.0"
+    since_version_write: "18.0.0"
   logical-bson:
     status: none
   logical-variant:
     status: unknown
   logical-geometry:
     status: full
+    since_version_read: "21.0.0"
+    since_version_write: "21.0.0"
   logical-geography:
     status: full
+    since_version_read: "21.0.0"
+    since_version_write: "21.0.0"
   logical-list:
     status: full
   logical-map:
@@ -79,6 +87,12 @@ support:
     status: full
   encoding-byte-stream-split:
     status: full
+    since_version_read: "16.0.0"
+    since_version_write: "16.0.0"
+  encoding-byte-stream-split-extended:
+    status: full
+    since_version_read: "16.0.0"
+    since_version_write: "16.0.0"
   compression-uncompressed:
     status: full
   compression-brotli:
@@ -97,18 +111,26 @@ support:
     status: full
   format-bloom-filters:
     status: read
+    since_version_read: "15.0.0"
   format-bloom-filter-length:
     status: read
+    since_version_read: "15.0.0"
   format-stats-min-max:
     status: full
   format-page-index:
     status: full
+    since_version_read: "20.0.0"
+    since_version_write: "20.0.0"
   format-page-crc32:
     status: full
+    since_version_read: "15.0.0"
+    since_version_write: "15.0.0"
   format-modular-encryption:
     status: full
   format-size-statistics:
     status: full
+    since_version_read: "19.0.0"
+    since_version_write: "19.0.0"
   format-data-page-v2:
     status: full
   api-external-column-data:

@@ -37,6 +37,8 @@ support:
     status: full
   logical-float16:
     status: full
+    since_version_read: "49.0.0"
+    since_version_write: "49.0.0"
   logical-date:
     status: full
   logical-time-int32:
@@ -55,10 +57,16 @@ support:
     note: Only supported to use its annotated physical type
   logical-variant:
     status: full
+    since_version_read: "56.0.0"
+    since_version_write: "56.0.0"
   logical-geometry:
     status: full
+    since_version_read: "57.0.0"
+    since_version_write: "57.0.0"
   logical-geography:
     status: full
+    since_version_read: "57.0.0"
+    since_version_write: "57.0.0"
   logical-list:
     status: full
   logical-map:
@@ -84,6 +92,12 @@ support:
     status: full
   encoding-byte-stream-split:
     status: full
+    since_version_read: "52.2.0"
+    since_version_write: "52.2.0"
+  encoding-byte-stream-split-extended:
+    status: full
+    since_version_read: "53.0.0"
+    since_version_write: "53.0.0"
   compression-uncompressed:
     status: full
   compression-brotli:
@@ -102,16 +116,23 @@ support:
     status: full
   format-bloom-filters:
     status: full
+    since_version_read: "28.0.0"
+    since_version_write: "28.0.0"
   format-bloom-filter-length:
     status: full
+    since_version_read: "28.0.0"
+    since_version_write: "28.0.0"
   format-stats-min-max:
     status: full
   format-page-index:
     status: full
+    since_version_read: "17.0.0"
   format-page-crc32:
     status: full
   format-modular-encryption:
     status: full
+    since_version_read: "54.3.0"
+    since_version_write: "55.0.0"
   format-size-statistics:
     status: full
   format-data-page-v2:

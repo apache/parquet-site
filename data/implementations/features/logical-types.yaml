@@ -26,6 +26,9 @@ features:
 
   - id: logical-float16
     display_name: FLOAT16
+    format_version:
+      version: "2.10.0"
+      date: "2023-11-20"
 
   - id: logical-date
     display_name: DATE
@@ -51,14 +54,23 @@ features:
   - id: logical-variant
     display_name: VARIANT
     spec_url: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
+    format_version:
+      version: "2.11.0"
+      date: "2025-03-23"
 
   - id: logical-geometry
     display_name: GEOMETRY
     spec_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
+    format_version:
+      version: "2.11.0"
+      date: "2025-03-23"
 
   - id: logical-geography
     display_name: GEOGRAPHY
     spec_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
+    format_version:
+      version: "2.11.0"
+      date: "2025-03-23"
 
   - id: logical-list
     display_name: LIST

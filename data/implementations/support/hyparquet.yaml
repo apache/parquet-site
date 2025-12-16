@@ -79,6 +79,8 @@ support:
     status: read
   encoding-byte-stream-split:
     status: read
+  encoding-byte-stream-split-extended:
+    status: unknown
   compression-uncompressed:
     status: full
   compression-brotli:

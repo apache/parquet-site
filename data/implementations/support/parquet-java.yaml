@@ -55,10 +55,16 @@ support:
     note: Only supported to use its annotated physical type
   logical-variant:
     status: full
+    since_version_read: "1.16.0"
+    since_version_write: "1.16.0"
   logical-geometry:
     status: full
+    since_version_read: "1.16.0"
+    since_version_write: "1.16.0"
   logical-geography:
     status: full
+    since_version_read: "1.16.0"
+    since_version_write: "1.16.0"
   logical-list:
     status: full
   logical-map:
@@ -82,6 +88,8 @@ support:
   encoding-delta-byte-array:
     status: full
   encoding-byte-stream-split:
+    status: full
+  encoding-byte-stream-split-extended:
     status: full
   compression-uncompressed:
     status: full

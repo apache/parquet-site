@@ -79,6 +79,8 @@ support:
     status: full
   encoding-byte-stream-split:
     status: full
+  encoding-byte-stream-split-extended:
+    status: unknown
   compression-uncompressed:
     status: full
   compression-brotli:
@@ -97,6 +99,7 @@ support:
     status: full
   format-bloom-filters:
     status: read
+    since_version_read: "25.06.00"
   format-bloom-filter-length:
     status: read
   format-stats-min-max:
@@ -119,6 +122,8 @@ support:
     status: full
   api-rowgroup-pruning-bloom:
     status: full
+    since_version_read: "25.06.00"
+    since_version_write: "25.06.00"
   api-column-projection:
     status: full
   api-page-pruning-stats:

@@ -3,6 +3,9 @@ features:
   - id: format-bloom-filters
     display_name: xxHash-based bloom filters
     spec_url: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
+    format_version:
+      version: "2.7.0"
+      date: "2019-09-25"
 
   - id: format-bloom-filter-length
     display_name: Bloom filter length
@@ -14,6 +17,9 @@ features:
   - id: format-page-index
     display_name: Page index
     spec_url: https://github.com/apache/parquet-format/blob/master/PageIndex.md
+    format_version:
+      version: "2.4.0"
+      date: "2018-05-04"
 
   - id: format-page-crc32
     display_name: Page CRC32 checksum
@@ -21,10 +27,16 @@ features:
   - id: format-modular-encryption
     display_name: Modular encryption
     spec_url: https://github.com/apache/parquet-format/blob/master/Encryption.md
+    format_version:
+      version: "2.7.0"
+      date: "2019-09-25"
 
   - id: format-size-statistics
     display_name: Size statistics
     note: "In parquet.thrift: ColumnMetaData->size_statistics"
+    format_version:
+      version: "2.10.0"
+      date: "2023-11-20"
 
   - id: format-data-page-v2
     display_name: Data Page V2
