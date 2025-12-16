@@ -253,7 +253,7 @@
 <h3 id="read-support-by-year"><a href="#read-support-by-year">Minimum Version for Read Support by Year</a></h3>
 <p>This table shows the minimum engine version required to read Parquet files using features introduced in each year. Only includes compression, encodings, physical types, and logical types. Features without a specified format version are assumed to have been added prior to 2023.</p>
 
-<p>Note this data was originally collected in December 2025, and not all data was backfilled. It is possible older versions of a library might support reading a specific year's features. Generally, versions are expected to be accurate for any year after 2025.</p>
+<p><b>Note:</b> This data was originally collected in December 2025, and not all data was backfilled. It is likely older releases of each engine support reading all features for 2023 and before. As volunteers have time they are invited to add more granular details on releases. Generally, versions are expected to be accurate for any year 2025 and after.</p>
 
 {{- /* Collect all features with format_version and group by year */ -}}
 {{- $featuresByYear := dict "2023" (slice) "2024" (slice) "2025" (slice) -}}
