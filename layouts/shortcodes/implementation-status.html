@@ -251,13 +251,13 @@
 
 {{- /* Render minimum version table by year */ -}}
 <h3 id="read-support-by-year"><a href="#read-support-by-year">Minimum Version for Read Support by Year</a></h3>
-<p>This table shows the minimum engine version required to read Parquet files using features introduced in each year. Only includes compression, encodings, physical types, and logical types.</p>
+<p>This table shows the minimum engine version required to read Parquet files using features introduced in each year. Only includes compression, encodings, physical types, and logical types. Features without a specified format version are assumed to have been added prior to 2023.</p>
 
-Note this data was originally collected in December 2025, and not all data was backfilled. It is possible older versions of a library might support reading a specific year's features. Generally, versions are expected to be accurate for any year after 2025.
+<p>Note this data was originally collected in December 2025, and not all data was backfilled. It is possible older versions of a library might support reading a specific year's features. Generally, versions are expected to be accurate for any year after 2025.</p>
 
 {{- /* Collect all features with format_version and group by year */ -}}
 {{- $featuresByYear := dict "2023" (slice) "2024" (slice) "2025" (slice) -}}
-{{- $deprecatedFeatures := slice "encoding-bit-packed" -}}
+{{- $excludedFeatures := slice "encoding-bit-packed" "compression-lz4-deprecated" "compression-lzo" "logical-enum" "logical-uuid" "logical-bson" "logical-json" "logical-interval" -}}
 {{- $includedCategories := slice "compressions" "encodings" "physical-types" "logical-types" -}}
 
 {{- range $categories -}}
@@ -268,10 +268,10 @@ Note this data was originally collected in December 2025, and not all data was b
     {{- if $featuresData -}}
       {{- range $featuresData.features -}}
         {{- $feature := . -}}
-        {{- /* Skip deprecated features */ -}}
-        {{- if not (in $deprecatedFeatures .id) -}}
+        {{- /* Skip excluded features */ -}}
+        {{- if not (in $excludedFeatures .id) -}}
+          {{- $year := "" -}}
           {{- if .format_version -}}
-            {{- $year := "" -}}
             {{- $dateStr := .format_version.date -}}
             {{- if hasPrefix $dateStr "2025" -}}
               {{- $year = "2025" -}}
@@ -280,14 +280,37 @@ Note this data was originally collected in December 2025, and not all data was b
             {{- else -}}
               {{- $year = "2023" -}}
             {{- end -}}
-
-            {{- $currentList := index $featuresByYear $year -}}
-            {{- $featuresByYear = merge $featuresByYear (dict $year ($currentList | append $feature)) -}}
+          {{- else -}}
+            {{- /* Features without format_version are assumed pre-2023 */ -}}
+            {{- $year = "2023" -}}
           {{- end -}}
+
+          {{- $currentList := index $featuresByYear $year -}}
+          {{- $featuresByYear = merge $featuresByYear (dict $year ($currentList | append $feature)) -}}
         {{- end -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}
+{{- end -}}
+
+{{- /* Build list of excluded feature names for display */ -}}
+{{- $excludedFeatureNames := slice -}}
+{{- range $categories -}}
+  {{- $categoryId := .id -}}
+  {{- if in $includedCategories $categoryId -}}
+    {{- $featuresData := index site.Data.implementations.features $categoryId -}}
+    {{- if $featuresData -}}
+      {{- range $featuresData.features -}}
+        {{- if in $excludedFeatures .id -}}
+          {{- $excludedFeatureNames = $excludedFeatureNames | append .display_name -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if gt (len $excludedFeatureNames) 0 -}}
+<p><strong>Note:</strong> The following features are excluded from this table: {{ delimit $excludedFeatureNames ", " }}.</p>
 {{- end -}}
 
 {{- /* Calculate minimum version for each engine and year */ -}}
