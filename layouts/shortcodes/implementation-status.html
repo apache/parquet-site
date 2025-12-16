@@ -117,14 +117,15 @@
                   {{- if $support.note -}}
                      {{- $newNote = true -}}
                      {{- $present := false }}
+                     {{- $currentSupportNote := $support.note -}}
                      {{- range $noteRowIndex, $noteRow :=  $noteMap -}}
-                       {{- $noteStr := $support.note -}}
+                       {{- $noteStr := $currentSupportNote -}}
                        {{- if ne $noteStr (index $noteRow 1)  -}}
                          {{- $noteCounter = add $noteCounter 1 -}}
                        {{- end -}}
                      {{- end -}}
                      {{- if eq $noteCounter (len $noteMap)}}
-                       {{- $noteRow := slice (cast.ToString $noteCounter) $support.note $category.id }}
+                       {{- $noteRow := slice (cast.ToString $noteCounter) $currentSupportNote $category.id }}
                        {{- if eq (len $noteMap) 0 -}}
                          {{- $noteMap = $noteMap | append (slice $noteRow) -}}
                        {{- else -}}
