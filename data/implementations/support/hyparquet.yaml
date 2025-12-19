@@ -113,8 +113,8 @@ support:
     status: unknown
   format-data-page-v2:
     status: full
-  api-external-column-data:
-    status: full
+  api-parquet-summary-file:
+    status: none
   api-sorting-columns:
     status: none
   api-rowgroup-pruning-stats:

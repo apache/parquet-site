@@ -133,7 +133,7 @@ support:
     since_version_write: "19.0.0"
   format-data-page-v2:
     status: full
-  api-external-column-data:
+  api-parquet-summary-file:
     status: full
   api-sorting-columns:
     status: full

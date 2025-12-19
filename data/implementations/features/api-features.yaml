@@ -1,8 +1,8 @@
 category_id: api-features
 features:
-  - id: api-external-column-data
-    display_name: External column data
-    note: "In parquet.thrift: ColumnChunk->file_path"
+  - id: api-parquet-summary-file
+    display_name: Parquet summary file
+    note: "Files named _metadata that consolidate footers from multiple parquet files."
 
   - id: api-sorting-columns
     display_name: Row group "Sorting column" metadata

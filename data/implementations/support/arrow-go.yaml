@@ -125,7 +125,7 @@ support:
     status: read
   format-data-page-v2:
     status: full
-  api-external-column-data:
+  api-parquet-summary-file:
     status: none
   api-sorting-columns:
     status: full
