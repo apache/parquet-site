@@ -116,17 +116,12 @@ support:
     status: full
   format-bloom-filters:
     status: full
-    since_version_read: "28.0.0"
-    since_version_write: "28.0.0"
   format-bloom-filter-length:
     status: full
-    since_version_read: "28.0.0"
-    since_version_write: "28.0.0"
   format-stats-min-max:
     status: full
   format-page-index:
     status: full
-    since_version_read: "17.0.0"
   format-page-crc32:
     status: full
   format-modular-encryption:

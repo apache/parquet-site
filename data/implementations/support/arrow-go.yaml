@@ -83,8 +83,8 @@ support:
     status: full
   encoding-byte-stream-split:
     status: full
-    since_version_read: "17.0.0"
-    since_version_write: "17.0.0"
+    since_version_read: "18.0.0"
+    since_version_write: "18.0.0"
   encoding-byte-stream-split-extended:
     status: full
     since_version_read: "18.0.0"
