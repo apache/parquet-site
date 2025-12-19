@@ -15,3 +15,6 @@ _vendor/
 *.iml
 out
 
+# Vim swp files
+*.swp
+
