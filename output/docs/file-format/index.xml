@@ -65,7 +65,7 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;h3 id="legend"&gt;Legend&lt;/h3&gt;
 &lt;p&gt;The value in each box means:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;✅: supported. Footnote added when support is partial.&lt;/li&gt;
+&lt;li&gt;✅: supported. Footnote added when support is partial. When data is available, links to release notes are provided on the implementing version.&lt;/li&gt;
 &lt;li&gt;❌: not supported&lt;/li&gt;
 &lt;li&gt;(R): only read support&lt;/li&gt;
 &lt;li&gt;(W): only write support&lt;/li&gt;
