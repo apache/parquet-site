@@ -1,5 +1,5 @@
 engine_id: hyparquet
-last_updated: "2025-12-09"
+last_updated: "2026-01-09"
 support:
   physical-boolean:
     status: full
@@ -50,13 +50,16 @@ support:
   logical-bson:
     status: none
   logical-variant:
-    status: none
+    status: read
+    since_version_read: "1.24.0"
   logical-geometry:
     status: full
+    since_version_read: "1.19.0"
   logical-geography:
     status: full
+    since_version_read: "1.19.0"
   logical-list:
-    status: read
+    status: full
   logical-map:
     status: read
   logical-unknown:
@@ -70,17 +73,17 @@ support:
   encoding-rle:
     status: full
   encoding-bit-packed:
-    status: read
+    status: full
   encoding-delta-binary-packed:
-    status: read
+    status: full
   encoding-delta-length-byte-array:
-    status: read
+    status: full
   encoding-delta-byte-array:
-    status: read
+    status: full
   encoding-byte-stream-split:
-    status: read
+    status: full
   encoding-byte-stream-split-extended:
-    status: unknown
+    status: full
   compression-uncompressed:
     status: full
   compression-brotli:
@@ -98,19 +101,19 @@ support:
   compression-zstd:
     status: read
   format-bloom-filters:
-    status: unknown
+    status: none
   format-bloom-filter-length:
-    status: unknown
+    status: read
   format-stats-min-max:
     status: full
   format-page-index:
-    status: read
+    status: full
   format-page-crc32:
     status: none
   format-modular-encryption:
     status: none
   format-size-statistics:
-    status: unknown
+    status: read
   format-data-page-v2:
     status: full
   api-parquet-summary-file:
@@ -118,10 +121,10 @@ support:
   api-sorting-columns:
     status: none
   api-rowgroup-pruning-stats:
-    status: none
+    status: full
   api-rowgroup-pruning-bloom:
     status: none
   api-column-projection:
     status: full
   api-page-pruning-stats:
-    status: none
+    status: full
