@@ -1,5 +1,5 @@
 engine_id: arrow
-last_updated: "2025-12-09"
+last_updated: "2026-01-15"
 support:
   physical-boolean:
     status: full
@@ -110,11 +110,13 @@ support:
   compression-zstd:
     status: full
   format-bloom-filters:
-    status: read
+    status: full
     since_version_read: "15.0.0"
+    since_version_write: "24.0.0"
   format-bloom-filter-length:
-    status: read
+    status: full
     since_version_read: "15.0.0"
+    since_version_write: "24.0.0"
   format-stats-min-max:
     status: full
   format-page-index:
