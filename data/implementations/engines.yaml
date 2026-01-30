@@ -160,3 +160,16 @@
       "1.4.0":
         release_date: "2025-09-16"
         release_notes_url: "https://github.com/duckdb/duckdb/releases/tag/v1.4.0"
+
+- id: polars
+  name: polars
+  display_name: Polars
+  language: Rust
+  repo_url: https://github.com/pola-rs/polars
+  docs_url: null
+  versions:
+    default: "1.37.0"
+    releases:
+      "1.37.0":
+        release_date: "2026-01-10"
+        release_notes_url: "https://github.com/pola-rs/polars/releases/tag/py-1.37.0"

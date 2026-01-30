@@ -1,0 +1,127 @@
+engine_id: polars
+last_updated: "2026-01-30"
+support:
+  physical-boolean:
+    status: full
+  physical-int32:
+    status: full
+  physical-int64:
+    status: full
+  physical-int96:
+    status: read
+  physical-float:
+    status: full
+  physical-double:
+    status: full
+  physical-byte-array:
+    status: full
+  physical-fixed-len-byte-array:
+    status: read
+  logical-string:
+    status: full
+  logical-enum:
+    status: read
+  logical-uuid:
+    status: read
+  logical-int-types:
+    status: full
+  logical-decimal-int32:
+    status: read
+  logical-decimal-int64:
+    status: read
+  logical-decimal-byte-array:
+    status: read
+  logical-decimal-fixed-len-byte-array:
+    status: full
+  logical-float16:
+    status: full
+  logical-date:
+    status: full
+  logical-time-int32:
+    status: read
+  logical-time-int64:
+    status: full
+  logical-timestamp-int64:
+    status: full
+  logical-interval:
+    status: read
+  logical-json:
+    status: none
+  logical-bson:
+    status: none
+  logical-variant:
+    status: none
+  logical-geometry:
+    status: read
+  logical-geography:
+    status: read
+  logical-list:
+    status: full
+  logical-map:
+    status: read
+  logical-unknown:
+    status: full
+  encoding-plain:
+    status: full
+  encoding-plain-dictionary:
+    status: read
+  encoding-rle-dictionary:
+    status: full
+  encoding-rle:
+    status: read
+  encoding-bit-packed:
+    status: none
+  encoding-delta-binary-packed:
+    status: read
+  encoding-delta-length-byte-array:
+    status: read
+  encoding-delta-byte-array:
+    status: read
+  encoding-byte-stream-split:
+    status: read
+  encoding-byte-stream-split-extended:
+    status: none
+  compression-uncompressed:
+    status: full
+  compression-brotli:
+    status: full
+  compression-gzip:
+    status: full
+  compression-lz4-deprecated:
+    status: none
+  compression-lz4-raw:
+    status: full
+  compression-lzo:
+    status: read
+  compression-snappy:
+    status: full
+  compression-zstd:
+    status: full
+  format-bloom-filters:
+    status: none
+  format-bloom-filter-length:
+    status: none
+  format-stats-min-max:
+    status: full
+  format-page-index:
+    status: read
+  format-page-crc32:
+    status: read
+  format-modular-encryption:
+    status: none
+  format-size-statistics:
+    status: read
+  format-data-page-v2:
+    status: read
+  api-parquet-summary-file:
+    status: none
+  api-sorting-columns:
+    status: read
+  api-rowgroup-pruning-stats:
+    status: full
+  api-rowgroup-pruning-bloom:
+    status: none
+  api-column-projection:
+    status: full
+  api-page-pruning-stats:
+    status: none
