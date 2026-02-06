@@ -29,19 +29,19 @@ In practice, this means that spatial analytics can finally benefit from the same
 
 ![Building Bounding Boxes Visualization](/blog/geospatial/bounding_boxes.png)
 
-**Figure 1:** Visualization of bounding boxes for 130 million buildings stored in a Parquet file from the contiguous U.S. (Microsoft Buildings, file from [geoarrow.org/data](http://geoarrow.org/data), visualization [code](https://gist.github.com/paleolimbot/06303283b42161b57ffc37a8fed60890) here)
+**Figure 1:** Visualization of bounding boxes for 130 million buildings stored in a Parquet file from the contiguous U.S. (Microsoft Buildings, file from geoarrow.org/data, visualization [code](/blog/geospatial/bounding_boxes_visualization.py) here)
 
 ## From GeoParquet Metadata to Native Types
 
-Before Parquet adopted GEOMETRY and GEOGRAPHY types in 2025, the [GeoParquet](https://geoparquet.org/) community [1] had already standardized how geometries should be stored in Parquet as early as 2022, using well known binary encoding plus a set of metadata keys. This was an important step because it enabled interoperability across tools.
+Before Parquet adopted GEOMETRY and GEOGRAPHY types in 2025, the [GeoParquet](https://geoparquet.org/) community had already standardized how geometries should be stored in Parquet as early as 2022, using well known binary encoding plus a set of metadata keys. This was an important step because it enabled interoperability across tools.
 
 However, geometry columns were still fundamentally binary columns with sidecar metadata. Engines had to explicitly opt in to understanding that metadata and its placement in the file key/value metadata made it difficult to integrate with primarily non-spatial engines that were not designed to be extended in this way. Moreover, data lake table formats such as Apache Iceberg require concrete, first class Parquet data types to enable engine interoperability, which sidecar metadata cannot adequately support.
 
-The newer direction, sometimes referred to as [GeoParquet 2.0](https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/) [2], moves geospatial concepts directly into the Parquet type system. Geometry and geography are defined as logical types, similar in spirit to decimal or timestamp types. This eliminates ambiguity such that non-spatial engines are better able to integrate Geometry and Geography concepts, improving type fidelity and performance for spatial and non-spatial users alike.
+The newer direction, sometimes referred to as [GeoParquet 2.0](https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/), moves geospatial concepts directly into the Parquet type system. Geometry and geography are defined as logical types, similar in spirit to decimal or timestamp types. This eliminates ambiguity such that non-spatial engines are better able to integrate Geometry and Geography concepts, improving type fidelity and performance for spatial and non-spatial users alike.
 
 ## Overview of Geospatial Types in Parquet
 
-Parquet introduces two primary logical types for spatial data [3].
+Parquet introduces two primary [logical types for spatial data](https://parquet.apache.org/docs/file-format/types/geospatial/).
 
 ### GEOMETRY
 
@@ -75,7 +75,7 @@ Both types integrate into Parquet schemas just like other logical types. From th
 
 ## How Geospatial Types Are Stored
 
-Although geospatial types are logical constructs, their physical storage follows Parquet's existing columnar design [3]. The following points highlight key aspects of the geospatial type design.
+Although geospatial types are logical constructs, their physical storage follows [Parquet's existing columnar design](https://parquet.apache.org/docs/file-format/types/geospatial/). The following points highlight key aspects of the geospatial type design.
 
 1. **Physical encoding**
    Geometry and geography values are stored as binary payloads, using Well Known Binary (WKB) encoding. This ensures compatibility across engines and languages.
@@ -86,7 +86,7 @@ Although geospatial types are logical constructs, their physical storage follows
 4. **Coordinate Reference System (CRS) information**
    CRS information is stored at the file metadata (i.e., type definition) using authoritative identifiers or structured definitions such as EPSG codes or PROJJSON strings.
 
-Native geospatial types align naturally with modern lakehouse architectures built on Parquet. Table formats such as [Apache Iceberg](https://iceberg.apache.org/) [4, 5] no longer need to reinvent geospatial logic since core spatial semantics live in Parquet. Instead, they can focus on well defined type mappings between Parquet and Iceberg and on propagating spatial statistics into the tables.
+Native geospatial types align naturally with modern lakehouse architectures built on Parquet. Table formats such as [Apache Iceberg](https://iceberg.apache.org/) no longer need to reinvent geospatial logic since core spatial semantics live in Parquet. Instead, they can focus on well defined type mappings between Parquet and Iceberg and on [propagating spatial statistics into the tables](https://wherobots.com/blog/iceberg-geo-technical-insights-and-implementation-strategies/).
 
 ## Implementation status and ecosystem adoption
 
@@ -94,7 +94,7 @@ Native Parquet geo types are not theoretical. Geometry and geography have alread
 
 Today, support exists in multiple languages and runtimes, including Parquet Java, Arrow C++, Rust, Hyparquet Javascript, DuckDB, and more! This ensures that geospatial Parquet files can be produced and consumed consistently across ecosystems, from JVM engines to native and embedded query engines.
 
-An up to date view of implementation coverage can be found in the official Parquet documentation [6].
+An up to date view of implementation coverage can be found in the [official Parquet documentation](https://parquet.apache.org/docs/file-format/implementationstatus/).
 
 ## Conclusion
 
@@ -141,12 +141,4 @@ df.head(2)
 #> 1  MULTIPOLYGON (((33.90371 -0.95, 34.07262 -1.05...
 ```
 
-## References
-
-1. https://geoparquet.org/
-2. https://cloudnativegeo.org/blog/2025/02/geoparquet-2.0-going-native/
-3. https://parquet.apache.org/docs/file-format/types/geospatial/
-4. https://wherobots.com/blog/iceberg-geo-technical-insights-and-implementation-strategies/
-5. https://iceberg.apache.org/
-6. https://parquet.apache.org/docs/file-format/implementationstatus/
 
