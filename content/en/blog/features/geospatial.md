@@ -78,7 +78,7 @@ Both types integrate into Parquet schemas just like other logical types. From th
 Although geospatial types are logical constructs, their physical storage follows [Parquet's existing columnar design](https://parquet.apache.org/docs/file-format/types/geospatial/). The following points highlight key aspects of the geospatial type design.
 
 1. **Physical encoding**
-   Geometry and geography values are stored as binary payloads, using Well Known Binary (WKB) encoding. This ensures compatibility across engines and languages.
+   Geometry and geography values are stored as binary payloads, using [Well Known Binary (WKB)](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary) encoding. This ensures compatibility across engines and languages.
 2. **Spatial statistics**
    In addition to standard Parquet statistics such as null counts, spatial columns can carry bounding box information. Each row group can record the minimum and maximum extents of the geometries it contains. Query engines can use this information to prune data early when evaluating spatial predicates.
 3. **Engine interoperability**
