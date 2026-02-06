@@ -31,6 +31,25 @@ In practice, this means that spatial analytics can finally benefit from the same
 
 **Figure 1:** Visualization of bounding boxes for 130 million buildings stored in a Parquet file from the contiguous U.S. (Microsoft Buildings, file from geoarrow.org/data, visualization [code](/blog/geospatial/bounding_boxes_visualization.py) here)
 
+Consider a [SedonaDB](https://sedona.apache.org/sedonadb/) Spatial SQL query that filters buildings by intersection with a small region around Austin, Texas:
+
+```sql
+SELECT * FROM buildings
+WHERE ST_Intersects(
+    geometry,
+    ST_SetSRID(
+        ST_GeomFromText('POLYGON((-97.8 30.2, -97.8 30.3, -97.7 30.3, -97.7 30.2, -97.8 30.2))'),
+        4326
+    )
+)
+```
+
+With bounding box statistics attached to each row group, the query engine compares the query window against each row group's bounding box before reading any geometry data. In the visualization below, the query window (red box) overlaps with only 3 row groups out of 2,585 (highlighted in orange). The engine skips all other row groups entirely.
+
+![Spatial Pruning Visualization](/blog/geospatial/spatial_pruning.png)
+
+**Figure 2:** Spatial pruning in action: the query window over Austin (red) intersects only 3 row group bounding boxes (orange). The remaining 2,582 row groups (gray) are skipped without reading their data. (visualization [code](/blog/geospatial/spatial_pruning_visualization.py) here)
+
 ## From GeoParquet Metadata to Native Types
 
 Before Parquet adopted GEOMETRY and GEOGRAPHY types in 2025, the [GeoParquet](https://geoparquet.org/) community had already standardized how geometries should be stored in Parquet as early as 2022, using well known binary encoding plus a set of metadata keys. This was an important step because it enabled interoperability across tools.
@@ -55,7 +74,7 @@ Typical examples include:
 
 ![Westminster Bridge Engineering Precision](/blog/geospatial/westminster_bridge.png)
 
-**Figure 2:** Building the London Westminster Bridge: the Geometry type under a local coordinate reference system would provide better precision and performance than the Geography type.
+**Figure 3:** Building the London Westminster Bridge: the Geometry type under a local coordinate reference system would provide better precision and performance than the Geography type.
 
 ### GEOGRAPHY
 
@@ -69,7 +88,7 @@ Common use cases include:
 
 ![London NYC Distance Comparison](/blog/geospatial/london_nyc_distance.png)
 
-**Figure 3:** The shortest distance between London and NYC should cross Canada when using the Geography type, whereas the Geometry type incorrectly misses Canada.
+**Figure 4:** The shortest distance between London and NYC should cross Canada when using the Geography type, whereas the Geometry type incorrectly misses Canada.
 
 Both types integrate into Parquet schemas just like other logical types. From the perspective of a schema definition, a geometry column is no longer an opaque binary field but a typed spatial column.
 
