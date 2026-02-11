@@ -77,6 +77,27 @@ hugo server --bind 0.0.0.0 # run the server
 
 You can now preview the site locally on http://localhost:1313/
 
+# Changing the docsy templates
+
+The Docsy theme templates are located in [vendor/github.com/google/docsy]
+
+Overrides to the default docsy templates are in the [layouts] directory. For
+example, [layouts/partials] contains the partial templates for HTML pages.
+
+To make a change to the docsy templates, DO NOT change the original docsy theme,
+instead copy the template you want to change from the docsy module to the
+`layouts` directory and then make your changes there. This makes it easier to
+keep track of the changes we have made to the templates and to update the docsy module when
+needed.
+
+For example you can see the difference between the default docsy navbar and
+the one used in this website with a command such as:
+
+```shell
+diff -du vendor/github.com/google/docsy/layouts/_partials/navbar.html layouts/partials/navbar.html
+```
+
+
 # Release Process
 
 To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.

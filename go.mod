@@ -7,3 +7,5 @@ require (
 	github.com/google/docsy v0.12.0 // indirect
 	github.com/twbs/bootstrap v5.3.8+incompatible // indirect
 )
+
+replace github.com/google/docsy => ./vendor/github.com/google/docsy
