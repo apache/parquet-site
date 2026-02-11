@@ -80,6 +80,7 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/rapidsai/cudf"&gt;cudf&lt;/a&gt; (cuDF C++)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/hyparam/hyparquet"&gt;hyparquet&lt;/a&gt; (JavaScript)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/duckdb/duckdb"&gt;duckdb&lt;/a&gt; (C++)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pola-rs/polars"&gt;polars&lt;/a&gt; (Rust)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- Status source in data/implementations --&gt;
 &lt;h3 id="physical-types"&gt;&lt;a href="#physical-types"&gt;Physical types&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32"&gt;&lt;code&gt;enum Type&lt;/code&gt; in parquet.thrift&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
