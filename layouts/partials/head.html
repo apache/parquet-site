@@ -26,7 +26,10 @@
 {{ partial "schema.html" . -}}
 {{ partial "twitter_cards.html" . -}}
 {{ partialCached "head-css.html" . "head-css-cache-key" -}}
-<script src='{{ "vendor/jquery/jquery-3.7.1.min.js" | relURL }}'></script>
+<script
+  src='{{ "vendor/jquery/jquery-3.7.1.min.js" | relURL }}'
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+></script>
 {{ if .Site.Params.offlineSearch -}}
 <script defer
   src="https://unpkg.com/lunr@2.3.9/lunr.min.js"
@@ -50,7 +53,9 @@
 {{ define "algolia/head" -}}
 
 {{ if and .Site.Params.search (isset .Site.Params.search "algolia") -}}
-<link rel="stylesheet" href='{{ "vendor/docsearch/docsearch-3.8.2.css" | relURL }}' />
+<link rel="stylesheet" href='{{ "vendor/docsearch/docsearch-3.8.2.css" | relURL }}'
+  integrity="sha512-l7pkV1dOURFyHCeH8I4fK9lCkQKuqhlsTCqRl3zktifDlB8oTUJ+mJPgYkK9kHpUut8j1iPquTv32t6hvTPv3g=="
+/>
 {{ end -}}
 
 {{ if ne .Site.Params.algolia_docsearch nil -}}

@@ -77,7 +77,8 @@ window.markmap = {
 {{ partial "hooks/body-end.html" . -}}
 
 {{ define "algolia/scripts" -}}
-<script src='{{ "vendor/docsearch/docsearch-3.8.2.min.js" | relURL }}'></script>
+<script src='{{ "vendor/docsearch/docsearch-3.8.2.min.js" | relURL }}'
+  integrity="sha512-lsD+XVzdBI6ZquXc8gqbw0/bgrfIsMJwY/8xvmvbN+U3gZSeG7BXQoCq4zv/yCmntR2GLHtgB+bD4ESPsKIbIA=="></script>
 <script type="text/javascript">
 const containers = ['#docsearch-0', '#docsearch-1'];
 for (let c of containers) {
