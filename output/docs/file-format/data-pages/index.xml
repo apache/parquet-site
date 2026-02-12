@@ -13,25 +13,72 @@ library, without any additional framing or padding. The information required
 for precise allocation of compressed and decompressed buffers is written
 in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;/h1&gt;
 &lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
-&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id="plain-plain--0"&gt;Plain: (PLAIN = 0)&lt;/h3&gt;
-&lt;p&gt;Supported Types: all&lt;/p&gt;
-&lt;p&gt;This is the plain encoding that must be supported for types. It is
-intended to be the simplest encoding. Values are encoded back to back.&lt;/p&gt;
-&lt;p&gt;The plain encoding is used whenever a more efficient encoding can not be used. It
-stores the data in the following format:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;BOOLEAN: &lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED"&gt;Bit Packed&lt;/a&gt;, LSB first&lt;/li&gt;
-&lt;li&gt;INT32: 4 bytes little endian&lt;/li&gt;
-&lt;li&gt;INT64: 8 bytes little endian&lt;/li&gt;
-&lt;li&gt;INT96: 12 bytes little endian (deprecated)&lt;/li&gt;
-&lt;li&gt;FLOAT: 4 bytes IEEE little endian&lt;/li&gt;
-&lt;li&gt;DOUBLE: 8 bytes IEEE little endian&lt;/li&gt;
-&lt;li&gt;BYTE_ARRAY: length in 4 bytes little endian followed by the bytes contained in the array&lt;/li&gt;
-&lt;li&gt;FIXED_LEN_BYTE_ARRAY: the bytes contained in the array&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For native types, this outputs the data as little endian. Floating
-point types are encoded in IEEE.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;/h1&gt;
+&lt;p&gt;Unless otherwise stated in page or encoding documentation, any encoding can be
+used with any page type.&lt;/p&gt;
+&lt;h3 id="supported-encodings"&gt;Supported Encodings&lt;/h3&gt;
+&lt;p&gt;For details on current implementation status, see the &lt;a href="https://parquet.apache.org/docs/file-format/implementationstatus/#encodings"&gt;Implementation Status&lt;/a&gt; page.&lt;/p&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Encoding type&lt;/th&gt;
+ &lt;th&gt;Encoding enum&lt;/th&gt;
+ &lt;th&gt;Supported Types&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#PLAIN"&gt;Plain&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;PLAIN = 0&lt;/td&gt;
+ &lt;td&gt;All Physical Types&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#DICTIONARY"&gt;Dictionary Encoding&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;PLAIN_DICTIONARY = 2 (Deprecated) &lt;br&gt; RLE_DICTIONARY = 8&lt;/td&gt;
+ &lt;td&gt;All Physical Types&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#RLE"&gt;Run Length Encoding / Bit-Packing Hybrid&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;RLE = 3&lt;/td&gt;
+ &lt;td&gt;BOOLEAN, Dictionary Indices&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#DELTAENC"&gt;Delta Encoding&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;DELTA_BINARY_PACKED = 5&lt;/td&gt;
+ &lt;td&gt;INT32, INT64&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#DELTALENGTH"&gt;Delta-length byte array&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;DELTA_LENGTH_BYTE_ARRAY = 6&lt;/td&gt;
+ &lt;td&gt;BYTE_ARRAY&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#DELTASTRING"&gt;Delta Strings&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;DELTA_BYTE_ARRAY = 7&lt;/td&gt;
+ &lt;td&gt;BYTE_ARRAY, FIXED_LEN_BYTE_ARRAY&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT"&gt;Byte Stream Split&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;BYTE_STREAM_SPLIT = 9&lt;/td&gt;
+ &lt;td&gt;INT32, INT64, FLOAT, DOUBLE, FIXED_LEN_BYTE_ARRAY&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="deprecated-encodings"&gt;Deprecated Encodings&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Encoding type&lt;/th&gt;
+ &lt;th&gt;Encoding enum&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#BITPACKED"&gt;Bit-packed (Deprecated)&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;BIT_PACKED = 4&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;/h1&gt;
 &lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
 mechanism that encrypts and authenticates the file data and metadata - while allowing
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
