@@ -26,6 +26,7 @@
 {{ partial "schema.html" . -}}
 {{ partial "twitter_cards.html" . -}}
 {{ partialCached "head-css.html" . "head-css-cache-key" -}}
+<!-- use vendored copy to avoid cross site restrictions. See https://github.com/apache/parquet-site/pull/160  -->
 <script
   src='{{ "vendor/jquery/jquery-3.7.1.min.js" | relURL }}'
   integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -53,6 +54,7 @@
 {{ define "algolia/head" -}}
 
 {{ if and .Site.Params.search (isset .Site.Params.search "algolia") -}}
+<!-- use vendored copy to avoid cross site restrictions. See https://github.com/apache/parquet-site/pull/160  -->
 <link rel="stylesheet" href='{{ "vendor/docsearch/docsearch-3.8.2.css" | relURL }}'
   integrity="sha512-l7pkV1dOURFyHCeH8I4fK9lCkQKuqhlsTCqRl3zktifDlB8oTUJ+mJPgYkK9kHpUut8j1iPquTv32t6hvTPv3g=="
 />

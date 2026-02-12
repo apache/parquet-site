@@ -77,6 +77,7 @@ window.markmap = {
 {{ partial "hooks/body-end.html" . -}}
 
 {{ define "algolia/scripts" -}}
+<!-- use vendored copy to avoid cross site restrictions. See https://github.com/apache/parquet-site/pull/160  -->
 <script src='{{ "vendor/docsearch/docsearch-3.8.2.min.js" | relURL }}'
   integrity="sha512-lsD+XVzdBI6ZquXc8gqbw0/bgrfIsMJwY/8xvmvbN+U3gZSeG7BXQoCq4zv/yCmntR2GLHtgB+bD4ESPsKIbIA=="></script>
 <script type="text/javascript">
