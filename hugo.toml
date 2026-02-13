@@ -110,11 +110,6 @@ prism_syntax_highlighting = false
 
 # User interface configuration
 
-[params.search.algolia]
-appId = '399WOPSE6Q'
-apiKey = '437a8e172549357b6ca768248caecff9'
-indexName = 'parquet-apache'
-
 [params.ui]
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
