@@ -103,7 +103,7 @@ Although geospatial types are logical constructs, their physical storage follows
 3. **Engine interoperability**
    Because the spatial meaning is encoded as a Parquet logical type, engines do not need out of band conventions to interpret the column. A reader that understands Parquet geospatial types can immediately treat the column as a spatial object.
 4. **Coordinate Reference System (CRS) information**
-   CRS information is stored at the file metadata (i.e., type definition) using authoritative identifiers or structured definitions such as EPSG codes or PROJJSON strings.
+   CRS information is stored in the file metadata (i.e., type definition) using authoritative identifiers or structured definitions such as EPSG codes or PROJJSON strings.
 
 Native geospatial types align naturally with modern lakehouse architectures built on Parquet. Table formats such as [Apache Iceberg](https://iceberg.apache.org/) no longer need to reinvent geospatial logic since core spatial semantics live in Parquet. Instead, they can focus on well defined type mappings between Parquet and Iceberg and on [propagating spatial statistics into the tables](https://wherobots.com/blog/iceberg-geo-technical-insights-and-implementation-strategies/).
 
