@@ -7,7 +7,7 @@ This website is built / powered by [Hugo](https://gohugo.io/) with the [Docsy Th
 The following steps assume that you have `hugo` installed and working.
 You can also use docker, see the [Docker section](#docker) for more information.
 
-## Updating `/docs/file-format` documentation`
+## Updating `/docs/file-format` documentation
 
 The `/docs/file-format` pages (for example, https://parquet.apache.org/docs/file-format/data-pages/encodings/) are automatically 
 generated from the `parquet-format` repository. 
@@ -75,7 +75,7 @@ tools:
 
 ```shell
 docker build -t parquet-site .
-````
+```
 
 Then run the container mounting the current directory to `/parquet-site` and
 exposing local port 1313:
@@ -100,25 +100,26 @@ You can now preview the site locally on http://localhost:1313/
 
 The HTML for this site comes from the Docsy theme templates, located in the
 `github.com/google/docsy` module, which is a dependency of this project.
-Overrides to the default docsy templates are in the [layouts] directory. For
-example, [layouts/partials] contains the partial templates for HTML pages.
+Overrides to the default Docsy templates are in the `layouts/` directory. For
+example, `layouts/partials/` contains the partial templates for HTML pages.
 
-To make a change to the docsy templates, copy the template you want to change
-from the docsy module to the `layouts` directory and then make your changes
-there. To see the difference between the default docsy navbar and
-the one used in this website use a command such as:
+To make a change to the Docsy templates, copy the template you want to change
+from the Docsy module to the `layouts/` directory and then make your changes
+there. You can compare the contents of `layouts` with the Docsy templates to see
+what has been overridden. For example, to see the difference between the default
+Docsy navbar , use a command such as:
 
 ```shell
-diff -du ~/go/pkg/mod/github.com/google/docsy\@v0.12.0/layouts/_partials/navbar.html layouts/partials/navbar.html  
+diff -du ~/go/pkg/mod/github.com/google/docsy@v0.12.0/layouts/_partials/navbar.html layouts/partials/navbar.html
 ```
 
-This compares the local copy with the Docsy theme template in the local go cache, 
-in this case `~/go/pkg/mod/github.com/google/docsy\@v0.12.0/`
+This compares the local copy with the Docsy theme template in the local Go cache,
+in this case `~/go/pkg/mod/github.com/google/docsy@v0.12.0/`.
 
 
 
 
-# parquet-java Release Announcment Process
+# parquet-java Release Announcement Process
 
 To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.
 
