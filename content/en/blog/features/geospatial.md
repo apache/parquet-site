@@ -1,6 +1,6 @@
 ---
 title: "Native Geospatial Types in Apache Parquet"
-date: 2026-02-04
+date: 2026-02-13
 description: "Native Geospatial Types in Apache Parquet"
 author: "[Jia Yu](https://github.com/jiayuasu), [Dewey Dunnington](https://github.com/paleolimbot), [Kristin Cowalcijk](https://github.com/Kontinuation), [Feng Zhang](https://github.com/zhangfengcdt)"
 categories: ["features"]
