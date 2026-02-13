@@ -7,6 +7,25 @@ This website is built / powered by [Hugo](https://gohugo.io/) with the [Docsy Th
 The following steps assume that you have `hugo` installed and working.
 You can also use docker, see the [Docker section](#docker) for more information.
 
+## Updating `/docs/file-format` documentation`
+
+The `/docs/file-format` pages (for example, https://parquet.apache.org/docs/file-format/data-pages/encodings/) are automatically 
+generated from the `parquet-format` repository. 
+To update the website to reflect the latest documentation, you need to update the 
+submodule in this repository. 
+
+
+```shell
+cd assets/parquet-format
+git checkout master
+git pull # update to the latest version of parquet-format
+cd ../..
+git add assets/parquet-format
+git commit -m "Update parquet-format submodule"
+git push
+```
+
+
 ## Building and Running Locally
 
 Clone this repository to run the website locally:

@@ -26,6 +26,7 @@ The value in each box means:
 * [cudf](https://github.com/rapidsai/cudf) (cuDF C++)
 * [hyparquet](https://github.com/hyparam/hyparquet) (JavaScript)
 * [duckdb](https://github.com/duckdb/duckdb) (C++)
+* [polars](https://github.com/pola-rs/polars) (Rust)
 
 <!-- Status source in data/implementations -->
 {{< implementation-status >}}
