@@ -4,4 +4,7 @@ Add styles or override variables from the theme here.
 
 */
 
-$primary: #56a4ed
+$primary: #56a4ed;
+
+// Disable Google Fonts to comply with apache.org Content Security Policy
+$td-enable-google-fonts: false;
