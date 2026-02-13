@@ -1,3 +1,15 @@
+{{/*
+  Project-level override of Docsy's layouts/_partials/head.html
+
+  Why this file exists:
+  Apache's Content Security Policy (CSP) blocks resources from external CDNs.
+  The upstream Docsy theme loads jQuery from code.jquery.com and Lunr from
+  unpkg.com, both of which are blocked on parquet.apache.org. This override
+  loads vendored copies from static/js/ instead. It also removes the Algolia
+  DocSearch CSS block since we use Lunr offline search.
+
+  See: https://github.com/apache/parquet-site/issues/163
+*/ -}}
 {{/* cSpell:ignore docsearch opengraph outputformat */ -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
