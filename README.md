@@ -116,9 +116,6 @@ diff -du ~/go/pkg/mod/github.com/google/docsy@v0.12.0/layouts/_partials/navbar.h
 This compares the local copy with the Docsy theme template in the local Go cache,
 in this case `~/go/pkg/mod/github.com/google/docsy@v0.12.0/`.
 
-
-
-
 # parquet-java Release Announcement Process
 
 To create documentation for a new release of `parquet-format` create a new <releaseNumber>.md file under `content/en/blog/parquet-format`. Please see existing files in that directory as an example.
