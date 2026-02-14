@@ -6,7 +6,7 @@ title: Parquet
 <a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/">
   Documentation <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
-<a class="btn btn-lg btn-secondary me-3 mb-4" href="/blog/">
+<a class="btn btn-lg btn-outline-light me-3 mb-4" href="/blog/">
   Releases <i class="fa fa-arrow-circle-down ms-2 "></i>
 </a>
 <p class="lead mt-5">
