@@ -1,0 +1,263 @@
+---
+title: "The Evolution of Semi-Structured Data: Introducing Variant in Apache Parquet"
+date: 2026-02-14
+description: "Native Variant Type in Apache Parquet"
+author: "[Aihua Xu](https://github.com/aihuaxu), [Andrew Lamb](https://github.com/alamb)"
+categories: ["features"]
+---
+
+## Introduction
+
+The Apache Parquet community is excited to announce the addition of the **Variant type**—a feature that brings native support for semi-structured data to Parquet, significantly improving efficiency compared to less efficient formats such as JSON. This marks a significant addition to Parquet, demonstrating how the format continues to evolve to meet modern data engineering needs.
+
+While Apache Parquet has long been the standard for structured data where each value has a fixed and known type, handling heterogeneous, nested data often required a compromise: either store it as a costly-to-parse JSON string or flatten it into a rigid schema. The introduction of the Variant logical type provides a native, high-performance solution for semi-structured data that is already seeing rapid uptake across the ecosystem.
+
+---
+
+## What is Variant?
+
+**Variant** is a self-describing data type designed to efficiently store and process semi-structured data—JSON-like documents with arbitrary and evolving schemas.
+
+---
+
+## Why Variant?
+
+Unlike traditional approaches that store JSON as text strings and require full parsing to access any field, making queries slow and resource-intensive, Variant solves this by storing data in a **structured binary format** that enables direct field access through offset-based navigation. Query engines can jump directly to nested fields without deserializing the entire document, dramatically improving performance.
+
+Unlike similar binary encodings such as BSON, Variant is optimized for the common case where multiple values share a similar structure: It avoids redundantly storing repeated field names and standardizes the best practice of **"shredded storage"** for pre-extracting structured subsets.
+
+### Key Benefits
+
+- **Type-Preserving Storage:** Original data types are maintained in their native formats—data types (integers, strings, booleans, timestamps, etc.) are preserved, unlike JSON which has a limited type system with no native support for types like timestamps or integers.
+
+- **Efficient Encoding:** The binary format uses field name deduplication to minimize storage overhead compared to JSON strings or BSON encoding.
+
+- **Fast Query Performance:** Direct offset-based field access provides performance improvement over JSON string parsing. Optional shredding of frequently accessed fields into typed columns further enhances query pruning and predicate pushdown.
+
+- **Schema Flexibility:** No predefined schema is required, allowing documents with different structures to coexist in the same column. This enables seamless schema evolution while maintaining full queryability across all schema variations, while still taking advantage of common structures when present.
+
+---
+
+## Overview of Variant Type in Parquet
+
+Parquet introduced the [Variant logical type](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#variant) in [August 2025](https://github.com/apache/parquet-format/pull/509).
+
+### Variant Encoding
+
+In Parquet, Variant is represented as a logical type and stored physically as a struct with two binary fields. The encoding is [designed](https://github.com/apache/parquet-format/blob/master/VariantEncoding.md) so engines can efficiently navigate nested structures and extract only the fields they need, rather than parsing the entire binary blob.
+
+```parquet
+optional group event_data (VARIANT(1)) {
+  required binary metadata;
+  required binary value;
+}
+```
+
+- **`metadata`:** Encodes type information and shared dictionaries (for example, field-name dictionaries for objects). This avoids repeatedly storing the same strings and enables efficient navigation.
+- **`value`:** Encodes the actual data in a compact binary form, supporting primitive values as well as arrays and objects.
+
+#### Example
+
+A web access event can be stored in a single Variant column while preserving the original data types:
+
+```json
+{
+  "user_id": 12345,
+  "events": [
+    {"type": "login", "timestamp": "2026-01-15T10:30:00Z"},
+    {"type": "purchase", "timestamp": "2026-01-15T11:45:00Z", "amount": 99.99}
+  ]
+}
+```
+
+Compared with storing the same payload as a JSON string, Variant retains type information (for example, timestamp values are stored as integers rather than being stored as strings), which improves correctness, enables more efficient querying and requires fewer bytes to store.
+
+Just as importantly, Variant supports **schema variability**: records with different shapes can coexist in the same column without requiring schema migrations. For example, the following record can be stored alongside the event record above:
+
+```json
+{
+  "user_id": 12345,
+  "error": "auth_failure" 
+}
+```
+
+---
+
+## Shredding Encoding
+
+To enhance query performance and storage efficiency, Variant data can be **shredded** by extracting frequently accessed fields into separate, strongly-typed columns, as described in the [detailed shredding specification](https://github.com/apache/parquet-format/blob/master/VariantShredding.md). For each shredded field:
+
+- If the field **matches the expected schema**, its value is written to the strongly typed field.
+- If the field **does not match**, the original representation is written as Variant-encoded binary field and the corresponding strongly typed field is left NULL.
+
+![Shredding Variant Visualization](/blog/variant/variant_shredding.png)
+
+The query engine decides which fields to shred based on access patterns and workload characteristics. Once shredded, the standard Parquet columnar optimizations (encoding, compression, statistics) are used for the typed columns.
+
+### Implementation Considerations
+
+- **Schema Inference:** Engines can infer the shredding schema from sample data by selecting the most frequently occurring type for each field. For example, if `event.id` is predominantly an integer, the engine shreds it to an INT64 column.
+
+- **Type Promotion:** To maximize shredding coverage, engines can promote types within the same type family. For example, if integer values vary in size (INT8, INT32, INT64), selecting INT64 as the shredded type ensures all integer values can be shredded rather than falling back to the unshredded representation.
+
+- **Metadata Control:** To control metadata overhead, engines may limit the number of shredded fields, since each field contributes statistics (min/max values, null counts) to the file footer and column stats.
+
+- **Explicit Shredding Schema:** When read patterns are known in advance, engines can specify an explicit shredding schema at write time, ensuring that frequently accessed fields are shredded for optimal query performance.
+
+### Performance Characteristics
+
+- **Selective field access:** When queries access only the shredded fields, only those columns are read from Parquet, skipping the rest, benefiting from column pruning and predicate pushdown.
+
+- **Full Variant reconstruction:** When queries require access to the complete Variant object, there is a performance overhead as the engine must reconstruct the Variant by merging data from the shredded typed fields and the base Variant column.
+
+### Examples of Shredded Parquet Schemas
+
+If a field's value matches the shredded type, it is stored in the typed column `typed_value`. If a field's value has a different type, it remains in the `value` binary column using standard Variant encoding.
+
+#### Example 1: Shredding to String Type
+
+The Variant values are shredded to string type.
+
+```parquet
+optional group SIMPLE_DATA (VARIANT(1)) = 1 { 
+    required binary metadata;           # variant metadata
+    optional binary value;              # non-shredded value  	
+    optional binary typed_value (STRING); # the shredded value 
+}
+```
+
+**Encoding Table:**
+
+| Variant Value | `value` | `typed_value` |
+|---------------|---------|---------------|
+| `"Jim"` | `null` | `"Jim"` |
+| `100` | `100` | `null` |
+| `{"name": "Jim"}` | `{"name": "Jim"}` | `null` |
+
+---
+
+#### Example 2: Shredding to Object with Typed Fields
+
+The Variant values are shredded to an object with `user_id` field of integer type and `type` field of string type.
+
+```parquet
+optional group EVENT_DATA (VARIANT(1)) = 1 {
+    required binary metadata;           # variant metadata
+    optional binary value;              # non-shredded value 	
+    optional group typed_value {
+      required group user_id {          # user_id field
+        optional binary value;          # non-shredded value
+        optional int32 typed_value;     # the shredded value
+      }
+      required group type {             # type field
+        optional binary value;          # non-shredded value
+        optional binary typed_value (STRING); # the shredded value
+      }
+    }
+}
+```
+
+**Encoding Table:**
+
+| Variant Value                       | `value`          | `typed_value` | `.user_id.value` | `.user_id.typed_value` | `.type.value` | `.type.typed_value` |
+|-------------------------------------|------------------|---------------|------------------|------------------------|---------------|---------------------|
+| `{"user_id": 100, "type": "login"}` | `null`           |              | `null`           | `100`                  | `null`        | `"login"`           |
+| `100`                               | `100`            | `null`          |         |                   |         |           |
+| `{"user_id": "Jim"}`                | `null`           |              | `"Jim"`          | `null`                 | `null`        | `null`              |
+| `{"user_id": 200, "amount": 99}`    | `{"amount": 99}` |              | `null`           | `200`                  | `null`        | `null`              |
+
+---
+
+## Ecosystem Adoption: A Success Story
+
+One of the most remarkable aspects of Variant's addition to Parquet is the rapid and widespread ecosystem adoption, demonstrating the strength of collaboration within the Apache Parquet community.
+
+Variant support has been implemented across multiple Parquet libraries including **Java**, **Arrow C++**, **Rust**, and **Go**. For the most current implementation status across all languages and platforms, refer to the [official Parquet documentation](https://github.com/apache/parquet-format).
+
+Major query engines have also integrated Variant support, including **DuckDB**, **[Apache Spark](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.types.VariantType.html)**, and **[Snowflake](https://docs.snowflake.com/en/sql-reference/data-types-semistructured)**. This cross-ecosystem adoption highlights both the value of the Variant type and the Parquet community's commitment to evolving the format to meet modern data challenges.
+
+---
+
+## Real-World Use Cases
+
+### Event Stream Analytics
+
+Event streaming applications often handle events with evolving schemas, where different event types contain varying fields. Variant provides a flexible solution for storing heterogeneous event data without requiring schema migrations.
+
+**Example: User Activity Events**
+
+```sql
+-- Create table with Variant column
+CREATE TABLE event_stream (
+    event_id INTEGER,
+    event_data VARIANT
+);
+
+-- Insert events with different schemas
+INSERT INTO event_stream VALUES
+    (1, PARSE_JSON('{"user": {"id": 100, "country": "US"}, "actions": ["login", "view_dashboard"]}')),
+    (2, PARSE_JSON('{"user": {"id": 101, "country": "UK", "premium": true}, "actions": ["login", "upgrade"]}')),
+    (3, PARSE_JSON('{"user": {"id": 102, "country": "CA"}, "session_duration": 3600}'));
+
+-- Query events with path notation - handles different schemas gracefully
+SELECT 
+    event_id,
+    event_data:user.id::INTEGER as user_id,
+    event_data:user.country::STRING as country,
+    event_data:user.premium::BOOLEAN as is_premium
+FROM event_stream;
+```
+
+---
+
+### IoT Sensor Data
+
+IoT deployments often involve diverse sensor types, each producing data with unique structures. Traditional approaches require either separate tables per sensor type or complex union schemas, or inefficient JSON / BSON encoding. Variant enables unified storage while maintaining type safety.
+
+**Example: Multi-Sensor Data Pipeline**
+
+```sql
+-- Create unified sensor table
+CREATE TABLE sensor_readings (
+    reading_id INTEGER,
+    timestamp TIMESTAMP,
+    sensor_data VARIANT
+);
+
+-- Insert data from different sensor types
+INSERT INTO sensor_readings VALUES
+    (1, '2026-01-28 10:00:00', 
+     PARSE_JSON('{"sensor_id": "T001", "temp": 72.5, "unit": "F", "battery": 95}')),
+    (2, '2026-01-28 10:00:05', 
+     PARSE_JSON('{"sensor_id": "M001", "motion_detected": true, "confidence": 0.95, "zone": "entrance"}')),
+    (3, '2026-01-28 10:00:10', 
+     PARSE_JSON('{"sensor_id": "C001", "image_url": "s3://bucket/img_001.jpg", "objects_detected": ["person", "vehicle"]}'));
+
+-- Query temperature sensors only
+SELECT 
+    reading_id,
+    sensor_data:sensor_id::STRING as sensor_id,
+    sensor_data:temp::FLOAT as temperature,
+    sensor_data:unit::STRING as unit,
+    sensor_data:battery::INTEGER as battery_level
+FROM sensor_readings
+WHERE sensor_data:sensor_id LIKE 'T%';
+```
+
+---
+
+## Conclusion
+
+The addition of Variant to Apache Parquet represents a significant milestone in the format's evolution. By standardizing Variant as a logical type within Apache Parquet, the format now provides efficient storage for semi-structured data, enables meaningful statistics collection, and ensures cross-engine interoperability.
+
+The well-documented specification has catalyzed broad ecosystem adoption, with multiple reference implementations now available across languages. This cross-language support ensures that Variant can be seamlessly integrated into diverse data processing environments, from analytical databases to streaming platforms, making it a universal solution for handling evolving schemas in modern data architectures.
+
+---
+
+## Resources
+
+- **Apache Parquet Format Specification:** https://github.com/apache/parquet-format
+- **Variant Type Specification:** [Variant Logical Type](https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#variant)
+- **Variant Encoding Specification:** [Variant Binary Encoding](https://github.com/apache/parquet-format/blob/master/VariantEncoding.md)
+- **Variant Shredding Specification:** [Variant Shredding](https://github.com/apache/parquet-format/blob/master/VariantShredding.md)
+- **Community Discussions:** dev@parquet.apache.org
