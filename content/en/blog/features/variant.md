@@ -62,10 +62,10 @@ A web access event can be stored in a single Variant column while preserving the
 
 ```json
 {
-  "user_id": 12345,
+  "userId": 12345,
   "events": [
-    {"type": "login", "timestamp": "2026-01-15T10:30:00Z"},
-    {"type": "purchase", "timestamp": "2026-01-15T11:45:00Z", "amount": 99.99}
+    {"eType": "login", "timestamp": "2026-01-15T10:30:00Z"},
+    {"eType": "purchase", "timestamp": "2026-01-15T11:45:00Z", "amount": 99.99}
   ]
 }
 ```
@@ -76,7 +76,7 @@ Just as importantly, Variant supports **schema variability**: records with diffe
 
 ```json
 {
-  "user_id": 12345,
+  "userId": 12345,
   "error": "auth_failure" 
 }
 ```
@@ -112,11 +112,7 @@ The query engine decides which fields to shred based on access patterns and work
 
 ### Examples of Shredded Parquet Schemas
 
-If a field's value matches the shredded type, it is stored in the typed column `typed_value`. If a field's value has a different type, it remains in the `value` binary column using standard Variant encoding.
-
-#### Example 1: Shredding to String Type
-
-The Variant values are shredded to string type.
+The following example shows shredding non nested Variants. In this case, the writer chose to shred String values as the `typed_value` column.  Rows which do not contain strings are stored in the `value` column, with the binary variant encoding.
 
 ```parquet
 optional group SIMPLE_DATA (VARIANT(1)) = 1 { 
@@ -126,7 +122,7 @@ optional group SIMPLE_DATA (VARIANT(1)) = 1 {
 }
 ```
 
-**Encoding Table:**
+The series of variant values “Jim”, 100,  {“name”: “Jim”} are encoded as:
 
 | Variant Value | `value` | `typed_value` |
 |---------------|---------|---------------|
@@ -136,20 +132,17 @@ optional group SIMPLE_DATA (VARIANT(1)) = 1 {
 
 ---
 
-#### Example 2: Shredding to Object with Typed Fields
-
-The Variant values are shredded to an object with `user_id` field of integer type and `type` field of string type.
-
+Shredding nested variants is similar, with the shredding applied recursively, as shown in the following example. In this case, the `userId` field is shredded as an integer, and stored as two columns: in `typed_value.userId.typed_value` when the value is integer and as a variant in `typed_value.userId.value` otherwise. Similarly, the `eType` field is shredded as a string and stored in `typed_value.eType.typed_value` and `typed_value.eType.value`.
 ```parquet
 optional group EVENT_DATA (VARIANT(1)) = 1 {
     required binary metadata;           # variant metadata
     optional binary value;              # non-shredded value 	
     optional group typed_value {
-      required group user_id {          # user_id field
+      required group userId {          # userId field
         optional binary value;          # non-shredded value
         optional int32 typed_value;     # the shredded value
       }
-      required group type {             # type field
+      required group eType {             # eType field
         optional binary value;          # non-shredded value
         optional binary typed_value (STRING); # the shredded value
       }
@@ -157,14 +150,14 @@ optional group EVENT_DATA (VARIANT(1)) = 1 {
 }
 ```
 
-**Encoding Table:**
+**The table below illustrates how the data is stored:**
 
-| Variant Value                       | `value`          | `typed_value` | `.user_id.value` | `.user_id.typed_value` | `.type.value` | `.type.typed_value` |
-|-------------------------------------|------------------|---------------|------------------|------------------------|---------------|---------------------|
-| `{"user_id": 100, "type": "login"}` | `null`           |              | `null`           | `100`                  | `null`        | `"login"`           |
-| `100`                               | `100`            | `null`          |         |                   |         |           |
-| `{"user_id": "Jim"}`                | `null`           |              | `"Jim"`          | `null`                 | `null`        | `null`              |
-| `{"user_id": 200, "amount": 99}`    | `{"amount": 99}` |              | `null`           | `200`                  | `null`        | `null`              |
+| Variant                             | `value`          | `typed_value.userId.value` | `typed_value.userId.typed_value` | `typed_value.eType.value` | `typed_value.eType.typed_value` |
+|-------------------------------------|------------------|----------------------------|----------------------------------|---------------------------|---------------------|
+| `{"userId": 100, "eType": "login"}` | `null`           | `null`                     | `100`                            | `null`                    | `"login"`           |
+| `100`                               | `100`            |                            |                                  |                           |         |           |
+| `{"userId": "Jim"}`                 | `null`           | `"Jim"`                    | `null`                           | `null`                    | `null`              |
+| `{"userId": 200, "amount": 99}`     | `{"amount": 99}` | `null`                     | `200`                            | `null`                    | `null`              |
 
 ---
 
