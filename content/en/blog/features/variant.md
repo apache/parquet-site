@@ -156,7 +156,7 @@ optional group EVENT_DATA (VARIANT(1)) = 1 {
 | Variant                             | `value`          | `typed_value.userId.value` | `typed_value.userId.typed_value` | `typed_value.eType.value` | `typed_value.eType.typed_value` |
 |-------------------------------------|------------------|----------------------------|----------------------------------|---------------------------|---------------------|
 | `{"userId": 100, "eType": "login"}` | `null`           | `null`                     | `100`                            | `null`                    | `"login"`           |
-| `100`                               | `100`            |                            |                                  |                           |         |           |
+| `100`                               | `100`            | `null`                     | `null`                          |   `null`                   |  `null`       |
 | `{"userId": "Jim"}`                 | `null`           | `"Jim"`                    | `null`                           | `null`                    | `null`              |
 | `{"userId": 200, "amount": 99}`     | `{"amount": 99}` | `null`                     | `200`                            | `null`                    | `null`              |
 
