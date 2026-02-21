@@ -1,5 +1,5 @@
 ---
-title: "The Evolution of Semi-Structured Data: Introducing Variant in Apache Parquet"
+title: "Introducing Variant in Apache Parquet for Semi-Structured Data"
 date: 2026-02-14
 description: "Native Variant Type in Apache Parquet"
 author: "[Aihua Xu](https://github.com/aihuaxu), [Andrew Lamb](https://github.com/alamb)"
@@ -24,7 +24,7 @@ While Apache Parquet has long been the standard for structured data where each v
 
 Unlike traditional approaches that store JSON as text strings and require full parsing to access any field, making queries slow and resource-intensive, Variant solves this by storing data in a **structured binary format** that enables direct field access through offset-based navigation. Query engines can jump directly to nested fields without deserializing the entire document, dramatically improving performance.
 
-Unlike similar binary encodings such as BSON, Variant is optimized for the common case where multiple values share a similar structure: It avoids redundantly storing repeated field names and standardizes the best practice of **"shredded storage"** for pre-extracting structured subsets.
+Unlike similar binary encodings such as BSON, Variant is optimized for the common case where multiple values share a similar structure: it avoids redundantly storing repeated field names and standardizes the best practice of **"shredded storage"** for pre-extracting structured subsets.
 
 ### Key Benefits
 
@@ -32,7 +32,7 @@ Unlike similar binary encodings such as BSON, Variant is optimized for the commo
 
 - **Efficient Encoding:** The binary format uses field name deduplication to minimize storage overhead compared to JSON strings or BSON encoding.
 
-- **Fast Query Performance:** Direct offset-based field access provides performance improvement over JSON string parsing. Optional shredding of frequently accessed fields into typed columns further enhances query pruning and predicate pushdown.
+- **Fast Query Performance:** Direct offset-based field access provides performance improvements over JSON string parsing. Optional shredding of frequently accessed fields into typed columns further enhances query pruning and predicate pushdown.
 
 - **Schema Flexibility:** No predefined schema is required, allowing documents with different structures to coexist in the same column. This enables seamless schema evolution while maintaining full queryability across all schema variations, while still taking advantage of common structures when present.
 
@@ -112,7 +112,7 @@ The query engine decides which fields to shred based on access patterns and work
 
 ### Examples of Shredded Parquet Schemas
 
-The following example shows shredding non nested Variants. In this case, the writer chose to shred String values as the `typed_value` column.  Rows which do not contain strings are stored in the `value` column, with the binary variant encoding.
+The following example shows shredding non-nested Variant values. In this case, the writer chose to shred string values as the `typed_value` column. Rows that do not contain strings are stored in the `value` column with binary Variant encoding.
 
 ```parquet
 optional group SIMPLE_DATA (VARIANT(1)) = 1 { 
@@ -132,7 +132,8 @@ The series of variant values “Jim”, 100,  {“name”: “Jim”} are encode
 
 ---
 
-Shredding nested variants is similar, with the shredding applied recursively, as shown in the following example. In this case, the `userId` field is shredded as an integer, and stored as two columns: in `typed_value.userId.typed_value` when the value is integer and as a variant in `typed_value.userId.value` otherwise. Similarly, the `eType` field is shredded as a string and stored in `typed_value.eType.typed_value` and `typed_value.eType.value`.
+Shredding nested Variant values is similar, with shredding applied recursively, as shown in the following example. In this case, the `userId` field is shredded as an integer and stored in two columns: `typed_value.userId.typed_value` when the value is an integer, and `typed_value.userId.value` otherwise. Similarly, the `eType` field is shredded as a string and stored in `typed_value.eType.typed_value` and `typed_value.eType.value`.
+
 ```parquet
 optional group EVENT_DATA (VARIANT(1)) = 1 {
     required binary metadata;           # variant metadata
@@ -165,7 +166,7 @@ optional group EVENT_DATA (VARIANT(1)) = 1 {
 
 One of the most remarkable aspects of Variant's addition to Parquet is the rapid and widespread ecosystem adoption, demonstrating the strength of collaboration within the Apache Parquet community.
 
-Variant support has been implemented across multiple Parquet libraries including **Java**, **Arrow C++**, **Rust**, and **Go**. For the most current implementation status across all languages and platforms, refer to the [official Parquet documentation](https://github.com/apache/parquet-format).
+Variant support has been implemented across multiple Parquet libraries including **Java**, **Arrow C++**, **Rust**, and **Go**. For the most current implementation status across all languages and platforms, refer to the [official Parquet implementation status page](https://parquet.apache.org/docs/file-format/implementationstatus/).
 
 Major query engines have also integrated Variant support, including **DuckDB**, **[Apache Spark](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.types.VariantType.html)**, and **[Snowflake](https://docs.snowflake.com/en/sql-reference/data-types-semistructured)**. This cross-ecosystem adoption highlights both the value of the Variant type and the Parquet community's commitment to evolving the format to meet modern data challenges.
 
