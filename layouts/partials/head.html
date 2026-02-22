@@ -1,0 +1,55 @@
+{{/*
+  Project-level override of Docsy's layouts/_partials/head.html
+
+  Why this file exists:
+  Apache's Content Security Policy (CSP) blocks resources from external CDNs.
+  The upstream Docsy theme loads jQuery from code.jquery.com and Lunr from
+  unpkg.com, both of which are blocked on parquet.apache.org. This override
+  loads vendored copies from static/js/ instead. It also removes the Algolia
+  DocSearch CSS block since we use Lunr offline search.
+
+  See: https://github.com/apache/parquet-site/issues/163
+*/ -}}
+{{/* cSpell:ignore docsearch opengraph outputformat */ -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{{ range .AlternativeOutputFormats -}}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{ end -}}
+
+{{ $outputFormat := partial "outputformat.html" . -}}
+{{ if and hugo.IsProduction (ne $outputFormat "print") -}}
+<meta name="robots" content="index, follow">
+{{ else -}}
+<meta name="robots" content="noindex, nofollow">
+{{ end -}}
+
+{{ partialCached "favicons.html" . }}
+<title>
+  {{- if .IsHome -}}
+    {{ .Site.Title -}}
+  {{ else -}}
+    {{ with .Title }}{{ . }} | {{ end -}}
+    {{ .Site.Title -}}
+  {{ end -}}
+</title>
+<meta name="description" content="{{ partial "page-description.html" . }}">
+{{ partial "opengraph.html" . -}}
+{{ partial "schema.html" . -}}
+{{ partial "twitter_cards.html" . -}}
+{{ partialCached "head-css.html" . "head-css-cache-key" -}}
+<script src="{{ "js/jquery-3.7.1.min.js" | relURL }}"></script>
+{{ if .Site.Params.offlineSearch -}}
+<script defer src="{{ "js/lunr-2.3.9.min.js" | relURL }}"></script>
+{{ end -}}
+
+{{ if .Site.Params.prism_syntax_highlighting -}}
+<link rel="stylesheet" href="{{ "css/prism.css" | relURL }}"/>
+{{ end -}}
+
+{{ partial "hooks/head-end.html" . -}}
+
+{{/* To comply with GDPR, cookie consent scripts places in head-end must execute before Google Analytics is enabled */ -}}
+{{ if hugo.IsProduction -}}
+  {{ partial "google_analytics.html" . -}}
+{{ end -}}
