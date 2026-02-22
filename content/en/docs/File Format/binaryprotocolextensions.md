@@ -1,4 +1,5 @@
 ---
+title: "Binary Protocol Extensions"
 linkTitle: "Binary Protocol Extensions"
 weight: 1
 ---

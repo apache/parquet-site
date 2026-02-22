@@ -1,4 +1,5 @@
 ---
+title: "Variant Shredding"
 linkTitle: "Variant Shredding"
 weight: 5
 ---

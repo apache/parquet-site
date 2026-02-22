@@ -1,4 +1,5 @@
 ---
+title: "Bloom Filter"
 linkTitle: "Bloom Filter"
 weight: 7
 ---

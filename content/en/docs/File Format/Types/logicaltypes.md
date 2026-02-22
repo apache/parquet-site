@@ -1,4 +1,5 @@
 ---
+title: "Logical Types"
 linkTitle: "Logical Types"
 weight: 5
 ---
