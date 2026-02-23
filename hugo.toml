@@ -27,13 +27,6 @@ pre = "<i class='fab fa-github'></i>"
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
 
-## Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
-[blackfriday]
-plainIDAnchors = true
-hrefTargetBlank = true
-angledQuotes = false
-latexDashes = true
-
 # Image processing configuration.
 [imaging]
 resampleFilter = "CatmullRom"
@@ -117,6 +110,8 @@ breadcrumb_disable = false
 footer_about_enable = true
 # Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top navbar
 navbar_logo = true
+# Use dark theme for navbar (white text on blue background)
+navbar_theme = "dark"
 # Set to true if you don't want the top navbar to be translucent when over a `block/cover`, like on the homepage.
 navbar_translucent_over_cover_disable = false
 # Enable to show the side bar menu in its compact state.
@@ -170,7 +165,7 @@ desc = "Parquet specification"
 # workspace = "docsy.work"
 [module.hugoVersion]
 extended = true
-min = "0.152.0"
+min = "0.155.3"
 [[module.imports]]
 path = "github.com/google/docsy"
 disable = false

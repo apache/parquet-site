@@ -1,0 +1,5 @@
+// Make navbar transparent on cover pages so it blends with the hero image
+.td-navbar.td-navbar-cover.td-navbar-transparent {
+  --td-navbar-bg-color: transparent;
+  --bs-bg-opacity: 0;
+}
