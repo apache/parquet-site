@@ -166,7 +166,7 @@ optional group EVENT_DATA (VARIANT(1)) = 1 {
 
 One of the most remarkable aspects of Variant's addition to Parquet is the rapid and widespread ecosystem adoption, demonstrating the strength of collaboration within the Apache Parquet community.
 
-Variant support has been implemented across multiple Parquet libraries including **Java**, **Arrow C++**, **Rust**, and **Go**. For the most current implementation status across all languages and platforms, refer to the [official Parquet implementation status page](https://parquet.apache.org/docs/file-format/implementationstatus/).
+Variant support has been implemented across multiple Parquet libraries including **Java**, **Rust**, and **Go**. For the most current implementation status across all languages and platforms, refer to the [official Parquet implementation status page](https://parquet.apache.org/docs/file-format/implementationstatus/).
 
 Major query engines have also integrated Variant support, including **DuckDB**, **[Apache Spark](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.types.VariantType.html)**, and **[Snowflake](https://docs.snowflake.com/en/sql-reference/data-types-semistructured)**. This cross-ecosystem adoption highlights both the value of the Variant type and the Parquet community's commitment to evolving the format to meet modern data challenges.
 
