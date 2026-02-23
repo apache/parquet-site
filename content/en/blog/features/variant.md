@@ -22,9 +22,17 @@ While Apache Parquet has long been the standard for structured data where each v
 
 ## Why Variant?
 
-Unlike traditional approaches that store JSON as text strings and require full parsing to access any field, making queries slow and resource-intensive, Variant solves this by storing data in a **structured binary format** that enables direct field access through offset-based navigation. Query engines can jump directly to nested fields without deserializing the entire document, dramatically improving performance.
+Consider a common scenario: storing logged event data that might evolve as new events are added, or fields are added or removed from specific event types. For example, you might have events like:
 
-Unlike similar binary encodings such as BSON, Variant is optimized for the common case where multiple values share a similar structure: it avoids redundantly storing repeated field names and standardizes the best practice of **"shredded storage"** for pre-extracting structured subsets.
+```json
+{"timestamp": "2026-01-15T10:30:00Z", "user": 5, "event": "login"}
+{"timestamp": "2026-01-15T11:45:00Z", "user": 5, "event": "purchase", "amount": 99.99}
+{"timestamp": "2026-01-15T12:00:00Z", "user": 7, "event": "login", "device": "mobile"}
+```
+
+Traditional approaches that store JSON as text strings require full parsing to access any field, making queries slow and resource-intensive. Variant solves this by storing data in a **structured binary format** that enables direct field access through offset-based navigation. Query engines can jump directly to nested fields without deserializing the entire document, dramatically improving performance.
+
+Binary encodings like BSON improve upon plain JSON by storing data in binary format, but they still redundantly store field names like `"timestamp"`, `"user"`, and `"event"` in every row, wasting storage space. Variant is optimized for the common case where multiple values share a similar structure: it avoids redundantly storing repeated field names and standardizes the best practice of **"shredded storage"** for pre-extracting structured subsets.
 
 ### Key Benefits
 
