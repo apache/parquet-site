@@ -6,8 +6,6 @@ author: "[Aihua Xu](https://github.com/aihuaxu), [Andrew Lamb](https://github.co
 categories: ["features"]
 ---
 
-## Introduction
-
 The Apache Parquet community is excited to announce the addition of the **Variant type**—a feature that brings native support for semi-structured data to Parquet, significantly improving efficiency compared to less efficient formats such as JSON. This marks a significant addition to Parquet, demonstrating how the format continues to evolve to meet modern data engineering needs.
 
 While Apache Parquet has long been the standard for structured data where each value has a fixed and known type, handling heterogeneous, nested data often required a compromise: either store it as a costly-to-parse JSON string or flatten it into a rigid schema. The introduction of the Variant logical type provides a native, high-performance solution for semi-structured data that is already seeing rapid uptake across the ecosystem.
