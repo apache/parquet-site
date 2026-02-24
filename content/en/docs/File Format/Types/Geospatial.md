@@ -1,4 +1,5 @@
 ---
+title: "Geospatial Type"
 linkTitle: "Geospatial Type"
 weight: 5
 ---

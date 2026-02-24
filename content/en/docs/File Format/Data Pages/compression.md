@@ -1,4 +1,5 @@
 ---
+title: "Compression"
 linkTitle: "Compression"
 weight: 1
 ---

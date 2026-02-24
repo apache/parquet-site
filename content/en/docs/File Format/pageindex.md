@@ -1,4 +1,5 @@
 ---
+title: "Page Index"
 linkTitle: "Page Index"
 weight: 7
 ---

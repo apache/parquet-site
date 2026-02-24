@@ -1,4 +1,5 @@
 ---
+title: "Encryption"
 linkTitle: "Encryption"
 weight: 1
 ---

@@ -103,7 +103,9 @@ github_branch = "production"
 # gcs_engine_id = "7e3f91e3eadecceaa"
 
 # Enable Lunr.js offline search
-offlineSearch = false
+offlineSearch = true
+offlineSearchMaxResults = 25
+offlineSearchSummaryLength = 200
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = false
