@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>File Format on Parquet</title><link>/docs/file-format/</link><description>Recent content in File Format on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>File Format on Parquet</title><link>/docs/file-format/</link><description>Recent content in File Format on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;/h1&gt;
 &lt;p&gt;The extension mechanism of the &lt;code&gt;binary&lt;/code&gt; Thrift field-id &lt;code&gt;32767&lt;/code&gt; has some desirable properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Existing readers will ignore these extensions without any modifications&lt;/li&gt;
@@ -35,7 +35,7 @@ path for the column are defined. Repetition levels specify at what repeated fiel
 in the path has the value repeated. The max definition and repetition levels can
 be computed from the schema (i.e. how much nesting there is). This defines the
 maximum number of bits required to store the levels (levels are defined for all
-values in the column).&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;/h1&gt;
+values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;/h1&gt;
 &lt;h3 id="problem-statement"&gt;Problem statement&lt;/h3&gt;
 &lt;p&gt;In their current format, column statistics and dictionaries can be used for predicate
 pushdown. Statistics include minimum and maximum value, which can be used to filter out
@@ -46,7 +46,7 @@ space they occupy. This leaves columns with large cardinalities and widely separ
 and max without support for predicate pushdown.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
 are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
 would be encoded with run-length encoding (0, 1000 times) for the definition levels and
-nothing else.&lt;/p&gt;</description></item><item><title/><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet page index: Layout to Support Page Skipping&lt;/h1&gt;
+nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet page index: Layout to Support Page Skipping&lt;/h1&gt;
 &lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
 ColumnChunk, containing statistics for DataPages that can be used
 to skip those pages when scanning in ordered and unordered columns.
