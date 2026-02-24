@@ -122,8 +122,8 @@ The following example shows shredding non-nested Variant values. In this case, t
 
 ```parquet
 optional group SIMPLE_DATA (VARIANT(1)) = 1 { 
-    required binary metadata;           # variant metadata
-    optional binary value;              # non-shredded value  	
+    required binary metadata;             # variant metadata
+    optional binary value;                # non-shredded value  	
     optional binary typed_value (STRING); # the shredded value 
 }
 ```
@@ -142,15 +142,15 @@ Shredding nested Variant values is similar, with shredding applied recursively, 
 
 ```parquet
 optional group EVENT_DATA (VARIANT(1)) = 1 {
-    required binary metadata;           # variant metadata
-    optional binary value;              # non-shredded value 	
+    required binary metadata;                 # variant metadata
+    optional binary value;                    # non-shredded value 	
     optional group typed_value {
-      required group userId {          # userId field
-        optional binary value;          # non-shredded value
-        optional int32 typed_value;     # the shredded value
+      required group userId {                 # userId field
+        optional binary value;                # non-shredded value
+        optional int32 typed_value;           # the shredded value
       }
-      required group eType {             # eType field
-        optional binary value;          # non-shredded value
+      required group eType {                  # eType field
+        optional binary value;                # non-shredded value
         optional binary typed_value (STRING); # the shredded value
       }
     }
