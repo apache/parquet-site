@@ -98,7 +98,7 @@ To enhance query performance and storage efficiency, Variant data can be **shred
 
 ![Shredding Variant Visualization](/blog/variant/variant_shredding.png)
 
-The query engine decides which fields to shred based on access patterns and workload characteristics. Once shredded, the standard Parquet columnar optimizations (encoding, compression, statistics) are used for the typed columns.
+The parquet writer, typically a query engine, decides which fields to shred based on access patterns and workload characteristics. Once shredded, the standard Parquet columnar optimizations (encoding, compression, statistics) are used for the typed columns.
 
 ### Implementation Considerations
 
