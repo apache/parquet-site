@@ -178,7 +178,12 @@ Major query engines have also integrated Variant support, including **DuckDB**, 
 
 ---
 
-## Real-World Use Cases
+## Real-World Examples
+
+This section illustrates how users can interact with Variant using a system that already has support, [Apache Spark] [4.0]. 
+
+[Apache Spark]: https://spark.apache.org/
+[4.0]: https://spark.apache.org/releases/spark-release-4-0-0.html
 
 ### Event Stream Analytics
 
