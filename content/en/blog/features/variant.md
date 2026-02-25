@@ -94,11 +94,11 @@ Just as importantly, Variant supports **schema variability**: records with diffe
 To enhance query performance and storage efficiency, Variant data can be **shredded** by extracting frequently accessed fields into separate, strongly-typed columns, as described in the [detailed shredding specification](https://github.com/apache/parquet-format/blob/master/VariantShredding.md). For each shredded field:
 
 - If the field **matches the expected schema**, its value is written to the strongly typed field.
-- If the field **does not match**, the original representation is written as Variant-encoded binary field and the corresponding strongly typed field is left NULL.
+- If the field **does not match**, the original representation is written as a Variant-encoded binary field and the corresponding strongly typed field is left NULL.
 
 ![Shredding Variant Visualization](/blog/variant/variant_shredding.png)
 
-The parquet writer, typically a query engine, decides which fields to shred based on access patterns and workload characteristics. Once shredded, the standard Parquet columnar optimizations (encoding, compression, statistics) are used for the typed columns.
+The Parquet writer, typically a query engine, decides which fields to shred based on access patterns and workload characteristics. Once shredded, the standard Parquet columnar optimizations (encoding, compression, statistics) are used for the typed columns.
 
 ### Implementation Considerations
 
@@ -128,7 +128,7 @@ optional group SIMPLE_DATA (VARIANT(1)) = 1 {
 }
 ```
 
-The series of variant values “Jim”, 100,  {“name”: “Jim”} are encoded as:
+The series of variant values `"Jim"`, `100`, `{"name": "Jim"}` are encoded as:
 
 | Variant Value | `value` | `typed_value` |
 |---------------|---------|---------------|
@@ -180,10 +180,9 @@ Major query engines have also integrated Variant support, including **DuckDB**, 
 
 ## Real-World Examples
 
-This section illustrates how users can interact with Variant using a system that already has support, [Apache Spark] [4.0]. 
+This section illustrates how users can interact with Variant using [Apache Spark 4.0]
 
-[Apache Spark]: https://spark.apache.org/
-[4.0]: https://spark.apache.org/releases/spark-release-4-0-0.html
+[Apache Spark 4.0]: https://spark.apache.org/releases/spark-release-4-0-0.html
 
 ### Event Stream Analytics
 
