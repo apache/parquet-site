@@ -231,11 +231,11 @@ CREATE TABLE sensor_readings (
 
 -- Insert data from different sensor types
 INSERT INTO sensor_readings VALUES
-    (1, '2026-01-28 10:00:00', 
+    (1, '2026-01-28 10:00:00'::timestamp, 
      PARSE_JSON('{"sensor_id": "T001", "temp": 72.5, "unit": "F", "battery": 95}')),
-    (2, '2026-01-28 10:00:05', 
+    (2, '2026-01-28 10:00:05'::timestamp, 
      PARSE_JSON('{"sensor_id": "M001", "motion_detected": true, "confidence": 0.95, "zone": "entrance"}')),
-    (3, '2026-01-28 10:00:10', 
+    (3, '2026-01-28 10:00:10'::timestamp, 
      PARSE_JSON('{"sensor_id": "C001", "image_url": "s3://bucket/img_001.jpg", "objects_detected": ["person", "vehicle"]}'));
 
 -- Query temperature sensors only
