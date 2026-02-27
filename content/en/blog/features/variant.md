@@ -1,6 +1,6 @@
 ---
 title: "Variant Type in Apache Parquet for Semi-Structured Data"
-date: 2026-02-14
+date: 2026-02-27
 description: "Introducing Native Variant Type in Apache Parquet"
 author: "[Aihua Xu](https://github.com/aihuaxu), [Andrew Lamb](https://github.com/alamb)"
 categories: ["features"]
