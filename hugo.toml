@@ -71,7 +71,7 @@ section = ["HTML", "print", "RSS"]
 
 [params]
 copyright = "Apache Parquet"
-privacy_policy = "https://policies.google.com/privacy"
+privacy_policy = "https://privacy.apache.org/policies/privacy-policy-public.html"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]

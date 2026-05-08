@@ -1,0 +1,48 @@
+<footer class="td-footer row d-print-none">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+
+      {{/* Left: social/community links (kept from existing config) */}}
+      <div class="col-12 col-md-3 text-center text-md-start">
+        <div class="td-footer__social-icons">
+          {{ with .Site.Params.links }}
+            {{ range .user }}
+              <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .name }}" class="td-footer__social-link">
+                <i class="{{ .icon }}"></i>
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+      {{/* Center: copyright, trademarks, and policy links */}}
+      <div class="col-12 col-md-6 text-center">
+        <div class="td-footer__copyright">
+          The contents of this website are &copy;&nbsp;{{ now.Year }}&nbsp;Apache Software Foundation
+          under the terms of the
+          <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache License v2</a>.
+          Apache Parquet, Parquet, and the Parquet logo are either registered trademarks or trademarks of
+          The Apache Software Foundation in the United States and other countries.
+        </div>
+        <div class="td-footer__links mt-2">
+          <a href="https://www.apache.org/security/" target="_blank" rel="noopener">Security</a> |
+          <a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener">Donate</a> |
+          <a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener">Thanks</a> |
+          <a href="https://www.apache.org/events/current-event.html" target="_blank" rel="noopener">Events</a> |
+          <a href="https://www.apache.org/licenses/" target="_blank" rel="noopener">License</a> |
+          <a href="https://privacy.apache.org/policies/privacy-policy-public.html" target="_blank" rel="noopener">Privacy</a>
+        </div>
+      </div>
+
+      {{/* Right: ASF feather logo */}}
+      <div class="col-12 col-md-3 text-center text-md-end">
+        <a href="https://www.apache.org/" target="_blank" rel="noopener" class="asf-logo-link">
+          <img src="https://www.apache.org/foundation/press/kit/asf_logo_url.png"
+               alt="The Apache Software Foundation"
+               style="max-height: 60px;">
+        </a>
+      </div>
+
+    </div>
+  </div>
+</footer>
