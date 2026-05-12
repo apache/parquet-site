@@ -81,7 +81,7 @@ The last message from the script is the release commit’s SHA1 hash and URL for
 
 Creating the [pre-release](https://github.com/apache/parquet-java/releases/new) will give the users the changelog to see if they need to validate certain functionality. First select the newly created `rc` (ex: `apache-parquet-1.15.0-rc0`) tag, and then the previous release (ex. `apache-parquet-1.14.1`). Hit the `Generate release notes` button to auto generate the notes. You can curate the notes a bit by removing unrelated changes (whitespace, test-only changes) and sorting them to make them easier to digest. Make sure to check the `Set as pre-release` checkbox as this is a release candidate.
 
-#### 5\. Send a VOTE e-mail to [dev@parquet.apache.org](mailto:dev@parquet.apache.org)
+#### 6\. Send a VOTE e-mail to [dev@parquet.apache.org](mailto:dev@parquet.apache.org)
 
 Here is a template you can use. Make sure everything applies to your release.
 
