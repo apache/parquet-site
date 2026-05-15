@@ -25,12 +25,12 @@ github:
     - apache
     - parquet
     - parquet-site
-  
+
   enabled_merge_buttons:
     merge: false
     squash: true
     rebase: false
-  
+
   features:
     wiki: false
     issues: true
@@ -39,11 +39,24 @@ github:
   collaborators:  # Note: the number of collaborators is limited to 10
     - vinooganesh
     - alamb
- 
+
+  rulesets:
+    - name: "Default Branch Protection"
+      type: branch
+      branches:
+        includes:
+          - "~DEFAULT_BRANCH"
+          - "release/*"
+          - "rel/*"
+        excludes: []
+      bypass_teams:
+        - root
+      restrict_deletion: true
+      restrict_force_push: true
 publish:
-  whoami:  asf-site
+  whoami: asf-site
 
 notifications:
-  commits:      commits@parquet.apache.org
-  issues:       issues@parquet.apache.org
+  commits: commits@parquet.apache.org
+  issues: issues@parquet.apache.org
   pullrequests: commits@parquet.apache.org
