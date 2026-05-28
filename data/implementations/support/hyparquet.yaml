@@ -1,5 +1,5 @@
 engine_id: hyparquet
-last_updated: "2026-01-09"
+last_updated: "2026-05-27"
 support:
   physical-boolean:
     status: full
@@ -50,7 +50,7 @@ support:
   logical-bson:
     status: none
   logical-variant:
-    status: read
+    status: full
     since_version_read: "1.24.0"
   logical-geometry:
     status: full
@@ -61,7 +61,7 @@ support:
   logical-list:
     status: full
   logical-map:
-    status: read
+    status: full
   logical-unknown:
     status: full
   encoding-plain:
@@ -101,9 +101,9 @@ support:
   compression-zstd:
     status: read
   format-bloom-filters:
-    status: none
+    status: full
   format-bloom-filter-length:
-    status: read
+    status: full
   format-stats-min-max:
     status: full
   format-page-index:
@@ -123,7 +123,8 @@ support:
   api-rowgroup-pruning-stats:
     status: full
   api-rowgroup-pruning-bloom:
-    status: none
+    status: full
+    since_version_read: "1.26.0"
   api-column-projection:
     status: full
   api-page-pruning-stats:

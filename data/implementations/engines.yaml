@@ -141,6 +141,9 @@
       "1.24.0":
         release_date: "2026-01-09"
         release_notes_url: "https://github.com/hyparam/hyparquet/releases/tag/v1.24.0"
+      "1.26.0":
+        release_date: "2026-05-23"
+        release_notes_url: "https://github.com/hyparam/hyparquet/releases/tag/v1.26.0"
 
 - id: duckdb
   name: duckdb
