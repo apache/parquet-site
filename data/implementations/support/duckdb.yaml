@@ -90,9 +90,7 @@ support:
   encoding-byte-stream-split:
     status: full
   encoding-byte-stream-split-extended:
-    status: full
-    since_version_read: "1.2.0"
-    since_version_write: "1.2.0"
+    status: none
   compression-uncompressed:
     status: full
   compression-brotli:
