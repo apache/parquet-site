@@ -133,27 +133,27 @@ new information.
 | [Binary protocol extensions] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2024-09-06]                                     |
 | [IEEE 754 total order and NaN counts] | not yet released | [#514] | [Approved 2026-05-26]                                     |
 | [LogicalType union] | [2.4.0] | [2.3.1..2.4.0] | Supersedes `ConvertedType` enum<br/>deprecated in [2.9.0] |
-| [STRING] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
-| [ENUM] | [2.0.0] | [1.0.0..2.0.0] |                                                           |
-| [UUID] | [2.6.0] | [2.5.0..2.6.0] |                                                           |
-| [Signed and unsigned integer logical types] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [STRING (BYTE_ARRAY)] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
+| [ENUM (BYTE_ARRAY)] | [2.0.0] | [1.0.0..2.0.0] |                                                           |
+| [UUID (FIXED_LEN_BYTE_ARRAY(16))] | [2.6.0] | [2.5.0..2.6.0] |                                                           |
+| [Signed and unsigned integer logical types (INT32, INT64)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
 | [DECIMAL (INT32)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
 | [DECIMAL (INT64)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
 | [DECIMAL (BYTE_ARRAY)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
 | [DECIMAL (FIXED_LEN_BYTE_ARRAY)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
-| [FLOAT16] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-10-13]                                     |
-| [DATE] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [FLOAT16 (FIXED_LEN_BYTE_ARRAY(2))] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-10-13]                                     |
+| [DATE (INT32)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
 | [TIME (INT32)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
 | [TIME (INT64)] | [2.4.0] | [2.3.1..2.4.0] |                                                           |
 | [TIMESTAMP (INT64)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
 | [Nanosecond TIME/TIMESTAMP] | [2.6.0] | [2.5.0..2.6.0] |                                                           |
-| [INTERVAL] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
-| [JSON] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
-| [BSON] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [INTERVAL (FIXED_LEN_BYTE_ARRAY(12))] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [JSON (BYTE_ARRAY)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [BSON (BYTE_ARRAY)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
 | [VARIANT] | [2.12.0] | [2.11.0..2.12.0] | [Approved 2025-08-24]                                     |
 | [Variant shredding] | [2.12.0] | [2.11.0..2.12.0] | [Approved 2025-08-24]                                     |
-| [GEOMETRY] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
-| [GEOGRAPHY] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
+| [GEOMETRY (BYTE_ARRAY)] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
+| [GEOGRAPHY (BYTE_ARRAY)] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
 | [LIST] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
 | [MAP] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
 | [UNKNOWN (always null)] | [2.4.0] | [2.3.1..2.4.0] |                                                           |
@@ -171,10 +171,10 @@ new information.
 [plaintext footer]: https://github.com/apache/parquet-format/blob/master/Encryption.md#55-plaintext-footer-mode
 [xxHash-based bloom filters]: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
 [Page index]: https://github.com/apache/parquet-format/blob/master/PageIndex.md
-[FLOAT16]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#float16
+[FLOAT16 (FIXED_LEN_BYTE_ARRAY(2))]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#float16
 [VARIANT]: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
-[GEOMETRY]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geometry
-[GEOGRAPHY]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geography
+[GEOMETRY (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geometry
+[GEOGRAPHY (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geography
 
 [1.0.0]: https://github.com/apache/parquet-format/releases/tag/parquet-format-1.0.0
 [2.0.0]: https://github.com/apache/parquet-format/releases/tag/parquet-format-2.0.0
@@ -223,28 +223,26 @@ new information.
 [Bloom filter length]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L933
 [Page CRC32 checksum]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L829
 [Size statistics]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L202
-[IEEE 754 Column Order]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L1061
 [LogicalType union]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L471
 [Nanosecond TIME/TIMESTAMP]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L352
-[STRING]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#string
-[ENUM]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#enum
-[UUID]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#uuid
-[8, 16, 32, 64 bit signed and unsigned INT]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#signed-integers
+[STRING (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#string
+[ENUM (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#enum
+[UUID (FIXED_LEN_BYTE_ARRAY(16))]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#uuid
 [DECIMAL (INT32)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
 [DECIMAL (INT64)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
 [DECIMAL (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
 [DECIMAL (FIXED_LEN_BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-[DATE]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#date
+[DATE (INT32)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#date
 [TIME (INT32)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#time
 [TIME (INT64)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#time
 [TIMESTAMP (INT64)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#timestamp
-[INTERVAL]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#interval
-[JSON]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#json
-[BSON]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#bson
+[INTERVAL (FIXED_LEN_BYTE_ARRAY(12))]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#interval
+[JSON (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#json
+[BSON (BYTE_ARRAY)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#bson
 [LIST]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists
 [MAP]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#maps
 [UNKNOWN (always null)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#unknown-always-null
-[Signed and unsigned integer logical types]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#signed-integers
+[Signed and unsigned integer logical types (INT32, INT64)]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#signed-integers
 [IEEE 754 total order and NaN counts]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L1061
 
 [BOOLEAN]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L33
