@@ -1,8 +1,8 @@
 ---
 title: "Taming Floating-Point Statistics in Apache Parquet: IEEE 754 Total Order and NaN Counts"
 date: 2026-05-29
-description: "How Apache Parquet resolves ambiguous floating-point statistics using IEEE 754 total order and explicit NaN counts for better query performance."
-author: "[Jan Finis](https://github.com/JFinis), [Ed Seidl](https://github.com/etseidl), [Gang Wu](https://github.com/wgtmac)"
+description: "How the Apache Parquet Community resolved potentially ambiguous floating-point statistics using IEEE 754 total order and explicit NaN counts"
+author: "[Jan Finis](https://github.com/JFinis), [Gang Wu](https://github.com/wgtmac)"
 categories: ["features"]
 ---
 
@@ -16,11 +16,11 @@ The result is a much clearer contract between data writers and readers. Floating
 
 For integers, strings, and many other straightforward types, Parquet statistics are simple: the writer records the absolute smallest and largest values, and the reader uses those bounds to decide if a query might find a match.
 
-Floating-point columns are trickier for two major reasons. First, `-0.0` and `+0.0` are considered equal in normal math operations, yet they possess distinct underlying bit patterns. A data format needs strict rules on how to order these values; otherwise, different libraries might generate conflicting statistics for the exact same underlying data.
+Floating-point columns are trickier for two major reasons. First, `-0.0` and `+0.0` are considered equal in normal math operations, yet they possess distinct underlying bit patterns. A data format needs strict rules on how to order these values; otherwise, different libraries might generate conflicting statistics for the exact same underlying data. Parquet's approach to dealing with this ambiguity has been to mandate that a `min` of `0.0` always be written as `-0.0`, and a `max` of `0.0` always be written as `+0.0`, regardless of any sign bits that may be present in the actual data. Readers are advised that `-0.0` may be present even if the `min` is `+0.0`, and `+0.0` may be present even if the max is `-0.0`.
 
-Second, `NaN` is completely unordered under standard IEEE 754 comparisons. Expressions like `x < NaN`, `x > NaN`, and `x == NaN` always evaluate to false. If a writer blindly includes `NaN` in ordinary `min` or `max` calculations, the resulting bounds might be useless for skipping data. Conversely, if a writer simply ignores `NaN` values, readers are left in the dark about whether any `NaN`s actually exist in the data block.
+Second, `NaN` is completely unordered under standard IEEE 754 comparisons. Expressions like `x < NaN`, `x > NaN`, and `x == NaN` always evaluate to false. If a writer blindly includes `NaN` in ordinary `min` or `max` calculations, the resulting bounds might be useless for skipping data. To date Parquet has followed the latter approach, forbidding the inclusion of `NaN` in the statistics. [PR #196](https://github.com/apache/parquet-format/pull/196) provides a detailed overview of the problems inherent in this approach. For instance, consider a page with a max statistic of `0.0` that also contains a `NaN`. A query engine that considers `NaN` to be greater than all values attempts a query with a predicate like `x > 1.0`. If the engine examines the statistics, it will see that the `max` is `0.0`, so it might improperly skip that page, even though it contains at least one row that satisfies the predicate. Without knowledge of the presence or absence of `NaN`, the engine cannot safely perform this type of page pruning for floating point columns.
 
-These aren't just theoretical edge cases. Query engines rely heavily on these statistics to safely skip large chunks of data. Ambiguous floating-point bounds degrade query performance and can lead to severe inconsistencies. A perfect example of this was highlighted in [PARQUET-2249](https://issues.apache.org/jira/browse/PARQUET-2249), which exposed a critical flaw in how `NaN` values interacted with Parquet's `ColumnIndex` metadata.
+These aren't just theoretical edge cases. Query engines rely heavily on these statistics to safely skip large chunks of data. Ambiguous floating-point bounds degrade query performance and can lead to severe inconsistencies. [PARQUET-2249](https://issues.apache.org/jira/browse/PARQUET-2249) exposed another critical flaw in how `NaN` values interacted with Parquet's `ColumnIndex` metadata.
 
 The core problem in PARQUET-2249 arose when a data page contained *only* `NaN` values. Such a page isn't considered "null"—the data is physically there, and `NaN` is distinct from a missing `null` value. However, older guidelines stated that `NaN` values shouldn't be included when computing `min` and `max`. This put the `ColumnIndex` in an impossible situation: it strictly required valid `min` and `max` bounds for any non-null page, yet there were no non-`NaN` values available to use!
 
@@ -38,7 +38,7 @@ Ultimately, the community reached a consensus: why not combine the best of both 
 
 The resulting specification elegantly marries two concepts: an optional `nan_count` field for both `Statistics` and `ColumnIndex`, and the `IEEE_754_TOTAL_ORDER` column order.
 
-`nan_count` records the exact number of `NaN` values within a given scope. Because the field is optional in older files, readers must treat a *missing* `nan_count` differently than a `0`. If missing, readers must cautiously assume `NaN` values *might* be present. If a column is written using `IEEE_754_TOTAL_ORDER`, the writer is forced to provide the `nan_count`.
+`nan_count` records the exact number of `NaN` values within a given scope. Because the field is optional (or completely missing from older files), readers must treat a *missing* `nan_count` differently than a `0`. If missing, readers must cautiously assume `NaN` values *might* be present. If a column is written using `IEEE_754_TOTAL_ORDER`, the writer is forced to provide the `nan_count`.
 
 This new total order applies exclusively to physical `FLOAT`, `DOUBLE`, or logical `FLOAT16` columns. It defines a strict, deterministic ordering for bit patterns with these key properties:
 
@@ -71,7 +71,7 @@ The same clever trick applies to 32-bit floats (`f32`): preserve the IEEE bit pa
 
 Readers, conversely, should treat a missing `nan_count` with caution. Absence doesn't mean zero; it means "unknown," so `NaN` values may lurk inside. When `nan_count` is present, readers can pair it with `min` and `max` bounds to make hyper-efficient, safe pruning decisions.
 
-Implementations that haven't adopted the new rules yet should continue handling older files conservatively, particularly when queries involve `NaN` or signed zeros.
+Implementations that haven't adopted the new rules yet should continue handling older files conservatively, particularly when queries involve `NaN` or signed zeros, but also in the case of inequalities not involving `NaN`.
 
 ## Conclusion
 
