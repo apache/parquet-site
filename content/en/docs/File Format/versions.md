@@ -124,39 +124,41 @@ Forward incompatible features and the format version each became available in:
 Older readers can read files that use these features but may not understand the
 new information.
 
-| Feature | Released in | Source | Notes |
-| ------------------------------------------- | ----------------------------- | --- | ------------------------- |
-| [xxHash-based bloom filters] | [2.7.0] | [2.6.0..2.7.0] | [Approved 2019-09-09] |
-| [Bloom filter length] | [2.10.0] | [2.9.0..2.10.0] |  |
-| [Page index] | [2.4.0] | [2.3.1..2.4.0] |  |
-| [Page CRC32 checksum] | [1.0.0] | [1.0.0][tree-1.0.0] |  |
-| [Size statistics] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-11-14] |
-| [Geospatial statistics] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09] |
-| [Binary protocol extensions] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2024-09-06] |
-| [IEEE 754 total order and NaN counts] | not yet released | [#514] | [Approved 2026-05-26] |
-| [STRING] | [1.0.0] | [1.0.0][tree-1.0.0] |  |
-| [ENUM] | [2.0.0] | [1.0.0..2.0.0] |  |
-| [UUID] | [2.6.0] | [2.5.0..2.6.0] |  |
-| [Signed and unsigned integer logical types] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [DECIMAL (INT32)] | [2.1.0] | [2.0.0..2.1.0] |  |
-| [DECIMAL (INT64)] | [2.1.0] | [2.0.0..2.1.0] |  |
-| [DECIMAL (BYTE_ARRAY)] | [2.1.0] | [2.0.0..2.1.0] |  |
-| [DECIMAL (FIXED_LEN_BYTE_ARRAY)] | [2.1.0] | [2.0.0..2.1.0] |  |
-| [FLOAT16] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-10-13] |
-| [DATE] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [TIME (INT32)] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [TIME (INT64)] | [2.4.0] | [2.3.1..2.4.0] |  |
-| [TIMESTAMP (INT64)] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [INTERVAL] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [JSON] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [BSON] | [2.2.0] | [2.1.0..2.2.0] |  |
-| [VARIANT] | [2.12.0] | [2.11.0..2.12.0] | [Approved 2025-08-24] |
-| [Variant shredding] | [2.12.0] | [2.11.0..2.12.0] | [Approved 2025-08-24] |
-| [GEOMETRY] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09] |
-| [GEOGRAPHY] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09] |
-| [LIST] | [1.0.0] | [1.0.0][tree-1.0.0] |  |
-| [MAP] | [1.0.0] | [1.0.0][tree-1.0.0] |  |
-| [UNKNOWN (always null)] | [2.4.0] | [2.3.1..2.4.0] |  |
+| Feature | Released in | Source | Notes                                                     |
+| ------------------------------------------- | ----------------------------- | --- |-----------------------------------------------------------|
+| [xxHash-based bloom filters] | [2.7.0] | [2.6.0..2.7.0] | [Approved 2019-09-09]                                     |
+| [Bloom filter length] | [2.10.0] | [2.9.0..2.10.0] |                                                           |
+| [Page index] | [2.4.0] | [2.3.1..2.4.0] |                                                           |
+| [Page CRC32 checksum] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
+| [Size statistics] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-11-14]                                     |
+| [Geospatial statistics] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
+| [Binary protocol extensions] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2024-09-06]                                     |
+| [IEEE 754 total order and NaN counts] | not yet released | [#514] | [Approved 2026-05-26]                                     |
+| [LogicalType union] | [2.4.0] | [2.3.1..2.4.0] | Supersedes `ConvertedType` enum<br/>deprecated in [2.9.0] |
+| [STRING] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
+| [ENUM] | [2.0.0] | [1.0.0..2.0.0] |                                                           |
+| [UUID] | [2.6.0] | [2.5.0..2.6.0] |                                                           |
+| [Signed and unsigned integer logical types] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [DECIMAL (INT32)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
+| [DECIMAL (INT64)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
+| [DECIMAL (BYTE_ARRAY)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
+| [DECIMAL (FIXED_LEN_BYTE_ARRAY)] | [2.1.0] | [2.0.0..2.1.0] |                                                           |
+| [FLOAT16] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-10-13]                                     |
+| [DATE] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [TIME (INT32)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [TIME (INT64)] | [2.4.0] | [2.3.1..2.4.0] |                                                           |
+| [TIMESTAMP (INT64)] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [Nanosecond TIME/TIMESTAMP] | [2.6.0] | [2.5.0..2.6.0] |                                                           |
+| [INTERVAL] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [JSON] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [BSON] | [2.2.0] | [2.1.0..2.2.0] |                                                           |
+| [VARIANT] | [2.12.0] | [2.11.0..2.12.0] | [Approved 2025-08-24]                                     |
+| [Variant shredding] | [2.12.0] | [2.11.0..2.12.0] | [Approved 2025-08-24]                                     |
+| [GEOMETRY] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
+| [GEOGRAPHY] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
+| [LIST] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
+| [MAP] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
+| [UNKNOWN (always null)] | [2.4.0] | [2.3.1..2.4.0] |                                                           |
 
 [PLAIN]: https://github.com/apache/parquet-format/blob/master/Encodings.md#plain-plain--0
 [PLAIN_DICTIONARY]: https://github.com/apache/parquet-format/blob/master/Encodings.md#dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8
@@ -222,6 +224,8 @@ new information.
 [Page CRC32 checksum]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L829
 [Size statistics]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L202
 [IEEE 754 Column Order]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L1061
+[LogicalType union]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L471
+[Nanosecond TIME/TIMESTAMP]: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L352
 [STRING]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#string
 [ENUM]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#enum
 [UUID]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#uuid
