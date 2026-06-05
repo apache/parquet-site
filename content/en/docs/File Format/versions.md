@@ -31,9 +31,6 @@ suffer, but the reader does not fail. Examples:
 **Forward incompatible** features make the data **unreadable** to older software.
 Examples:
 
-Backwards incompatible features make the data **unreadable** to older software
-that does not support them. Examples:
-
 * **New encodings** (e.g. the `DELTA_*` encodings, `BYTE_STREAM_SPLIT`,
   `RLE_DICTIONARY`): a reader that does not implement them cannot decode the
   column values.
@@ -115,9 +112,10 @@ Forward incompatible features and the format version each became available in:
 | [Modular encryption] |  | ✅ | [2.7.0] | [2.6.0..2.7.0] | [Approved 2019-01-16] |
 
 
-> **Note:** Compression codecs and modular encryption are not gated by the
-> `version` field — a reader needs support for the specific codec or for
-> encryption regardless of version.
+> **Note:** Files with an [encrypted footer] use different magic bytes (`PARE`
+> instead of `PAR1`), making it clear to readers they must support modular
+> encryption to read the file; [plaintext footer] files use `PAR1` so legacy
+> readers can still read their unencrypted columns.
 
 ## Forward compatible additions
 
@@ -169,6 +167,8 @@ new information.
 [DELTA_BYTE_ARRAY]: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-strings-delta_byte_array--7
 [BYTE_STREAM_SPLIT]: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
 [Modular encryption]: https://github.com/apache/parquet-format/blob/master/Encryption.md
+[encrypted footer]: https://github.com/apache/parquet-format/blob/master/Encryption.md#54-encrypted-footer-mode
+[plaintext footer]: https://github.com/apache/parquet-format/blob/master/Encryption.md#55-plaintext-footer-mode
 [xxHash-based bloom filters]: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
 [Page index]: https://github.com/apache/parquet-format/blob/master/PageIndex.md
 [FLOAT16]: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#float16
