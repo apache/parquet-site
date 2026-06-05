@@ -77,7 +77,7 @@ Implementations that haven't adopted the new rules yet should continue handling 
 
 By embracing IEEE 754 total order and `nan_count`, Apache Parquet now boasts a much clearer, robust foundation for floating-point statistics. This update preserves the blazing speed of predicate pushdown while finally taming the edge cases: `NaN` values are accurately counted, signed zeros have their rightful place, and all floating-point bit patterns can be ordered deterministically.
 
-It’s a small but mighty refinement to the Parquet format. It boosts interoperability across different programming languages and query engines, giving readers the precise information they need to prune data without ever having to guess.
+It’s a small but mighty refinement to the Parquet format. It boosts interoperability across different programming languages and query engines, giving readers the precise information they need to prune data with confidence.
 
 ## Resources
 
