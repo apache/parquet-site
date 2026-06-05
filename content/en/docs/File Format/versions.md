@@ -31,9 +31,6 @@ suffer, but the reader does not fail. Examples:
 **Forward incompatible** features make the data **unreadable** to older software.
 Examples:
 
-Backwards incompatible features make the data **unreadable** to older software
-that does not support them. Examples:
-
 * **New encodings** (e.g. the `DELTA_*` encodings, `BYTE_STREAM_SPLIT`,
   `RLE_DICTIONARY`): a reader that does not implement them cannot decode the
   column values.
