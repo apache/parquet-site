@@ -12,19 +12,24 @@ reader and writer compatibility. See the
 
 *Note*: If you find out-of-date information, please open an issue or pull request.
 
-## Backwards compatible features
+## Feature compatibility
 
-Backwards compatible features can still be **read by older readers**, though with
-a degraded experience: they ignore the new information rather than failing.
-Examples:
+The Parquet format spec [classifies changes] by their effect on reader and
+writer compatibility. Changes differ in their *forward* compatibility — whether
+an older reader can read files that use a newer feature.
 
-* **Bloom filters**: a reader that does not understand them ignores the pruning
-  metadata but still reads the data correctly.
-* **Logical type annotations** such as `VARIANT`: an older reader still reads the
-  underlying physical column (e.g. `BYTE_ARRAY`) as raw bytes, but does not apply
+**Forward compatible** features remain **readable by older readers**, with a
+possibly degraded experience: some metadata may be missing or performance may
+suffer, but the reader does not fail. Examples:
+
+* **Bloom filters**: a reader that ignores them skips the pruning metadata but
+  still reads the data correctly.
+* **Logical type annotations** such as `VARIANT`: an older reader reads the
+  underlying physical column (e.g. `BYTE_ARRAY`) as raw bytes without applying
   the logical type.
 
-## Backwards incompatible features
+**Forward incompatible** features make the data **unreadable** to older software.
+Examples:
 
 Backwards incompatible features make the data **unreadable** to older software
 that does not support them. Examples:
@@ -34,6 +39,8 @@ that does not support them. Examples:
   column values.
 * **Data Page V2 headers**: a reader that only understands `DataPageHeader`
   cannot parse `DataPageHeaderV2` pages.
+
+[classifies changes]: https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#compatibility-and-feature-enablement
 
 ## `FileMetadata` version field
 
@@ -52,8 +59,8 @@ parquet-java or arrow-rs, following the Apache release process and
 [semantic versioning]:
 
 1. The major version corresponds to the [`thrift FileMetadata`] `version` field.
-2. Minor releases (e.g. `2.10.0` to `2.11.0`) may add backwards compatible
-   features, but never breaking ones. The minor version is not recorded in the
+2. Minor releases (e.g. `2.10.0` to `2.11.0`) may add compatible
+   features, but never incompatible ones. The minor version is not recorded in the
    file itself.
 
 ## Adding new features
@@ -68,9 +75,9 @@ the next parquet-format release.
 [here]: https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#additionschanges-to-the-format
 [closing-out-2.0]: https://lists.apache.org/thread/0bdyyb7qobrxx94x8v7t5z7g2ksnpyr2
 
-## Backwards incompatible features by version
+## Forward incompatible features by version
 
-Backwards incompatible features and the format version each became available in:
+Forward incompatible features and the format version each became available in:
 
 * **V1**: the original Parquet format (1.0).
 * **V2**: format version 2.0.
@@ -112,10 +119,10 @@ Backwards incompatible features and the format version each became available in:
 > `version` field — a reader needs support for the specific codec or for
 > encryption regardless of version.
 
-## Backwards compatible additions
+## Forward compatible additions
 
-Files written with these features can be read by all readers, but older
-readers may not understand the new information.
+Older readers can read files that use these features but may not understand the
+new information.
 
 | Feature | Released in | Source | Notes |
 | ------------------------------------------- | ----------------------------- | --- | ------------------------- |
