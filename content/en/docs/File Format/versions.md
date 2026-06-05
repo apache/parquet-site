@@ -1,6 +1,6 @@
 ---
 title: "Parquet format versions"
-linkTitle: "Versions"
+linkTitle: "Format versions"
 weight: 9
 ---
 
