@@ -5,7 +5,7 @@
 Well-Known Binary (WKB) serializations (ISO variant supporting XY, XYZ, XYM,
 XYZM) are defined by &lt;a href="https://portal.ogc.org/files/?artifact_id=25355"&gt;OpenGIS Implementation Specification for Geographic
 information - Simple feature access - Part 1: Common architecture&lt;/a&gt;,
-from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC(Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
+from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC (Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The version of the OGC standard first used here is 1.2.1, but future versions
 may also be used if the WKB representation remains wire-compatible.&lt;/p&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;/h1&gt;
 &lt;p&gt;Logical types are used to extend the types that parquet can be used to store,

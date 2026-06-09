@@ -6,7 +6,13 @@
 &lt;li&gt;The content of the extension is freeform and can be encoded in any format. This format is not restricted to Thrift.&lt;/li&gt;
 &lt;li&gt;Extensions can be appended to existing Thrift serialized structs &lt;a href="/docs/file-format/binaryprotocolextensions/#appending-extensions-to-thrift"&gt;without requiring Thrift libraries&lt;/a&gt; for manipulation (or changes to the thrift IDL).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Because only one field-id is reserved the extension bytes themselves require disambiguation; otherwise readers will not be able to decode extensions safely. This is left to implementers which MUST put enough unique state in their extension bytes for disambiguation. This can be relatively easily achieved by adding a &lt;a href="https://en.wikipedia.org/wiki/Universally%5C_unique%5C_identifier"&gt;UUID&lt;/a&gt; at the start or end of the extension bytes. The extension does not specify a disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;/h1&gt;
+&lt;p&gt;Because only one field-id is reserved the extension bytes themselves require
+disambiguation; otherwise readers will not be able to decode extensions safely.
+This is left to implementers who MUST put enough unique state in their extension
+bytes for disambiguation. This can be relatively easily achieved by adding a
+&lt;a href="https://en.wikipedia.org/wiki/Universally%5C_unique%5C_identifier"&gt;UUID&lt;/a&gt; at the
+start or end of the extension bytes. The extension does not specify a
+disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;/h1&gt;
 &lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
 &lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;Parquet allows the data block inside dictionary pages and data pages to
@@ -150,7 +156,7 @@ per HDFS file.&lt;/p&gt;</description></item><item><title>Events</title><link>/d
 Well-Known Binary (WKB) serializations (ISO variant supporting XY, XYZ, XYM,
 XYZM) are defined by &lt;a href="https://portal.ogc.org/files/?artifact_id=25355"&gt;OpenGIS Implementation Specification for Geographic
 information - Simple feature access - Part 1: Common architecture&lt;/a&gt;,
-from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC(Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
+from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC (Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The version of the OGC standard first used here is 1.2.1, but future versions
 may also be used if the WKB representation remains wire-compatible.&lt;/p&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;/h1&gt;
 &lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
@@ -218,12 +224,12 @@ the data within a page is corrupt, that page is lost. The file will be more
 resilient to corruption with smaller row groups.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
 are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
 would be encoded with run-length encoding (0, 1000 times) for the definition levels and
-nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet page index: Layout to Support Page Skipping&lt;/h1&gt;
+nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet Page Index: Layout to Support Page Skipping&lt;/h1&gt;
 &lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
 ColumnChunk, containing statistics for DataPages that can be used
 to skip those pages when scanning in ordered and unordered columns.
 The page index is stored using the OffsetIndex and ColumnIndex structures,
-defined in &lt;a href="src/main/thrift/parquet.thrift"&gt;&lt;code&gt;parquet.thrift&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+defined in &lt;a href="src/main/thrift/parquet.thrift"&gt;&lt;code&gt;parquet.thrift&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="problem-statement"&gt;Problem Statement&lt;/h2&gt;
 &lt;p&gt;In previous versions of the format, Statistics are stored for ColumnChunks in
 ColumnMetaData and for individual pages inside DataPageHeader structs. When
