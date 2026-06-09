@@ -1,6 +1,6 @@
 ---
 title: "Parquet format versions"
-linkTitle: "Format versions"
+linkTitle: "Features and Versions"
 weight: 9
 ---
 
@@ -52,13 +52,12 @@ issues][closing-out-2.0].
 ## `parquet-format` release versions
 
 The Thrift definition is released independently of implementations such as
-parquet-java or arrow-rs, following the Apache release process and
-[semantic versioning]:
+parquet-java or arrow-rs, following the Apache release process. Note that
+release numbering **DOES NOT FOLLOW** [semantic versioning]:
 
 1. The major version corresponds to the [`thrift FileMetadata`] `version` field.
-2. Minor releases (e.g. `2.10.0` to `2.11.0`) may add compatible
-   features, but never incompatible ones. The minor version is not recorded in the
-   file itself.
+2. Minor releases (e.g. `2.10.0` to `2.11.0`) sometimes contain forward incompatible 
+   features. The minor version is not recorded in the file itself.
 
 ## Adding new features
 
