@@ -41,13 +41,10 @@ Examples:
 
 ## `FileMetadata` version field
 
-Each Parquet file has a `version` field in the [`thrift FileMetadata`] that
-declares which features the file may use, and thus what a reader **must** support
-to read it.
-
-**Note**: Many writers set the version field to `1` even for files that use
-format 2.0 features, which has caused [confusion and interoperability
-issues][closing-out-2.0].
+Each Parquet file has a `version` field in the [`thrift FileMetadata`]. This
+field has historically been used inconsistently: writers populate `1` or `2`
+without a consistent relationship to the features actually used. See the
+[note in parquet.thrift] and [this discussion][closing-out-2.0] for details.
 
 ## `parquet-format` release versions
 
@@ -69,6 +66,7 @@ the next parquet-format release.
 [semantic versioning]: https://semver.org/
 [`thrift FileMetadata`]: https://github.com/apache/parquet-format/blob/c42c2cb4ecfccb38153375e24b702a82fd763cc0/src/main/thrift/parquet.thrift#L1365-L1373
 [here]: https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#additionschanges-to-the-format
+[note in parquet.thrift]: https://github.com/apache/parquet-format/blob/74001e41f5c5a1856b29be115f9c992cab16a4bf/src/main/thrift/parquet.thrift#L1368-L1373
 [closing-out-2.0]: https://lists.apache.org/thread/0bdyyb7qobrxx94x8v7t5z7g2ksnpyr2
 
 ## Forward incompatible features by version
