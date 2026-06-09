@@ -56,8 +56,8 @@ parquet-java or arrow-rs, following the Apache release process. Note that
 release numbering **DOES NOT FOLLOW** [semantic versioning]:
 
 1. The major version corresponds to the [`thrift FileMetadata`] `version` field.
-2. Minor releases (e.g. `2.10.0` to `2.11.0`) sometimes contain forward incompatible 
-   features. The minor version is not recorded in the file itself.
+2. Minor releases (e.g. `2.10.0` to `2.11.0`) sometimes contain forward
+   incompatible features. The minor version is not recorded in the file itself.
 
 ## Adding new features
 
