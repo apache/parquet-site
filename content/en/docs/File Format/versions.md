@@ -73,9 +73,6 @@ the next parquet-format release.
 
 Forward incompatible features and the format version each became available in:
 
-* **V1**: the original Parquet format (1.0).
-* **V2**: format version 2.0.
-
 | Feature | V1 | V2 | Released in | Source | Notes |
 | ------------------------------------------ | ---- | ---- | ----------------------------- | --- | ------------------------- |
 | [BOOLEAN] | ✅ | ✅ | [1.0.0] | [1.0.0][tree-1.0.0] |  |
