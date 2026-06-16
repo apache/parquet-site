@@ -58,13 +58,13 @@ incompatible features.
 ## Adding new features
 
 New features are added by discussion and voting on the [parquet dev mailing list]
-(full process [contributing guide]). Once approved, a feature is added to the spec and ships in
+(full process in the [contributing guide]). Once approved, a feature is added to the spec and ships in
 the next parquet-format release.
 
 [parquet dev mailing list]: https://lists.apache.org/list.html?dev@parquet.apache.org
 [semantic versioning]: https://semver.org/
 [`thrift FileMetadata`]: https://github.com/apache/parquet-format/blob/c42c2cb4ecfccb38153375e24b702a82fd763cc0/src/main/thrift/parquet.thrift#L1365-L1373
-[here]: https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#additionschanges-to-the-format
+[contributing guide]: https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#additionschanges-to-the-format
 [note in parquet.thrift]: https://github.com/apache/parquet-format/blob/74001e41f5c5a1856b29be115f9c992cab16a4bf/src/main/thrift/parquet.thrift#L1368-L1373
 [closing-out-2.0]: https://lists.apache.org/thread/0bdyyb7qobrxx94x8v7t5z7g2ksnpyr2
 
