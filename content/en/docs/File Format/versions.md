@@ -58,7 +58,7 @@ incompatible features.
 ## Adding new features
 
 New features are added by discussion and voting on the [parquet dev mailing list]
-(full process [here]). Once approved, a feature is added to the spec and ships in
+(full process [contributing guide]). Once approved, a feature is added to the spec and ships in
 the next parquet-format release.
 
 [parquet dev mailing list]: https://lists.apache.org/list.html?dev@parquet.apache.org
