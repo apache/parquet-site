@@ -89,4 +89,13 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/pola-rs/polars"&gt;polars&lt;/a&gt; (Rust)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- Status source in data/implementations --&gt;
-&lt;h3 id="physical-types"&gt;&lt;a href="#physical-types"&gt;Physical types&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32"&gt;&lt;code&gt;enum Type&lt;/code&gt; in parquet.thrift&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;h3 id="physical-types"&gt;&lt;a href="#physical-types"&gt;Physical types&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Physical types are defined by the &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L32"&gt;&lt;code&gt;enum Type&lt;/code&gt; in parquet.thrift&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Parquet format versions</title><link>/docs/file-format/versions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/versions/</guid><description>&lt;p&gt;This page describes how features are added to the &lt;a href="https://github.com/apache/parquet-format"&gt;Parquet format
+specification&lt;/a&gt; and how they affect
+reader and writer compatibility. See the
+&lt;a href="../implementationstatus/"&gt;Implementation status&lt;/a&gt; page for which implementations
+(arrow, parquet-java, arrow-rs, etc.) support each feature.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: If you find out-of-date information, please open an issue or pull request.&lt;/p&gt;
+&lt;h2 id="feature-compatibility"&gt;Feature compatibility&lt;/h2&gt;
+&lt;p&gt;The Parquet format spec &lt;a href="https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#compatibility-and-feature-enablement"&gt;classifies changes&lt;/a&gt; by their effect on reader and
+writer compatibility. Changes differ in their &lt;em&gt;forward&lt;/em&gt; compatibility — whether
+an older reader can read files that use a newer feature.&lt;/p&gt;</description></item></channel></rss>
