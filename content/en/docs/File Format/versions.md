@@ -124,7 +124,7 @@ new information.
 | [Size statistics] | [2.10.0] | [2.9.0..2.10.0] | [Approved 2023-11-14]                                     |
 | [Geospatial statistics] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2025-02-09]                                     |
 | [Binary protocol extensions] | [2.11.0] | [2.10.0..2.11.0] | [Approved 2024-09-06]                                     |
-| [IEEE 754 total order and NaN counts] | not yet released | [#514] | [Approved 2026-05-26]                                     |
+| [IEEE 754 total order and NaN counts] | [2.13.0] | [2.12.0..2.13.0] | [Approved 2026-05-26]                                     |
 | [LogicalType union] | [2.4.0] | [2.3.1..2.4.0] | Supersedes `ConvertedType` enum<br/>deprecated in [2.9.0] |
 | [STRING (BYTE_ARRAY)] | [1.0.0] | [1.0.0][tree-1.0.0] |                                                           |
 | [ENUM (BYTE_ARRAY)] | [2.0.0] | [1.0.0..2.0.0] |                                                           |
@@ -178,6 +178,7 @@ new information.
 [2.7.0]: https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.7.0
 [2.10.0]: https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.10.0
 [2.12.0]: https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.12.0
+[2.13.0]: https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.13.0
 
 [Approved 2019-12-03]: https://lists.apache.org/thread/xs5qt2odm299pxgqb22mty2csc1so5yr
 [Approved 2024-03-18]: https://lists.apache.org/thread/nlsj0ftxy7y4ov1678rgy5zc7dmogg6q
@@ -196,6 +197,7 @@ new information.
 [2.6.0..2.7.0]: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.6.0...apache-parquet-format-2.7.0
 [2.9.0..2.10.0]: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.9.0...apache-parquet-format-2.10.0
 [2.11.0..2.12.0]: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.11.0...apache-parquet-format-2.12.0
+[2.12.0..2.13.0]: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.12.0...apache-parquet-format-2.13.0
 
 [2.1.0]: https://github.com/apache/parquet-format/releases/tag/parquet-format-2.1.0
 [2.2.0]: https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.2.0
@@ -209,7 +211,6 @@ new information.
 [Variant shredding]: https://github.com/apache/parquet-format/blob/master/VariantShredding.md
 [Geospatial statistics]: https://github.com/apache/parquet-format/blob/master/Geospatial.md#statistics
 [Binary protocol extensions]: https://github.com/apache/parquet-format/blob/master/BinaryProtocolExtensions.md
-[#514]: https://github.com/apache/parquet-format/pull/514
 [Approved 2024-09-06]: https://lists.apache.org/thread/x3472kldrq5kjnld9ztj1jozz25f40hg
 [Approved 2026-05-26]: https://lists.apache.org/thread/h0k0hqo0sojqphnbnrkp8b0gmwdzq9on
 
