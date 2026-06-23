@@ -1,0 +1,103 @@
+{{- /*
+  Render Parquet format version feature tables from data/implementations/features/*.yaml.
+  See layouts/shortcodes/README.md for details.
+  Usage: {{< format-versions table="forward_incompatible" >}}
+*/ -}}
+{{- $tableName := .Get "table" -}}
+{{- $validTables := slice "forward_incompatible" "forward_compatible" -}}
+{{- if not (in $validTables $tableName) -}}
+  {{- errorf "unknown format versions table %q" $tableName -}}
+{{- end -}}
+
+{{- $features := slice -}}
+{{- range site.Data.implementations.categories -}}
+  {{- $featuresData := index site.Data.implementations.features .id -}}
+  {{- if $featuresData -}}
+    {{- range $featuresData.features -}}
+      {{- if eq .compatibility $tableName -}}
+        {{- $releasedIn := printf "%v" .released_in -}}
+        {{- $versionParts := split $releasedIn "." -}}
+        {{- $major := int (index $versionParts 0) -}}
+        {{- $minor := 0 -}}
+        {{- $patch := 0 -}}
+        {{- if ge (len $versionParts) 2 -}}
+          {{- $minor = int (index $versionParts 1) -}}
+        {{- end -}}
+        {{- if ge (len $versionParts) 3 -}}
+          {{- $patch = int (index $versionParts 2) -}}
+        {{- end -}}
+        {{- $sortKey := printf "%04d.%04d.%04d.%s" $major $minor $patch .id -}}
+        {{- $features = $features | append (dict "sort_key" $sortKey "feature" .) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $features = sort $features "sort_key" "desc" -}}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Released in</th>
+      <th>Source</th>
+      <th>Approved</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $features }}
+      {{- $feature := .feature -}}
+      {{- $displayName := $feature.display_name -}}
+      {{- if $feature.version_display_name -}}
+        {{- $displayName = $feature.version_display_name -}}
+      {{- end -}}
+      {{- $featureUrl := $feature.feature_url -}}
+      {{- if and (not $featureUrl) $feature.spec_url -}}
+        {{- $featureUrl = $feature.spec_url -}}
+      {{- end -}}
+      {{- $releasedIn := printf "%v" $feature.released_in -}}
+      {{- $legacyReleaseTags := slice "1.0.0" "2.0.0" "2.1.0" -}}
+      {{- $releaseTag := printf "apache-parquet-format-%s" $releasedIn -}}
+      {{- if in $legacyReleaseTags $releasedIn -}}
+        {{- $releaseTag = printf "parquet-format-%s" $releasedIn -}}
+      {{- end -}}
+      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $releaseTag -}}
+      {{- $sourceUrl := $feature.source_url -}}
+      {{- $sourceLabel := "" -}}
+      {{- if in $sourceUrl "/compare/" -}}
+        {{- $compareRange := replaceRE "^.*/compare/" "" $sourceUrl -}}
+        {{- $compareRange = replace $compareRange "apache-parquet-format-" "" -}}
+        {{- $compareRange = replace $compareRange "parquet-format-" "" -}}
+        {{- $sourceLabel = replace $compareRange "..." ".." -}}
+      {{- else -}}
+        {{- $sourceLabel = path.Base $sourceUrl -}}
+        {{- $sourceLabel = replace $sourceLabel "apache-parquet-format-" "" -}}
+        {{- $sourceLabel = replace $sourceLabel "parquet-format-" "" -}}
+      {{- end -}}
+      <tr>
+        <td>
+          {{- if $featureUrl -}}
+            <a href="{{ $featureUrl }}">{{ $displayName | safeHTML }}</a>
+          {{- else -}}
+            {{ $displayName | safeHTML }}
+          {{- end -}}
+        </td>
+        <td>
+          <a href="{{ $releaseUrl }}">{{ $releasedIn }}</a>
+        </td>
+        <td>
+          <a href="{{ $sourceUrl }}">{{ $sourceLabel }}</a>
+        </td>
+        <td>
+          {{- $approvalNote := $feature.version_note -}}
+          {{- if hasPrefix $approvalNote "[Approved " -}}
+            {{- $approvalDate := replaceRE `^\[Approved ([0-9-]+)\]\(([^)]+)\)$` "$1" $approvalNote -}}
+            {{- $approvalUrl := replaceRE `^\[Approved ([0-9-]+)\]\(([^)]+)\)$` "$2" $approvalNote -}}
+            {{- if ne $approvalDate $approvalNote -}}
+              <a href="{{ $approvalUrl }}">{{ $approvalDate }}</a>
+            {{- end -}}
+          {{- end -}}
+        </td>
+      </tr>
+    {{- end }}
+  </tbody>
+</table>
