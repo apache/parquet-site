@@ -67,6 +67,8 @@ the next parquet-format release.
 [contributing guide]: https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#additionschanges-to-the-format
 [note in parquet.thrift]: https://github.com/apache/parquet-format/blob/74001e41f5c5a1856b29be115f9c992cab16a4bf/src/main/thrift/parquet.thrift#L1368-L1373
 [closing-out-2.0]: https://lists.apache.org/thread/0bdyyb7qobrxx94x8v7t5z7g2ksnpyr2
+[encrypted footer]: https://github.com/apache/parquet-format/blob/master/Encryption.md#54-encrypted-footer-mode
+[plaintext footer]: https://github.com/apache/parquet-format/blob/master/Encryption.md#55-plaintext-footer-mode
 
 ## Forward incompatible features by version
 
@@ -75,9 +77,9 @@ Forward incompatible features and the format version each became available in:
 <!-- Data driven table, see /layouts/shortcodes -->
 {{< format-versions table="forward_incompatible" >}}
 
-> **Note:** Files with an [encrypted footer](https://github.com/apache/parquet-format/blob/master/Encryption.md#54-encrypted-footer-mode) use different magic bytes (`PARE`
+> **Note:** Files with an [encrypted footer] use different magic bytes (`PARE`
 > instead of `PAR1`), making it clear to readers they must support modular
-> encryption to read the file; [plaintext footer](https://github.com/apache/parquet-format/blob/master/Encryption.md#55-plaintext-footer-mode) files use `PAR1` so legacy
+> encryption to read the file; [plaintext footer] files use `PAR1` so legacy
 > readers can still read their unencrypted columns.
 
 ## Forward compatible additions
