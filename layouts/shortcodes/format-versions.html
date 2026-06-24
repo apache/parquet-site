@@ -73,12 +73,17 @@
         {{- $sourceLabel = replace $sourceLabel "apache-parquet-format-" "" -}}
         {{- $sourceLabel = replace $sourceLabel "parquet-format-" "" -}}
       {{- end -}}
+      {{- $versionNote := $feature.version_note -}}
+      {{- $isApprovalNote := hasPrefix $versionNote "[Approved " -}}
       <tr>
         <td>
           {{- if $featureUrl -}}
             <a href="{{ $featureUrl }}">{{ $displayName | safeHTML }}</a>
           {{- else -}}
             {{ $displayName | safeHTML }}
+          {{- end -}}
+          {{- if and $versionNote (not $isApprovalNote) -}}
+            <br/><small>{{ $versionNote | markdownify }}</small>
           {{- end -}}
         </td>
         <td>
@@ -88,11 +93,10 @@
           <a href="{{ $sourceUrl }}">{{ $sourceLabel }}</a>
         </td>
         <td>
-          {{- $approvalNote := $feature.version_note -}}
-          {{- if hasPrefix $approvalNote "[Approved " -}}
-            {{- $approvalDate := replaceRE `^\[Approved ([0-9-]+)\]\(([^)]+)\)$` "$1" $approvalNote -}}
-            {{- $approvalUrl := replaceRE `^\[Approved ([0-9-]+)\]\(([^)]+)\)$` "$2" $approvalNote -}}
-            {{- if ne $approvalDate $approvalNote -}}
+          {{- if $isApprovalNote -}}
+            {{- $approvalDate := replaceRE `^\[Approved ([0-9-]+)\]\(([^)]+)\)$` "$1" $versionNote -}}
+            {{- $approvalUrl := replaceRE `^\[Approved ([0-9-]+)\]\(([^)]+)\)$` "$2" $versionNote -}}
+            {{- if ne $approvalDate $versionNote -}}
               <a href="{{ $approvalUrl }}">{{ $approvalDate }}</a>
             {{- end -}}
           {{- end -}}
