@@ -1,18 +1,7 @@
-# Metadata about releases of the apache/parquet-format repository.
+# Metadata about apache/parquet-format repository releases
 #
 # Each top-level key is a parquet-format version. The values describe the
 # GitHub release tag and the source tree or compare link for that release.
-#
-# This is intentionally separate from data/implementations/features/*.yaml:
-# many feature rows were released in the same parquet-format version, so they
-# can reference the shared metadata with only their `released_in` value.
-#
-# The shortcodes use this file to build "Released in" and "Source" links in the
-# implementation and format-version tables.
-#
-# Older releases used the `parquet-format-*` tag prefix. Newer releases use
-# `apache-parquet-format-*`, so this map keeps that historical detail out of
-# each individual feature row.
 1.0.0:
   tag: parquet-format-1.0.0
   source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
