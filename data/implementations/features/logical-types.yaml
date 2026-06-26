@@ -60,7 +60,8 @@ features:
     release_date: '2023-11-20'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#float16
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.9.0...apache-parquet-format-2.10.0
-    version_note: "[Approved 2023-10-13](https://lists.apache.org/thread/gyvqcx9ssxkjlrwogqwy7n4z6ofdm871)"
+    approval_date: '2023-10-13'
+    approval_url: https://lists.apache.org/thread/gyvqcx9ssxkjlrwogqwy7n4z6ofdm871
   - id: logical-date
     display_name: DATE
     version_display_name: DATE (INT32)
@@ -115,7 +116,8 @@ features:
     release_date: '2025-03-23'
     feature_url: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.11.0...apache-parquet-format-2.12.0
-    version_note: "[Approved 2025-08-24](https://lists.apache.org/thread/obn1yzhgm5zlznwrdpg7f66mswwooxw7)"
+    approval_date: '2025-08-24'
+    approval_url: https://lists.apache.org/thread/obn1yzhgm5zlznwrdpg7f66mswwooxw7
   - id: logical-geometry
     display_name: GEOMETRY
     spec_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
@@ -125,7 +127,8 @@ features:
     release_date: '2025-03-23'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geometry
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
-    version_note: "[Approved 2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
+    approval_date: '2025-02-09'
+    approval_url: https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo
   - id: logical-geography
     display_name: GEOGRAPHY
     spec_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#logical-types
@@ -135,7 +138,8 @@ features:
     release_date: '2025-03-23'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geography
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
-    version_note: "[Approved 2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
+    approval_date: '2025-02-09'
+    approval_url: https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo
   - id: logical-list
     display_name: LIST
     compatibility: forward_compatible
@@ -176,4 +180,5 @@ features:
     released_in: 2.12.0
     feature_url: https://github.com/apache/parquet-format/blob/master/VariantShredding.md
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.11.0...apache-parquet-format-2.12.0
-    version_note: "[Approved 2025-08-24](https://lists.apache.org/thread/obn1yzhgm5zlznwrdpg7f66mswwooxw7)"
+    approval_date: '2025-08-24'
+    approval_url: https://lists.apache.org/thread/obn1yzhgm5zlznwrdpg7f66mswwooxw7

@@ -9,6 +9,13 @@
   {{- errorf "unknown format versions table %q" $tableName -}}
 {{- end -}}
 
+{{- /*
+  Collect features from each category that belong in the requested compatibility table.
+  Hugo sorts strings lexicographically, so build a zero-padded numeric sort key from
+  released_in before sorting. For example, "0002.0010.0000" sorts after
+  "0002.0009.0000", while plain string sorting would place "2.10.0" before "2.9.0".
+  Append the feature id to make ordering stable when multiple features share a release.
+*/ -}}
 {{- $features := slice -}}
 {{- range site.Data.implementations.categories -}}
   {{- $featuresData := index site.Data.implementations.features .id -}}
@@ -55,6 +62,13 @@
         {{- $featureUrl = $feature.spec_url -}}
       {{- end -}}
       {{- $releasedIn := printf "%v" $feature.released_in -}}
+      {{- /*
+        Determine "$releaseTag" from the corresponding parquet-format GitHub release tag.
+        Older parquet-format releases used the tag prefix "parquet-format-", for example:
+          https://github.com/apache/parquet-format/releases/tag/parquet-format-2.1.0
+        Newer releases use the tag prefix "apache-parquet-format-", for example:
+          https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.2.0
+      */ -}}
       {{- $legacyReleaseTags := slice "1.0.0" "2.0.0" "2.1.0" -}}
       {{- $releaseTag := printf "apache-parquet-format-%s" $releasedIn -}}
       {{- if in $legacyReleaseTags $releasedIn -}}
