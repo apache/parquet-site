@@ -5,150 +5,99 @@ features:
     version_display_name: STRING (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#string
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: logical-enum
     display_name: ENUM
     version_display_name: ENUM (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.0.0
-    release_tag: parquet-format-2.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#enum
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
-    release_display: 1.0.0..2.0.0
   - id: logical-uuid
     display_name: UUID
     version_display_name: UUID (FIXED_LEN_BYTE_ARRAY(16))
     compatibility: forward_compatible
     released_in: 2.6.0
-    release_tag: apache-parquet-format-2.6.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#uuid
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.5.0...apache-parquet-format-2.6.0
-    release_display: 2.5.0..2.6.0
   - id: logical-int-types
     display_name: 8, 16, 32, 64 bit signed and unsigned INT
     version_display_name: Signed and unsigned integer logical types (INT32, INT64)
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#signed-integers
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-decimal-int32
     display_name: DECIMAL (INT32)
     compatibility: forward_compatible
     released_in: 2.1.0
-    release_tag: parquet-format-2.1.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.0.0...parquet-format-2.1.0
-    release_display: 2.0.0..2.1.0
   - id: logical-decimal-int64
     display_name: DECIMAL (INT64)
     compatibility: forward_compatible
     released_in: 2.1.0
-    release_tag: parquet-format-2.1.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.0.0...parquet-format-2.1.0
-    release_display: 2.0.0..2.1.0
   - id: logical-decimal-byte-array
     display_name: DECIMAL (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.1.0
-    release_tag: parquet-format-2.1.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.0.0...parquet-format-2.1.0
-    release_display: 2.0.0..2.1.0
   - id: logical-decimal-fixed-len-byte-array
     display_name: DECIMAL (FIXED_LEN_BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.1.0
-    release_tag: parquet-format-2.1.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.0.0...parquet-format-2.1.0
-    release_display: 2.0.0..2.1.0
   - id: logical-float16
     display_name: FLOAT16
     version_display_name: FLOAT16 (FIXED_LEN_BYTE_ARRAY(2))
     compatibility: forward_compatible
     released_in: 2.10.0
-    release_tag: apache-parquet-format-2.10.0
     release_date: '2023-11-20'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#float16
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.9.0...apache-parquet-format-2.10.0
-    release_display: 2.9.0..2.10.0
     approval: "[2023-10-13](https://lists.apache.org/thread/gyvqcx9ssxkjlrwogqwy7n4z6ofdm871)"
   - id: logical-date
     display_name: DATE
     version_display_name: DATE (INT32)
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#date
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-time-int32
     display_name: TIME (INT32)
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#time
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-time-int64
     display_name: TIME (INT64)
     compatibility: forward_compatible
     released_in: 2.4.0
-    release_tag: apache-parquet-format-2.4.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#time
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
-    release_display: 2.3.1..2.4.0
   - id: logical-timestamp-int64
     display_name: TIMESTAMP (INT64)
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#timestamp
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-interval
     display_name: INTERVAL
     version_display_name: INTERVAL (FIXED_LEN_BYTE_ARRAY(12))
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#interval
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-json
     display_name: JSON
     version_display_name: JSON (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#json
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-bson
     display_name: BSON
     version_display_name: BSON (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.2.0
-    release_tag: apache-parquet-format-2.2.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#bson
-    source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
-    release_display: 2.1.0..2.2.0
   - id: logical-variant
     display_name: VARIANT
     spec_url: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
     compatibility: forward_compatible
     released_in: 2.12.0
-    release_tag: apache-parquet-format-2.12.0
     release_date: '2025-03-23'
     feature_url: https://github.com/apache/parquet-format/blob/master/VariantEncoding.md
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.11.0...apache-parquet-format-2.12.0
-    release_display: 2.11.0..2.12.0
     approval: "[2025-08-24](https://lists.apache.org/thread/obn1yzhgm5zlznwrdpg7f66mswwooxw7)"
   - id: logical-geometry
     display_name: GEOMETRY
@@ -156,11 +105,8 @@ features:
     version_display_name: GEOMETRY (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.11.0
-    release_tag: apache-parquet-format-2.11.0
     release_date: '2025-03-23'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geometry
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
-    release_display: 2.10.0..2.11.0
     approval: "[2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
   - id: logical-geography
     display_name: GEOGRAPHY
@@ -168,62 +114,41 @@ features:
     version_display_name: GEOGRAPHY (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: 2.11.0
-    release_tag: apache-parquet-format-2.11.0
     release_date: '2025-03-23'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geography
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
-    release_display: 2.10.0..2.11.0
     approval: "[2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
   - id: logical-list
     display_name: LIST
     compatibility: forward_compatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: logical-map
     display_name: MAP
     compatibility: forward_compatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#maps
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: logical-unknown
     display_name: UNKNOWN (always null)
     compatibility: forward_compatible
     released_in: 2.4.0
-    release_tag: apache-parquet-format-2.4.0
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#unknown-always-null
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
-    release_display: 2.3.1..2.4.0
   - id: logical-type-union
     display_name: LogicalType union
     implementation_status: false
     compatibility: forward_compatible
     released_in: 2.4.0
-    release_tag: apache-parquet-format-2.4.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L471
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
-    release_display: 2.3.1..2.4.0
     version_note: Supersedes `ConvertedType` enum<br/>deprecated in [2.9.0](https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.9.0)
   - id: logical-nanosecond-time-timestamp
     display_name: Nanosecond TIME/TIMESTAMP
     implementation_status: false
     compatibility: forward_compatible
     released_in: 2.6.0
-    release_tag: apache-parquet-format-2.6.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L352
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.5.0...apache-parquet-format-2.6.0
-    release_display: 2.5.0..2.6.0
   - id: logical-variant-shredding
     display_name: Variant shredding
     implementation_status: false
     compatibility: forward_compatible
     released_in: 2.12.0
-    release_tag: apache-parquet-format-2.12.0
     feature_url: https://github.com/apache/parquet-format/blob/master/VariantShredding.md
-    source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.11.0...apache-parquet-format-2.12.0
-    release_display: 2.11.0..2.12.0
     approval: "[2025-08-24](https://lists.apache.org/thread/obn1yzhgm5zlznwrdpg7f66mswwooxw7)"

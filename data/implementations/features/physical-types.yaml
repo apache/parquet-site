@@ -4,65 +4,41 @@ features:
     display_name: BOOLEAN
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L33
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-int32
     display_name: INT32
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L34
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-int64
     display_name: INT64
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L35
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-int96
     display_name: INT96
     note: This type is deprecated, but as of 2024 it's common in currently produced parquet files
     version_display_name: INT96 (deprecated)
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L36
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-float
     display_name: FLOAT
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L37
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-double
     display_name: DOUBLE
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L38
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-byte-array
     display_name: BYTE_ARRAY
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L39
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0
   - id: physical-fixed-len-byte-array
     display_name: FIXED_LEN_BYTE_ARRAY
     compatibility: forward_incompatible
     released_in: 1.0.0
-    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L40
-    source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
-    release_display: 1.0.0

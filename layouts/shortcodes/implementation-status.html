@@ -7,6 +7,8 @@
 {{- $engines := site.Data.implementations.engines -}}
 {{- $categories := site.Data.implementations.categories -}}
 {{- $legend := site.Data.implementations.legend -}}
+{{- /* Shared release-tag metadata keyed by feature released_in version. */ -}}
+{{- $formatReleases := index site.Data.implementations "parquet-format-releases" -}}
 
 
 {{- /* Render each category */ -}}
@@ -78,7 +80,13 @@
                 {{- else -}}
                   {{- $year = substr $dateStr 0 4 -}}
                 {{- end -}}
-                {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" .release_tag -}}
+                {{- $releasedIn := printf "%v" .released_in -}}
+                {{- /* Fail the build if a dated feature points at an unknown parquet-format release. */ -}}
+                {{- $release := index $formatReleases $releasedIn -}}
+                {{- if not $release -}}
+                  {{- errorf "missing parquet-format release metadata for %q" $releasedIn -}}
+                {{- end -}}
+                {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $release.tag -}}
                 <span class="format-version"> (<a href="{{ $releaseUrl }}">{{ $year }}</a>)</span>
               {{- end -}}
 

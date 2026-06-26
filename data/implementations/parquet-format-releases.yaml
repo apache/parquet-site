@@ -1,0 +1,67 @@
+# Metadata about releases of the apache/parquet-format repository.
+#
+# Each top-level key is a parquet-format version. The values describe the
+# GitHub release tag and the source tree or compare link for that release.
+#
+# This is intentionally separate from data/implementations/features/*.yaml:
+# many feature rows were released in the same parquet-format version, so they
+# can reference the shared metadata with only their `released_in` value.
+#
+# The shortcodes use this file to build "Released in" and "Source" links in the
+# implementation and format-version tables.
+#
+# Older releases used the `parquet-format-*` tag prefix. Newer releases use
+# `apache-parquet-format-*`, so this map keeps that historical detail out of
+# each individual feature row.
+1.0.0:
+  tag: parquet-format-1.0.0
+  source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+  source_display: 1.0.0
+2.0.0:
+  tag: parquet-format-2.0.0
+  source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
+  source_display: 1.0.0..2.0.0
+2.1.0:
+  tag: parquet-format-2.1.0
+  source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.0.0...parquet-format-2.1.0
+  source_display: 2.0.0..2.1.0
+2.2.0:
+  tag: apache-parquet-format-2.2.0
+  source_url: https://github.com/apache/parquet-format/compare/parquet-format-2.1.0...apache-parquet-format-2.2.0
+  source_display: 2.1.0..2.2.0
+2.4.0:
+  tag: apache-parquet-format-2.4.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
+  source_display: 2.3.1..2.4.0
+2.6.0:
+  tag: apache-parquet-format-2.6.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.5.0...apache-parquet-format-2.6.0
+  source_display: 2.5.0..2.6.0
+2.7.0:
+  tag: apache-parquet-format-2.7.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.6.0...apache-parquet-format-2.7.0
+  source_display: 2.6.0..2.7.0
+2.8.0:
+  tag: apache-parquet-format-2.8.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.7.0...apache-parquet-format-2.8.0
+  source_display: 2.7.0..2.8.0
+2.9.0:
+  tag: apache-parquet-format-2.9.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.8.0...apache-parquet-format-2.9.0
+  source_display: 2.8.0..2.9.0
+2.10.0:
+  tag: apache-parquet-format-2.10.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.9.0...apache-parquet-format-2.10.0
+  source_display: 2.9.0..2.10.0
+2.11.0:
+  tag: apache-parquet-format-2.11.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
+  source_display: 2.10.0..2.11.0
+2.12.0:
+  tag: apache-parquet-format-2.12.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.11.0...apache-parquet-format-2.12.0
+  source_display: 2.11.0..2.12.0
+2.13.0:
+  tag: apache-parquet-format-2.13.0
+  source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.12.0...apache-parquet-format-2.13.0
+  source_display: 2.12.0..2.13.0

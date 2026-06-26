@@ -9,6 +9,8 @@
   {{- errorf "unknown format versions table %q" $tableName -}}
 {{- end -}}
 
+{{- /* Shared release-tag metadata keyed by feature released_in version. */ -}}
+{{- $formatReleases := index site.Data.implementations "parquet-format-releases" -}}
 {{- /*
   Collect features from each category that belong in the requested compatibility table.
   Hugo sorts strings lexicographically, so build a zero-padded numeric sort key from
@@ -56,7 +58,12 @@
       {{- $displayName := or $feature.version_display_name $feature.display_name -}}
       {{- $featureUrl := or $feature.feature_url $feature.spec_url -}}
       {{- $releasedIn := printf "%v" $feature.released_in -}}
-      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $feature.release_tag -}}
+      {{- /* Fail the build if a dated feature points at an unknown parquet-format release. */ -}}
+      {{- $release := index $formatReleases $releasedIn -}}
+      {{- if not $release -}}
+        {{- errorf "missing parquet-format release metadata for %q" $releasedIn -}}
+      {{- end -}}
+      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $release.tag -}}
       <tr>
         <td>
           {{- if $featureUrl -}}
@@ -69,7 +76,7 @@
           <a href="{{ $releaseUrl }}">{{ $releasedIn }}</a>
         </td>
         <td>
-          <a href="{{ $feature.source_url }}">{{ $feature.release_display }}</a>
+          <a href="{{ $release.source_url }}">{{ $release.source_display }}</a>
         </td>
         <td>
           {{- with $feature.approval -}}
