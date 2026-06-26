@@ -55,8 +55,7 @@ features:
     release_date: '2020-01-13'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.7.0...apache-parquet-format-2.8.0
-    approval_date: '2019-12-03'
-    approval_url: https://lists.apache.org/thread/xs5qt2odm299pxgqb22mty2csc1so5yr
+    approval: "[2019-12-03](https://lists.apache.org/thread/xs5qt2odm299pxgqb22mty2csc1so5yr)"
   - id: encoding-byte-stream-split-extended
     display_name: BYTE_STREAM_SPLIT (Additional Types)
     spec_url: https://github.com/apache/parquet-format/commit/e517ac4dbe08d518eb5c2e58576d4c711973db94
@@ -66,5 +65,4 @@ features:
     release_date: '2024-03-21'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
-    approval_date: '2024-03-18'
-    approval_url: https://lists.apache.org/thread/nlsj0ftxy7y4ov1678rgy5zc7dmogg6q
+    approval: "[2024-03-18](https://lists.apache.org/thread/nlsj0ftxy7y4ov1678rgy5zc7dmogg6q)"
