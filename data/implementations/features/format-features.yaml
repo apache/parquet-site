@@ -5,17 +5,21 @@ features:
     spec_url: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
     compatibility: forward_compatible
     released_in: 2.7.0
+    release_tag: apache-parquet-format-2.7.0
     release_date: '2019-09-25'
     feature_url: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.6.0...apache-parquet-format-2.7.0
+    release_display: 2.6.0..2.7.0
     approval: "[2019-09-09](https://lists.apache.org/thread/ktdx1xp0d2gjfgkcvd29zxvt3cgg88bo)"
   - id: format-bloom-filter-length
     display_name: Bloom filter length
     note: 'In parquet.thrift: ColumnMetaData->bloom_filter_length'
     compatibility: forward_compatible
     released_in: 2.10.0
+    release_tag: apache-parquet-format-2.10.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L933
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.9.0...apache-parquet-format-2.10.0
+    release_display: 2.9.0..2.10.0
   - id: format-stats-min-max
     display_name: Statistics min_value, max_value
   - id: format-page-index
@@ -23,68 +27,86 @@ features:
     spec_url: https://github.com/apache/parquet-format/blob/master/PageIndex.md
     compatibility: forward_compatible
     released_in: 2.4.0
+    release_tag: apache-parquet-format-2.4.0
     release_date: '2018-05-04'
     feature_url: https://github.com/apache/parquet-format/blob/master/PageIndex.md
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
+    release_display: 2.3.1..2.4.0
   - id: format-page-crc32
     display_name: Page CRC32 checksum
     compatibility: forward_compatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L829
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: format-modular-encryption
     display_name: Modular encryption
     spec_url: https://github.com/apache/parquet-format/blob/master/Encryption.md
     compatibility: forward_incompatible
     released_in: 2.7.0
+    release_tag: apache-parquet-format-2.7.0
     release_date: '2019-09-25'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encryption.md
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.6.0...apache-parquet-format-2.7.0
+    release_display: 2.6.0..2.7.0
     approval: "[2019-01-16](https://lists.apache.org/thread/l8zcwnbrnhjh3w2k1lyb0v6ct5lnzr0h)"
   - id: format-size-statistics
     display_name: Size statistics
     note: 'In parquet.thrift: ColumnMetaData->size_statistics'
     compatibility: forward_compatible
     released_in: 2.10.0
+    release_tag: apache-parquet-format-2.10.0
     release_date: '2023-11-20'
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L202
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.9.0...apache-parquet-format-2.10.0
+    release_display: 2.9.0..2.10.0
     approval: "[2023-11-14](https://lists.apache.org/thread/wgobz41mfldbhqpg9q4mdwypghg2cxg2)"
   - id: format-data-page-v2
     display_name: Data Page V2
     note: 'In parquet.thrift: DataPageHeaderV2'
     compatibility: forward_incompatible
     released_in: 2.0.0
+    release_tag: parquet-format-2.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L724
     source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
+    release_display: 1.0.0..2.0.0
   - id: format-data-page-v1
     display_name: Data Page V1
     implementation_status: false
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L671
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: format-geospatial-statistics
     display_name: Geospatial statistics
     implementation_status: false
     compatibility: forward_compatible
     released_in: 2.11.0
+    release_tag: apache-parquet-format-2.11.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#statistics
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
+    release_display: 2.10.0..2.11.0
     approval: "[2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
   - id: format-binary-protocol-extensions
     display_name: Binary protocol extensions
     implementation_status: false
     compatibility: forward_compatible
     released_in: 2.11.0
+    release_tag: apache-parquet-format-2.11.0
     feature_url: https://github.com/apache/parquet-format/blob/master/BinaryProtocolExtensions.md
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
+    release_display: 2.10.0..2.11.0
     approval: "[2024-09-06](https://lists.apache.org/thread/x3472kldrq5kjnld9ztj1jozz25f40hg)"
   - id: format-ieee-754-total-order-and-nan-counts
     display_name: IEEE 754 total order and NaN counts
     implementation_status: false
     compatibility: forward_compatible
     released_in: 2.13.0
+    release_tag: apache-parquet-format-2.13.0
     feature_url: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L1061
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.12.0...apache-parquet-format-2.13.0
+    release_display: 2.12.0..2.13.0
     approval: "[2026-05-26](https://lists.apache.org/thread/h0k0hqo0sojqphnbnrkp8b0gmwdzq9on)"

@@ -53,40 +53,10 @@
   <tbody>
     {{- range $features }}
       {{- $feature := .feature -}}
-      {{- $displayName := $feature.display_name -}}
-      {{- if $feature.version_display_name -}}
-        {{- $displayName = $feature.version_display_name -}}
-      {{- end -}}
-      {{- $featureUrl := $feature.feature_url -}}
-      {{- if and (not $featureUrl) $feature.spec_url -}}
-        {{- $featureUrl = $feature.spec_url -}}
-      {{- end -}}
+      {{- $displayName := or $feature.version_display_name $feature.display_name -}}
+      {{- $featureUrl := or $feature.feature_url $feature.spec_url -}}
       {{- $releasedIn := printf "%v" $feature.released_in -}}
-      {{- /*
-        Determine "$releaseTag" from the corresponding parquet-format GitHub release tag.
-        Older parquet-format releases used the tag prefix "parquet-format-", for example:
-          https://github.com/apache/parquet-format/releases/tag/parquet-format-2.1.0
-        Newer releases use the tag prefix "apache-parquet-format-", for example:
-          https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.2.0
-      */ -}}
-      {{- $legacyReleaseTags := slice "1.0.0" "2.0.0" "2.1.0" -}}
-      {{- $releaseTag := printf "apache-parquet-format-%s" $releasedIn -}}
-      {{- if in $legacyReleaseTags $releasedIn -}}
-        {{- $releaseTag = printf "parquet-format-%s" $releasedIn -}}
-      {{- end -}}
-      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $releaseTag -}}
-      {{- $sourceUrl := $feature.source_url -}}
-      {{- $sourceLabel := "" -}}
-      {{- if in $sourceUrl "/compare/" -}}
-        {{- $compareRange := replaceRE "^.*/compare/" "" $sourceUrl -}}
-        {{- $compareRange = replace $compareRange "apache-parquet-format-" "" -}}
-        {{- $compareRange = replace $compareRange "parquet-format-" "" -}}
-        {{- $sourceLabel = replace $compareRange "..." ".." -}}
-      {{- else -}}
-        {{- $sourceLabel = path.Base $sourceUrl -}}
-        {{- $sourceLabel = replace $sourceLabel "apache-parquet-format-" "" -}}
-        {{- $sourceLabel = replace $sourceLabel "parquet-format-" "" -}}
-      {{- end -}}
+      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $feature.release_tag -}}
       <tr>
         <td>
           {{- if $featureUrl -}}
@@ -99,7 +69,7 @@
           <a href="{{ $releaseUrl }}">{{ $releasedIn }}</a>
         </td>
         <td>
-          <a href="{{ $sourceUrl }}">{{ $sourceLabel }}</a>
+          <a href="{{ $feature.source_url }}">{{ $feature.release_display }}</a>
         </td>
         <td>
           {{- with $feature.approval -}}

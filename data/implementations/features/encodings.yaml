@@ -4,57 +4,75 @@ features:
     display_name: PLAIN
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#plain-plain--0
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: encoding-plain-dictionary
     display_name: PLAIN_DICTIONARY
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: encoding-rle-dictionary
     display_name: RLE_DICTIONARY
     compatibility: forward_incompatible
     released_in: 2.0.0
+    release_tag: parquet-format-2.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8
     source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
+    release_display: 1.0.0..2.0.0
   - id: encoding-rle
     display_name: RLE
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#run-length-encoding--bit-packing-hybrid-rle--3
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: encoding-bit-packed
     display_name: BIT_PACKED (deprecated)
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#bit-packed-deprecated-bit_packed--4
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: encoding-delta-binary-packed
     display_name: DELTA_BINARY_PACKED
     compatibility: forward_incompatible
     released_in: 2.0.0
+    release_tag: parquet-format-2.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-encoding-delta_binary_packed--5
     source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
+    release_display: 1.0.0..2.0.0
   - id: encoding-delta-length-byte-array
     display_name: DELTA_LENGTH_BYTE_ARRAY
     compatibility: forward_incompatible
     released_in: 2.0.0
+    release_tag: parquet-format-2.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-length-byte-array-delta_length_byte_array--6
     source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
+    release_display: 1.0.0..2.0.0
   - id: encoding-delta-byte-array
     display_name: DELTA_BYTE_ARRAY
     compatibility: forward_incompatible
     released_in: 2.0.0
+    release_tag: parquet-format-2.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-strings-delta_byte_array--7
     source_url: https://github.com/apache/parquet-format/compare/parquet-format-1.0.0...parquet-format-2.0.0
+    release_display: 1.0.0..2.0.0
   - id: encoding-byte-stream-split
     display_name: BYTE_STREAM_SPLIT
     compatibility: forward_incompatible
     released_in: 2.8.0
+    release_tag: apache-parquet-format-2.8.0
     release_date: '2020-01-13'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.7.0...apache-parquet-format-2.8.0
+    release_display: 2.7.0..2.8.0
     approval: "[2019-12-03](https://lists.apache.org/thread/xs5qt2odm299pxgqb22mty2csc1so5yr)"
   - id: encoding-byte-stream-split-extended
     display_name: BYTE_STREAM_SPLIT (Additional Types)
@@ -62,7 +80,9 @@ features:
     version_display_name: BYTE_STREAM_SPLIT<br/>(Additional Types)
     compatibility: forward_incompatible
     released_in: 2.11.0
+    release_tag: apache-parquet-format-2.11.0
     release_date: '2024-03-21'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.10.0...apache-parquet-format-2.11.0
+    release_display: 2.10.0..2.11.0
     approval: "[2024-03-18](https://lists.apache.org/thread/nlsj0ftxy7y4ov1678rgy5zc7dmogg6q)"

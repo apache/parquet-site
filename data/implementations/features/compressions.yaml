@@ -4,47 +4,63 @@ features:
     display_name: UNCOMPRESSED
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#uncompressed
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: compression-brotli
     display_name: BROTLI
     compatibility: forward_incompatible
     released_in: 2.4.0
+    release_tag: apache-parquet-format-2.4.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#brotli
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
+    release_display: 2.3.1..2.4.0
   - id: compression-gzip
     display_name: GZIP
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#gzip
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: compression-lz4-deprecated
     display_name: LZ4 (deprecated)
     compatibility: forward_incompatible
     released_in: 2.4.0
+    release_tag: apache-parquet-format-2.4.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lz4
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
+    release_display: 2.3.1..2.4.0
   - id: compression-lz4-raw
     display_name: LZ4_RAW
     compatibility: forward_incompatible
     released_in: 2.9.0
+    release_tag: apache-parquet-format-2.9.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lz4_raw
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.8.0...apache-parquet-format-2.9.0
+    release_display: 2.8.0..2.9.0
   - id: compression-lzo
     display_name: LZO
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lzo
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: compression-snappy
     display_name: SNAPPY
     compatibility: forward_incompatible
     released_in: 1.0.0
+    release_tag: parquet-format-1.0.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#snappy
     source_url: https://github.com/apache/parquet-format/tree/parquet-format-1.0.0
+    release_display: 1.0.0
   - id: compression-zstd
     display_name: ZSTD
     compatibility: forward_incompatible
     released_in: 2.4.0
+    release_tag: apache-parquet-format-2.4.0
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#zstd
     source_url: https://github.com/apache/parquet-format/compare/apache-parquet-format-2.3.1...apache-parquet-format-2.4.0
+    release_display: 2.3.1..2.4.0
