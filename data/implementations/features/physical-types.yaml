@@ -2,25 +2,43 @@ category_id: physical-types
 features:
   - id: physical-boolean
     display_name: BOOLEAN
-
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L33
   - id: physical-int32
     display_name: INT32
-
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L34
   - id: physical-int64
     display_name: INT64
-
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L35
   - id: physical-int96
     display_name: INT96
-    note: "This type is deprecated, but as of 2024 it's common in currently produced parquet files"
-
+    note: This type is deprecated, but as of 2024 it's common in currently produced parquet files
+    version_display_name: INT96 (deprecated)
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L36
   - id: physical-float
     display_name: FLOAT
-
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L37
   - id: physical-double
     display_name: DOUBLE
-
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L38
   - id: physical-byte-array
     display_name: BYTE_ARRAY
-
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L39
   - id: physical-fixed-len-byte-array
     display_name: FIXED_LEN_BYTE_ARRAY
+    compatibility: forward_incompatible
+    released_in: "1.0.0"
+    feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L40

@@ -1,0 +1,95 @@
+{{- /*
+  Render Parquet format version feature tables from data/implementations/features/*.yaml.
+  See layouts/shortcodes/README.md for details.
+  Usage: {{< format-versions table="forward_incompatible" >}}
+*/ -}}
+{{- $tableName := .Get "table" -}}
+{{- $validTables := slice "forward_incompatible" "forward_compatible" -}}
+{{- if not (in $validTables $tableName) -}}
+  {{- errorf "unknown format versions table %q" $tableName -}}
+{{- end -}}
+
+{{- /* Shared release-tag metadata keyed by feature released_in version. */ -}}
+{{- $formatReleases := index site.Data.implementations "parquet-format-releases" -}}
+{{- /*
+  Collect features from each category that belong in the requested compatibility table.
+  Hugo sorts strings lexicographically, so build a zero-padded numeric sort key from
+  released_in before sorting. For example, "0002.0010.0000" sorts after
+  "0002.0009.0000", while plain string sorting would place "2.10.0" before "2.9.0".
+  Append the feature id to make ordering stable when multiple features share a release.
+*/ -}}
+{{- $features := slice -}}
+{{- range site.Data.implementations.categories -}}
+  {{- $featuresData := index site.Data.implementations.features .id -}}
+  {{- if $featuresData -}}
+    {{- range $featuresData.features -}}
+      {{- if eq .compatibility $tableName -}}
+        {{- $releasedIn := printf "%v" .released_in -}}
+        {{- $versionParts := split $releasedIn "." -}}
+        {{- $major := int (index $versionParts 0) -}}
+        {{- $minor := 0 -}}
+        {{- $patch := 0 -}}
+        {{- if ge (len $versionParts) 2 -}}
+          {{- $minor = int (index $versionParts 1) -}}
+        {{- end -}}
+        {{- if ge (len $versionParts) 3 -}}
+          {{- $patch = int (index $versionParts 2) -}}
+        {{- end -}}
+        {{- $sortKey := printf "%04d.%04d.%04d.%s" $major $minor $patch .id -}}
+        {{- $features = $features | append (dict "sort_key" $sortKey "feature" .) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $features = sort $features "sort_key" "desc" -}}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Released in</th>
+      <th>Source</th>
+      <th>Approved</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{- range $features }}
+      {{- $feature := .feature -}}
+      {{- $displayName := or $feature.version_display_name $feature.display_name -}}
+      {{- $featureUrl := or $feature.feature_url $feature.spec_url -}}
+      {{- $releasedIn := printf "%v" $feature.released_in -}}
+      {{- /* Fail the build if a dated feature points at an unknown parquet-format release. */ -}}
+      {{- $release := index $formatReleases $releasedIn -}}
+      {{- if not $release -}}
+        {{- errorf "missing parquet-format release metadata for %q" $releasedIn -}}
+      {{- end -}}
+      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $release.tag -}}
+      <tr>
+        <td>
+          {{- if $featureUrl -}}
+            <a href="{{ $featureUrl }}">{{ $displayName | safeHTML }}</a>
+          {{- else -}}
+            {{ $displayName | safeHTML }}
+          {{- end -}}
+        </td>
+        <td>
+          <a href="{{ $releaseUrl }}">{{ $releasedIn }}</a>
+        </td>
+        <td>
+          <a href="{{ $release.source_url }}">{{ $release.source_display }}</a>
+        </td>
+        <td>
+          {{- with $feature.approval -}}
+            {{ . | markdownify }}
+          {{- end -}}
+        </td>
+        <td>
+          {{- with $feature.version_note -}}
+            {{ . | markdownify }}
+          {{- end -}}
+        </td>
+      </tr>
+    {{- end }}
+  </tbody>
+</table>

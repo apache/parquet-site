@@ -1,11 +1,14 @@
 {{- /*
-  Render implementation status tables from structured data in `data/implementation`
+  Render implementation status tables from structured data in `data/implementations`
+  See layouts/shortcodes/README.md for details.
   Usage: {{< implementation-status >}}
 */ -}}
 
 {{- $engines := site.Data.implementations.engines -}}
 {{- $categories := site.Data.implementations.categories -}}
 {{- $legend := site.Data.implementations.legend -}}
+{{- /* Shared release-tag metadata keyed by feature released_in version. */ -}}
+{{- $formatReleases := index site.Data.implementations "parquet-format-releases" -}}
 
 
 {{- /* Render each category */ -}}
@@ -45,6 +48,8 @@
       </thead>
       <tbody>
         {{- range $features -}}
+          {{- /* Include rows by default; skip rows explicitly marked implementation_status: false. */ -}}
+          {{- if ne .implementation_status false -}}
           {{- $feature := . -}}
           {{- $featureId := .id -}}
 
@@ -56,10 +61,10 @@
                 {{ .display_name }}
               {{- end -}}
 
-              {{- /* Render format version inline if present */ -}}
-              {{- if .format_version -}}
+              {{- /* Render format release year inline if present. */ -}}
+              {{- if .release_date -}}
                 {{- $year := "" -}}
-                {{- $dateStr := .format_version.date -}}
+                {{- $dateStr := .release_date -}}
                 {{- if hasPrefix $dateStr "2025" -}}
                   {{- $year = "2025" -}}
                 {{- else if hasPrefix $dateStr "2024" -}}
@@ -75,7 +80,13 @@
                 {{- else -}}
                   {{- $year = substr $dateStr 0 4 -}}
                 {{- end -}}
-                {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-%s" .format_version.version -}}
+                {{- $releasedIn := printf "%v" .released_in -}}
+                {{- /* Fail the build if a dated feature points at an unknown parquet-format release. */ -}}
+                {{- $release := index $formatReleases $releasedIn -}}
+                {{- if not $release -}}
+                  {{- errorf "missing parquet-format release metadata for %q" $releasedIn -}}
+                {{- end -}}
+                {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $release.tag -}}
                 <span class="format-version"> (<a href="{{ $releaseUrl }}">{{ $year }}</a>)</span>
               {{- end -}}
 
@@ -236,6 +247,7 @@
               </td>
             {{- end -}}
           </tr>
+          {{- end -}}
         {{- end -}}
       </tbody>
     </table>
@@ -255,7 +267,7 @@
 
 <p><b>Note:</b> This data was originally collected in December 2025, and not all data was backfilled. It is likely older releases of each engine support reading all features for 2023 and before. As volunteers have time they are invited to add more granular details on releases. Generally, versions are expected to be accurate for any year 2025 and after.</p>
 
-{{- /* Collect all features with format_version and group by year */ -}}
+{{- /* Collect all features with release_date and group by year */ -}}
 {{- $featuresByYear := dict "2023" (slice) "2024" (slice) "2025" (slice) -}}
 {{- $excludedFeatures := slice "encoding-bit-packed" "compression-lz4-deprecated" "compression-lzo" "logical-enum" "logical-uuid" "logical-bson" "logical-json" "logical-interval" -}}
 {{- $includedCategories := slice "compressions" "encodings" "physical-types" "logical-types" -}}
@@ -267,12 +279,14 @@
     {{- $featuresData := index site.Data.implementations.features $categoryId -}}
     {{- if $featuresData -}}
       {{- range $featuresData.features -}}
+        {{- /* Include rows by default; skip rows explicitly marked implementation_status: false. */ -}}
+        {{- if ne .implementation_status false -}}
         {{- $feature := . -}}
         {{- /* Skip excluded features */ -}}
         {{- if not (in $excludedFeatures .id) -}}
           {{- $year := "" -}}
-          {{- if .format_version -}}
-            {{- $dateStr := .format_version.date -}}
+          {{- if .release_date -}}
+            {{- $dateStr := .release_date -}}
             {{- if hasPrefix $dateStr "2025" -}}
               {{- $year = "2025" -}}
             {{- else if hasPrefix $dateStr "2024" -}}
@@ -281,12 +295,13 @@
               {{- $year = "2023" -}}
             {{- end -}}
           {{- else -}}
-            {{- /* Features without format_version are assumed pre-2023 */ -}}
+            {{- /* Features without release_date are assumed pre-2023 */ -}}
             {{- $year = "2023" -}}
           {{- end -}}
 
           {{- $currentList := index $featuresByYear $year -}}
           {{- $featuresByYear = merge $featuresByYear (dict $year ($currentList | append $feature)) -}}
+        {{- end -}}
         {{- end -}}
       {{- end -}}
     {{- end -}}
@@ -301,8 +316,11 @@
     {{- $featuresData := index site.Data.implementations.features $categoryId -}}
     {{- if $featuresData -}}
       {{- range $featuresData.features -}}
+        {{- /* Include rows by default; skip rows explicitly marked implementation_status: false. */ -}}
+        {{- if ne .implementation_status false -}}
         {{- if in $excludedFeatures .id -}}
           {{- $excludedFeatureNames = $excludedFeatureNames | append .display_name -}}
+        {{- end -}}
         {{- end -}}
       {{- end -}}
     {{- end -}}
@@ -353,6 +371,8 @@
           {{- /* Find minimum version that supports all features in this year */ -}}
           {{- if $supportData -}}
             {{- range $features -}}
+              {{- /* Include rows by default; skip rows explicitly marked implementation_status: false. */ -}}
+              {{- if ne .implementation_status false -}}
               {{- $featureId := .id -}}
               {{- $support := index $supportData.support $featureId -}}
 
@@ -397,6 +417,7 @@
               {{- else -}}
                 {{- /* Feature is not supported or only has write support */ -}}
                 {{- $missingFeatures = $missingFeatures | append .display_name -}}
+              {{- end -}}
               {{- end -}}
             {{- end -}}
 
