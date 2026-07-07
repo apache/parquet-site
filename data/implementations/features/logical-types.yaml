@@ -62,14 +62,12 @@ features:
     released_in: "2.2.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#date
     prs: "[#3](https://github.com/apache/parquet-format/pull/3), [#5](https://github.com/apache/parquet-format/pull/5)"
-    approval: "[2014-07-10](https://lists.apache.org/thread/fpozjxyxws42d0fw7n27xobjjdtrqwqq)"
   - id: logical-time-int32
     display_name: TIME (INT32)
     compatibility: forward_compatible
     released_in: "2.2.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#time
     prs: "[#3](https://github.com/apache/parquet-format/pull/3), [#5](https://github.com/apache/parquet-format/pull/5)"
-    approval: "[2014-07-10](https://lists.apache.org/thread/fpozjxyxws42d0fw7n27xobjjdtrqwqq)"
   - id: logical-time-int64
     display_name: TIME (INT64)
     compatibility: forward_compatible
@@ -82,7 +80,6 @@ features:
     released_in: "2.2.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#timestamp
     prs: "[#3](https://github.com/apache/parquet-format/pull/3), [#5](https://github.com/apache/parquet-format/pull/5), [#23](https://github.com/apache/parquet-format/pull/23)"
-    approval: "[2014-07-10](https://lists.apache.org/thread/fpozjxyxws42d0fw7n27xobjjdtrqwqq)"
   - id: logical-interval
     display_name: INTERVAL
     version_display_name: INTERVAL (FIXED_LEN_BYTE_ARRAY(12))
@@ -90,7 +87,6 @@ features:
     released_in: "2.2.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#interval
     prs: "[#3](https://github.com/apache/parquet-format/pull/3), [#5](https://github.com/apache/parquet-format/pull/5)"
-    approval: "[2014-07-10](https://lists.apache.org/thread/fpozjxyxws42d0fw7n27xobjjdtrqwqq)"
   - id: logical-json
     display_name: JSON
     version_display_name: JSON (BYTE_ARRAY)
@@ -139,20 +135,17 @@ features:
     compatibility: forward_compatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#lists
-    prs: "[#17](https://github.com/apache/parquet-format/pull/17)"
   - id: logical-map
     display_name: MAP
     compatibility: forward_compatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#maps
-    prs: "[#17](https://github.com/apache/parquet-format/pull/17)"
   - id: logical-unknown
     display_name: UNKNOWN (always null)
     compatibility: forward_compatible
     released_in: "2.4.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#unknown-always-null
     prs: "[#51](https://github.com/apache/parquet-format/pull/51)"
-    approval: "[2017-07-19](https://lists.apache.org/thread/j3yjr59jl94c71r7s778osm8mbcc8lcn)"
   - id: logical-type-union
     display_name: LogicalType union
     implementation_status: false
@@ -160,7 +153,6 @@ features:
     released_in: "2.4.0"
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L471
     prs: "[#51](https://github.com/apache/parquet-format/pull/51)"
-    approval: "[2017-07-19](https://lists.apache.org/thread/j3yjr59jl94c71r7s778osm8mbcc8lcn)"
     version_note: Supersedes `ConvertedType` enum<br/>deprecated in [2.9.0](https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.9.0)
   - id: logical-nanosecond-time-timestamp
     display_name: Nanosecond TIME/TIMESTAMP

@@ -28,7 +28,6 @@ features:
     released_in: "2.9.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lz4_raw
     prs: "[#168](https://github.com/apache/parquet-format/pull/168)"
-    approval: "[2021-02-16](https://lists.apache.org/thread/l15qq12v38w9jnkd6p9mdd11kr0nq3gr)"
   - id: compression-lzo
     display_name: LZO
     compatibility: forward_incompatible
