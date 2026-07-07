@@ -5,47 +5,56 @@ features:
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#plain-plain--0
+    prs: '\*'
   - id: encoding-plain-dictionary
     display_name: PLAIN_DICTIONARY
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8
+    prs: '\*'
   - id: encoding-rle-dictionary
     display_name: RLE_DICTIONARY
     compatibility: forward_incompatible
     released_in: "2.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#dictionary-encoding-plain_dictionary--2-and-rle_dictionary--8
+    prs: '\*'
   - id: encoding-rle
     display_name: RLE
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#run-length-encoding--bit-packing-hybrid-rle--3
+    prs: '\*'
   - id: encoding-bit-packed
     display_name: BIT_PACKED (deprecated)
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#bit-packed-deprecated-bit_packed--4
+    prs: '\*'
   - id: encoding-delta-binary-packed
     display_name: DELTA_BINARY_PACKED
     compatibility: forward_incompatible
     released_in: "2.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-encoding-delta_binary_packed--5
+    prs: '\*'
   - id: encoding-delta-length-byte-array
     display_name: DELTA_LENGTH_BYTE_ARRAY
     compatibility: forward_incompatible
     released_in: "2.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-length-byte-array-delta_length_byte_array--6
+    prs: '\*'
   - id: encoding-delta-byte-array
     display_name: DELTA_BYTE_ARRAY
     compatibility: forward_incompatible
     released_in: "2.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#delta-strings-delta_byte_array--7
+    prs: '\*'
   - id: encoding-byte-stream-split
     display_name: BYTE_STREAM_SPLIT
     compatibility: forward_incompatible
     released_in: "2.8.0"
     release_date: '2020-01-13'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
+    prs: "[#144](https://github.com/apache/parquet-format/pull/144)"
     approval: "[2019-12-03](https://lists.apache.org/thread/xs5qt2odm299pxgqb22mty2csc1so5yr)"
   - id: encoding-byte-stream-split-extended
     display_name: BYTE_STREAM_SPLIT (Additional Types)
@@ -55,4 +64,5 @@ features:
     released_in: "2.11.0"
     release_date: '2024-03-21'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
+    prs: "[#229](https://github.com/apache/parquet-format/pull/229)"
     approval: "[2024-03-18](https://lists.apache.org/thread/nlsj0ftxy7y4ov1678rgy5zc7dmogg6q)"

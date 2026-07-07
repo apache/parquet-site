@@ -72,7 +72,10 @@ the next parquet-format release.
 
 ## Forward incompatible features by version
 
-Forward incompatible features and the format version each became available in:
+Forward incompatible features and the format version each became available in.
+The *PRs* column links to the specific pull requests that added each feature to
+the specification. Features marked with a `*` were added before Parquet moved
+to Apache in 2014, and the original pull request records no longer exist.
 
 <!-- Data driven table, see /layouts/shortcodes -->
 {{< format-versions table="forward_incompatible" >}}

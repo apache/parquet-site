@@ -49,6 +49,7 @@
       <th>Feature</th>
       <th>Released in</th>
       <th>Source</th>
+      <th>PRs</th>
       <th>Approved</th>
       <th>Notes</th>
     </tr>
@@ -78,6 +79,11 @@
         </td>
         <td>
           <a href="{{ $release.source_url }}">{{ $release.source_display }}</a>
+        </td>
+        <td>
+          {{- with $feature.prs -}}
+            {{ . | markdownify }}
+          {{- end -}}
         </td>
         <td>
           {{- with $feature.approval -}}
