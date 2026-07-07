@@ -31,7 +31,6 @@ features:
     compatibility: forward_compatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L829
-    prs: '\*'
   - id: format-modular-encryption
     display_name: Modular encryption
     spec_url: https://github.com/apache/parquet-format/blob/master/Encryption.md
@@ -56,14 +55,12 @@ features:
     compatibility: forward_incompatible
     released_in: "2.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L724
-    prs: '\*'
   - id: format-data-page-v1
     display_name: Data Page V1
     implementation_status: false
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L671
-    prs: '\*'
   - id: format-geospatial-statistics
     display_name: Geospatial statistics
     implementation_status: false

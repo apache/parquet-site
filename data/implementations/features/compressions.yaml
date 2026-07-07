@@ -5,7 +5,6 @@ features:
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#uncompressed
-    prs: '\*'
   - id: compression-brotli
     display_name: BROTLI
     compatibility: forward_incompatible
@@ -17,7 +16,6 @@ features:
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#gzip
-    prs: '\*'
   - id: compression-lz4-deprecated
     display_name: LZ4 (deprecated)
     compatibility: forward_incompatible
@@ -36,13 +34,11 @@ features:
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lzo
-    prs: '\*'
   - id: compression-snappy
     display_name: SNAPPY
     compatibility: forward_incompatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#snappy
-    prs: '\*'
   - id: compression-zstd
     display_name: ZSTD
     compatibility: forward_incompatible

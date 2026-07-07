@@ -6,14 +6,12 @@ features:
     compatibility: forward_compatible
     released_in: "1.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#string
-    prs: '\*'
   - id: logical-enum
     display_name: ENUM
     version_display_name: ENUM (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: "2.0.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#enum
-    prs: '\*'
   - id: logical-uuid
     display_name: UUID
     version_display_name: UUID (FIXED_LEN_BYTE_ARRAY(16))
@@ -33,25 +31,21 @@ features:
     compatibility: forward_compatible
     released_in: "2.1.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    prs: '\*'
   - id: logical-decimal-int64
     display_name: DECIMAL (INT64)
     compatibility: forward_compatible
     released_in: "2.1.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    prs: '\*'
   - id: logical-decimal-byte-array
     display_name: DECIMAL (BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: "2.1.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    prs: '\*'
   - id: logical-decimal-fixed-len-byte-array
     display_name: DECIMAL (FIXED_LEN_BYTE_ARRAY)
     compatibility: forward_compatible
     released_in: "2.1.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#decimal
-    prs: '\*'
   - id: logical-float16
     display_name: FLOAT16
     version_display_name: FLOAT16 (FIXED_LEN_BYTE_ARRAY(2))
