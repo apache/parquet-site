@@ -20,6 +20,89 @@ We prefer to receive contributions in the form of GitHub pull requests. Please s
 
 If you’d like to report a bug but don’t have time to fix it, you can still [raise an issue](https://github.com/apache/parquet-java/issues), or email the mailing list ([dev@parquet.apache.org](mailto:dev@parquet.apache.org)).
 
+Testing
+-------
+
+### AssertJ
+
+Prefer using [AssertJ](https://assertj.github.io/doc/) assertions as those provide a rich and intuitive set of strongly-typed assertions. Checks can be expressed in a fluent way and AssertJ provides rich context when assertions fail. Additionally, AssertJ has powerful testing capabilities on collections and exceptions. Please refer to the [usage guide](https://assertj.github.io/doc/#assertj-core-quick-start) for additional examples.
+
+```java
+// bad: will only say true != false when check fails
+assertTrue(x instanceof Xyz);
+
+// better: will show type of x when check fails
+assertThat(x).isInstanceOf(Xyz.class);
+
+// bad: will only say true != false when check fails
+assertTrue(schema.getFields().stream().map(Type::getName).toList().containsAll(expected));
+
+// better: will show content of expected and of field names if check fails
+assertThat(schema.getFields()).extracting(Type::getName).containsExactly("a", "b", "c");
+```
+
+```java
+// ok
+assertNotNull(columnPaths);
+assertEquals(columnPaths.size(), 4);
+
+// better: will show the content of columnPaths if check fails
+assertThat(columnPaths).isNotNull().hasSize(4);
+
+// or
+assertThat(columnPaths).isNotNull().hasSameSizeAs(expected).hasSize(4);
+```
+
+```java
+// if the specific element doesn't match the value, it won't show the content and its index
+assertThat(pathElements).hasSize(3);
+assertThat(pathElements.get(0)).isEqualTo("a");
+assertThat(pathElements.get(1)).isEqualTo("b");
+assertThat(pathElements.get(2)).isEqualTo("c");
+
+// better: all checks can be combined and the content of the list will be shown if any check fails
+assertThat(pathElements).hasSize(3).containsExactly("a", "b", "c");
+
+// better: if a specific element is checked, the content and its index will be also shown
+assertThat(pathElements).contains("b", atIndex(1));
+```
+
+```java
+// if any key doesn't exist, it won't show the content of the map
+assertThat(keyValueMetadata.get("writer")).isEqualTo("parquet-java");
+assertThat(keyValueMetadata.get("created_by")).isNotNull();
+assertThat(keyValueMetadata.get("parquet.version")).startsWith("1.");
+
+// better: all checks can be combined and the content of the map will be shown if any check fails
+assertThat(keyValueMetadata)
+    .containsEntry("writer", "parquet-java")
+    .containsKey("created_by")
+    .hasEntrySatisfying("parquet.version", v -> assertThat(v).startsWith("1."));
+```
+
+```java
+// bad
+try {
+    schema1.union(schema2);
+    fail("this should fail");
+} catch (Exception e) {
+    assertEquals(IncompatibleSchemaModificationException.class, e.getClass());
+    assertEquals("can not merge type optional int32 a into optional binary a", e.getMessage());
+}
+
+// better
+assertThatThrownBy(() -> schema1.union(schema2))
+    .isInstanceOf(IncompatibleSchemaModificationException.class)
+    .hasMessage("can not merge type optional int32 a into optional binary a");
+```
+
+Checks on exceptions should always make sure to assert that a particular exception message has occurred.
+
+
+### JUnit 5 / AssertJ
+
+New test classes should be written using JUnit 5 (`org.junit.jupiter.api` imports), and assertions should follow the AssertJ style to ensure consistency and readability. The project still runs legacy JUnit 4 tests via the JUnit Vintage engine, but new contributions should prefer JUnit 5.
+
 Committers
 ----------
 
