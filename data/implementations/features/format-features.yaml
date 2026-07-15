@@ -7,6 +7,7 @@ features:
     released_in: "2.7.0"
     release_date: '2019-09-25'
     feature_url: https://github.com/apache/parquet-format/blob/master/BloomFilter.md
+    prs: "[#112](https://github.com/apache/parquet-format/pull/112), [#145](https://github.com/apache/parquet-format/pull/145)"
     approval: "[2019-09-09](https://lists.apache.org/thread/ktdx1xp0d2gjfgkcvd29zxvt3cgg88bo)"
   - id: format-bloom-filter-length
     display_name: Bloom filter length
@@ -14,6 +15,7 @@ features:
     compatibility: forward_compatible
     released_in: "2.10.0"
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L933
+    prs: "[#194](https://github.com/apache/parquet-format/pull/194)"
   - id: format-stats-min-max
     display_name: Statistics min_value, max_value
   - id: format-page-index
@@ -23,6 +25,7 @@ features:
     released_in: "2.4.0"
     release_date: '2018-05-04'
     feature_url: https://github.com/apache/parquet-format/blob/master/PageIndex.md
+    prs: "[#72](https://github.com/apache/parquet-format/pull/72)"
   - id: format-page-crc32
     display_name: Page CRC32 checksum
     compatibility: forward_compatible
@@ -35,6 +38,7 @@ features:
     released_in: "2.7.0"
     release_date: '2019-09-25'
     feature_url: https://github.com/apache/parquet-format/blob/master/Encryption.md
+    prs: "[#94](https://github.com/apache/parquet-format/pull/94), [#142](https://github.com/apache/parquet-format/pull/142)"
     approval: "[2019-01-16](https://lists.apache.org/thread/l8zcwnbrnhjh3w2k1lyb0v6ct5lnzr0h)"
   - id: format-size-statistics
     display_name: Size statistics
@@ -43,6 +47,7 @@ features:
     released_in: "2.10.0"
     release_date: '2023-11-20'
     feature_url: https://github.com/apache/parquet-format/blob/96656a543a2165d57cc1c9abefaad7f9aeb563a5/src/main/thrift/parquet.thrift#L202
+    prs: "[#197](https://github.com/apache/parquet-format/pull/197)"
     approval: "[2023-11-14](https://lists.apache.org/thread/wgobz41mfldbhqpg9q4mdwypghg2cxg2)"
   - id: format-data-page-v2
     display_name: Data Page V2
@@ -62,6 +67,7 @@ features:
     compatibility: forward_compatible
     released_in: "2.11.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Geospatial.md#statistics
+    prs: "[#240](https://github.com/apache/parquet-format/pull/240)"
     approval: "[2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
   - id: format-binary-protocol-extensions
     display_name: Binary protocol extensions
@@ -69,6 +75,7 @@ features:
     compatibility: forward_compatible
     released_in: "2.11.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/BinaryProtocolExtensions.md
+    prs: "[#254](https://github.com/apache/parquet-format/pull/254)"
     approval: "[2024-09-06](https://lists.apache.org/thread/x3472kldrq5kjnld9ztj1jozz25f40hg)"
   - id: format-ieee-754-total-order-and-nan-counts
     display_name: IEEE 754 total order and NaN counts
@@ -76,4 +83,5 @@ features:
     compatibility: forward_compatible
     released_in: "2.13.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift#L1061
+    prs: "[#514](https://github.com/apache/parquet-format/pull/514)"
     approval: "[2026-05-26](https://lists.apache.org/thread/h0k0hqo0sojqphnbnrkp8b0gmwdzq9on)"

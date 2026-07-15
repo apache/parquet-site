@@ -10,6 +10,7 @@ features:
     compatibility: forward_incompatible
     released_in: "2.4.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#brotli
+    prs: "[#40](https://github.com/apache/parquet-format/pull/40)"
   - id: compression-gzip
     display_name: GZIP
     compatibility: forward_incompatible
@@ -20,11 +21,13 @@ features:
     compatibility: forward_incompatible
     released_in: "2.4.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lz4
+    prs: "[#70](https://github.com/apache/parquet-format/pull/70), [#168](https://github.com/apache/parquet-format/pull/168)"
   - id: compression-lz4-raw
     display_name: LZ4_RAW
     compatibility: forward_incompatible
     released_in: "2.9.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#lz4_raw
+    prs: "[#168](https://github.com/apache/parquet-format/pull/168)"
   - id: compression-lzo
     display_name: LZO
     compatibility: forward_incompatible
@@ -40,3 +43,4 @@ features:
     compatibility: forward_incompatible
     released_in: "2.4.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Compression.md#zstd
+    prs: "[#70](https://github.com/apache/parquet-format/pull/70)"
