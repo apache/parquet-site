@@ -25,17 +25,23 @@
     {{- range $featuresData.features -}}
       {{- if eq .compatibility $tableName -}}
         {{- $releasedIn := printf "%v" .released_in -}}
-        {{- $versionParts := split $releasedIn "." -}}
-        {{- $major := int (index $versionParts 0) -}}
-        {{- $minor := 0 -}}
-        {{- $patch := 0 -}}
-        {{- if ge (len $versionParts) 2 -}}
-          {{- $minor = int (index $versionParts 1) -}}
+        {{- $sortKey := "" -}}
+        {{- if eq $releasedIn "unreleased" -}}
+          {{- /* Unreleased features sort after every numbered release. */ -}}
+          {{- $sortKey = printf "9999.9999.9999.%s" .id -}}
+        {{- else -}}
+          {{- $versionParts := split $releasedIn "." -}}
+          {{- $major := int (index $versionParts 0) -}}
+          {{- $minor := 0 -}}
+          {{- $patch := 0 -}}
+          {{- if ge (len $versionParts) 2 -}}
+            {{- $minor = int (index $versionParts 1) -}}
+          {{- end -}}
+          {{- if ge (len $versionParts) 3 -}}
+            {{- $patch = int (index $versionParts 2) -}}
+          {{- end -}}
+          {{- $sortKey = printf "%04d.%04d.%04d.%s" $major $minor $patch .id -}}
         {{- end -}}
-        {{- if ge (len $versionParts) 3 -}}
-          {{- $patch = int (index $versionParts 2) -}}
-        {{- end -}}
-        {{- $sortKey := printf "%04d.%04d.%04d.%s" $major $minor $patch .id -}}
         {{- $features = $features | append (dict "sort_key" $sortKey "feature" .) -}}
       {{- end -}}
     {{- end -}}
@@ -65,7 +71,11 @@
       {{- if not $release -}}
         {{- errorf "missing parquet-format release metadata for %q" $releasedIn -}}
       {{- end -}}
-      {{- $releaseUrl := printf "https://github.com/apache/parquet-format/releases/tag/%s" $release.tag -}}
+      {{- /* The "unreleased" pseudo-release has no tag, so no release link. */ -}}
+      {{- $releaseUrl := "" -}}
+      {{- with $release.tag -}}
+        {{- $releaseUrl = printf "https://github.com/apache/parquet-format/releases/tag/%s" . -}}
+      {{- end -}}
       <tr>
         <td>
           {{- if $featureUrl -}}
@@ -75,7 +85,11 @@
           {{- end -}}
         </td>
         <td>
-          <a href="{{ $releaseUrl }}">{{ $releasedIn }}</a>
+          {{- if $releaseUrl -}}
+            <a href="{{ $releaseUrl }}">{{ $releasedIn }}</a>
+          {{- else -}}
+            {{ $releasedIn }}
+          {{- end -}}
         </td>
         <td>
           <a href="{{ $release.source_url }}">{{ $release.source_display }}</a>

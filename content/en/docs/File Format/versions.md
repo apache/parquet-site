@@ -75,7 +75,9 @@ the next parquet-format release.
 Forward incompatible features and the format version each became available in. 
 Columns include:
 
-* **Release**: The parquet-format version the feature was released in.
+* **Release**: The parquet-format version the feature was released in
+  (`unreleased` for features merged to the specification but not yet in a
+  release).
 * **Source**: Link to all changes in the parquet-format release.
 * **PRs**: The specific pull requests that added the feature to the
   specification (features added before Parquet moved to Apache in 2014 have no
