@@ -51,7 +51,7 @@ features:
   - id: encoding-alp
     display_name: ALP
     compatibility: forward_incompatible
-    released_in: "unreleased"
+    released_in: "2.14.0"
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#adaptive-lossless-floating-point-alp--10
     prs: "[#557](https://github.com/apache/parquet-format/pull/557)"
     approval: "[2026-07-23](https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon)"
