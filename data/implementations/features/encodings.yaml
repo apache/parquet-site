@@ -48,6 +48,13 @@ features:
     feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#byte-stream-split-byte_stream_split--9
     prs: "[#144](https://github.com/apache/parquet-format/pull/144)"
     approval: "[2019-12-03](https://lists.apache.org/thread/xs5qt2odm299pxgqb22mty2csc1so5yr)"
+  - id: encoding-alp
+    display_name: ALP
+    compatibility: forward_incompatible
+    released_in: "2.14.0"
+    feature_url: https://github.com/apache/parquet-format/blob/master/Encodings.md#adaptive-lossless-floating-point-alp--10
+    prs: "[#557](https://github.com/apache/parquet-format/pull/557)"
+    approval: "[2026-07-23](https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon)"
   - id: encoding-byte-stream-split-extended
     display_name: BYTE_STREAM_SPLIT (Additional Types)
     spec_url: https://github.com/apache/parquet-format/commit/e517ac4dbe08d518eb5c2e58576d4c711973db94
