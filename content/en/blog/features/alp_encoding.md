@@ -6,7 +6,7 @@ author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://gith
 categories: ["features"]
 ---
 
-Apache Parquet adopts ALP (Adaptive Lossless floating-Point) - new lightweight floating-point encoding that shows simiar compression ratio to heavyweight compressors like zstd and **much** faster decompression speed + "random access" support.
+Apache Parquet adopts ALP (Adaptive Lossless floating-Point) -- a new lightweight floating-point encoding that shows similar compression ratio to heavyweight compressors like zstd and **much** faster decompression speed + "random access" support.
 
 "Random access" is a key feature of ALP -- it allows retrieving a single value without decoding the entire page. This property is becoming increasingly important for workloads such as point lookups with text and vector indexes.
 
@@ -24,11 +24,11 @@ ALP shines at data that was originally decimal and stored as FLOAT/DOUBLE:
 
 Encoding floating point data is a complicated engineering problem. Prior to ALP the only FLOAT/DOUBLE encoding in Parquet (other than Plain) was [Byte Stream Split](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT). Byte Stream Split does not reduce the size of data but *can* make the compression ratio and speed better when a heavyweight compressor is used afterwards.
 
-Using heavyweight compressions, however, introduces two problems:
+Using heavyweight compression, however, introduces two problems:
 - Slow decompression speed
-- Requires to decode entire page to retrieve a single value (the "random access" problem)
+- Requires decoding the entire page to retrieve a single value (the "random access" problem)
 
-ALP succeeds at solving both of this problems without losing compression ratio.
+ALP succeeds at solving both of these problems without losing compression ratio.
 
 ### Benchmark
 
@@ -225,7 +225,7 @@ We compare compression ratio and [de]compression speed between:
 
 </details>
 
-### Random access
+### Random access benchmark
 
 We also measured random access time for the encodings above. 
 
@@ -242,43 +242,45 @@ Time to decode 100 deterministic, uniformly distributed rows from `city_temperat
 
 ### Decimal encoding
 
-The core idea that ALP utilizes is that a lot of data that is represented as FLOAT/DOUBLE is not *real* FLOAT/DOUBLEs and was originally DECIMAL that can be represented with an integer and an exponent. The logic will be followed by a simple example.
+The core idea that ALP utilizes is that a lot of data that is represented as FLOAT/DOUBLE is not *real* FLOAT/DOUBLE and was originally DECIMAL that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
 
-ALP finds the smallest integer and keeps and exponent and factor to return it to it's decimal value.
+ALP finds the smallest integer and keeps an exponent and factor to return it to its decimal value.
 
-> 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209 -- not a real DOUBLE.
+> 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
 >
-> To find the smallest representation you have to take the value and brute-force searches over exponents, computing `significand = round(value × 10^e)`.
+> To find the smallest representation you take the value and brute-force search over exponents, computing `significand = round(value × 10^e)`.
 >
 > For this value it arrives at significand 80605 with exponent 4.
 
-To improve compression ALP stores a single exponent per vs storing one per value. To increase selectivity of the algorithm using a larger exponent is preferential. This introduces another issue of integers containing too many trailing 0-digits and reducing compression.
+To improve compression ALP stores a single exponent per vector vs storing one per value. To increase coverage of the algorithm using a larger exponent is preferable. This introduces another issue of integers containing too many trailing 0-digits and reducing compression.
 
-ALP solves this by introducing factor and using it to get rid of as much trailing zeros as possible.
+ALP solves this by introducing a factor and using it to get rid of as many trailing zeros as possible.
 
-> We have a vector with multiple values. The exponent to capture as many values as possible is 14.
+> We have a vector with multiple values. The exponent is trying to capture as many values as possible. The value with the highest precision needs exponent 14.
 > 
-> That makes the 8.06049999999999933209 represented as 806050000000000
+> That makes 8.06049999999999933209 represented as 806050000000000.
 > 
-> ALP then searches for a factor to get rid of as many trailing zeros for all values within the vector losslessly. It happens to be 10.
+> ALP then searches for a factor to get rid of as many trailing zeros as possible for all values within the vector losslessly. It happens to be 10.
 >
 > The encoded value can be calculated via `significand = round(value × 10^e × 10^-f)`.
 > 
-> This makes our value 80605 with (e = 14 and f = 10) for this vector.
+> This makes our value 80605 with e = 14 and f = 10 for this vector.
 
-To make sure that the encoded value still represents the FLOAT/DOUBLE value losslessy we round trip each value during this step.
+To make sure that the encoded value still represents the FLOAT/DOUBLE value losslessly we round trip each value during this step.
 
-> 𝐴𝐿𝑃𝑑𝑒𝑐 = 𝑑 × 10𝑓 × 10−𝑒 
-> 
-> 𝐴𝐿𝑃𝑑𝑒𝑐 = 80605 × 1010 × 10−14
-> 
-> 𝐴𝐿𝑃𝑑𝑒𝑐 = 𝑛 = 8.06049999999999933209
+> Decoding applies the inverse formula `value = significand × 10^f × 10^-e`.
+>
+> `80605 × 10^10 × 10^-14 = 8.06049999999999933209`
+>
+> The result matches the stored double exactly: the value round-trips losslessly.
 
-While very performant not all floating point data can be exploited by ALP, for example vector embeddings typically span the full floating point range and do not encode well with ALP. Such usecases can continue to use existing Parquet features such as PLAIN or [BYTE_STREAM_SPLIT](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by ZSTD or SNAPPY general purpose decompression.
+Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exceptions positions are stored prior to the exception array.
+
+While very performant, not all floating point data can be exploited by ALP, for example vector embeddings typically span the full floating point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as PLAIN or [BYTE_STREAM_SPLIT](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by ZSTD or SNAPPY general purpose compression.
 
 ### Random access
 
-"ALP encoding avoids that by encoding values into one or more vectors (between 8 and 32K, defaults to 1024, chosen by the writer), sized for SIMD and for fitting in L1 cache. Each vector stores the necessary metadata to decode any row inside."
+ALP encoding avoids that by encoding values into one or more vectors (between 8 and 32K, defaults to 1024, chosen by the writer), sized for SIMD and for fitting in L1 cache. Each vector stores the necessary metadata to decode any row inside.
 
 **Before**, reading a single value:
 
@@ -286,13 +288,15 @@ While very performant not all floating point data can be exploited by ALP, for e
 
 **After**, with ALP:
 
-> Load just the page metadata and get the vector offset → decode only that vector's metadata → retrieve the value
+> Load just the page metadata and get the vector offset → read the vector's metadata → decode the value
 
 This introduces a finer read granularity than the Parquet page and significantly speeds up single-row decode and random access.
 
 ### ALP Encoding pipeline in Parquet
 
 The way that ALP encodes data is:
+
+<!-- needs some prose -->
 
 ![ALP encoding pipeline steps](/blog/alp/alp_encoding_pipeline.png)
 
@@ -348,6 +352,8 @@ ALP has been adopted as the default floating-point encoding by [DuckDB](https://
 It has also been adopted by the new file formats like [Vortex](https://github.com/vortex-data/vortex), [F3](https://github.com/future-file-format/f3) and [FastLanes](https://github.com/cwida/fastlanes) (created by the same folks as ALP).
 
 ## Conclusion
+
+<!-- needs more work -->
 
 ALP brings fast, parallelizable decoding and practical random access to floating-point data in Parquet. It's one more step toward closing the gap with the newest file formats.
 
