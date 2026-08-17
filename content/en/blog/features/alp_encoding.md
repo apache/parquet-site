@@ -1,20 +1,18 @@
 ---
-title: "ALP: Adaptive Light-weight Floating-point Encoding in Apache Parquet"
+title: "ALP: Adaptive Lightweight Floating-point Encoding in Apache Parquet"
 date: 2026-08-14
 description: "Fast, random access, GPU and SIMD-friendly compression and decompression; similar in size to ZSTD"
-author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb)"
+author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb), [Prateek Gaur](https://github.com/prtkgaur)"
 categories: ["features"]
 ---
 
-Apache Parquet adopts ALP (Adaptive Lossless floating-Point) -- a new lightweight floating-point encoding that shows similar compression ratio to heavyweight compressors like zstd and **much** faster decompression speed + "random access" support.
-
-"Random access" is a key feature of ALP -- it allows retrieving a single value without decoding the entire page. This property is becoming increasingly important for workloads such as point lookups with text and vector indexes.
+Apache Parquet has added ALP (Adaptive Lossless floating-Point) -- a new lightweight floating-point encoding with similar compression to heavyweight compressors like zstd and **much** faster decompression speed, supports random access, and is SIMD and GPU friendly. 
 
 ----
 
 ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) and uses smart tricks to represent floating-point data as integers.
 
-ALP shines at data that was originally decimal and stored as FLOAT/DOUBLE:
+ALP shines on values that represent DECIMAL but are modeled as FLOAT/DOUBLE:
 - Monetary values (exchange rates, public funds, stocks, prices, etc.)
 - Geographic coordinates (longitude/latitude)
 - Scientific measures (temperature, pressure, speed, degrees, etc.)
@@ -28,7 +26,7 @@ Using heavyweight compression, however, introduces two problems:
 - Slow decompression speed
 - Requires decoding the entire page to retrieve a single value (the "random access" problem)
 
-ALP succeeds at solving both of these problems without losing compression ratio.
+ALP is designed to solve both of these problems for common data patterns, while achieving a similar compression ratio.
 
 ### Benchmark
 
