@@ -64,33 +64,39 @@ Time to decode 100 deterministic, uniformly distributed rows from `city_temperat
 
 The core idea that ALP utilizes is that a lot of data that is represented as FLOAT/DOUBLE is not *real* FLOAT/DOUBLE and was originally DECIMAL that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
 
-> 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
->
-> To find the smallest representation you take the value and brute-force search over exponents, computing `significand = round(value × 10^e)`.
->
-> For this value it arrives at significand 80605 with exponent 4.
+{{% alert title="Example" color="info" %}}
+8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
+
+To find the smallest representation you take the value and brute-force search over exponents, computing `significand = round(value × 10^e)`.
+
+For this value it arrives at significand 80605 with exponent 4.
+{{% /alert %}}
 
 To improve compression ALP stores a single exponent per vector vs storing one per value. To increase coverage of the algorithm using a larger exponent is preferable. This introduces another issue of integers containing too many trailing 0-digits and reducing compression.
 
 ALP solves this by introducing a factor and using it to get rid of as many trailing zeros as possible.
 
-> We have a vector with multiple values. The exponent is trying to capture as many values as possible. The value with the highest precision needs exponent 14.
-> 
-> That makes 8.06049999999999933209 represented as 806050000000000.
-> 
-> ALP then searches for a factor to get rid of as many trailing zeros as possible for all values within the vector losslessly. It happens to be 10.
->
-> The encoded value can be calculated via `significand = round(value × 10^e × 10^-f)`.
-> 
-> This makes our value 80605 with e = 14 and f = 10 for this vector.
+{{% alert title="Example" color="info" %}}
+We have a vector with multiple values. The exponent is trying to capture as many values as possible. The value with the highest precision needs exponent 14.
+
+That makes 8.06049999999999933209 represented as 806050000000000.
+
+ALP then searches for a factor to get rid of as many trailing zeros as possible for all values within the vector losslessly. It happens to be 10.
+
+The encoded value can be calculated via `significand = round(value × 10^e × 10^-f)`.
+
+This makes our value 80605 with e = 14 and f = 10 for this vector.
+{{% /alert %}}
 
 To make sure that the encoded value still represents the FLOAT/DOUBLE value losslessly we round trip each value during this step.
 
-> Decoding applies the inverse formula `value = significand × 10^f × 10^-e`.
->
-> `80605 × 10^10 × 10^-14 = 8.06049999999999933209`
->
-> The result matches the stored double exactly: the value round-trips losslessly.
+{{% alert title="Example" color="info" %}}
+Decoding applies the inverse formula `value = significand × 10^f × 10^-e`.
+
+`80605 × 10^10 × 10^-14 = 8.06049999999999933209`
+
+The result matches the stored double exactly: the value round-trips losslessly.
+{{% /alert %}}
 
 Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exceptions positions are stored prior to the exception array.
 
@@ -102,11 +108,11 @@ ALP encoding avoids that by encoding values into one or more vectors (between 8 
 
 **Before**, reading a single value:
 
-> Load the whole page → decompress and decode all of it → retrieve the value
+Load the whole page → decompress and decode all of it → retrieve the value
 
 **After**, with ALP:
 
-> Load just the page metadata and get the vector offset → read the vector's metadata → decode the value
+Load just the page metadata and get the vector offset → read the vector's metadata → decode the value
 
 This introduces a finer read granularity than the Parquet page and significantly speeds up single-row decode and random access.
 
@@ -161,6 +167,7 @@ ALP brings fast, parallelizable decoding and practical random access to floating
 ## Resources
 
 - [ALP paper (CWI)](https://ir.cwi.nl/pub/33334/33334.pdf)
+- [ALP MSc thesis (Kuffo, CWI)](https://homepages.cwi.nl/~boncz/msc/2023-KuffoRivero.pdf)
 - [ALP Parquet encoding PR](https://github.com/apache/parquet-format/pull/557)
 - [Benchmark code](https://github.com/alamb/alp_benchmark)
 
