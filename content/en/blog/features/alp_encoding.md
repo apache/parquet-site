@@ -1,5 +1,5 @@
 ---
-title: "ALP lightweight floating-point encoding in Apache Parquet"
+title: "ALP: Adaptive Light-weight Floating-point Encoding in Apache Parquet"
 date: 2026-08-14
 description: "Fast, random access, GPU and SIMD-friendly compression and decompression; similar in size to ZSTD"
 author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb)"
@@ -298,42 +298,20 @@ The way that ALP encodes data is:
 
 <!-- needs some prose -->
 
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
 ![ALP encoding pipeline steps](/blog/alp/alp_encoding_pipeline.png)
 
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
 ![ALP encoding pipeline example](/blog/alp/alp_encoding_example.png)
 
 ### ALP Decoding pipeline in Parquet
 
-<!-- Andrew's chart :rocket: -->
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
+![ALP decoding pipeline steps](/blog/alp/alp_decoding_pipeline.png)
 
-                    Input: Serialized vector bytes
-                              |
-                              v
-    +----------------------------------------------------------+
-    |  1. BIT UNPACKING                                        |
-    |     Unpack num_elements values at bit_width bits each    |
-    +----------------------------------------------------------+
-                              |
-                              v
-    +----------------------------------------------------------+
-    |  2. REVERSE FOR                                          |
-    |     encoded[i] = delta[i] + frame_of_reference           |
-    +----------------------------------------------------------+
-                              |
-                              v
-    +----------------------------------------------------------+
-    |  3. DECIMAL DECODING                                     |
-    |     value[i] = encoded[i] * 10^factor * 10^(-exponent)   |
-    +----------------------------------------------------------+
-                              |
-                              v
-    +----------------------------------------------------------+
-    |  4. PATCH EXCEPTIONS                                     |
-    |     value[pos[j]] = exception_values[j]                  |
-    +----------------------------------------------------------+
-                              |
-                              v
-                  Output: Original float/double array
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
+![ALP decoding pipeline example](/blog/alp/alp_decoding_example.png)
+
 
 To decode we go through mostly the same steps, but in reverse:
 
