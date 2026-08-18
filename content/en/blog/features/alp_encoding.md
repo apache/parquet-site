@@ -26,7 +26,7 @@ floating-point values.
 However, `DECIMAL` values require the precision and scale to be known and declared
 up front as part of the logical type and can not store values outside of that
 range. For this reason, it is common for systems where the exact shape
-of their data is not known apriori to store decimal values as `FLOAT` or `DOUBLE`. For example,
+of their data is not known beforehand, to store decimal values as `FLOAT` or `DOUBLE`. For example,
 JavaScript's only* [number type is `DOUBLE`], common data science tools such as
 pandas [infer `FLOAT` for decimal-looking values], and NumPy has [no decimal dtype
 at all].
@@ -34,6 +34,9 @@ at all].
 [number type is `DOUBLE`]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
 [infer `FLOAT` for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
 [no decimal dtype at all]: https://numpy.org/doc/stable/reference/arrays.dtypes.html
+[`BigInt`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
+
+<small>\* JavaScript also has [`BigInt`], but it can only represent integers.</small>
 
 ## Why ALP?
 
