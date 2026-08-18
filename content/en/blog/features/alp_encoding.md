@@ -44,17 +44,24 @@ Prior to ALP the only FLOAT/DOUBLE encoding in Parquet (other than Plain) was [B
 Heavyweight compression buys that ratio at three costs:
    - Decode speed -- decompression runs well below what a scan can consume.
    - Random access -- reading one value means decoding the whole page.
-   - Data dependence -- variable length compressions means that decoding a value requires decoding previous values, making it hard to parallelize with modern hardware such as [SIMD] and [GPU]s.
+   - Data dependence -- variable length compressions means that decoding a value requires decoding previous values, making it hard to parallelize with modern hardware such as [SIMD instructions] and [GPU]s.
 
-[SIMD]: https://en.wikipedia.org/wiki/SIMD
+[SIMD instructions]: https://en.wikipedia.org/wiki/SIMD
 [GPU]: https://en.wikipedia.org/wiki/Graphics_processing_unit
 
 ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio.
 
 ### ALP Performance
 
-In general, ALP achieves similar compression to ZSTD, with much faster
-decompression speed and random access support, with slightly slower compression.
+In general, ALP achieves similar compression to `zstd`, with much faster
+decompression speed and random access support, with slightly slower compression
+as shown in the charts below. In general users can expect ALP to be 10x faster
+to decode and to retrieve random values than `zstd`, with similar compression
+ratios.  
+
+The code and instructions to reproduce these results and try ALP with your own 
+Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
+ 
 
 <div class="row g-3">
   <div class="col-12 col-md-6">
@@ -69,27 +76,18 @@ decompression speed and random access support, with slightly slower compression.
   <div class="col-12 col-md-6">
     <img src="/blog/alp/avg_random_access.png" alt="Average random access benchmark" class="img-fluid">
   </div>
+  <div>
+    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN</code> (no encoding), <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression), and <code>ALP</code> across 30 datasets. Higher is better.
+     Random access speed is the time to decode 100 deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
+  </div>
+  <p/>
 </div>
 
 
-We expect performance of ALP encoders to improve as the implementations are
-optimized and tuned. The current implementations are already faster than ZSTD in
-many cases, and ZSTD has been heavily optimized over the years.
-
-The code and instructions to reproduce them are in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository.
-
-### Random access benchmark
-
-We also measured random access time for the encodings above. 
-
-Time to decode 100 deterministic, uniformly distributed rows from `city_temperature_f` (lower is better). Each lookup starts from the encoded page.
-
-| Parquet choice | 100 random rows (µs) |
-|---|---:|
-| PLAIN | 2.819 |
-| PLAIN + ZSTD | 74317.077 |
-| BYTE_STREAM_SPLIT + ZSTD | 27025.798 |
-| **ALP** | **10.007** |
+These numbers were gathered using the Rust implementation of ALP. We expect
+the performance of ALP encoders to improve as the implementations are optimized and
+tuned. The current implementations are already faster than `zstd` in many cases,
+even though most `zstd` implementations have already been heavily optimized.
 
 ## Technical overview
 
