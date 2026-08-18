@@ -14,21 +14,21 @@ Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -
 [Adaptive Lossless floating-Point (ALP) Encoding]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
 
-ALP works best for decimal values that are stored as floating point types (32-bit `FLOAT` and 64-bit `DOUBLE`), such as 
+ALP works best for decimal values that are stored as floating-point types (32-bit `FLOAT` and 64-bit `DOUBLE`), such as 
 - Monetary values (exchange rates, public funds, stocks, prices, etc.) - e.g. `1.2345` or `22.03`
 - Geographic coordinates (longitude/latitude) - `42.3584`, `-71.0598`
 - Scientific measures (temperature, pressure, speed, degrees, etc.) - e.g. `-273.15`, `9.81`, `3.14159`
 
 Decimal values have a small number of significant digits and a small range of
-values and typically require many fewer bits to store than the a full precision
+values and typically require many fewer bits to store than full-precision
 floating-point values.
 
-However, DECIMAL values require the precision and scale to be known and declared
+However, `DECIMAL` values require the precision and scale to be known and declared
 up front as part of the logical type and can not store values outside of that
 range. For this reason, it is common for systems where the exact shape
 of their data is not known apriori to store decimal values as `FLOAT` or `DOUBLE`. For example,
 JavaScript's only* [number type is `DOUBLE`], common data science tools such as
-pandas [infer `FLOAT` for decimal-looking values], and Numpy has [no decimal dtype
+pandas [infer `FLOAT` for decimal-looking values], and NumPy has [no decimal dtype
 at all].
 
 [number type is `DOUBLE`]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
@@ -39,7 +39,7 @@ at all].
 
 Encoding floating-point data is a complicated engineering problem due to the nature of floating-point values. They do not exactly represent most real values. This leads to rounding errors that prevent using existing lightweight encodings like Delta and Frame of Reference (FOR).
 
-Prior to ALP the only FLOAT/DOUBLE encoding in Parquet (other than Plain) was [Byte Stream Split](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT). Byte Stream Split does not reduce the size of data but *can* make the compression ratio and speed better when a heavyweight compressor is used afterwards.
+Prior to ALP the only `FLOAT`/`DOUBLE` encoding in Parquet (other than `PLAIN`) was [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT). `BYTE_STREAM_SPLIT` does not reduce the size of data but *can* make the compression ratio and speed better when a heavyweight compressor is used afterwards.
 
 Heavyweight compression buys that ratio at three costs:
    - Decode speed -- decompression runs well below what a scan can consume.
@@ -96,7 +96,7 @@ ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.n
 
 ### Decimal encoding
 
-The core idea that ALP utilizes is that a lot of data that is represented as FLOAT/DOUBLE is not *real* FLOAT/DOUBLE and was originally decimal data that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
+The core idea that ALP utilizes is that a lot of data that is represented as `FLOAT`/`DOUBLE` is not *real* `FLOAT`/`DOUBLE` and was originally decimal data that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
 
 {{% alert title="Example" color="info" %}}
 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
@@ -122,7 +122,7 @@ The encoded value can be calculated via `significand = round(value × 10^e × 10
 This makes our value 80605 with e = 14 and f = 10 for this vector.
 {{% /alert %}}
 
-To make sure that the encoded value still represents the FLOAT/DOUBLE value losslessly we round trip each value during this step.
+To make sure that the encoded value still represents the `FLOAT`/`DOUBLE` value losslessly we round trip each value during this step.
 
 {{% alert title="Example" color="info" %}}
 Decoding applies the inverse formula `value = significand × 10^f × 10^-e`.
@@ -134,7 +134,7 @@ The result matches the stored double exactly: the value round-trips losslessly.
 
 Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exceptions positions are stored prior to the exception array.
 
-While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as PLAIN or [BYTE_STREAM_SPLIT](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by ZSTD or SNAPPY general purpose compression.
+While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as `PLAIN` or [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by `ZSTD` or `SNAPPY` general purpose compression.
 
 ### Random access
 
@@ -190,7 +190,7 @@ Since the proposal, ALP support has been underway across multiple Parquet implem
 
 <!-- Can include a link to the https://parquet.apache.org/docs/file-format/implementationstatus/ once https://github.com/apache/parquet-site/pull/199 is merged. It's waiting on the 2.14 Parquet release -->
 
-ALP has already been implemented in new formats such as Vortex, several academic formats such as F3, FastLanes (which originated at the same CWI lab as ALP), and in tightly integrated open source systems such as DuckDB file format (also same CWI lab) as well as Clickhouse and CedarDB.
+ALP has already been implemented in new formats such as Vortex, several academic formats such as F3, FastLanes (which originated at the same CWI lab as ALP), and in tightly integrated open source systems such as DuckDB file format (also same CWI lab) as well as ClickHouse and CedarDB.
 
 ## Conclusion
 
