@@ -1,24 +1,38 @@
 ---
 title: "ALP: Adaptive Lossless Floating-point Encoding in Apache Parquet"
 date: 2026-08-14
-description: "Fast, random access, GPU and SIMD-friendly compression and decompression; similar in size to ZSTD"
+description: "Fast, random access, GPU and SIMD-friendly compression and decompression; similar in size to zstd but much faster to decode."
 author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb), [Prateek Gaur](https://github.com/prtkgaur)"
 categories: ["features"]
 ---
 
-Apache Parquet has added ALP (Adaptive Lossless floating-Point) -- a new lightweight floating-point encoding with similar compression to heavyweight compressors like zstd and **much** faster decompression speed, random access support, and SIMD and GPU friendly. 
+Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -- a new lightweight floating-point encoding with similar compression to [`zstd`] and much faster decompression speed, random access support, and is SIMD and GPU friendly. 
 
 ----
+[`zstd`]: https://github.com/facebook/zstd
+<!-- Note ALP is not yet published to the Parquet website, so guess what the link will be-->
+[Adaptive Lossless floating-Point (ALP) Encoding]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
-ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) and uses smart tricks to represent floating-point data as integers.
 
-ALP shines on values that represent DECIMAL but are modeled as FLOAT/DOUBLE:
-- Monetary values (exchange rates, public funds, stocks, prices, etc.)
-- Geographic coordinates (longitude/latitude)
-- Scientific measures (temperature, pressure, speed, degrees, etc.)
-- Timestamps stored as floating-point
+ALP works best for decimal values that are stored using FLOAT/DOUBLE, such as 
+- Monetary values (exchange rates, public funds, stocks, prices, etc.) - e.g. `1.2345` or `22.03`
+- Geographic coordinates (longitude/latitude) - `42.3584`, `-71.0598`
+- Scientific measures (temperature, pressure, speed, degrees, etc.) - e.g. `-273.15`, `9.81`, `3.14159`
 
-This model is very common in real life workloads: JSON and JavaScript have only one number type (the IEEE 754 double), CSV loaders like pandas and Spark infer FLOAT for decimal-looking values, and Numpy has no decimal dtype at all. The path of least resistance is DOUBLE.
+Decimal values are characterized by a small number of significant digits and a
+small range of values and thus do not require the full range of floating-point
+values.
+
+However, DECIMAL values require the precision and scale to be declared as part
+of the logical type and can not store values outside of that range. For this
+reason it is common for systems that do not know the exact shape of their data
+to store decimal values as FLOAT/DOUBLE. For example, JavaScript's *only*
+[number type is DOUBLE], common data science tools such as pandas [infer
+FLOAT for decimal-looking values], and Numpy has no decimal dtype at all. The
+path of least resistance is DOUBLE.
+
+[number type is DOUBLE]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
+[infer FLOAT for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
 
 ## Why ALP?
 
@@ -26,24 +40,42 @@ Encoding floating point data is a complicated engineering problem due to the nat
 
 Prior to ALP the only FLOAT/DOUBLE encoding in Parquet (other than Plain) was [Byte Stream Split](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT). Byte Stream Split does not reduce the size of data but *can* make the compression ratio and speed better when a heavyweight compressor is used afterwards.
 
-Heavyweight compression buys that ratio at two costs:
+Heavyweight compression buys that ratio at three costs:
    - Decode speed -- decompression runs well below what a scan can consume.
    - Random access -- reading one value means decoding the whole page.
+   - Data dependence -- variable length compressions means that decoding a value requires decoding previous values, making it hard to parallelize with modern hardware such as [SIMD] and [GPU]s.
 
-ALP is designed to solve both of these problems for common data patterns, while achieving a similar compression ratio.
+[SIMD]: https://en.wikipedia.org/wiki/SIMD
+[GPU]: https://en.wikipedia.org/wiki/Graphics_processing_unit
 
-### Encoding Benchmark
+ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio.
 
-To demonstrate ALP's performance we executed a benchmark comparing it to the existing FLOAT/DOUBLE encodings in Parquet. 
+### ALP Performance
 
-| Encoding scheme | Compression (GB/s) | Decompression (GB/s) | Compressed size (bits/value) |
-|---|---:|---:|---:|
-| PLAIN | 65.547 | 76.644 | 64.01 |
-| PLAIN + ZSTD | 1.401 | 3.236 | 22.75 |
-| BYTE_STREAM_SPLIT + ZSTD | 1.786 | 5.132 | 32.76 |
-| **ALP** | **1.273** | **33.805** | **24.27** |
+In general, ALP achieves similar compression to ZSTD, with much faster
+decompression speed and random access support, with slightly slower compression.
 
-Full benchmark results are in the [Appendix](#appendix). The code and instructions to reproduce them are in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository.
+<div class="row g-3">
+  <div class="col-12 col-md-6">
+    <img src="/blog/alp/avg_compression_ratio.png" alt="Average compression ratio benchmark" class="img-fluid">
+  </div>
+  <div class="col-12 col-md-6">
+    <img src="/blog/alp/avg_compression_speed.png" alt="Average compression speed benchmark" class="img-fluid">
+  </div>
+  <div class="col-12 col-md-6">
+    <img src="/blog/alp/avg_decompression_speed.png" alt="Average decompression speed benchmark" class="img-fluid">
+  </div>
+  <div class="col-12 col-md-6">
+    <img src="/blog/alp/avg_random_access.png" alt="Average random access benchmark" class="img-fluid">
+  </div>
+</div>
+
+
+We expect performance of ALP encoders to improve as the implementations are
+optimized and tuned. The current implementations are already faster than ZSTD in
+many cases, and ZSTD has been heavily optimized over the years.
+
+The code and instructions to reproduce them are in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository.
 
 ### Random access benchmark
 
@@ -59,6 +91,9 @@ Time to decode 100 deterministic, uniformly distributed rows from `city_temperat
 | **ALP** | **10.007** |
 
 ## Technical overview
+
+ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) and uses smart tricks to represent floating-point data as integers.
+
 
 ### Decimal encoding
 
