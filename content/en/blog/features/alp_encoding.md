@@ -6,15 +6,14 @@ author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://gith
 categories: ["features"]
 ---
 
-Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -- a new lightweight floating-point encoding with similar compression to [`zstd`] and much faster decompression speed, random access support, and is SIMD and GPU friendly. 
+Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -- a new lightweight floating-point encoding with similar compression to [`zstd`], much faster decompression speed, random access support, and SIMD and GPU friendly decoding.
 
 ----
 [`zstd`]: https://github.com/facebook/zstd
 <!-- Note ALP is not yet published to the Parquet website, so guess what the link will be-->
 [Adaptive Lossless floating-Point (ALP) Encoding]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
-
-ALP works best for decimal values that are stored as floating-point types (32-bit `FLOAT` and 64-bit `DOUBLE`), such as 
+ALP works best for decimal values that are stored as floating-point types (32-bit `FLOAT` and 64-bit `DOUBLE`), such as
 - Monetary values (exchange rates, public funds, stocks, prices, etc.) - e.g. `1.2345` or `22.03`
 - Geographic coordinates (longitude/latitude) - `42.3584`, `-71.0598`
 - Scientific measures (temperature, pressure, speed, degrees, etc.) - e.g. `-273.15`, `9.81`, `3.14159`
@@ -28,8 +27,7 @@ up front as part of the logical type and can not store values outside of that
 range. For this reason, it is common for systems where the exact shape
 of their data is not known beforehand, to store decimal values as `FLOAT` or `DOUBLE`. For example,
 JavaScript's only* [number type is `DOUBLE`], common data science tools such as
-pandas [infer `FLOAT` for decimal-looking values], and NumPy has [no decimal dtype
-at all].
+pandas [infer `FLOAT` for decimal-looking values], and NumPy has [no decimal dtype at all].
 
 [number type is `DOUBLE`]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
 [infer `FLOAT` for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
@@ -47,7 +45,7 @@ Prior to ALP the only `FLOAT`/`DOUBLE` encoding in Parquet (other than `PLAIN`) 
 Heavyweight compression buys that ratio at three costs:
    - Decode speed -- decompression runs well below what a scan can consume.
    - Random access -- reading one value means decoding the whole page.
-   - Data dependence -- variable length compressions means that decoding a value requires decoding previous values, making it hard to parallelize with modern hardware such as [SIMD instructions] and [GPU]s.
+   - Data dependence -- variable-length compression means that decoding a value requires decoding previous values, making it hard to parallelize with modern hardware such as [SIMD instructions] and [GPU]s.
 
 [SIMD instructions]: https://en.wikipedia.org/wiki/SIMD
 [GPU]: https://en.wikipedia.org/wiki/Graphics_processing_unit
@@ -58,13 +56,12 @@ ALP is designed to solve all three of these problems for common data patterns, w
 
 In general, ALP achieves similar compression to `zstd`, with much faster
 decompression speed and random access support, with slightly slower compression
-as shown in the charts below. In general users can expect ALP to be 10x faster
+as shown in the charts below. Users can expect ALP to be 10x faster
 to decode and to retrieve random values than `zstd`, with similar compression
-ratios.  
+ratios.
 
-The code and instructions to reproduce these results and try ALP with your own 
+The code and instructions to reproduce these results and try ALP with your own
 Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
- 
 
 <div class="row g-3">
   <div class="col-12 col-md-6">
@@ -86,7 +83,6 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
   <p/>
 </div>
 
-
 These numbers were gathered using the Rust implementation of ALP. We expect
 the performance of ALP encoders to improve as the implementations are optimized and
 tuned. The current implementations are already faster than `zstd` in many cases,
@@ -95,7 +91,6 @@ even though most `zstd` implementations have already been heavily optimized.
 ## Technical overview
 
 ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) and uses smart tricks to represent floating-point data as integers.
-
 
 ### Decimal encoding
 
@@ -135,13 +130,13 @@ Decoding applies the inverse formula `value = significand × 10^f × 10^-e`.
 The result matches the stored double exactly: the value round-trips losslessly.
 {{% /alert %}}
 
-Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exceptions positions are stored prior to the exception array.
+Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exception positions are stored prior to the exception array.
 
 While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as `PLAIN` or [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by `ZSTD` or `SNAPPY` general purpose compression.
 
 ### Random access
 
-ALP encoding avoids that by encoding values into one or more vectors (between 8 and 32K, defaults to 1024, chosen by the writer), sized for SIMD and for fitting in L1 cache. Each vector stores the necessary metadata to decode any row inside.
+ALP makes random access work by encoding values into one or more vectors (between 8 and 32K, defaults to 1024, chosen by the writer), sized for SIMD and for fitting in L1 cache. Each vector stores the necessary metadata to decode any row inside.
 
 **Before**, reading a single value:
 
@@ -159,28 +154,26 @@ The way that ALP encodes data is:
 
 <!-- needs some prose -->
 
-<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
 ![ALP encoding pipeline steps](/blog/alp/alp_encoding_pipeline.png)
 
-<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
 ![ALP encoding pipeline example](/blog/alp/alp_encoding_example.png)
 
 ### ALP Decoding pipeline in Parquet
 
-<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
 ![ALP decoding pipeline steps](/blog/alp/alp_decoding_pipeline.png)
 
-<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM --> 
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
 ![ALP decoding pipeline example](/blog/alp/alp_decoding_example.png)
-
 
 To decode we go through mostly the same steps, but in reverse:
 
-1) Unpack bit_width-bit integers 
+1) Unpack bit_width-bit integers
 2) Add frame_of_reference to each unpacked integer.
 3) Decode: multiply each integer by 10^factor then by 10^(-exponent).
 4) Patch exceptions: for each (position, value) in the exception arrays, overwrite the decoded output at that position with the stored value.
-
 
 ## Ecosystem adoption
 
