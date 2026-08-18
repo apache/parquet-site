@@ -12,7 +12,7 @@ Apache Parquet has added ALP (Adaptive Lossless floating-Point) -- a new lightwe
 
 ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) and uses smart tricks to represent floating-point data as integers.
 
-ALP shines on values that represent DECIMAL but are modeled as FLOAT/DOUBLE:
+ALP shines on values that represent decimals but are modeled as FLOAT/DOUBLE:
 - Monetary values (exchange rates, public funds, stocks, prices, etc.)
 - Geographic coordinates (longitude/latitude)
 - Scientific measures (temperature, pressure, speed, degrees, etc.)
@@ -22,7 +22,7 @@ This model is very common in real life workloads: JSON and JavaScript have only 
 
 ## Why ALP?
 
-Encoding floating point data is a complicated engineering problem due to the nature of floating-point values. They do not exactly represent most real values. This leads to rounding errors that prevent using existing lightweight encodings like Delta and Frame of Reference (FOR).
+Encoding floating-point data is a complicated engineering problem due to the nature of floating-point values. They do not exactly represent most real values. This leads to rounding errors that prevent using existing lightweight encodings like Delta and Frame of Reference (FOR).
 
 Prior to ALP the only FLOAT/DOUBLE encoding in Parquet (other than Plain) was [Byte Stream Split](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT). Byte Stream Split does not reduce the size of data but *can* make the compression ratio and speed better when a heavyweight compressor is used afterwards.
 
@@ -62,7 +62,7 @@ Time to decode 100 deterministic, uniformly distributed rows from `city_temperat
 
 ### Decimal encoding
 
-The core idea that ALP utilizes is that a lot of data that is represented as FLOAT/DOUBLE is not *real* FLOAT/DOUBLE and was originally DECIMAL that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
+The core idea that ALP utilizes is that a lot of data that is represented as FLOAT/DOUBLE is not *real* FLOAT/DOUBLE and was originally decimal data that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
 
 {{% alert title="Example" color="info" %}}
 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
@@ -100,7 +100,7 @@ The result matches the stored double exactly: the value round-trips losslessly.
 
 Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exceptions positions are stored prior to the exception array.
 
-While very performant, not all floating point data can be exploited by ALP, for example vector embeddings typically span the full floating point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as PLAIN or [BYTE_STREAM_SPLIT](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by ZSTD or SNAPPY general purpose compression.
+While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as PLAIN or [BYTE_STREAM_SPLIT](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by ZSTD or SNAPPY general purpose compression.
 
 ### Random access
 
