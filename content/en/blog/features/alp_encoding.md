@@ -14,25 +14,26 @@ Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -
 [Adaptive Lossless floating-Point (ALP) Encoding]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
 
-ALP works best for decimal values that are stored using FLOAT/DOUBLE, such as 
+ALP works best for decimal values that are stored as floating point types (32-bit `FLOAT` and 64-bit `DOUBLE`), such as 
 - Monetary values (exchange rates, public funds, stocks, prices, etc.) - e.g. `1.2345` or `22.03`
 - Geographic coordinates (longitude/latitude) - `42.3584`, `-71.0598`
 - Scientific measures (temperature, pressure, speed, degrees, etc.) - e.g. `-273.15`, `9.81`, `3.14159`
 
-Decimal values are characterized by a small number of significant digits and a
-small range of values and thus do not require the full range of floating-point
-values.
+Decimal values have a small number of significant digits and a small range of
+values and typically require many fewer bits to store than the a full precision
+floating-point values.
 
-However, DECIMAL values require the precision and scale to be declared as part
-of the logical type and can not store values outside of that range. For this
-reason it is common for systems that do not know the exact shape of their data
-to store decimal values as FLOAT/DOUBLE. For example, JavaScript's *only*
-[number type is DOUBLE], common data science tools such as pandas [infer
-FLOAT for decimal-looking values], and Numpy has no decimal dtype at all. The
-path of least resistance is DOUBLE.
+However, DECIMAL values require the precision and scale to be known and declared
+up front as part of the logical type and can not store values outside of that
+range. For this reason, it is common for systems where the exact shape
+of their data is not known apriori to store decimal values as `FLOAT` or `DOUBLE`. For example,
+JavaScript's only* [number type is `DOUBLE`], common data science tools such as
+pandas [infer `FLOAT` for decimal-looking values], and Numpy has [no decimal dtype
+at all].
 
-[number type is DOUBLE]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
-[infer FLOAT for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
+[number type is `DOUBLE`]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
+[infer `FLOAT` for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
+[no decimal dtype at all]: https://numpy.org/doc/stable/reference/arrays.dtypes.html
 
 ## Why ALP?
 
