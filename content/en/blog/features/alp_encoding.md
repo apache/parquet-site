@@ -18,6 +18,12 @@ ALP works best for decimal values that are stored as floating-point types (32-bi
 - Geographic coordinates (longitude/latitude) - `42.3584`, `-71.0598`
 - Scientific measures (temperature, pressure, speed, degrees, etc.) - e.g. `-273.15`, `9.81`, `3.14159`
 
+ALP is not suitable for data that uses a wide range of exponents or a large
+number of significant digits, such as vector embeddings which typically span the
+full floating-point range. Such use cases can continue to use existing Parquet
+features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by `ZSTD` or
+`SNAPPY` general purpose compression.
+
 Decimal values have a small number of significant digits and a small range of
 values and typically require many fewer bits to store than full-precision
 floating-point values.
@@ -49,6 +55,7 @@ Heavyweight compression buys that ratio at three costs:
 
 [SIMD instructions]: https://en.wikipedia.org/wiki/SIMD
 [GPU]: https://en.wikipedia.org/wiki/Graphics_processing_unit
+[`BYTE_STREAM_SPLIT`]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT
 
 ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio.
 
@@ -90,11 +97,84 @@ even though most `zstd` implementations have already been heavily optimized.
 
 ## Technical overview
 
-ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) and uses smart tricks to represent floating-point data as integers.
+ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) 
+and published in a [SIGMOD 2024 Paper](https://dl.acm.org/doi/10.1145/3626717). 
+As mentioned above, the encoding leverages the fact that `FLOAT`/`DOUBLE` columns often do not
+need the full precision of those types. This section explains the intuition behind ALP and how it works. The
+following sections then explain the encoding and decoding pipeline in more detail.
 
-### Decimal encoding
+ALP encodes each floating point value using three integer values: a encoded value, 
+and "exponent" (e), and a "factor" (f). The choice of exponent and factor is explained below.
+The original value is recovered by computing
 
-The core idea that ALP utilizes is that a lot of data that is represented as `FLOAT`/`DOUBLE` is not *real* `FLOAT`/`DOUBLE` and was originally decimal data that can be represented with an integer and an exponent. Let's follow the logic with a simple example.
+```
+value = encoded × 10^f × 10^-e
+```
+
+As anyone who has worked with floating point knows, this calculation may not
+yield exactly the original value due to rounding errors. In order for ALP to be
+lossless it must return exactly the original bits that were encoded, so the
+original full precision floating point value is stored an "exception" value for any
+values that do not round trip losslessly.
+
+ALP stores data in "vectors" of between 8 and 32K values  (e.g., 1024). Each
+vector stores a single exponent and factor, and the encoded values are stored by
+subtracting the lowest value (frame of reference) and then bit-packed into a
+fixed size location. Exceptions are stored directly after the encoded array. The
+layout of each ALP vector is shown below.
+
+
+<!-- TODO: make a nicer graphic for this --> 
+
+```text
+<----------- Vector Header -----------><----------------------- Data Section ----------------------->
++-------------------+-----------------+-------------------+---------------------+-------------------+
+|      AlpInfo      |     ForInfo     |   PackedValues    | ExceptionPositions  | ExceptionValues   |
+|     (4 bytes)     | (5B or 9B)      |    (variable)     |     (variable)      |    (variable)     |
++-------------------+-----------------+-------------------+---------------------+-------------------+
+```
+
+{{% alert title="Example" color="info" %}} Consider encoding the value `8.0605`,
+which is actually stored as `8.06049999999999933209` when using 32-bit floating
+point as it can't be exactly represented in [IEEE
+754](https://ieeexplore.ieee.org/document/8766229). This can be encoded as
+`80605` with exponent `e = 14` and factor `f = 10`. Applying the recovery
+formula yields 
+
+```
+80605 × 10^10 × 10^-14 = 8.06049999999999933209
+```
+
+Which matches the original floating point value exactly. However, if the
+original value had been `8.0605000000000000001` the encoded value would still be
+`80605`, but the decoded value would be `8.06049999999999933209` which is not the
+same as the original value and thus would be stored as an exception.
+{{% /alert %}}
+
+
+Picking a good exponent and factor is key to good ALP performance. Each Parquet
+writer is free to choose the exponent and factor for each vector using any algorithm.
+The Parquet specification provides an example sampling based algorithm which minimize
+exceptions.
+Typically the exponent is chosen to cover the range of values in the vector, and
+the factor is chosen to remove as many trailing zeros as possible. 
+
+For example, it is valid to encode the values `1.23`, `3.456` and `4.55` with
+multiple exponent and factor choices, such as:
+
+* `e=1, f=2`: 123, 3456, 455
+* `e=2, f=3`: 1230, 34560, 45500
+
+For these values, the first choice is better as it yields smaller encoded
+values and thus fewer bits to store them.
+
+<!-- 
+*********
+** Start commented region
+*********
+alamb: this is the original example walk through section from sdf-jkl that walks
+through encoding in more detail. I think it is redundant now but want to leave it in for
+comparison
 
 {{% alert title="Example" color="info" %}}
 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
@@ -133,6 +213,9 @@ The result matches the stored double exactly: the value round-trips losslessly.
 Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exception positions are stored prior to the exception array.
 
 While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as `PLAIN` or [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by `ZSTD` or `SNAPPY` general purpose compression.
+***** End Commented Region *******
+-->
+
 
 ### Random access
 
