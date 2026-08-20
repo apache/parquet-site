@@ -134,12 +134,21 @@ layout of each ALP vector is shown below.
 +-------------------+-----------------+-------------------+---------------------+-------------------+
 ```
 
-{{% alert title="Example" color="info" %}} Consider encoding the value `8.0605`,
-which is actually stored as `8.06049999999999933209` when using 32-bit floating
-point as it can't be exactly represented in [IEEE
-754](https://ieeexplore.ieee.org/document/8766229). This can be encoded as
-`80605` with exponent `e = 14` and factor `f = 10`. Applying the recovery
-formula yields 
+
+Decoding a row with ALP is significantly less work than decompressing an entire
+page with `zstd` or `snappy`. Since each value is stored as a bit-packed value
+of a fixed width, decoding an arbitrary row requires computing the offset of the
+encoded bits, and applying the frame of reference, exponent, and factor to
+decode it. The exception indices must also be checked to see if the stored
+exception value must be returned instead.
+
+{{% alert title="Example" color="info" %}} 
+
+Consider encoding the value `8.0605`, which can not be exactly
+represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229). It is encoded as
+the 32-bit floating point number `8.06049999999999933209`. It can also be
+can be encoded as `80605` with exponent `e = 14` and factor `f = 10`. Applying
+the recovery formula yields
 
 ```
 80605 × 10^10 × 10^-14 = 8.06049999999999933209
@@ -151,22 +160,39 @@ original value had been `8.0605000000000000001` the encoded value would still be
 same as the original value and thus would be stored as an exception.
 {{% /alert %}}
 
-
 Picking a good exponent and factor is key to good ALP performance. Each Parquet
-writer is free to choose the exponent and factor for each vector using any algorithm.
-The Parquet specification provides an example sampling based algorithm which minimize
-exceptions.
-Typically the exponent is chosen to cover the range of values in the vector, and
-the factor is chosen to remove as many trailing zeros as possible. 
+writer is free to choose the exponent and factor for each vector using any
+algorithm. The Parquet specification provides an example sampling based
+algorithm which minimize exceptions. Typically, the exponent is chosen to cover
+the range of values in the vector, and the factor is chosen to remove as many
+trailing zeros as possible.
 
-For example, it is valid to encode the values `1.23`, `3.456` and `4.55` with
+{{% alert title="Example" color="info" %}}
+
+It is valid to encode the values `1.23`, `2.45` and `2.01` with
 multiple exponent and factor choices, such as:
 
-* `e=1, f=2`: 123, 3456, 455
-* `e=2, f=3`: 1230, 34560, 45500
+* `e=1, f=2`: 123, 245, 201
+* `e=2, f=3`: 1230, 2450, 2010
 
 For these values, the first choice is better as it yields smaller encoded
 values and thus fewer bits to store them.
+{{% /alert %}}
+
+Finally, to minimize the number of bits needed to store the encoded values, ALP
+subtracts the minimum value as a frame of reference from each encoded value
+before bit-packing.
+
+{{% alert title="Example" color="info" %}}
+
+The values above require only 7 bits per value to store after subtracting the frame of reference:
+* Input values: `123`, `245`, and `201` (8 bits per value)
+* Minimum value (frame of reference):`123`
+* Final bitpacked values are `0`, `122`, and `78` (7 bits per value)
+
+{{% /alert %}}
+
+
 
 <!-- 
 *********
@@ -215,21 +241,6 @@ Some values don't survive the round-trip. Instead, they are written to the excep
 While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as `PLAIN` or [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by `ZSTD` or `SNAPPY` general purpose compression.
 ***** End Commented Region *******
 -->
-
-
-### Random access
-
-ALP makes random access work by encoding values into one or more vectors (between 8 and 32K, defaults to 1024, chosen by the writer), sized for SIMD and for fitting in L1 cache. Each vector stores the necessary metadata to decode any row inside.
-
-**Before**, reading a single value:
-
-Load the whole page → decompress and decode all of it → retrieve the value
-
-**After**, with ALP:
-
-Load just the page metadata and get the vector offset → read the vector's metadata → decode the value
-
-This introduces a finer read granularity than the Parquet page and significantly speeds up single-row decode and random access.
 
 ### ALP Encoding pipeline in Parquet
 
