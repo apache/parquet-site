@@ -107,9 +107,9 @@ ALP encodes each floating point value using three integer values: a encoded valu
 and "exponent" (e), and a "factor" (f). The choice of exponent and factor is explained below.
 The original value is recovered by computing
 
-```
-value = encoded × 10^f × 10^-e
-```
+<pre>
+value = encoded × 10<sup>f</sup> × 10<sup>-e</sup>
+</pre>
 
 As anyone who has worked with floating point knows, this calculation may not
 yield exactly the original value due to rounding errors. In order for ALP to be
@@ -150,9 +150,9 @@ the 32-bit floating point number `8.06049999999999933209`. It can also be
 can be encoded as `80605` with exponent `e = 14` and factor `f = 10`. Applying
 the recovery formula yields
 
-```
-80605 × 10^10 × 10^-14 = 8.06049999999999933209
-```
+<pre>
+80605 × 10<sup>10</sup> × 10<sup>-14</sup> = 8.06049999999999933209
+</pre>
 
 Which matches the original floating point value exactly. However, if the
 original value had been `8.0605000000000000001` the encoded value would still be
@@ -205,7 +205,7 @@ comparison
 {{% alert title="Example" color="info" %}}
 8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
 
-To find the smallest representation you take the value and brute-force search over exponents, computing `significand = round(value × 10^e)`.
+To find the smallest representation you take the value and brute-force search over exponents, computing <code>significand = round(value × 10<sup>e</sup>)</code>.
 
 For this value it arrives at significand 80605 with exponent 4.
 {{% /alert %}}
@@ -221,7 +221,7 @@ That makes 8.06049999999999933209 represented as 806050000000000.
 
 ALP then searches for a factor to get rid of as many trailing zeros as possible for all values within the vector losslessly. It happens to be 10.
 
-The encoded value can be calculated via `significand = round(value × 10^e × 10^-f)`.
+The encoded value can be calculated via <code>significand = round(value × 10<sup>e</sup> × 10<sup>-f</sup>)</code>.
 
 This makes our value 80605 with e = 14 and f = 10 for this vector.
 {{% /alert %}}
@@ -229,9 +229,9 @@ This makes our value 80605 with e = 14 and f = 10 for this vector.
 To make sure that the encoded value still represents the `FLOAT`/`DOUBLE` value losslessly we round trip each value during this step.
 
 {{% alert title="Example" color="info" %}}
-Decoding applies the inverse formula `value = significand × 10^f × 10^-e`.
+Decoding applies the inverse formula <code>value = significand × 10<sup>f</sup> × 10<sup>-e</sup></code>.
 
-`80605 × 10^10 × 10^-14 = 8.06049999999999933209`
+<code>80605 × 10<sup>10</sup> × 10<sup>-14</sup> = 8.06049999999999933209</code>
 
 The result matches the stored double exactly: the value round-trips losslessly.
 {{% /alert %}}
@@ -274,19 +274,20 @@ To make the encoding pipeline more concrete, consider the following example of e
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 3</b>: Encoding a vector of 1024 floating-point values using ALP.  
+    <b>Figure 3</b>: Encoding a vector of 1024 32-bit floating-point values using ALP. 
   </div>
   <p/>
 </div>
 
 To encode this vector, first the parameters <code>e = 4</code> and <code>f =
 3</code> are chosen . Then the values are transformed to integers using the
-formula <code>encoded = round(value × 10<sup>4</sup> × 10<sup>-3</sup></code>. The integers are
-checked by evaluating `decoded = encoded × 10^3 × 10^-4`, and values
-that do not yield the orignal value, such as `1234.5567` are stored in the
-exception array. The minimum value `3335` is then subtracted from each integer
-to compute the frame of reference, and the integers are bit-packed using 15-bits
-per value for a total of `1920` bytes. See [the ALP Encoding specification] for
+formula <code>encoded = round(value × 10<sup>4</sup> × 10<sup>-3</sup>)</code>. The integers are
+checked by evaluating the reverse <code>decoded = encoded × 10<sup>3</sup> × 10<sup>-4</sup></code>, and values
+that do not yield the original value, such as `1234.5567`, are stored in the
+exception array. The minimum value across the vector, `3335`, is then subtracted from each integer
+to compute the frame of reference, and the integers are bit-packed using 15-bits.
+The ALP representation requires `1920` bytes and space for the exceptions, whereas the floating point representation requires `4096` bytes.
+See [the ALP Encoding specification] for
 more details on how the parameters are chosen and the details of the rounding
 and exception handling.
 
@@ -309,7 +310,7 @@ To decode we go through mostly the same steps, but in reverse:
 
 1) Unpack bit_width-bit integers
 2) Add frame_of_reference to each unpacked integer.
-3) Decode: multiply each integer by 10^factor then by 10^(-exponent).
+3) Decode: multiply each integer by <code>10<sup>factor</sup></code> then by <code>10<sup>-exponent</sup></code>.
 4) Patch exceptions: for each (position, value) in the exception arrays, overwrite the decoded output at that position with the stored value.
 
 ## Ecosystem adoption
