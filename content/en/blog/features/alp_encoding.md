@@ -64,8 +64,8 @@ ALP is designed to solve all three of these problems for common data patterns, w
 In general, ALP achieves similar compression to `zstd`, with much faster
 decompression speed and random access support, and comparable compression
 speed as shown in the charts below. Users can expect ALP to be `10x` faster
-to decode and to retrieve random values than `zstd`, with similar compression
-ratios.
+to decode than `zstd`, and thousands of times faster to retrieve individual
+values, with similar compression ratios.
 
 The code and instructions to reproduce these results and try ALP with your own
 Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
@@ -85,12 +85,12 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
   </div>
   <div>
     <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression) and <code>ALP</code> across <code>30</code> datasets on three machines. Higher is better.
-     Random access speed is the time to decode <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
+     Random access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
 </div>
 
-These numbers reported are for the pre-release Rust implementation of ALP. We expect
+The numbers reported are for the pre-release Rust implementation of ALP. We expect
 the performance of ALP encoders to improve as the implementations are optimized and
 tuned. The current implementations are already faster than `zstd` in many cases,
 even though most `zstd` implementations have already been heavily optimized.
@@ -196,7 +196,7 @@ before bit-packing.
 
 The values above require only `7` bits per value to store after subtracting the frame of reference:
 * Input values: `123`, `245`, and `201` (`8` bits per value)
-* Minimum value (frame of reference):`123`
+* Minimum value (frame of reference): `123`
 * Final bitpacked values are `0`, `122`, and `78` (`7` bits per value)
 
 {{% /alert %}}
@@ -336,7 +336,7 @@ Since the encoding was [officially accepted into Parquet], ALP support has been 
 
 [officially accepted into Parquet]: https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon
 
-ALP has already been implemented in new formats such as Vortex, several academic formats such as F3, FastLanes (which originated at the same CWI lab as ALP), and in tightly integrated open source systems such as DuckDB file format (also same CWI lab) as well as ClickHouse and CedarDB.
+ALP has already been implemented in new formats such as Vortex, academic formats such as F3 and FastLanes (which originated at the same CWI lab as ALP), and in tightly integrated open source systems such as the DuckDB file format (also from the same CWI lab), ClickHouse, and CedarDB.
 
 ## Conclusion
 
