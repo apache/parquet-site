@@ -62,8 +62,8 @@ ALP is designed to solve all three of these problems for common data patterns, w
 ### ALP Performance
 
 In general, ALP achieves similar compression to `zstd`, with much faster
-decompression speed and random access support, with slightly slower compression
-as shown in the charts below. Users can expect ALP to be `10x` faster
+decompression speed and random access support, and comparable compression
+speed as shown in the charts below. Users can expect ALP to be `10x` faster
 to decode and to retrieve random values than `zstd`, with similar compression
 ratios.
 
@@ -84,7 +84,7 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
     <img src="/blog/alp/avg_random_access.png" alt="Average random access benchmark" class="img-fluid">
   </div>
   <div>
-    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN</code> (no encoding), <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression), and <code>ALP</code> across <code>30</code> datasets. Higher is better.
+    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression) and <code>ALP</code> across <code>30</code> datasets on three machines. Higher is better.
      Random access speed is the time to decode <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
@@ -103,9 +103,10 @@ As mentioned above, the encoding leverages the fact that `FLOAT`/`DOUBLE` column
 need the full precision of those types. This section explains the intuition behind ALP and how it works. The
 following sections then explain the encoding and decoding pipeline in more detail.
 
-ALP encodes each floating point value using three integer values: a encoded value, 
-and "exponent" (e), and a "factor" (f). The choice of exponent and factor is explained below.
-The original value is recovered by computing
+ALP encodes each floating point value using three integer values: an encoded
+value, an "exponent" (`e`), and a "factor" (`f`). The exponent and factor are
+shared by many values, and how they are chosen is explained below.  The original
+value is recovered by computing
 
 <pre>
 value = encoded × 10<sup>f</sup> × 10<sup>-e</sup>
@@ -114,13 +115,14 @@ value = encoded × 10<sup>f</sup> × 10<sup>-e</sup>
 As anyone who has worked with floating point knows, this calculation may not
 yield exactly the original value due to rounding errors. In order for ALP to be
 lossless it must return exactly the original bits that were encoded, so the
-original full precision floating point value is stored an "exception" value for any
-values that do not round trip losslessly.
+original full precision floating point value is stored as an "exception" value for any
+values that do not round trip losslessly (this includes special values such as
+`NaN`, `±Infinity`, and `-0.0`).
 
-ALP stores data in "vectors" of between `8` and `32K` values  (e.g., `1024`). Each
+ALP stores data in "vectors" of between `8` and `32K` values (e.g., `1024`). Each
 vector stores a single exponent and factor, and the encoded values are stored by
-subtracting the lowest value (frame of reference) and then bit-packed into a
-fixed size location. Exceptions are stored directly after the encoded array. The
+subtracting the lowest value (frame of reference) and then bit-packed to a
+fixed width. Exceptions are stored directly after the encoded array. The
 layout of each ALP vector is shown below.
 
 
@@ -170,9 +172,9 @@ the original value and thus would be stored as an exception.
 Picking a good exponent and factor is key to good ALP performance. Each Parquet
 writer is free to choose the exponent and factor for each vector using any
 algorithm. The Parquet specification provides an example sampling based
-algorithm which minimize exceptions. Typically, the exponent is chosen to cover
-the range of values in the vector, and the factor is chosen to remove as many
-trailing zeros as possible.
+algorithm that minimizes the encoded size. Typically, the exponent is chosen to
+capture most decimal digits in the vector while minimizing exceptions, and the
+factor is chosen to remove as many trailing zeros as possible.
 
 {{% alert title="Example" color="info" %}}
 
@@ -300,7 +302,7 @@ more details on how the parameters are chosen and the details of the rounding
 and exception handling.
 
 <!-- TODO verify this link after it has been published to the Parquet website -->
-[the ALP Encoding specification]: https://parquet.apache.org/docs/file-format/Alp
+[the ALP Encoding specification]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
 Decoding a vector requires similar steps, but in reverse as shown below. 
 
