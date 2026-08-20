@@ -154,10 +154,15 @@ the recovery formula yields
 80605 × 10<sup>10</sup> × 10<sup>-14</sup> = 8.06049999999999933209
 </pre>
 
+<!-- 
+Rust playground with demo 
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=061a4c20111589105ec92db25727d727
+--> 
 Which matches the original floating point value exactly. However, if the
-original value had been `8.0605000000000000001` the encoded value would still be
-`80605`, but the decoded value would be `8.06049999999999933209` which is not the
-same as the original value and thus would be stored as an exception.
+original value had been `8.0605123` the encoded value would still be
+`80605`, but the decoded value would be
+`8.06049999999999933209` which is not the same as the original value and thus
+would be stored as an exception.
 {{% /alert %}}
 
 Picking a good exponent and factor is key to good ALP performance. Each Parquet
