@@ -144,25 +144,27 @@ exception value must be returned instead.
 
 {{% alert title="Example" color="info" %}} 
 
+<!-- 
+Rust playground with demo 
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=5c731c344f4161e06057f5059e4598b7
+--> 
+
 Consider encoding the value `8.0605`, which can not be exactly
-represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229). It is encoded as
-the 32-bit floating point number `8.06049999999999933209`. It can also be
-can be encoded as `80605` with exponent `e = 14` and factor `f = 10`. Applying
+represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229). It is stored as
+the 32-bit floating point number `8.06050014495849609375`. It can also be
+encoded as `80605` with exponent `e = 8` and factor `f = 4`. Applying
 the recovery formula yields
 
 <pre>
-80605 × 10<sup>10</sup> × 10<sup>-14</sup> = 8.06049999999999933209
+80605 × 10<sup>4</sup> × 10<sup>-8</sup> = 8.06050014495849609375
 </pre>
 
-<!-- 
-Rust playground with demo 
-https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=061a4c20111589105ec92db25727d727
---> 
 Which matches the original floating point value exactly. However, if the
-original value had been `8.0605123` the encoded value would still be
-`80605`, but the decoded value would be
-`8.06049999999999933209` which is not the same as the original value and thus
-would be stored as an exception.
+original value had been `8.0605123` (stored as the 32-bit value
+`8.060512542724609375`) the encoded value would still be `80605`, and the
+decoded value would still be `8.06050014495849609375` which is not the same as
+the original value and thus would be stored as an exception. 
+
 {{% /alert %}}
 
 Picking a good exponent and factor is key to good ALP performance. Each Parquet
@@ -279,19 +281,20 @@ To make the encoding pipeline more concrete, consider the following example of e
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 32-bit floating-point values using ALP. 
+    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP. 
   </div>
   <p/>
 </div>
 
 To encode this vector, first the parameters <code>e = 4</code> and <code>f =
-3</code> are chosen . Then the values are transformed to integers using the
+3</code> are chosen. Then the values are transformed to integers using the
 formula <code>encoded = round(value × 10<sup>4</sup> × 10<sup>-3</sup>)</code>. The integers are
 checked by evaluating the reverse <code>decoded = encoded × 10<sup>3</sup> × 10<sup>-4</sup></code>, and values
-that do not yield the original value, such as `1234.5567`, are stored in the
-exception array. The minimum value across the vector, `3335`, is then subtracted from each integer
-to compute the frame of reference, and the integers are bit-packed using `15` bits.
-The ALP representation requires `1920` bytes plus space for the exceptions, whereas the floating point representation requires `4096` bytes.
+that do not yield the original value, such as `1234.5678` (which decodes to
+`1234.6`), are stored in the
+exception array. The minimum value across the vector, `3335`, becomes the frame
+of reference and is subtracted from each integer, and the resulting deltas are bit-packed using `15` bits.
+The ALP representation requires `1920` bytes plus space for the exceptions, whereas the floating point representation requires `8192` bytes.
 See [the ALP Encoding specification] for
 more details on how the parameters are chosen and the details of the rounding
 and exception handling.
