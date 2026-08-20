@@ -65,7 +65,7 @@ similar compression ratios and comparable compression speed.
 The code and instructions to reproduce these results and try ALP with your own
 Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
 
-<div class="row g-3">
+<div class="row g-3 td-max-width-on-larger-screens">
   <div class="col-12 col-md-6">
     <img src="/blog/alp/avg_compression_ratio.png" alt="Average compression ratio benchmark" class="img-fluid">
   </div>
@@ -122,7 +122,7 @@ layout of each ALP vector is shown below.
 
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-<div class="row g-3">
+<div class="row g-3 td-max-width-on-larger-screens">
   <div class="col-12">
     <img src="/blog/alp/alp_vector_layout.png" alt="ALP serialized vector layout" class="img-fluid">
   </div>
@@ -202,7 +202,7 @@ The values above require only `7` bits per value to store after subtracting the 
 The actual encoding and decoding pipelines are straightforward, and shown in the diagrams below.
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-<div class="row g-3">
+<div class="row g-3 td-max-width-on-larger-screens">
   <div class="col-12 col-md-6">
     <img src="/blog/alp/alp_encoding_pipeline.png" alt="ALP encoding pipeline steps" class="img-fluid">
   </div>
@@ -224,7 +224,7 @@ applying the exponent and factor, and patching any exceptions.
 To make the encoding pipeline more concrete, consider the following example of encoding a vector of values:
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-<div class="row g-3">
+<div class="row g-3 td-max-width-on-larger-screens">
   <div class="col-12">
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
@@ -254,7 +254,7 @@ Decoding a vector requires similar steps, but in reverse as shown below.
 
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-<div class="row g-3">
+<div class="row g-3 td-max-width-on-larger-screens">
   <div class="col-12">
     <img src="/blog/alp/alp_decoding_example.png" alt="ALP decoding pipeline example" class="img-fluid">
   </div>
