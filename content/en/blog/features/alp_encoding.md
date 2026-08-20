@@ -202,55 +202,6 @@ The values above require only `7` bits per value to store after subtracting the 
 {{% /alert %}}
 
 
-
-<!-- 
-*********
-** Start commented region
-*********
-alamb: this is the original example walk through section from sdf-jkl that walks
-through encoding in more detail. I think it is redundant now but want to leave it in for
-comparison
-
-{{% alert title="Example" color="info" %}}
-8.0605 can't be physically represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229) as is, and is instead approximated as 8.06049999999999933209.
-
-To find the smallest representation you take the value and brute-force search over exponents, computing <code>significand = round(value × 10<sup>e</sup>)</code>.
-
-For this value it arrives at significand 80605 with exponent 4.
-{{% /alert %}}
-
-To improve compression ALP stores a single exponent per vector vs storing one per value. To increase coverage of the algorithm using a larger exponent is preferable. This introduces another issue of integers containing too many trailing 0-digits and reducing compression.
-
-ALP solves this by introducing a factor and using it to get rid of as many trailing zeros as possible.
-
-{{% alert title="Example" color="info" %}}
-We have a vector with multiple values. The exponent is trying to capture as many values as possible. The value with the highest precision needs exponent 14.
-
-That makes 8.06049999999999933209 represented as 806050000000000.
-
-ALP then searches for a factor to get rid of as many trailing zeros as possible for all values within the vector losslessly. It happens to be 10.
-
-The encoded value can be calculated via <code>significand = round(value × 10<sup>e</sup> × 10<sup>-f</sup>)</code>.
-
-This makes our value 80605 with e = 14 and f = 10 for this vector.
-{{% /alert %}}
-
-To make sure that the encoded value still represents the `FLOAT`/`DOUBLE` value losslessly we round trip each value during this step.
-
-{{% alert title="Example" color="info" %}}
-Decoding applies the inverse formula <code>value = significand × 10<sup>f</sup> × 10<sup>-e</sup></code>.
-
-<code>80605 × 10<sup>10</sup> × 10<sup>-14</sup> = 8.06049999999999933209</code>
-
-The result matches the stored double exactly: the value round-trips losslessly.
-{{% /alert %}}
-
-Some values don't survive the round-trip. Instead, they are written to the exception array at the end of the vector. The exception positions are stored prior to the exception array.
-
-While very performant, not all floating-point data can be exploited by ALP, for example vector embeddings typically span the full floating-point range and do not encode well with ALP. Such use cases can continue to use existing Parquet features such as `PLAIN` or [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT) encoding followed by `ZSTD` or `SNAPPY` general purpose compression.
-***** End Commented Region *******
--->
-
 ### ALP Encoding and Decoding
 
 The actual encoding and decoding pipelines are straightforward, and shown in the diagrams below.
