@@ -169,13 +169,13 @@ trailing zeros as possible.
 
 {{% alert title="Example" color="info" %}}
 
-It is valid to encode the values `1.23`, `2.45` and `2.01` with
-multiple exponent and factor choices, such as:
+Assuming some value in the vector requires `e=8`, it is valid to encode
+`0.0123`, `0.0245` and `0.0201` with multiple factor choices, such as:
 
-* `e=1, f=2`: `123`, `245`, `201`
-* `e=2, f=3`: `1230`, `2450`, `2010`
+* `e=8, f=0`: `1230000`, `2450000`, `2010000`
+* `e=8, f=4`: `123`, `245`, `201`
 
-For these values, the first choice is better as it yields smaller encoded
+For these values, the second choice is better as it yields smaller encoded
 values and thus fewer bits to store them.
 {{% /alert %}}
 
