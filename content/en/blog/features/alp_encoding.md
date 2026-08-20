@@ -242,25 +242,68 @@ While very performant, not all floating-point data can be exploited by ALP, for 
 ***** End Commented Region *******
 -->
 
-### ALP Encoding pipeline in Parquet
+### ALP Encoding and Decoding
 
-The way that ALP encodes data is:
-
-<!-- needs some prose -->
+The actual encoding and decoding pipelines are straightforward, and shown in the diagrams below.
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-![ALP encoding pipeline steps](/blog/alp/alp_encoding_pipeline.png)
+<div class="row g-3">
+  <div class="col-12 col-md-6">
+    <img src="/blog/alp/alp_encoding_pipeline.png" alt="ALP encoding pipeline steps" class="img-fluid">
+  </div>
+  <div class="col-12 col-md-6">
+    <img src="/blog/alp/alp_decoding_pipeline.png" alt="ALP decoding pipeline steps" class="img-fluid">
+  </div>
+  <div>
+    <b>Figure 2</b>: ALP encoding pipeline (left) and decoding pipeline (right). 
+  </div>
+  <p/>
+</div>
+
+Vectors of values are encoded by first computing the exponent and factor,
+transforming the input values to integers and checking for exceptions,
+subtracting the frame of reference then bit-packing the integers. Decoding
+proceeds in reverse, unpacking the integers, adding the frame of reference and
+applying the exponent and factor, and patching any exceptions.
+
+To make the encoding pipeline more concrete, consider the following example of encoding a vector of values:
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-![ALP encoding pipeline example](/blog/alp/alp_encoding_example.png)
+<div class="row g-3">
+  <div class="col-12">
+    <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
+  </div>
+  <div>
+    <b>Figure 3</b>: Encoding a vector of 1024 floating-point values using ALP.  
+  </div>
+  <p/>
+</div>
 
-### ALP Decoding pipeline in Parquet
+To encode this vector, first the parameters <code>e = 4</code> and <code>f =
+3</code> are chosen . Then the values are transformed to integers using the
+formula <code>encoded = round(value × 10<sup>4</sup> × 10<sup>-3</sup></code>. The integers are
+checked by evaluating `decoded = encoded × 10^3 × 10^-4`, and values
+that do not yield the orignal value, such as `1234.5567` are stored in the
+exception array. The minimum value `3335` is then subtracted from each integer
+to compute the frame of reference, and the integers are bit-packed using 15-bits
+per value for a total of `1920` bytes. See [the ALP Encoding specification] for
+more details on how the parameters are chosen and the details of the rounding
+and exception handling.
+
+<!-- TODO verify this link after it has been published to the Parquet website -->
+[the ALP Encoding specification]: https://parquet.apache.org/docs/file-format/Alp
+
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-![ALP decoding pipeline steps](/blog/alp/alp_decoding_pipeline.png)
-
-<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-![ALP decoding pipeline example](/blog/alp/alp_decoding_example.png)
+<div class="row g-3">
+  <div class="col-12">
+    <img src="/blog/alp/alp_decoding_example.png" alt="ALP decoding pipeline example" class="img-fluid">
+  </div>
+  <div>
+    <b>Figure 4</b>: Decoding the same vector of 1024 values back to floating-point values using ALP.
+  </div>
+  <p/>
+</div>
 
 To decode we go through mostly the same steps, but in reverse:
 
