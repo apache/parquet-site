@@ -121,15 +121,16 @@ fixed width. Exceptions are stored directly after the encoded array. The
 layout of each ALP vector is shown below.
 
 
-<!-- TODO: make a nicer graphic for this --> 
-
-```text
-<----------- Vector Header -----------><----------------------- Data Section ----------------------->
-+-------------------+-----------------+-------------------+---------------------+-------------------+
-|      AlpInfo      |     ForInfo     |   PackedValues    | ExceptionPositions  | ExceptionValues   |
-|     (4 bytes)     | (5B or 9B)      |    (variable)     |     (variable)      |    (variable)     |
-+-------------------+-----------------+-------------------+---------------------+-------------------+
-```
+<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
+<div class="row g-3">
+  <div class="col-12">
+    <img src="/blog/alp/alp_vector_layout.png" alt="ALP serialized vector layout" class="img-fluid">
+  </div>
+  <div>
+    <b>Figure 2</b>: Layout of a serialized ALP vector: a fixed-size Vector Header followed by a variable-size Data Section.
+  </div>
+  <p/>
+</div>
 
 
 Since each value is stored as a bit-packed value
@@ -209,7 +210,7 @@ The actual encoding and decoding pipelines are straightforward, and shown in the
     <img src="/blog/alp/alp_decoding_pipeline.png" alt="ALP decoding pipeline steps" class="img-fluid">
   </div>
   <div>
-    <b>Figure 2</b>: ALP encoding pipeline (left) and decoding pipeline (right). 
+    <b>Figure 3</b>: ALP encoding pipeline (left) and decoding pipeline (right). 
   </div>
   <p/>
 </div>
@@ -228,7 +229,7 @@ To make the encoding pipeline more concrete, consider the following example of e
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP. 
+    <b>Figure 4</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP. 
   </div>
   <p/>
 </div>
@@ -258,7 +259,7 @@ Decoding a vector requires similar steps, but in reverse as shown below.
     <img src="/blog/alp/alp_decoding_example.png" alt="ALP decoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 4</b>: Decoding a vector of <code>1024</code> values back to floating-point values using ALP.
+    <b>Figure 5</b>: Decoding a vector of <code>1024</code> values back to floating-point values using ALP.
   </div>
   <p/>
 </div>
