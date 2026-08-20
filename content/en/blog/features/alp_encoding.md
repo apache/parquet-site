@@ -24,12 +24,9 @@ full floating-point range. Such use cases can continue to use existing Parquet
 features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by `ZSTD` or
 `SNAPPY` general purpose compression.
 
-Decimal values have a small number of significant digits and a small range of
-values and typically require many fewer bits to store than full-precision
-floating-point values.
-
-However, `DECIMAL` values require the precision and scale to be known and declared
-up front as part of the logical type and can not store values outside of that
+Decimal values can be stored with Parquet's `DECIMAL` logical type, but it
+requires the precision and scale to be known and declared up front and can not
+store values outside of that
 range. For this reason, it is common for systems where the exact shape
 of their data is not known beforehand, to store decimal values as `FLOAT` or `DOUBLE`. For example,
 JavaScript's only* [number type is `DOUBLE`], common data science tools such as
@@ -61,11 +58,9 @@ ALP is designed to solve all three of these problems for common data patterns, w
 
 ### ALP Performance
 
-In general, ALP achieves similar compression to `zstd`, with much faster
-decompression speed and random access support, and comparable compression
-speed as shown in the charts below. Users can expect ALP to be `10x` faster
-to decode than `zstd`, and thousands of times faster to retrieve individual
-values, with similar compression ratios.
+As shown in the charts below, users can expect ALP to be `10x` faster to decode
+than `zstd`, and thousands of times faster to retrieve individual values, with
+similar compression ratios and comparable compression speed.
 
 The code and instructions to reproduce these results and try ALP with your own
 Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
@@ -137,8 +132,7 @@ layout of each ALP vector is shown below.
 ```
 
 
-Decoding a row with ALP is significantly less work than decompressing an entire
-page with `zstd` or `snappy`. Since each value is stored as a bit-packed value
+Since each value is stored as a bit-packed value
 of a fixed width, decoding an arbitrary row requires computing the offset of the
 encoded bits, and applying the frame of reference, exponent, and factor to
 decode it. The exception indices must also be checked to see if the stored
