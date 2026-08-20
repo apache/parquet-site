@@ -316,10 +316,10 @@ Decoding a vector requires similar steps, but in reverse as shown below.
   <p/>
 </div>
 
-First, the bit-packed integers are unpacked and the original values are computed
-by computing <code>original = (3335 + encoded) * 10<sup>3</sup> *
-10<sup>4</sup></code>. Then any exceptions are "patched", by updating the output
-array with the positions stored in the exception array.
+First, the bit-packed deltas are unpacked and the original values are computed
+by <code>original = (3335 + delta) × 10<sup>3</sup> ×
+10<sup>-4</sup></code>. Then any exceptions are "patched", by overwriting the
+output array at the exception positions with the exception values.
 
 ## Ecosystem adoption
 
