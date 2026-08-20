@@ -63,7 +63,7 @@ ALP is designed to solve all three of these problems for common data patterns, w
 
 In general, ALP achieves similar compression to `zstd`, with much faster
 decompression speed and random access support, with slightly slower compression
-as shown in the charts below. Users can expect ALP to be 10x faster
+as shown in the charts below. Users can expect ALP to be `10x` faster
 to decode and to retrieve random values than `zstd`, with similar compression
 ratios.
 
@@ -84,13 +84,13 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
     <img src="/blog/alp/avg_random_access.png" alt="Average random access benchmark" class="img-fluid">
   </div>
   <div>
-    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN</code> (no encoding), <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression), and <code>ALP</code> across 30 datasets. Higher is better.
-     Random access speed is the time to decode 100 deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
+    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN</code> (no encoding), <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression), and <code>ALP</code> across <code>30</code> datasets. Higher is better.
+     Random access speed is the time to decode <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
 </div>
 
-These numbers were gathered using the Rust implementation of ALP. We expect
+These numbers reported are for the pre-release Rust implementation of ALP. We expect
 the performance of ALP encoders to improve as the implementations are optimized and
 tuned. The current implementations are already faster than `zstd` in many cases,
 even though most `zstd` implementations have already been heavily optimized.
@@ -117,7 +117,7 @@ lossless it must return exactly the original bits that were encoded, so the
 original full precision floating point value is stored an "exception" value for any
 values that do not round trip losslessly.
 
-ALP stores data in "vectors" of between 8 and 32K values  (e.g., 1024). Each
+ALP stores data in "vectors" of between `8` and `32K` values  (e.g., `1024`). Each
 vector stores a single exponent and factor, and the encoded values are stored by
 subtracting the lowest value (frame of reference) and then bit-packed into a
 fixed size location. Exceptions are stored directly after the encoded array. The
@@ -172,8 +172,8 @@ trailing zeros as possible.
 It is valid to encode the values `1.23`, `2.45` and `2.01` with
 multiple exponent and factor choices, such as:
 
-* `e=1, f=2`: 123, 245, 201
-* `e=2, f=3`: 1230, 2450, 2010
+* `e=1, f=2`: `123`, `245`, `201`
+* `e=2, f=3`: `1230`, `2450`, `2010`
 
 For these values, the first choice is better as it yields smaller encoded
 values and thus fewer bits to store them.
@@ -185,10 +185,10 @@ before bit-packing.
 
 {{% alert title="Example" color="info" %}}
 
-The values above require only 7 bits per value to store after subtracting the frame of reference:
-* Input values: `123`, `245`, and `201` (8 bits per value)
+The values above require only `7` bits per value to store after subtracting the frame of reference:
+* Input values: `123`, `245`, and `201` (`8` bits per value)
 * Minimum value (frame of reference):`123`
-* Final bitpacked values are `0`, `122`, and `78` (7 bits per value)
+* Final bitpacked values are `0`, `122`, and `78` (`7` bits per value)
 
 {{% /alert %}}
 
@@ -274,7 +274,7 @@ To make the encoding pipeline more concrete, consider the following example of e
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 3</b>: Encoding a vector of 1024 32-bit floating-point values using ALP. 
+    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 32-bit floating-point values using ALP. 
   </div>
   <p/>
 </div>
@@ -285,14 +285,16 @@ formula <code>encoded = round(value × 10<sup>4</sup> × 10<sup>-3</sup>)</code>
 checked by evaluating the reverse <code>decoded = encoded × 10<sup>3</sup> × 10<sup>-4</sup></code>, and values
 that do not yield the original value, such as `1234.5567`, are stored in the
 exception array. The minimum value across the vector, `3335`, is then subtracted from each integer
-to compute the frame of reference, and the integers are bit-packed using 15-bits.
-The ALP representation requires `1920` bytes and space for the exceptions, whereas the floating point representation requires `4096` bytes.
+to compute the frame of reference, and the integers are bit-packed using `15` bits.
+The ALP representation requires `1920` bytes plus space for the exceptions, whereas the floating point representation requires `4096` bytes.
 See [the ALP Encoding specification] for
 more details on how the parameters are chosen and the details of the rounding
 and exception handling.
 
 <!-- TODO verify this link after it has been published to the Parquet website -->
 [the ALP Encoding specification]: https://parquet.apache.org/docs/file-format/Alp
+
+Decoding a vector requires similar steps, but in reverse as shown below. 
 
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
@@ -301,21 +303,19 @@ and exception handling.
     <img src="/blog/alp/alp_decoding_example.png" alt="ALP decoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 4</b>: Decoding the same vector of 1024 values back to floating-point values using ALP.
+    <b>Figure 4</b>: Decoding a vector of <code>1024</code> values back to floating-point values using ALP.
   </div>
   <p/>
 </div>
 
-To decode we go through mostly the same steps, but in reverse:
-
-1) Unpack bit_width-bit integers
-2) Add frame_of_reference to each unpacked integer.
-3) Decode: multiply each integer by <code>10<sup>factor</sup></code> then by <code>10<sup>-exponent</sup></code>.
-4) Patch exceptions: for each (position, value) in the exception arrays, overwrite the decoded output at that position with the stored value.
+First, the bit-packed integers are unpacked and the original values are computed
+by computing <code>original = (3335 + encoded) * 10<sup>3</sup> *
+10<sup>4</sup></code>. Then any exceptions are "patched", by updating the output
+array with the positions stored in the exception array.
 
 ## Ecosystem adoption
 
-Since the proposal, ALP support has been underway across multiple Parquet implementations:
+Since the encoding was [officially accepted into Parquet], ALP support has been underway across multiple Parquet implementations:
 
 - C++ (Arrow): [apache/arrow#48345](https://github.com/apache/arrow/pull/48345) (complete, in final review)
 - Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372) (complete, awaiting the [shared test dataset](https://github.com/apache/parquet-testing/pull/100) to merge)
@@ -323,6 +323,8 @@ Since the proposal, ALP support has been underway across multiple Parquet implem
 - Hardwood, a newer Java implementation, is tracking support in [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
 
 <!-- Can include a link to the https://parquet.apache.org/docs/file-format/implementationstatus/ once https://github.com/apache/parquet-site/pull/199 is merged. It's waiting on the 2.14 Parquet release -->
+
+[officially accepted into Parquet]: https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon
 
 ALP has already been implemented in new formats such as Vortex, several academic formats such as F3, FastLanes (which originated at the same CWI lab as ALP), and in tightly integrated open source systems such as DuckDB file format (also same CWI lab) as well as ClickHouse and CedarDB.
 
