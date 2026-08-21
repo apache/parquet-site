@@ -181,7 +181,7 @@ Assuming some value in the vector requires `e=8`, it is valid to encode
 * `e=8, f=4`: `123`, `245`, `201`
 
 For these values, the second choice is better as it yields smaller encoded
-values and thus fewer bits to store them.
+values and thus requires fewer bits to store them.
 {{% /alert %}}
 
 Finally, to minimize the number of bits needed to store the encoded values, ALP
