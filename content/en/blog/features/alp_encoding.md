@@ -266,10 +266,6 @@ few months. The following implementations are already in progress:
 
 ## Conclusion
 
-
-
-## Conclusion
-
 The addition of ALP to Apache Parquet bring fast, parallelizable decoding and
 practical random access to floating-point data in Parquet in a way that is
 compatible across engines and the ecosystem and keeping pace with the needs of
@@ -284,9 +280,8 @@ be widely adopted in the Parquet ecosystem over the coming years.
 
 ## Resources
 
-- [ALP paper (CWI)](https://ir.cwi.nl/pub/33334/33334.pdf)
-- [ALP MSc thesis (Kuffo, CWI)](https://homepages.cwi.nl/~boncz/msc/2023-KuffoRivero.pdf)
-- [ALP Parquet encoding PR](https://github.com/apache/parquet-format/pull/557)
-- [Benchmark code](https://github.com/alamb/alp_benchmark)
+- **Apache Parquet Format Specification:** https://github.com/apache/parquet-format
+- **ALP Encoding Specification:** [Variant Binary Encoding](https://github.com/apache/parquet-format/blob/master/AlpEncoding.md)
+- **Community Discussions:** [dev@parquet.apache.org](mailto:dev@parquet.apache.org) / [Archive](https://lists.apache.org/list.html?dev@parquet.apache.org)
 
 ## Appendix
