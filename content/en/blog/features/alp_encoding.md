@@ -266,17 +266,16 @@ few months. Work is already in progress in the following:
 
 ## Conclusion
 
-Apache Parquet is evolving to meet the needs of the data ecosystem, by 
-adding the new ALP encoding. ALP brings fast, parallelizable decoding and practical random
-access to floating-point data, in a standard form that any Parquet
-implementation can read. 
+ALP brings fast, parallelizable decoding and practical random access to
+floating-point data, in a standard form that any Parquet implementation can
+read. Its addition is one more example of Apache Parquet evolving to meet the
+needs of modern data systems.
 
 As with all additions to Parquet, this was a community endeavor with contributions
 from many individuals and vendors working together to agree on
 a common standard. Together, we created a well-documented specification and
-multiple reference implementations across multiple languages, and we expect ALP to
+reference implementations in several languages, and we expect ALP to
 be widely adopted in the Parquet ecosystem over the coming years.
-Finally, 
 
 ## Resources
 
