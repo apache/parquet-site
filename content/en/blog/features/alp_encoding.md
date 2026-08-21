@@ -208,7 +208,7 @@ encoding a vector of values:
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP. 
+    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP.
   </div>
   <p/>
 </div>
@@ -229,7 +229,7 @@ and exception handling.
 <!-- TODO verify this link after it has been published to the Parquet website -->
 [the ALP Encoding specification]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
-Decoding a vector requires similar steps, but in reverse as shown below. 
+Decoding a vector requires similar steps, but in reverse, as shown below.
 
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
@@ -251,13 +251,13 @@ output array at the exception positions with the exception values.
 ## Ecosystem adoption
 
 The encoding was [officially accepted into Parquet] in July 2026, and we expect
-several major open source ALP Parquet implementations to add support in the next
-few months. The following implementations are already in progress:
+several major open source Parquet implementations to add ALP support in the next
+few months. Work is already in progress in the following:
 
 - C++ (Arrow): [apache/arrow#48345](https://github.com/apache/arrow/pull/48345)
 - Java (parquet-java): [apache/parquet-java#3397](https://github.com/apache/parquet-java/pull/3397)
-- Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372) 
-- Hardwood is tracking support in [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
+- Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372)
+- Java (Hardwood): [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
 
 <!-- Can include a link to the https://parquet.apache.org/docs/file-format/implementationstatus/ once https://github.com/apache/parquet-site/pull/199 is merged. It's waiting on the 2.14 Parquet release -->
 
@@ -266,10 +266,10 @@ few months. The following implementations are already in progress:
 
 ## Conclusion
 
-The addition of ALP to Apache Parquet bring fast, parallelizable decoding and
-practical random access to floating-point data in Parquet in a way that is
-compatible across engines and the ecosystem and keeping pace with the needs of
-modern data systems.
+The addition of ALP brings standardized fast, parallelizable decoding and
+practical random access to floating-point data. We expect 
+Apache Parquet to keep evolving in parallel with the needs of modern data systems.
+
 
 As with all additions to Parquet, this was a community endeavor with
 participation from multiple individuals and vendors working together to agree on
@@ -280,8 +280,6 @@ be widely adopted in the Parquet ecosystem over the coming years.
 
 ## Resources
 
-- **Apache Parquet Format Specification:** https://github.com/apache/parquet-format
-- **ALP Encoding Specification:** [Variant Binary Encoding](https://github.com/apache/parquet-format/blob/master/AlpEncoding.md)
+- **Apache Parquet Format Specification:** [apache/parquet-format](https://github.com/apache/parquet-format)
+- **ALP Encoding Specification:** [AlpEncoding.md](https://github.com/apache/parquet-format/blob/master/AlpEncoding.md)
 - **Community Discussions:** [dev@parquet.apache.org](mailto:dev@parquet.apache.org) / [Archive](https://lists.apache.org/list.html?dev@parquet.apache.org)
-
-## Appendix
