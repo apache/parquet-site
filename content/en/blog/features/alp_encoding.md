@@ -199,29 +199,8 @@ The values above require only `7` bits per value to store after subtracting the 
 
 ### ALP Encoding and Decoding
 
-The actual encoding and decoding pipelines are straightforward, and shown in the diagrams below.
-
-<!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
-<div class="row g-3 td-max-width-on-larger-screens">
-  <div class="col-12 col-md-6">
-    <img src="/blog/alp/alp_encoding_pipeline.png" alt="ALP encoding pipeline steps" class="img-fluid">
-  </div>
-  <div class="col-12 col-md-6">
-    <img src="/blog/alp/alp_decoding_pipeline.png" alt="ALP decoding pipeline steps" class="img-fluid">
-  </div>
-  <div>
-    <b>Figure 3</b>: ALP encoding pipeline (left) and decoding pipeline (right). 
-  </div>
-  <p/>
-</div>
-
-Vectors of values are encoded by first computing the exponent and factor,
-transforming the input values to integers and checking for exceptions,
-subtracting the frame of reference then bit-packing the integers. Decoding
-proceeds in reverse, unpacking the integers, adding the frame of reference and
-applying the exponent and factor, and patching any exceptions.
-
-To make the encoding pipeline more concrete, consider the following example of encoding a vector of values:
+The encoding pipeline is straightforward, as shown in the following example of
+encoding a vector of values:
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
 <div class="row g-3 td-max-width-on-larger-screens">
@@ -229,7 +208,7 @@ To make the encoding pipeline more concrete, consider the following example of e
     <img src="/blog/alp/alp_encoding_example.png" alt="ALP encoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 4</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP. 
+    <b>Figure 3</b>: Encoding a vector of <code>1024</code> 64-bit floating-point values using ALP. 
   </div>
   <p/>
 </div>
@@ -259,7 +238,7 @@ Decoding a vector requires similar steps, but in reverse as shown below.
     <img src="/blog/alp/alp_decoding_example.png" alt="ALP decoding pipeline example" class="img-fluid">
   </div>
   <div>
-    <b>Figure 5</b>: Decoding a vector of <code>1024</code> values back to floating-point values using ALP.
+    <b>Figure 4</b>: Decoding a vector of <code>1024</code> values back to floating-point values using ALP.
   </div>
   <p/>
 </div>
@@ -271,24 +250,37 @@ output array at the exception positions with the exception values.
 
 ## Ecosystem adoption
 
-Since the encoding was [officially accepted into Parquet], ALP support has been underway across multiple Parquet implementations:
+The encoding was [officially accepted into Parquet] in July 2026, and we expect
+several major open source ALP Parquet implementations to add support in the next
+few months. The following implementations are already in progress:
 
-- C++ (Arrow): [apache/arrow#48345](https://github.com/apache/arrow/pull/48345) (complete, in final review)
-- Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372) (complete, awaiting the [shared test dataset](https://github.com/apache/parquet-testing/pull/100) to merge)
-- Java (parquet-java): [apache/parquet-java#3397](https://github.com/apache/parquet-java/pull/3397) (in progress)
-- Hardwood, a newer Java implementation, is tracking support in [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
+- C++ (Arrow): [apache/arrow#48345](https://github.com/apache/arrow/pull/48345)
+- Java (parquet-java): [apache/parquet-java#3397](https://github.com/apache/parquet-java/pull/3397)
+- Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372) 
+- Hardwood is tracking support in [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
 
 <!-- Can include a link to the https://parquet.apache.org/docs/file-format/implementationstatus/ once https://github.com/apache/parquet-site/pull/199 is merged. It's waiting on the 2.14 Parquet release -->
 
 [officially accepted into Parquet]: https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon
 
-ALP has already been implemented in new formats such as Vortex, academic formats such as F3 and FastLanes (which originated at the same CWI lab as ALP), and in tightly integrated open source systems such as the DuckDB file format (also from the same CWI lab), ClickHouse, and CedarDB.
 
 ## Conclusion
 
-<!-- needs more work -->
 
-ALP brings fast, parallelizable decoding and practical random access to floating-point data in Parquet. It's one more step toward closing the gap with the newest file formats.
+
+## Conclusion
+
+The addition of ALP to Apache Parquet bring fast, parallelizable decoding and
+practical random access to floating-point data in Parquet in a way that is
+compatible across engines and the ecosystem and keeping pace with the needs of
+modern data systems.
+
+As with all additions to Parquet, this was a community endeavor with
+participation from multiple individuals and vendors working together to agree on
+a common standard. Together, we created a well-documented specification and
+multiple reference implementations across multiple languages. We expect ALP to
+be widely adopted in the Parquet ecosystem over the coming years.
+
 
 ## Resources
 
@@ -298,134 +290,3 @@ ALP brings fast, parallelizable decoding and practical random access to floating
 - [Benchmark code](https://github.com/alamb/alp_benchmark)
 
 ## Appendix
-
-<details><summary>Full benchmark results </summary>
-
-| Dataset | Parquet choice | Compression (GB/s) | Decompression (GB/s) | Compressed size (bits/value) |
-|---|---|---:|---:|---:|
-| arade4 | PLAIN | 63.775 | 68.205 | 64.01 |
-| arade4 | PLAIN + ZSTD | 0.574 | 1.499 | 37.39 |
-| arade4 | BYTE_STREAM_SPLIT + ZSTD | 1.875 | 4.980 | 54.58 |
-| arade4 | ALP | 1.698 | 31.860 | 24.99 |
-| basel_temp_f | PLAIN | 33.559 | 57.828 | 64.01 |
-| basel_temp_f | PLAIN + ZSTD | 0.458 | 1.656 | 23.07 |
-| basel_temp_f | BYTE_STREAM_SPLIT + ZSTD | 1.181 | 2.080 | 54.59 |
-| basel_temp_f | ALP | 0.534 | 28.058 | 29.23 |
-| basel_wind_f | PLAIN | 52.641 | 76.402 | 64.01 |
-| basel_wind_f | PLAIN + ZSTD | 0.591 | 1.733 | 18.53 |
-| basel_wind_f | BYTE_STREAM_SPLIT + ZSTD | 1.405 | 2.191 | 54.12 |
-| basel_wind_f | ALP | 0.576 | 29.778 | 29.87 |
-| bird_migration_f | PLAIN | 65.238 | 93.070 | 64.01 |
-| bird_migration_f | PLAIN + ZSTD | 0.420 | 1.778 | 23.49 |
-| bird_migration_f | BYTE_STREAM_SPLIT + ZSTD | 1.210 | 10.407 | 45.82 |
-| bird_migration_f | ALP | 0.164 | 27.212 | 20.24 |
-| bitcoin_f | PLAIN | 91.371 | 222.346 | 64.07 |
-| bitcoin_f | PLAIN + ZSTD | 0.585 | 1.660 | 50.01 |
-| bitcoin_f | BYTE_STREAM_SPLIT + ZSTD | 1.345 | 19.512 | 48.79 |
-| bitcoin_f | ALP | 0.047 | 30.608 | 27.18 |
-| bitcoin_transactions_f | PLAIN | 61.862 | 76.608 | 64.01 |
-| bitcoin_transactions_f | PLAIN + ZSTD | 1.081 | 1.985 | 47.96 |
-| bitcoin_transactions_f | BYTE_STREAM_SPLIT + ZSTD | 1.412 | 2.580 | 56.65 |
-| bitcoin_transactions_f | ALP | 0.572 | 21.192 | 41.27 |
-| city_temperature_f | PLAIN | 74.404 | 75.291 | 64.01 |
-| city_temperature_f | PLAIN + ZSTD | 0.561 | 1.368 | 17.67 |
-| city_temperature_f | BYTE_STREAM_SPLIT + ZSTD | 0.962 | 3.569 | 16.64 |
-| city_temperature_f | ALP | 1.972 | 37.725 | 10.80 |
-| cms1 | PLAIN | 64.257 | 62.655 | 64.01 |
-| cms1 | PLAIN + ZSTD | 0.627 | 1.600 | 26.84 |
-| cms1 | BYTE_STREAM_SPLIT + ZSTD | 0.670 | 1.651 | 38.64 |
-| cms1 | ALP | 1.061 | 18.514 | 35.19 |
-| cms25 | PLAIN | 70.317 | 71.847 | 64.01 |
-| cms25 | PLAIN + ZSTD | 0.798 | 1.829 | 58.11 |
-| cms25 | BYTE_STREAM_SPLIT + ZSTD | 1.287 | 4.345 | 56.72 |
-| cms25 | ALP | 1.516 | 21.901 | 41.17 |
-| cms9 | PLAIN | 65.334 | 67.735 | 64.01 |
-| cms9 | PLAIN + ZSTD | 0.668 | 1.436 | 11.71 |
-| cms9 | BYTE_STREAM_SPLIT + ZSTD | 2.151 | 5.502 | 10.07 |
-| cms9 | ALP | 1.932 | 34.393 | 12.16 |
-| food_prices | PLAIN | 71.786 | 75.631 | 64.01 |
-| food_prices | PLAIN + ZSTD | 0.574 | 1.356 | 18.13 |
-| food_prices | BYTE_STREAM_SPLIT + ZSTD | 0.744 | 1.865 | 25.47 |
-| food_prices | ALP | 0.887 | 20.747 | 23.20 |
-| gov10 | PLAIN | 67.983 | 70.573 | 64.01 |
-| gov10 | PLAIN + ZSTD | 0.486 | 1.259 | 29.12 |
-| gov10 | BYTE_STREAM_SPLIT + ZSTD | 0.648 | 1.740 | 37.31 |
-| gov10 | ALP | 1.119 | 24.621 | 29.88 |
-| gov26 | PLAIN | 66.105 | 67.432 | 64.01 |
-| gov26 | PLAIN + ZSTD | 10.325 | 23.010 | 0.20 |
-| gov26 | BYTE_STREAM_SPLIT + ZSTD | 8.112 | 18.208 | 0.24 |
-| gov26 | ALP | 1.876 | 84.789 | 1.40 |
-| gov30 | PLAIN | 61.089 | 64.308 | 64.01 |
-| gov30 | PLAIN + ZSTD | 2.038 | 5.186 | 4.52 |
-| gov30 | BYTE_STREAM_SPLIT + ZSTD | 1.695 | 4.155 | 6.14 |
-| gov30 | ALP | 1.020 | 33.276 | 17.88 |
-| gov31 | PLAIN | 70.238 | 71.923 | 64.01 |
-| gov31 | PLAIN + ZSTD | 3.821 | 8.994 | 1.65 |
-| gov31 | BYTE_STREAM_SPLIT + ZSTD | 3.780 | 9.643 | 2.47 |
-| gov31 | ALP | 1.659 | 50.153 | 6.77 |
-| gov40 | PLAIN | 74.751 | 75.933 | 64.01 |
-| gov40 | PLAIN + ZSTD | 9.232 | 17.740 | 0.43 |
-| gov40 | BYTE_STREAM_SPLIT + ZSTD | 6.477 | 13.890 | 0.62 |
-| gov40 | ALP | 1.879 | 77.866 | 2.59 |
-| medicare1 | PLAIN | 73.791 | 65.523 | 64.01 |
-| medicare1 | PLAIN + ZSTD | 0.552 | 1.508 | 31.68 |
-| medicare1 | BYTE_STREAM_SPLIT + ZSTD | 0.800 | 2.166 | 45.27 |
-| medicare1 | ALP | 0.958 | 19.660 | 40.46 |
-| medicare9 | PLAIN | 73.908 | 75.228 | 64.01 |
-| medicare9 | PLAIN + ZSTD | 0.706 | 1.471 | 11.86 |
-| medicare9 | BYTE_STREAM_SPLIT + ZSTD | 2.126 | 5.717 | 10.19 |
-| medicare9 | ALP | 1.938 | 36.311 | 12.82 |
-| neon_air_pressure | PLAIN | 70.685 | 73.563 | 64.01 |
-| neon_air_pressure | PLAIN + ZSTD | 0.789 | 2.051 | 11.85 |
-| neon_air_pressure | BYTE_STREAM_SPLIT + ZSTD | 0.782 | 2.268 | 28.51 |
-| neon_air_pressure | ALP | 1.876 | 36.770 | 16.48 |
-| neon_bio_temp_c | PLAIN | 63.818 | 69.314 | 64.01 |
-| neon_bio_temp_c | PLAIN + ZSTD | 0.522 | 1.513 | 16.84 |
-| neon_bio_temp_c | BYTE_STREAM_SPLIT + ZSTD | 1.240 | 2.885 | 35.40 |
-| neon_bio_temp_c | ALP | 1.941 | 35.578 | 10.81 |
-| neon_dew_point_temp | PLAIN | 72.097 | 73.614 | 64.01 |
-| neon_dew_point_temp | PLAIN + ZSTD | 0.465 | 1.638 | 23.73 |
-| neon_dew_point_temp | BYTE_STREAM_SPLIT + ZSTD | 1.503 | 2.370 | 48.00 |
-| neon_dew_point_temp | ALP | 1.931 | 32.863 | 13.63 |
-| neon_pm10_dust | PLAIN | 51.533 | 70.722 | 64.01 |
-| neon_pm10_dust | PLAIN + ZSTD | 0.848 | 1.689 | 7.79 |
-| neon_pm10_dust | BYTE_STREAM_SPLIT + ZSTD | 0.634 | 1.682 | 22.21 |
-| neon_pm10_dust | ALP | 0.927 | 38.427 | 8.41 |
-| neon_wind_dir | PLAIN | 54.631 | 60.583 | 64.01 |
-| neon_wind_dir | PLAIN + ZSTD | 0.432 | 1.312 | 24.41 |
-| neon_wind_dir | BYTE_STREAM_SPLIT + ZSTD | 1.387 | 3.518 | 42.31 |
-| neon_wind_dir | ALP | 1.883 | 47.114 | 15.94 |
-| nyc29 | PLAIN | 71.342 | 71.984 | 64.01 |
-| nyc29 | PLAIN + ZSTD | 0.611 | 1.539 | 24.67 |
-| nyc29 | BYTE_STREAM_SPLIT + ZSTD | 0.939 | 3.768 | 36.91 |
-| nyc29 | ALP | 1.679 | 24.137 | 40.43 |
-| poi_lat | PLAIN | 58.440 | 50.294 | 64.01 |
-| poi_lat | PLAIN + ZSTD | 0.635 | 1.793 | 57.78 |
-| poi_lat | BYTE_STREAM_SPLIT + ZSTD | 2.711 | 5.929 | 55.30 |
-| poi_lat | ALP | 1.052 | 11.874 | 88.19 |
-| poi_lon | PLAIN | 61.546 | 73.497 | 64.01 |
-| poi_lon | PLAIN + ZSTD | 0.850 | 1.945 | 60.44 |
-| poi_lon | BYTE_STREAM_SPLIT + ZSTD | 2.467 | 5.826 | 57.24 |
-| poi_lon | ALP | 1.180 | 14.614 | 79.12 |
-| ssd_hdd_benchmarks_f | PLAIN | 66.698 | 112.905 | 64.02 |
-| ssd_hdd_benchmarks_f | PLAIN + ZSTD | 0.813 | 1.802 | 12.98 |
-| ssd_hdd_benchmarks_f | BYTE_STREAM_SPLIT + ZSTD | 1.265 | 2.850 | 17.42 |
-| ssd_hdd_benchmarks_f | ALP | 0.114 | 35.975 | 16.04 |
-| stocks_de | PLAIN | 68.397 | 71.924 | 64.01 |
-| stocks_de | PLAIN + ZSTD | 0.664 | 1.689 | 10.07 |
-| stocks_de | BYTE_STREAM_SPLIT + ZSTD | 0.881 | 2.278 | 33.46 |
-| stocks_de | ALP | 1.224 | 35.921 | 11.20 |
-| stocks_uk | PLAIN | 60.600 | 64.531 | 64.01 |
-| stocks_uk | PLAIN + ZSTD | 0.608 | 1.413 | 11.29 |
-| stocks_uk | BYTE_STREAM_SPLIT + ZSTD | 1.180 | 4.006 | 14.89 |
-| stocks_uk | ALP | 0.948 | 32.869 | 12.75 |
-| stocks_usa_c | PLAIN | 64.214 | 67.851 | 64.01 |
-| stocks_usa_c | PLAIN + ZSTD | 0.692 | 1.634 | 8.24 |
-| stocks_usa_c | BYTE_STREAM_SPLIT + ZSTD | 0.712 | 2.390 | 26.89 |
-| stocks_usa_c | ALP | 2.028 | 39.329 | 7.95 |
-| **ALL AVG.** | **PLAIN** | **65.547** | **76.644** | **64.01** |
-| **ALL AVG.** | **PLAIN + ZSTD** | **1.401** | **3.236** | **22.75** |
-| **ALL AVG.** | **BYTE_STREAM_SPLIT + ZSTD** | **1.786** | **5.132** | **32.76** |
-| **ALL AVG.** | **ALP** | **1.273** | **33.805** | **24.27** |
-
-</details>
