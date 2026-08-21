@@ -133,11 +133,12 @@ layout of each ALP vector is shown below.
 </div>
 
 
-Since each value is stored as a bit-packed value
-of a fixed width, decoding an arbitrary row requires computing the offset of the
-encoded bits, and applying the frame of reference, exponent, and factor to
-decode it. The exception indices must also be checked to see if the stored
-exception value must be returned instead.
+Since each value is stored as a bit-packed integer of a fixed width, the
+location of an arbitrary row requires computing the offset of the encoded bits.
+To decode the value, the frame of reference, exponent, and factor are applied to
+the encoded value to recover the original floating point value. Finally, the
+exception indices are checked for the target row, and if present the exception
+value is returned instead.
 
 {{% alert title="Example" color="info" %}} 
 
