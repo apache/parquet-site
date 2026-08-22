@@ -1,7 +1,7 @@
 ---
 title: "ALP: Adaptive Lossless Floating-Point Encoding in Apache Parquet"
 date: 2026-08-14
-description: "Fast, random-access, GPU- and SIMD-friendly compression and decompression; similar in size to zstd but much faster to decode."
+description: "A technical overview of ALP's design, performance, and adoption across the Apache Parquet ecosystem."
 author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb), [Prateek Gaur](https://github.com/prtkgaur)"
 categories: ["features"]
 ---
