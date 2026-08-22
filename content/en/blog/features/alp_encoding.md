@@ -30,10 +30,10 @@ store values outside of that
 range. For this reason, it is common for systems where the exact shape
 of their data is not known beforehand, to store decimal values as `FLOAT` or `DOUBLE`. For example,
 JavaScript's only* [number type is `DOUBLE`], common data science tools such as
-pandas [infer `FLOAT` for decimal-looking values], and NumPy has [no decimal dtype at all].
+pandas [infer `float64` for decimal-looking values], and NumPy has [no decimal dtype at all].
 
 [number type is `DOUBLE`]: https://tc39.es/ecma262/#sec-ecmascript-language-types-number-type
-[infer `FLOAT` for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
+[infer `float64` for decimal-looking values]: https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
 [no decimal dtype at all]: https://numpy.org/doc/stable/reference/arrays.dtypes.html
 [`BigInt`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
 
@@ -43,7 +43,10 @@ pandas [infer `FLOAT` for decimal-looking values], and NumPy has [no decimal dty
 
 Encoding floating-point data is a complicated engineering problem due to the nature of floating-point values. They do not exactly represent most real values. This leads to rounding errors that prevent using existing lightweight encodings like Delta and Frame of Reference (FOR).
 
-Prior to ALP the only `FLOAT`/`DOUBLE` encoding in Parquet (other than `PLAIN`) was [`BYTE_STREAM_SPLIT`](https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT). `BYTE_STREAM_SPLIT` does not reduce the size of data but *can* make the compression ratio and speed better when a heavyweight compressor is used afterwards.
+Prior to ALP, `BYTE_STREAM_SPLIT` was the only non-dictionary alternative to
+`PLAIN` for `FLOAT`/`DOUBLE` values in Parquet. It does not reduce the size of
+data but *can* make the compression ratio and speed better when a heavyweight
+compressor is used afterwards.
 
 Heavyweight compression buys that ratio at three costs:
    - Decode speed -- decompression runs well below what a scan can consume.
@@ -79,7 +82,7 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
     <img src="/blog/alp/avg_random_access.png" alt="Average random access benchmark" class="img-fluid">
   </div>
   <div>
-    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random access performance of <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression) and <code>ALP</code> across <code>30</code> datasets on three machines. Higher is better.
+    <b>Figure 1</b>: Average compression ratio, compression speed, and decompression speed of <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression) and <code>ALP</code> across <code>30</code> datasets on three machines. Higher is better.
      Random access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
@@ -92,11 +95,8 @@ even though most `zstd` implementations have already been heavily optimized.
 
 ## Technical overview
 
-ALP was developed by the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/) 
-and published in a [SIGMOD 2024 Paper](https://dl.acm.org/doi/10.1145/3626717). 
-As mentioned above, the encoding leverages the fact that `FLOAT`/`DOUBLE` columns often do not
-need the full precision of those types. This section explains the intuition behind ALP and how it works. The
-following sections then explain the encoding and decoding pipeline in more detail.
+ALP was developed by Azim Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/)
+and published in a [SIGMOD 2024 paper](https://dl.acm.org/doi/10.1145/3626717). ALP takes advantage of a common pattern: many values stored as `FLOAT` or `DOUBLE` originated as decimal numbers with relatively few digits, such as prices or measurements. This section explains the intuition behind ALP. The following sections then explain the encoding and decoding pipeline in more detail.
 
 ALP encodes each floating point value using three integer values: an encoded
 value, an "exponent" (`e`), and a "factor" (`f`). The exponent and factor are
@@ -107,12 +107,12 @@ value is recovered by computing
 value = encoded × 10<sup>f</sup> × 10<sup>-e</sup>
 </pre>
 
-As anyone who has worked with floating point knows, this calculation may not
-yield exactly the original value due to rounding errors. In order for ALP to be
-lossless it must return exactly the original bits that were encoded, so the
-original full precision floating point value is stored as an "exception" value for any
-values that do not round trip losslessly (this includes special values such as
-`NaN`, `±Infinity`, and `-0.0`).
+The calculation above uses floating-point arithmetic, which may round the result
+to the nearest representable value instead of reproducing the original value.
+Because ALP is lossless, it stores the original full-precision
+floating-point value separately as an "exception" whenever it does not
+round-trip exactly. Special values such as `NaN`, `±Infinity`, and `-0.0`
+are also stored as exceptions.
 
 ALP stores data in "vectors" of between `8` and `32K` values (e.g., `1024`). Each
 vector stores a single exponent and factor, and the encoded values are stored by
@@ -151,13 +151,15 @@ Consider encoding the value `8.0605`, which can not be exactly
 represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229). It is stored as
 the 32-bit floating point number `8.06050014495849609375`. It can also be
 encoded as `80605` with exponent `e = 8` and factor `f = 4`. Applying
-the recovery formula yields
+the recovery formula with 32-bit floating-point arithmetic, which rounds after
+each multiplication, yields
 
 <pre>
-80605 × 10<sup>4</sup> × 10<sup>-8</sup> = 8.06050014495849609375
+80605 × 10<sup>4</sup> × 10<sup>-8</sup> → 8.06050014495849609375 (<code>FLOAT</code>)
 </pre>
 
-Which matches the original floating point value exactly. However, if the
+This is the nearest representable `FLOAT` to `8.0605` and matches the original
+stored floating-point value exactly. However, if the
 original value had been `8.0605123` (stored as the 32-bit value
 `8.060512542724609375`) the encoded value would still be `80605`, and the
 decoded value would still be `8.06050014495849609375` which is not the same as
@@ -222,7 +224,10 @@ that do not yield the original value, such as `1234.5678` (which decodes to
 `1234.6`), are stored in the
 exception array. The minimum value across the vector, `3335`, becomes the frame
 of reference and is subtracted from each integer, and the resulting deltas are bit-packed using `15` bits.
-The ALP representation requires `1920` bytes plus space for the exceptions, whereas the floating point representation requires `8192` bytes.
+In this example, ALP uses `1920` bytes for the bit-packed deltas, plus a
+`13`-byte vector header and space for exceptions. `PLAIN` uses `8192` bytes for
+the same `1024` values. This comparison excludes page-level metadata for both
+encodings.
 See [the ALP Encoding specification] for
 more details on how the parameters are chosen and the details of the rounding
 and exception handling.
@@ -269,8 +274,7 @@ few months. Work is already in progress in the following:
 
 ALP brings fast, parallelizable decoding and practical random access to
 floating-point data, in a standard form that any Parquet implementation can
-read. Its addition is one more example of Apache Parquet evolving to meet the
-needs of modern data systems.
+read after adding support for the encoding. Its addition is one more example of Apache Parquet evolving to meet the needs of modern data systems.
 
 As with all additions to Parquet, this was a community endeavor with contributions
 from many individuals and vendors working together to agree on
