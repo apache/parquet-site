@@ -1,12 +1,12 @@
 ---
 title: "ALP: Adaptive Lossless Floating-point Encoding in Apache Parquet"
 date: 2026-08-14
-description: "Fast, random access, GPU and SIMD-friendly compression and decompression; similar in size to zstd but much faster to decode."
+description: "Fast, random-access, GPU- and SIMD-friendly compression and decompression; similar in size to zstd but much faster to decode."
 author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb), [Prateek Gaur](https://github.com/prtkgaur)"
 categories: ["features"]
 ---
 
-Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -- a new lightweight floating-point encoding with similar compression to [`zstd`], much faster decompression speed, random access support, and SIMD and GPU friendly decoding.
+Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -- a new lightweight floating-point encoding with similar compression to [`zstd`], much faster decompression speed, random-access support, and GPU- and SIMD-friendly decoding.
 
 ----
 [`zstd`]: https://github.com/facebook/zstd
@@ -14,18 +14,19 @@ Apache Parquet has added the [Adaptive Lossless floating-Point (ALP) Encoding] -
 [Adaptive Lossless floating-Point (ALP) Encoding]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#ALP
 
 ALP works best for decimal values that are stored as floating-point types (32-bit `FLOAT` and 64-bit `DOUBLE`), such as
-- Monetary values (exchange rates, public funds, stocks, prices, etc.) - e.g. `1.2345` or `22.03`
-- Geographic coordinates (longitude/latitude) - `42.3584`, `-71.0598`
-- Scientific measures (temperature, pressure, speed, degrees, etc.) - e.g. `-273.15`, `9.81`, `3.14159`
+
+- Monetary values (exchange rates, public funds, stocks, prices, etc.) -- e.g., `1.2345` or `22.03`
+- Geographic coordinates (longitude/latitude) -- e.g., `42.3584`, `-71.0598`
+- Scientific measures (temperature, pressure, speed, degrees, etc.) -- e.g., `-273.15`, `9.81`, `3.14159`
 
 ALP is not suitable for data that uses a wide range of exponents or a large
 number of significant digits, such as vector embeddings which typically span the
 full floating-point range. Such use cases can continue to use existing Parquet
 features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by `ZSTD` or
-`SNAPPY` general purpose compression.
+`SNAPPY` general-purpose compression.
 
 Decimal values can be stored with Parquet's `DECIMAL` logical type, but it
-requires the precision and scale to be known and declared up front and can not
+requires the precision and scale to be known and declared up front and cannot
 store values outside of that
 range. For this reason, it is common for systems where the exact shape
 of their data is not known beforehand, to store decimal values as `FLOAT` or `DOUBLE`. For example,
@@ -79,11 +80,11 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
     <img src="/blog/alp/avg_decompression_speed.png" alt="Average decompression speed benchmark" class="img-fluid">
   </div>
   <div class="col-12 col-md-6">
-    <img src="/blog/alp/avg_random_access.png" alt="Average random access benchmark" class="img-fluid">
+    <img src="/blog/alp/avg_random_access.png" alt="Average random-access benchmark" class="img-fluid">
   </div>
   <div>
     <b>Figure 1</b>: Average compression ratio, compression speed, and decompression speed of <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression) and <code>ALP</code> across <code>30</code> datasets on three machines. Higher is better.
-     Random access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
+     Random-access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
 </div>
@@ -93,12 +94,12 @@ the performance of ALP encoders to improve as the implementations are optimized 
 tuned. The current implementations are already faster than `zstd` in many cases,
 even though most `zstd` implementations have already been heavily optimized.
 
-## Technical overview
+## Technical Overview
 
 ALP was developed by Azim Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/)
 and published in a [SIGMOD 2024 paper](https://dl.acm.org/doi/10.1145/3626717). ALP takes advantage of a common pattern: many values stored as `FLOAT` or `DOUBLE` originated as decimal numbers with relatively few digits, such as prices or measurements. This section explains the intuition behind ALP. The following sections then explain the encoding and decoding pipeline in more detail.
 
-ALP encodes each floating point value using three integer values: an encoded
+ALP encodes each floating-point value using three integer values: an encoded
 value, an "exponent" (`e`), and a "factor" (`f`). The exponent and factor are
 shared by many values, and how they are chosen is explained below.  The original
 value is recovered by computing
@@ -136,20 +137,20 @@ layout of each ALP vector is shown below.
 Since each value is stored as a bit-packed integer of a fixed width, the
 location of an arbitrary row requires computing the offset of the encoded bits.
 To decode the value, the frame of reference, exponent, and factor are applied to
-the encoded value to recover the original floating point value. Finally, the
+the encoded value to recover the original floating-point value. Finally, the
 exception indices are checked for the target row, and if present the exception
 value is returned instead.
 
-{{% alert title="Example" color="info" %}} 
+{{% alert title="Example" color="info" %}}
 
-<!-- 
-Rust playground with demo 
+<!--
+Rust playground with demo
 https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=5c731c344f4161e06057f5059e4598b7
---> 
+-->
 
-Consider encoding the value `8.0605`, which can not be exactly
+Consider encoding the value `8.0605`, which cannot be exactly
 represented in [IEEE 754](https://ieeexplore.ieee.org/document/8766229). It is stored as
-the 32-bit floating point number `8.06050014495849609375`. It can also be
+the 32-bit floating-point number `8.06050014495849609375`. It can also be
 encoded as `80605` with exponent `e = 8` and factor `f = 4`. Applying
 the recovery formula with 32-bit floating-point arithmetic, which rounds after
 each multiplication, yields
@@ -163,24 +164,24 @@ stored floating-point value exactly. However, if the
 original value had been `8.0605123` (stored as the 32-bit value
 `8.060512542724609375`) the encoded value would still be `80605`, and the
 decoded value would still be `8.06050014495849609375` which is not the same as
-the original value and thus would be stored as an exception. 
+the original value and thus would be stored as an exception.
 
 {{% /alert %}}
 
 Picking a good exponent and factor is key to good ALP performance. Each Parquet
 writer is free to choose the exponent and factor for each vector using any
-algorithm. The Parquet specification provides an example sampling based
+algorithm. The Parquet specification provides an example sampling-based
 algorithm that minimizes the encoded size. Typically, the exponent is chosen to
 capture most decimal digits in the vector while minimizing exceptions, and the
 factor is chosen to remove as many trailing zeros as possible.
 
 {{% alert title="Example" color="info" %}}
 
-Assuming some value in the vector requires `e=8`, it is valid to encode
+Assuming some value in the vector requires `e = 8`, it is valid to encode
 `0.0123`, `0.0245` and `0.0201` with multiple factor choices, such as:
 
-* `e=8, f=0`: `1230000`, `2450000`, `2010000`
-* `e=8, f=4`: `123`, `245`, `201`
+- `e = 8, f = 0`: `1230000`, `2450000`, `2010000`
+- `e = 8, f = 4`: `123`, `245`, `201`
 
 For these values, the second choice is better as it yields smaller encoded
 values and thus requires fewer bits to store them.
@@ -193,9 +194,10 @@ before bit-packing.
 {{% alert title="Example" color="info" %}}
 
 The values above require only `7` bits per value to store after subtracting the frame of reference:
-* Input values: `123`, `245`, and `201` (`8` bits per value)
-* Minimum value (frame of reference): `123`
-* Final bitpacked values are `0`, `122`, and `78` (`7` bits per value)
+
+- Input values: `123`, `245`, and `201` (`8` bits per value)
+- Minimum value (frame of reference): `123`
+- Final bit-packed values are `0`, `122`, and `78` (`7` bits per value)
 
 {{% /alert %}}
 
@@ -254,7 +256,7 @@ by <code>original = (3335 + delta) × 10<sup>3</sup> ×
 10<sup>-4</sup></code>. Then any exceptions are "patched", by overwriting the
 output array at the exception positions with the exception values.
 
-## Ecosystem adoption
+## Ecosystem Adoption
 
 The encoding was [officially accepted into Parquet] in July 2026, and we expect
 several major open source Parquet implementations to add ALP support in the next
