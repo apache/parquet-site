@@ -171,7 +171,7 @@ the original value and thus would be stored as an exception.
 Picking a good exponent and factor is key to good ALP performance. Each Parquet
 writer is free to choose the exponent and factor for each vector using any
 algorithm. The Parquet specification provides an example sampling-based
-algorithm that minimizes the encoded size. Typically, the exponent is chosen to
+algorithm that aims to minimize the encoded size. Typically, the exponent is chosen to
 capture most decimal digits in the vector while minimizing exceptions, and the
 factor is chosen to remove as many trailing zeros as possible.
 
@@ -253,7 +253,7 @@ Decoding a vector requires similar steps, but in reverse, as shown below.
 
 First, the bit-packed deltas are unpacked and the original values are computed
 by <code>original = (3335 + delta) × 10<sup>3</sup> ×
-10<sup>-4</sup></code>. Then any exceptions are "patched", by overwriting the
+10<sup>-4</sup></code>. Then any exceptions are "patched" by overwriting the
 output array at the exception positions with the exception values.
 
 ## Ecosystem Adoption
