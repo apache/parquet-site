@@ -269,6 +269,7 @@ few months. Work is already in progress in the following:
 - C++ (Arrow): [apache/arrow#48345](https://github.com/apache/arrow/pull/48345)
 - Java (parquet-java): [apache/parquet-java#3397](https://github.com/apache/parquet-java/pull/3397)
 - Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372)
+- Go (arrow-go): [apache/arrow-go#704](https://github.com/apache/arrow-go/pull/704)
 - Java (Hardwood): [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
 
 You can also try it today on your own datasets using the [tool in the ALP benchmark repository](https://github.com/alamb/alp_benchmark#run-on-your-own-parquet-files).
