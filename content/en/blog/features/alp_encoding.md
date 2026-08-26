@@ -22,8 +22,8 @@ ALP works best for decimal values that are stored as floating-point types (32-bi
 ALP is not suitable for data that uses a wide range of exponents or a large
 number of significant digits, such as vector embeddings which typically span the
 full floating-point range. Such use cases can continue to use existing Parquet
-features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by `ZSTD` or
-`SNAPPY` general-purpose compression.
+features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by general-purpose 
+compression such as `ZSTD`.
 
 Decimal values can be stored with Parquet's `DECIMAL` logical type, but it
 requires the precision and scale to be known and declared up front and cannot
@@ -64,7 +64,7 @@ ALP is designed to solve all three of these problems for common data patterns, w
 
 As shown in the charts below, users can expect ALP to be `10x` faster to decode
 than `zstd` and thousands of times faster to retrieve individual values, with
-similar compression ratios and comparable compression speed.
+similar compression ratios and compression speed.
 
 The code and instructions to reproduce these results and try ALP with your own
 Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
@@ -89,7 +89,7 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
   <p/>
 </div>
 
-The numbers reported are for the pre-release Rust implementation of ALP. We expect
+Note that the numbers reported are for the pre-release Rust implementation of ALP. We expect
 the performance of ALP encoders to improve as the implementations are optimized and
 tuned. The current implementations are already faster than `zstd` in many cases,
 even though most `zstd` implementations have already been heavily optimized.
