@@ -102,10 +102,12 @@ even though most `zstd` implementations have already been heavily optimized.
 ALP was developed by Azim Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/)
 and published in a [SIGMOD 2024 paper](https://dl.acm.org/doi/10.1145/3626717). ALP takes advantage of a common pattern: many values stored as `FLOAT` or `DOUBLE` originated as decimal numbers with relatively few digits, such as prices or measurements. This section explains the intuition behind ALP. The following sections then explain the encoding and decoding pipeline in more detail.
 
-ALP encodes each floating-point value using three integer values: an encoded
-value, an "exponent" (`e`), and a "factor" (`f`). The exponent and factor are
-shared by many values, and how they are chosen is explained below. The original
-value is recovered by computing
+ALP encodes floating-point values in batches called "vectors" of between `8`
+and `32K` values (e.g., `1024`). Each value in a vector is encoded as an
+integer, and the vector as a whole stores two more integers shared by all its
+values: an "exponent" (`e`) and a "factor" (`f`). Each vector can use a
+different exponent and factor, and how they are chosen is explained below. The
+original value is recovered by computing
 
 <pre>
 value = encoded × 10<sup>f</sup> × 10<sup>-e</sup>
@@ -113,16 +115,15 @@ value = encoded × 10<sup>f</sup> × 10<sup>-e</sup>
 
 The calculation above uses floating-point arithmetic, which may round the result
 to the nearest representable value instead of reproducing the original value.
-Because ALP is lossless, it stores the original full-precision
-floating-point value separately as an "exception" whenever it does not
-round-trip exactly. Special values such as `NaN`, `±Infinity`, and `-0.0`
-are also stored as exceptions.
+When the decoding process does not reproduce the original value
+exactly, ALP instead stores the original full-precision value separately as an
+"exception", keeping the encoding lossless. Special values such as `NaN`,
+`±Infinity`, and `-0.0` are also stored as exceptions.
 
-ALP stores data in "vectors" of between `8` and `32K` values (e.g., `1024`). Each
-vector stores a single exponent and factor, and the encoded values are stored by
-subtracting the lowest value (frame of reference) and then bit-packed to a
-fixed width. Exceptions are stored directly after the encoded array. The
-layout of each ALP vector is shown below.
+Within each vector, the encoded values are stored by subtracting the lowest
+value (frame of reference) and then bit-packing to a fixed width. Exceptions
+are stored directly after the encoded array. The layout of each ALP vector is
+shown below.
 
 
 <!-- Diagrams source: https://docs.google.com/presentation/d/1NeYAGKV2wZZMSme5rVgUGGMkfOTEnxw8oCDxid5UouM -->
