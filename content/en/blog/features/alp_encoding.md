@@ -226,8 +226,8 @@ To encode this vector, first the parameters <code>e = 4</code> and <code>f =
 3</code> are chosen. Then the values are transformed to integers using the
 formula <code>encoded = round(value × 10<sup>4</sup> × 10<sup>-3</sup>)</code>. Each integer is
 checked by reversing the transformation with <code>decoded = encoded × 10<sup>3</sup> × 10<sup>-4</sup></code>. Values
-that do not reproduce the original value, such as `1234.5678` (which decodes to
-`1234.6`), are stored in the
+that do not reproduce the original value, such as `8.0605123` (which decodes to
+`8.1`), are stored in the
 exception array. The minimum value across the vector, `3335`, becomes the frame
 of reference and is subtracted from each integer, and the resulting deltas are bit-packed using `15` bits.
 In this example, ALP uses `1920` bytes for the bit-packed deltas, plus a
