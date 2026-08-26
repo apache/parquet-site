@@ -22,8 +22,8 @@ ALP works best for decimal values that are stored as floating-point types (32-bi
 ALP is not suitable for data that uses a wide range of exponents or a large
 number of significant digits, such as vector embeddings which typically span the
 full floating-point range. Such use cases can continue to use existing Parquet
-features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by general-purpose 
-compression such as `ZSTD`.
+features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by
+general-purpose compression such as `ZSTD`.
 
 Decimal values can be stored with Parquet's `DECIMAL` logical type, but it
 requires the precision and scale to be known and declared up front and cannot
@@ -62,9 +62,12 @@ ALP is designed to solve all three of these problems for common data patterns, w
 
 ### ALP Performance
 
-As shown in the charts below, users can expect ALP to be `10x` faster to decode
-than `zstd` and thousands of times faster to retrieve individual values, with
-similar compression ratios and compression speed.
+Parquet applies an encoding first, then an optional compression codec as a
+separate step. The charts below compare the `PLAIN` and [`BYTE_STREAM_SPLIT`]
+encodings followed by `ZSTD` compression and the `ALP` encoding with no
+additional compression. Users can expect ALP to decode `10x` faster and
+retrieve individual values thousands of times faster, with a slightly lower
+compression ratio and slightly faster compression.
 
 The code and instructions to reproduce these results and try ALP with your own
 Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, with the Rust Parquet implementation included.
@@ -83,7 +86,7 @@ Parquet datasets can be found in the [alp_benchmark](https://github.com/alamb/al
     <img src="/blog/alp/avg_random_access.png" alt="Average random-access benchmark" class="img-fluid">
   </div>
   <div>
-    <b>Figure 1</b>: Average compression ratio, compression speed, and decompression speed of <code>PLAIN+ZSTD</code> (per-page <code>zstd</code> compression) and <code>ALP</code> across <code>30</code> datasets on three machines. Higher is better.
+    <b>Figure 1</b>: Average compression ratio, compression speed, and decompression speed of <code>PLAIN+ZSTD</code> and <code>BYTE_STREAM_SPLIT+ZSTD</code> (each encoding followed by per-page <code>ZSTD</code> compression) and <code>ALP</code> (no compression codec) across <code>30</code> datasets on three machines. Higher is better.
      Random-access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
