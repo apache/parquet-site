@@ -176,3 +176,22 @@
       "1.37.0":
         release_date: "2026-01-10"
         release_notes_url: "https://github.com/pola-rs/polars/releases/tag/py-1.37.0"
+
+- id: dataframe
+  name: dataframe
+  display_name: Haskell dataframe
+  language: Haskell
+  repo_url: https://github.com/DataHaskell/dataframe
+  docs_url: https://hackage.haskell.org/package/dataframe-parquet
+  versions:
+    default: "3.6.0.0"
+    releases:
+      "3.4.0.0":
+        release_date: "2026-08-12"
+        release_notes_url: "https://hackage.haskell.org/package/dataframe-3.4.0.0/changelog"
+      "3.5.0.0":
+        release_date: "2026-08-14"
+        release_notes_url: "https://hackage.haskell.org/package/dataframe-3.5.0.0/changelog"
+      "3.6.0.0":
+        release_date: "2026-08-29"
+        release_notes_url: "https://hackage.haskell.org/package/dataframe-3.6.0.0/changelog"

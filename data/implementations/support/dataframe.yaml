@@ -1,0 +1,137 @@
+engine_id: dataframe
+last_updated: "2026-09-09"
+support:
+  physical-boolean:
+    status: full
+  physical-int32:
+    status: full
+  physical-int64:
+    status: full
+  physical-int96:
+    status: read
+  physical-float:
+    status: full
+  physical-double:
+    status: full
+  physical-byte-array:
+    status: full
+  physical-fixed-len-byte-array:
+    status: read
+  logical-string:
+    status: full
+  logical-enum:
+    status: read
+    note: Read back as a plain string; the ENUM annotation is not surfaced.
+  logical-uuid:
+    status: none
+  logical-int-types:
+    status: read
+    note: Signed integers only; unsigned annotations are read as signed values of the same width.
+  logical-decimal-int32:
+    status: read
+    note: Decimals are converted to Double on read, so precision above 15 digits is lost.
+  logical-decimal-int64:
+    status: read
+    note: Decimals are converted to Double on read, so precision above 15 digits is lost.
+  logical-decimal-byte-array:
+    status: none
+  logical-decimal-fixed-len-byte-array:
+    status: none
+  logical-float16:
+    status: none
+  logical-date:
+    status: read
+    note: Surfaced as the raw INT32/INT64 value; the DATE/TIME annotation is not applied.
+  logical-time-int32:
+    status: read
+    note: Surfaced as the raw INT32/INT64 value; the DATE/TIME annotation is not applied.
+  logical-time-int64:
+    status: read
+    note: Surfaced as the raw INT32/INT64 value; the DATE/TIME annotation is not applied.
+  logical-timestamp-int64:
+    status: full
+    note: Milliseconds, microseconds and nanoseconds are read; the writer always emits microseconds.
+  logical-interval:
+    status: none
+  logical-json:
+    status: read
+    note: Read back as a plain string; the JSON annotation is not surfaced.
+  logical-bson:
+    status: none
+  logical-variant:
+    status: none
+  logical-geometry:
+    status: none
+  logical-geography:
+    status: none
+  logical-list:
+    status: read
+  logical-map:
+    status: none
+  logical-unknown:
+    status: none
+  encoding-plain:
+    status: full
+  encoding-plain-dictionary:
+    status: read
+  encoding-rle-dictionary:
+    status: read
+  encoding-rle:
+    status: full
+    note: Used for repetition and definition levels.
+  encoding-bit-packed:
+    status: none
+  encoding-delta-binary-packed:
+    status: none
+  encoding-delta-length-byte-array:
+    status: none
+  encoding-delta-byte-array:
+    status: none
+  encoding-byte-stream-split:
+    status: none
+  encoding-byte-stream-split-extended:
+    status: none
+  compression-uncompressed:
+    status: full
+  compression-brotli:
+    status: none
+  compression-gzip:
+    status: read
+  compression-lz4-deprecated:
+    status: none
+  compression-lz4-raw:
+    status: none
+  compression-lzo:
+    status: none
+  compression-snappy:
+    status: full
+  compression-zstd:
+    status: read
+  format-bloom-filters:
+    status: none
+  format-bloom-filter-length:
+    status: none
+  format-stats-min-max:
+    status: none
+  format-page-index:
+    status: none
+  format-page-crc32:
+    status: none
+  format-modular-encryption:
+    status: none
+  format-size-statistics:
+    status: none
+  format-data-page-v2:
+    status: read
+  api-parquet-summary-file:
+    status: none
+  api-sorting-columns:
+    status: none
+  api-rowgroup-pruning-stats:
+    status: none
+  api-rowgroup-pruning-bloom:
+    status: none
+  api-column-projection:
+    status: full
+  api-page-pruning-stats:
+    status: none
