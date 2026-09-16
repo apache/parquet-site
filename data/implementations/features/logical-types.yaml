@@ -135,8 +135,7 @@ features:
     version_display_name: FILE (group)
     compatibility: forward_compatible
     released_in: "2.14.0"
-    # TODO: placeholder date; update when the parquet-format 2.14.0 release vote is finalized
-    release_date: '2026-09-09'
+    release_date: '2026-09-11'
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#file
     prs: "[#585](https://github.com/apache/parquet-format/pull/585), [#603](https://github.com/apache/parquet-format/pull/603)"
     approval: "[2026-07-18](https://lists.apache.org/thread/lbtdvq63382fgl2049zb6vn396h9lmfz)"
