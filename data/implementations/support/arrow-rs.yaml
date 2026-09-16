@@ -68,7 +68,9 @@ support:
     since_version_read: "57.0.0"
     since_version_write: "57.0.0"
   logical-file:
-    status: none
+    status: full
+    since_version_read: "60.0.0"
+    since_version_write: "60.0.0"
   logical-list:
     status: full
   logical-map:
@@ -97,7 +99,9 @@ support:
     since_version_read: "52.2.0"
     since_version_write: "52.2.0"
   encoding-alp:
-    status: none
+    status: full
+    since_version_read: "60.0.0"
+    since_version_write: "60.0.0"
   encoding-byte-stream-split-extended:
     status: full
     since_version_read: "53.0.0"
