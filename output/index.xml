@@ -75,6 +75,11 @@ used with any page type.&lt;/p&gt;
  &lt;td&gt;BYTE_STREAM_SPLIT = 9&lt;/td&gt;
  &lt;td&gt;INT32, INT64, FLOAT, DOUBLE, FIXED_LEN_BYTE_ARRAY&lt;/td&gt;
  &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;a href="/docs/file-format/data-pages/encodings/#ALP"&gt;ALP&lt;/a&gt;&lt;/td&gt;
+ &lt;td&gt;ALP = 10&lt;/td&gt;
+ &lt;td&gt;FLOAT, DOUBLE&lt;/td&gt;
+ &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id="deprecated-encodings"&gt;Deprecated Encodings&lt;/h3&gt;
@@ -106,7 +111,24 @@ allows for an optimal combination of data security, processing speed and encrypt
  &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/auNAzC3AU18?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
  &lt;/div&gt;</description></item><item><title>Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-format"&gt;parquet-format&lt;/a&gt; project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>&lt;p&gt;Building
+&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;h1 id="alp-adaptive-lossless-floating-point-encoding"&gt;ALP (Adaptive Lossless floating-Point) Encoding&lt;/h1&gt;
+&lt;p&gt;This file contains the detailed specification of the
+&lt;a href="/docs/file-format/data-pages/encodings/#ALP"&gt;ALP encoding&lt;/a&gt; (&lt;code&gt;ALP = 10&lt;/code&gt;).&lt;/p&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;For each data page, ALP encoding consists of a header followed by an offset array
+and one or more encoded vectors (batches of values). Each vector contains up to
+&lt;code&gt;vector_size&lt;/code&gt; elements (default 1024).&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;+-------------+-----------------------------+--------------------------------------+
+| Header | Offset Array | Vector Data |
+| (7 bytes) | (num_vectors * 4 bytes) | (variable) |
++-------------+------+------+-----+---------+----------+----------+-----+----------+
+| Page Header | off0 | off1 | ... | off N-1 | Vector 0 | Vector 1 | ... | Vec N-1 |
+| (7 bytes) | (4B) | (4B) | | (4B) |(variable)|(variable)| |(variable)|
++-------------+------+------+-----+---------+----------+----------+-----+----------+
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The compression pipeline below describes &lt;em&gt;one&lt;/em&gt; way to produce a conforming
+vector. It is informative, not normative: an encoder may use any strategy as long
+as it emits the byte layout defined in &lt;a href="/docs/file-format/data-pages/alpencoding/#page-layout"&gt;Page Layout&lt;/a&gt;. Only that
+byte layout and the &lt;a href="/docs/file-format/data-pages/alpencoding/#decoding"&gt;Decoding&lt;/a&gt; procedure are normative.&lt;/p&gt;</description></item><item><title>Building Parquet</title><link>/docs/contribution-guidelines/building/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/building/</guid><description>&lt;p&gt;Building
 Java resources can be build using &lt;code&gt;mvn package&lt;/code&gt;. The current stable version should always be available from Maven Central.&lt;/p&gt;
 &lt;p&gt;C++ thrift resources can be generated via make.&lt;/p&gt;
 &lt;p&gt;Thrift can be also code-genned into any other thrift-supported language.&lt;/p&gt;</description></item><item><title>Hadoop Summit 2014</title><link>/docs/learning-resources/presentations/hadoop-summit-2014/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/hadoop-summit-2014/</guid><description>&lt;p&gt;&lt;a href="https://www.slideshare.net/cloudera/hadoop-summit-36479635"&gt;Slides&lt;/a&gt;&lt;/p&gt;
