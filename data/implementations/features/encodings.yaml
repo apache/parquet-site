@@ -52,7 +52,6 @@ features:
     display_name: ALP
     compatibility: forward_incompatible
     released_in: "2.14.0"
-    # TODO: placeholder date; update when the parquet-format 2.14.0 release vote is finalized
     release_date: '2026-09-11'
     feature_url: https://github.com/apache/parquet-format/blob/master/AlpEncoding.md
     prs: "[#557](https://github.com/apache/parquet-format/pull/557), [#604](https://github.com/apache/parquet-format/pull/604), [#608](https://github.com/apache/parquet-format/pull/608)"
