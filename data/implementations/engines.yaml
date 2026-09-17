@@ -100,6 +100,15 @@
       "57.0.0":
         release_date: "2025-10-19"
         release_notes_url: "https://github.com/apache/arrow-rs/releases/tag/57.0.0"
+      "58.0.0":
+        release_date: "2026-02-23"
+        release_notes_url: "https://github.com/apache/arrow-rs/releases/tag/58.0.0"
+      "59.0.0":
+        release_date: "2026-06-09"
+        release_notes_url: "https://github.com/apache/arrow-rs/releases/tag/59.0.0"
+      "60.0.0":
+        release_date: "2026-09-15"
+        release_notes_url: "https://github.com/apache/arrow-rs/releases/tag/60.0.0"
 
 - id: cudf
   name: cudf
