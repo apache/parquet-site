@@ -55,6 +55,8 @@ support:
     status: read
   logical-geography:
     status: read
+  logical-file:
+    status: none
   logical-list:
     status: full
   logical-map:
@@ -79,6 +81,8 @@ support:
     status: read
   encoding-byte-stream-split:
     status: read
+  encoding-alp:
+    status: none
   encoding-byte-stream-split-extended:
     status: none
   compression-uncompressed:

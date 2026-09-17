@@ -268,7 +268,7 @@
 <p><b>Note:</b> This data was originally collected in December 2025, and not all data was backfilled. It is likely older releases of each engine support reading all features for 2023 and before. As volunteers have time they are invited to add more granular details on releases. Generally, versions are expected to be accurate for any year 2025 and after.</p>
 
 {{- /* Collect all features with release_date and group by year */ -}}
-{{- $featuresByYear := dict "2023" (slice) "2024" (slice) "2025" (slice) -}}
+{{- $featuresByYear := dict "2023" (slice) "2024" (slice) "2025" (slice) "2026" (slice) -}}
 {{- $excludedFeatures := slice "encoding-bit-packed" "compression-lz4-deprecated" "compression-lzo" "logical-enum" "logical-uuid" "logical-bson" "logical-json" "logical-interval" -}}
 {{- $includedCategories := slice "compressions" "encodings" "physical-types" "logical-types" -}}
 
@@ -287,7 +287,9 @@
           {{- $year := "" -}}
           {{- if .release_date -}}
             {{- $dateStr := .release_date -}}
-            {{- if hasPrefix $dateStr "2025" -}}
+            {{- if hasPrefix $dateStr "2026" -}}
+              {{- $year = "2026" -}}
+            {{- else if hasPrefix $dateStr "2025" -}}
               {{- $year = "2025" -}}
             {{- else if hasPrefix $dateStr "2024" -}}
               {{- $year = "2024" -}}
@@ -339,6 +341,7 @@
       <th>≤2023 Features</th>
       <th>2024 Features</th>
       <th>2025 Features</th>
+      <th>2026 Features</th>
     </tr>
   </thead>
   <tbody>
@@ -356,7 +359,7 @@
         {{- $cumulativeMissingFeatures := slice -}}
         {{- $hasPriorMissingFeatures := false -}}
 
-        {{- range $year := slice "2023" "2024" "2025" -}}
+        {{- range $year := slice "2023" "2024" "2025" "2026" -}}
           {{- $features := index $featuresByYear $year -}}
           {{- $minVersion := $cumulativeMinVersion -}}
           {{- $minReleaseDate := $cumulativeMinReleaseDate -}}

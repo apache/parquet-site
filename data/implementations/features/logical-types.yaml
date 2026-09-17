@@ -130,6 +130,15 @@ features:
     feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#geography
     prs: "[#240](https://github.com/apache/parquet-format/pull/240)"
     approval: "[2025-02-09](https://lists.apache.org/thread/s6s714c98cn9gg22mnk5nsn7xymym8xo)"
+  - id: logical-file
+    display_name: FILE
+    version_display_name: FILE (group)
+    compatibility: forward_compatible
+    released_in: "2.14.0"
+    release_date: '2026-09-11'
+    feature_url: https://github.com/apache/parquet-format/blob/master/LogicalTypes.md#file
+    prs: "[#585](https://github.com/apache/parquet-format/pull/585), [#603](https://github.com/apache/parquet-format/pull/603)"
+    approval: "[2026-07-18](https://lists.apache.org/thread/lbtdvq63382fgl2049zb6vn396h9lmfz)"
   - id: logical-list
     display_name: LIST
     compatibility: forward_compatible
