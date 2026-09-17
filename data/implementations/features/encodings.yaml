@@ -54,7 +54,7 @@ features:
     released_in: "2.14.0"
     release_date: '2026-09-11'
     feature_url: https://github.com/apache/parquet-format/blob/master/AlpEncoding.md
-    prs: "[#557](https://github.com/apache/parquet-format/pull/557), [#604](https://github.com/apache/parquet-format/pull/604), [#608](https://github.com/apache/parquet-format/pull/608)"
+    prs: "[#557](https://github.com/apache/parquet-format/pull/557)"
     approval: "[2026-07-23](https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon)"
     version_note: "In [Preview](https://github.com/apache/parquet-format/blob/master/Encodings.md#adaptive-lossless-floating-point-alp--10): the specification is stable but ecosystem implementations are ongoing"
   - id: encoding-byte-stream-split-extended
