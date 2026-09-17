@@ -190,3 +190,62 @@ Provided enough volunteers are available the Parquet community aims to have
 releases on a quarterly basis (Targets months are January, April, July and
 October). If a new major version is necessary it will be targetted for the
 October release.
+
+### Release Verification
+
+The Apache Parquet Release Approval process follows the guidelines defined at the
+Apache Software Foundation [Release Approval](https://www.apache.org/legal/release-policy.html#release-approval) page.
+
+For a release vote to pass, a minimum of three positive binding votes and more
+positive binding votes than negative binding votes MUST be cast.
+Releases may not be vetoed. Votes cast by PMC members are binding, however,
+non-binding votes are greatly encouraged and a sign of a healthy project.
+
+In order to cast a vote individuals are expected to follow the following steps.
+
+#### Download source package, signature file, hash file and KEYS
+
+The Release candidate will be present at `https://dist.apache.org/repos/dist/dev/parquet/`.
+The RC folder will depend on the version and the release candidate id. See the following example files for
+Apache Parquet 1.15.0 RC 1:
+```
+wget https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.15.0-rc1/apache-parquet-1.15.0.tar.gz
+wget https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.15.0-rc1/apache-parquet-1.15.0.tar.gz.asc
+wget https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.15.0-rc1/apache-parquet-1.15.0.tar.gz.sha512
+wget https://dist.apache.org/repos/dist/release/parquet/KEYS
+```
+
+#### Verify signature and hash
+
+GnuPG is recommended, which can be install by:
+- `yum install gnupg` or `apt-get install gnupg` on Linux based environments.
+- `brew install gnupg` on macOS environments.
+
+```
+gpg --import KEYS
+gpg --verify apache-parquet-1.15.0.tar.gz.asc apache-parquet-1.15.0.tar.gz
+sha512sum --check apache-parquet-1.15.0.tar.gz.sha512
+```
+
+#### Verify license header
+
+Apache RAT is recommended to verify the license header, which can be dowload with the following command.
+
+```
+wget https://archive.apache.org/dist/creadur/apache-rat-0.16.1/apache-rat-0.16.1-bin.tar.gz
+tar zxvf apache-rat-0.16.1-bin.tar.gz
+```
+
+You can check with the following command. The current command uses a regular expression to avoid raising false
+positives for some files.
+
+The command will output a summary, the list of files with their licenses and any file that does not contain a valid license header.
+
+```
+java  -jar apache-rat-0.16.1/apache-rat-0.16.1.jar -a -d apache-parquet-1.15.0.tar.gz -e  "\w+.avsc$|\w+\-2.parquet$|.gitignore|PULL_REQUEST_TEMPLATE.md"
+```
+
+#### Verify building and tests
+
+Check the [building section](https://github.com/apache/parquet-java/blob/master/README.md#building) on the
+[parquet-java](https://github.com/apache/parquet-java) repository.

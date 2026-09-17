@@ -61,6 +61,7 @@ Interestingly, implementing this ordering doesn't require a heavy, complex compa
 pub fn totalOrder(x: f64, y: f64) -> bool {
     let mut x_int = x.to_bits() as i64;
     let mut y_int = y.to_bits() as i64;
+    // arithmetic shift
     x_int ^= (((x_int >> 63) as u64) >> 1) as i64;
     y_int ^= (((y_int >> 63) as u64) >> 1) as i64;
     return x_int <= y_int;
