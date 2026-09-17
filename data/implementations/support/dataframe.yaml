@@ -64,6 +64,8 @@ support:
     status: none
   logical-geography:
     status: none
+  logical-file:
+    status: none
   logical-list:
     status: read
   logical-map:
@@ -88,6 +90,8 @@ support:
   encoding-delta-byte-array:
     status: none
   encoding-byte-stream-split:
+    status: none
+  encoding-alp:
     status: none
   encoding-byte-stream-split-extended:
     status: none
