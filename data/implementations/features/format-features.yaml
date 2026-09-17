@@ -91,6 +91,7 @@ features:
     implementation_status: false
     compatibility: forward_compatible
     released_in: "2.14.0"
+    release_date: '2026-09-11'
     feature_url: https://github.com/apache/parquet-format/blob/04d56f291ff963e98bc37ab8100e2fc133ff583c/src/main/thrift/parquet.thrift#L1085
     prs: "[#584](https://github.com/apache/parquet-format/pull/584)"
     approval: "[2026-07-06](https://lists.apache.org/thread/4kq2gfgx3cmow26h8ofd93653z9zhs2t)"
