@@ -41,7 +41,10 @@ pandas [infer `float64` for decimal-looking values], and NumPy has [no decimal d
 
 ## Why ALP?
 
-Encoding floating-point data is a complicated engineering problem due to the nature of floating-point values. They do not exactly represent most real values. This leads to rounding errors that prevent using existing lightweight encodings like Delta and Frame of Reference (FOR).
+Encoding floating-point data is a complicated engineering problem due to the
+nature of floating-point values. They do not exactly represent most real
+values. This leads to rounding errors that prevent using existing lightweight
+encodings like Delta and Frame of Reference (FOR).
 
 Prior to ALP, `BYTE_STREAM_SPLIT` was the only non-dictionary alternative to
 `PLAIN` for `FLOAT`/`DOUBLE` values in Parquet. It does not reduce the size of the
@@ -94,7 +97,10 @@ compression ratio and slightly faster compression.[^benchmark]
 Note that these numbers are for the pre-release Rust implementation of ALP, and
 we expect performance to improve as implementations are optimized and tuned.
 Even so, ALP is already faster than `zstd` in many cases, despite years of
-optimization work on `zstd` implementations.
+optimization work on `zstd` implementations. We also measured similar
+[improvements for the C++ implementation].
+
+[improvements for the C++ implementation]: https://docs.google.com/spreadsheets/d/1NmCg0WZKeZUc6vNXXD8M3GIyNqF_H3goj6mVbT8at7A/
 
 ## Technical Overview
 
