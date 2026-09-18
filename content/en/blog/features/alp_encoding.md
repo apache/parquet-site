@@ -24,11 +24,11 @@ the full floating-point range. Such data can continue to use existing Parquet
 features such as `PLAIN` or [`BYTE_STREAM_SPLIT`] encoding followed by
 general-purpose compression like `ZSTD`.
 
-Decimal values can be stored with Parquet's `DECIMAL` logical type, but it
-requires the precision and scale to be known and declared up front and cannot
-store values outside of that
-range. For this reason, systems commonly store decimal values as `FLOAT` or
-`DOUBLE` when the exact shape of their data is not known beforehand. For example,
+Decimal values can be stored with Parquet's `DECIMAL` logical type, but that
+type requires the precision and scale to be known and declared up front and
+cannot store values outside that range. For this reason, systems commonly
+store decimal values as `FLOAT` or `DOUBLE` when the exact shape of their data
+is not known beforehand. For example,
 JavaScript's only* [number type is `DOUBLE`], common data science tools such as
 pandas [infer `float64` for decimal-looking values], and NumPy has [no decimal dtype at all].
 
@@ -44,30 +44,32 @@ pandas [infer `float64` for decimal-looking values], and NumPy has [no decimal d
 Encoding floating-point data is a complicated engineering problem due to the nature of floating-point values. They do not exactly represent most real values. This leads to rounding errors that prevent using existing lightweight encodings like Delta and Frame of Reference (FOR).
 
 Prior to ALP, `BYTE_STREAM_SPLIT` was the only non-dictionary alternative to
-`PLAIN` for `FLOAT`/`DOUBLE` values in Parquet. It does not reduce the size of
+`PLAIN` for `FLOAT`/`DOUBLE` values in Parquet. It does not reduce the size of the
 data but *can* improve the compression ratio and speed when a heavyweight
 compressor is used afterwards.
 
-Heavyweight compression buys that ratio at three costs:
-   - Decode speed -- decompression runs well below what a scan can consume.
-   - Random access -- reading one value means decoding the whole page.
+Heavyweight compression effectively decreases the data size, but at the cost of:
+   - Decode speed -- decompression speed is often the bottleneck in data access.
+   - Random access -- reading one value requires decoding an entire data page containing potentially thousands of other values.
    - Data dependence -- variable-length compression means that decoding a value requires decoding previous values, making it hard to parallelize with modern hardware such as [SIMD instructions] and [GPU]s.
 
 [SIMD instructions]: https://en.wikipedia.org/wiki/SIMD
 [GPU]: https://en.wikipedia.org/wiki/Graphics_processing_unit
 [`BYTE_STREAM_SPLIT`]: https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT
 
-ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio.
+ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio to heavyweight compression.
 
 Parquet applies an encoding first, then an optional compression codec as a
 separate step. The charts below compare the `PLAIN` and [`BYTE_STREAM_SPLIT`]
-encodings followed by `ZSTD` compression and the `ALP` encoding with no
+encodings followed by `ZSTD` compression with the `ALP` encoding and no
 additional compression. Users can expect ALP to decode `10x` faster and
 retrieve individual values thousands of times faster, with a slightly lower
-compression ratio and slightly faster compression.
+compression ratio and slightly faster compression.[^benchmark]
 
-The code and instructions to reproduce these results and try ALP on your own
-Parquet datasets are in the [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, which uses the Rust Parquet implementation.
+[^benchmark]: The code and instructions to reproduce these results and try ALP
+    on your own Parquet datasets are in the
+    [alp_benchmark](https://github.com/alamb/alp_benchmark) repository, which
+    uses the Rust Parquet implementation.
 
 <div class="row g-3 td-max-width-on-larger-screens">
   <div class="col-12 col-md-6">
@@ -83,7 +85,7 @@ Parquet datasets are in the [alp_benchmark](https://github.com/alamb/alp_benchma
     <img src="/blog/alp/avg_random_access.png" alt="Average random-access benchmark" class="img-fluid">
   </div>
   <div>
-    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random-access speed of <code>PLAIN+ZSTD</code> and <code>BYTE_STREAM_SPLIT+ZSTD</code> (each encoding followed by per-page <code>ZSTD</code> compression) and <code>ALP</code> (no compression codec) across <code>30</code> datasets on three machines. Higher is better.
+    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random-access speed of <code>PLAIN+ZSTD</code> and <code>BYTE_STREAM_SPLIT+ZSTD</code> (each encoding followed by per-page <code>ZSTD</code> compression), and <code>ALP</code> (no compression codec), across <code>30</code> datasets on three machines. Higher is better.
      Random-access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
@@ -98,7 +100,7 @@ optimization work on `zstd` implementations.
 
 ALP takes advantage of a common pattern: many values stored as `FLOAT` or
 `DOUBLE` originated as decimal numbers with relatively few digits, such as
-prices or measurements. This section explains the intuition behind ALP, and
+prices or measurements. This section explains the intuition behind ALP and
 then covers the encoding and decoding pipelines in more detail.
 
 ALP encodes floating-point values in batches called "vectors" of between `8`
@@ -245,7 +247,7 @@ Decoding a vector requires similar steps, but in reverse, as shown below.
   <p/>
 </div>
 
-First, the bit-packed deltas are unpacked and the original values are computed
+First, the bit-packed deltas are unpacked, and the original values are computed
 by <code>original = (3335 + delta) × 10<sup>3</sup> ×
 10<sup>-4</sup></code>. Then any exceptions are "patched" by overwriting the
 output array at the exception positions with the exception values.
@@ -264,7 +266,7 @@ Antoine Pitrou, Adam Reeve, Ed Seidl, Russell Spitzer, Matt Topol, Jeffrey Vo,
 Daniel Weeks, Gang Wu, and Zehua Zou.
 
 <!-- The list of people came from
-Mailing list threads 
+Mailing list threads
 https://lists.apache.org/thread/tjtln1mmjqfoql1ls2dw9xpdk91r1909
 https://lists.apache.org/thread/nkfowy04f73cfo7g43p2v0wl79spqkpz
 https://lists.apache.org/thread/hgmd58wrv9yoopcrf61m1bg211l65tbt
@@ -275,10 +277,9 @@ https://lists.apache.org/thread/1q84qhkj9ofjsgrj798ftl3vgww067z6
 Rust PR: https://github.com/apache/arrow-rs/pull/9372
 Java PR: https://github.com/apache/parquet-java/pull/3397
 C++ PR: https://github.com/apache/arrow/pull/48345/changes
-Spec:
 Spec PR: https://github.com/apache/parquet-format/pull/557
 Google Doc Spec (including all comments): https://docs.google.com/document/d/1PlyUSfqCqPVwNt8XA-CfRqsbc0NKRG0Kk1FigEm3JOg/edit?tab=t.0#heading=h.5xf60mx6q7xk
---> 
+-->
 
 
 [SIGMOD 2024 paper]: https://dl.acm.org/doi/10.1145/3626717
