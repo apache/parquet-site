@@ -60,8 +60,6 @@ Heavyweight compression buys that ratio at three costs:
 
 ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio.
 
-### ALP Performance
-
 Parquet applies an encoding first, then an optional compression codec as a
 separate step. The charts below compare the `PLAIN` and [`BYTE_STREAM_SPLIT`]
 encodings followed by `ZSTD` compression and the `ALP` encoding with no
@@ -207,9 +205,6 @@ The values above require only `7` bits each after subtracting the frame of refer
 - Final bit-packed values: `0`, `122`, and `78` (`7` bits per value)
 
 {{% /alert %}}
-
-
-### ALP Encoding and Decoding
 
 The encoding pipeline is straightforward, as shown in the following example of
 encoding a vector of values:
