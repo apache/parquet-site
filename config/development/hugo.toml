@@ -1,0 +1,9 @@
+# Development-only overrides, merged on top of ../../hugo.toml.
+#
+# Hugo uses the "development" environment for `hugo server`, so these settings
+# apply when previewing the site locally but NOT to the production build
+# (`hugo --minify`) that publishes the site.
+
+# Render blog posts (and any other content) whose front matter `date` is in the
+# future, so upcoming posts can be previewed before their publish date.
+buildFuture = true
