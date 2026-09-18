@@ -265,14 +265,17 @@ output array at the exception positions with the exception values.
 
 ## Acknowledgements
 
-Like everything in Apache Parquet, standardizing the ALP encoding was a
-community effort. ALP was first published in a [SIGMOD 2024 paper] by Azim
+ALP was first published in a [SIGMOD 2024 paper] by Azim
 Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group
 at CWI]. The [Vortex] and [Lance] formats adopted ALP early, demonstrating ALP's
 benefits for industrial applications.
-
-Since late 2025, many community members worked with authors of this post to standardize
-the encoding, including XXX, YYY, ZZZ
+In late 2025, the community began the standardization process. Along with the
+authors of this blog, many community members contributed, including Divjot Arora,
+Arnav Balyan, Devan Benz, Ryan Blue, Alkis Evlogimenos, Vinoo Ganesh, Adrian
+Garcia Badaracco, Curt Hagenlocher, Amogh Jahagirdar, Micah Kornfield, Robert
+Kruszewski, Julien Le Dem, Kevin Liu, Steve Loughran, Ismaël Mejía, mwish,
+Antoine Pitrou, Adam Reeve, Ed Seidl, Russell Spitzer, Matt Topol, Jeffrey Vo,
+Daniel Weeks, Gang Wu, and Zehua Zou.
 
 <!-- The list of people came from
 Mailing list threads 
@@ -301,15 +304,15 @@ Google Doc Spec (including all comments): https://docs.google.com/document/d/1Pl
 The encoding was released as part of [parquet-format 2.14.0] in September 2006.
 ALP is already supported in at least one major open source implementation (the
 [`parquet` 60.0.0](arrow-rs-60) Rust crate), and we expect other Parquet
-implementations to add ALP support in the next few months. Please check the
-[Implementation Status] page for the most up to date compatibility  status.
+implementations to add ALP support in the coming months. Please check the
+[Implementation Status] page for current compatibility status.
+You can also try it today on your own datasets using the [tool in the ALP benchmark repository](https://github.com/alamb/alp_benchmark#run-on-your-own-parquet-files).
 
 
 [parquet-format 2.14.0]: /blog/2026/09/11/2.14.0/
 [arrow-rs-60]: https://crates.io/crates/parquet/60.0.0
 [Implementation Status]: https://parquet.apache.org/docs/file-format/implementationstatus/
 
-You can also try it today on your own datasets using the [tool in the ALP benchmark repository](https://github.com/alamb/alp_benchmark#run-on-your-own-parquet-files).
 
 ## Conclusion
 
