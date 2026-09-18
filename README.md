@@ -50,6 +50,12 @@ To preview this website locally, run the following in the root of the directory:
 hugo server
 ```
 
+`hugo server` uses Hugo's `development` environment, which is configured in
+[config/development/hugo.toml](config/development/hugo.toml) to build content
+whose front matter `date` is in the future. This means a blog post scheduled for
+a future date shows up in the local preview, but is still left out of the
+published site until its date arrives.
+
 ### Building metadata diagrams
 
 To build the metadata svg diagrams, you need mermaid.js installed. You can install it using npm:
