@@ -1,6 +1,6 @@
 ---
 title: "ALP: Adaptive Lossless Floating-Point Encoding in Apache Parquet"
-date: 2026-08-14
+date: 2026-09-18
 description: "A technical overview of ALP's design, performance, and adoption across the Apache Parquet ecosystem."
 author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb), [Prateek Gaur](https://github.com/prtkgaur)"
 categories: ["features"]
@@ -99,8 +99,11 @@ even though most `zstd` implementations have already been heavily optimized.
 
 ## Technical Overview
 
-ALP was developed by Azim Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group at CWI](https://www.cwi.nl/en/research/database-architectures/)
-and published in a [SIGMOD 2024 paper](https://dl.acm.org/doi/10.1145/3626717). ALP takes advantage of a common pattern: many values stored as `FLOAT` or `DOUBLE` originated as decimal numbers with relatively few digits, such as prices or measurements. This section explains the intuition behind ALP. The following sections then explain the encoding and decoding pipeline in more detail.
+ALP takes advantage of a common pattern: many values stored as `FLOAT` or
+`DOUBLE` originated as decimal numbers with relatively few digits, such as
+prices or measurements. This section explains the intuition behind ALP. The
+following sections then explain the encoding and decoding pipeline in more
+detail.
 
 ALP encodes floating-point values in batches called "vectors" of between `8`
 and `32K` values (e.g., `1024`). Each value in a vector is encoded as an
@@ -260,24 +263,53 @@ by <code>original = (3335 + delta) × 10<sup>3</sup> ×
 10<sup>-4</sup></code>. Then any exceptions are "patched" by overwriting the
 output array at the exception positions with the exception values.
 
+## Acknowledgements
+
+Like everything in Apache Parquet, standardizing the ALP encoding was a
+community effort. ALP was first published in a [SIGMOD 2024 paper] by Azim
+Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group
+at CWI]. The [Vortex] and [Lance] formats adopted ALP early, demonstrating ALP's
+benefits for industrial applications.
+
+Since late 2025, many community members worked with authors of this post to standardize
+the encoding, including XXX, YYY, ZZZ
+
+<!-- The list of people came from
+Mailing list threads 
+https://lists.apache.org/thread/tjtln1mmjqfoql1ls2dw9xpdk91r1909
+https://lists.apache.org/thread/nkfowy04f73cfo7g43p2v0wl79spqkpz
+https://lists.apache.org/thread/hgmd58wrv9yoopcrf61m1bg211l65tbt
+https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon
+https://lists.apache.org/thread/4h75ww5h0z1hx2yk2b6z2tpt0wfh3nzq
+https://lists.apache.org/thread/gfodxyzx27pzbpkvns6zvfrm55y41sdt
+https://lists.apache.org/thread/1q84qhkj9ofjsgrj798ftl3vgww067z6
+Rust PR: https://github.com/apache/arrow-rs/pull/9372
+Jave PR: https://github.com/apache/parquet-java/pull/3397
+C++ PR: https://github.com/apache/arrow/pull/48345/changes
+Spec:
+Spec PR: https://github.com/apache/parquet-format/pull/557
+Google Doc Spec (including all comments): https://docs.google.com/document/d/1PlyUSfqCqPVwNt8XA-CfRqsbc0NKRG0Kk1FigEm3JOg/edit?tab=t.0#heading=h.5xf60mx6q7xk
+--> 
+
+
+[SIGMOD 2024 paper]: https://dl.acm.org/doi/10.1145/3626717
+[Database Architectures Group at CWI]: https://www.cwi.nl/en/research/database-architectures/
+[Vortex]: https://vortex.dev/
+[Lance]: https://lance.org/
 ## Ecosystem Adoption
 
-The encoding was [officially accepted into Parquet] in July 2026, and we expect
-several major open source Parquet implementations to add ALP support in the next
-few months. Work is already in progress in the following:
+The encoding was released as part of [parquet-format 2.14.0] in September 2006.
+ALP is already supported in at least one major open source implementation (the
+[`parquet` 60.0.0](arrow-rs-60) Rust crate), and we expect other Parquet
+implementations to add ALP support in the next few months. Please check the
+[Implementation Status] page for the most up to date compatibility  status.
 
-- C++ (Arrow): [apache/arrow#48345](https://github.com/apache/arrow/pull/48345)
-- Java (parquet-java): [apache/parquet-java#3397](https://github.com/apache/parquet-java/pull/3397)
-- Rust (arrow-rs): [apache/arrow-rs#9372](https://github.com/apache/arrow-rs/pull/9372)
-- Go (arrow-go): [apache/arrow-go#704](https://github.com/apache/arrow-go/pull/704)
-- Java (Hardwood): [hardwood-hq/hardwood#581](https://github.com/hardwood-hq/hardwood/issues/581)
+
+[parquet-format 2.14.0]: /blog/2026/09/11/2.14.0/
+[arrow-rs-60]: https://crates.io/crates/parquet/60.0.0
+[Implementation Status]: https://parquet.apache.org/docs/file-format/implementationstatus/
 
 You can also try it today on your own datasets using the [tool in the ALP benchmark repository](https://github.com/alamb/alp_benchmark#run-on-your-own-parquet-files).
-
-<!-- Can include a link to the https://parquet.apache.org/docs/file-format/implementationstatus/ once https://github.com/apache/parquet-site/pull/199 is merged. It's waiting on the 2.14 Parquet release -->
-
-[officially accepted into Parquet]: https://lists.apache.org/thread/ld025dzycrhm6dgh8p6157to7d9x8pon
-
 
 ## Conclusion
 
@@ -293,6 +325,6 @@ be widely adopted in the Parquet ecosystem over the coming years.
 
 ## Resources
 
-- **Apache Parquet Format Specification:** [apache/parquet-format](https://github.com/apache/parquet-format)
-- **ALP Encoding Specification:** [AlpEncoding.md](https://github.com/apache/parquet-format/blob/master/AlpEncoding.md)
-- **Community Discussions:** [dev@parquet.apache.org](mailto:dev@parquet.apache.org) / [Archive](https://lists.apache.org/list.html?dev@parquet.apache.org)
+- [**ALP Encoding Specification:**](https://parquet.apache.org/docs/file-format/data-pages/alpencoding)
+- [**Apache Parquet Format Specification:**](https://github.com/apache/parquet-format)
+- [**Implementation Status Page**](https://parquet.apache.org/docs/file-format/implementationstatus/)
