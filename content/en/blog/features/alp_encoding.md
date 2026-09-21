@@ -46,7 +46,7 @@ nature of floating-point values. They do not exactly represent most real
 values. This leads to rounding errors that prevent using existing lightweight
 encodings like Delta and Frame of Reference (FOR).
 
-Prior to ALP, `BYTE_STREAM_SPLIT` was the only non-dictionary alternative to
+Prior to ALP, [`BYTE_STREAM_SPLIT`]  was the only non-dictionary alternative to
 `PLAIN` for `FLOAT`/`DOUBLE` values in Parquet. It does not reduce the size of the
 data but *can* improve the compression ratio and speed when a heavyweight
 compressor is used afterwards.
@@ -63,7 +63,7 @@ Heavyweight compression effectively decreases the data size, but at the cost of:
 ALP is designed to solve all three of these problems for common data patterns, while achieving a similar compression ratio to heavyweight compression.
 
 Parquet applies an encoding first, then an optional compression codec as a
-separate step. The charts below compare the `PLAIN` and [`BYTE_STREAM_SPLIT`]
+separate step. The charts below compare the `PLAIN` and `BYTE_STREAM_SPLIT`
 encodings followed by `ZSTD` compression with the `ALP` encoding and no
 additional compression. Users can expect ALP to decode `10x` faster and
 retrieve individual values thousands of times faster, with a slightly lower
@@ -109,11 +109,10 @@ ALP takes advantage of a common pattern: many values stored as `FLOAT` or
 prices or measurements. This section explains the intuition behind ALP and
 then covers the encoding and decoding pipelines in more detail.
 
-ALP encodes floating-point values in batches called "vectors" of between `8`
-and `32K` values (e.g., `1024`). Each value in a vector is encoded as an
-integer, and the vector as a whole stores two more integers shared by all its
+ALP encodes floating-point values in batches called “vectors,” ranging in size from 8 to 32K values (e.g., 1024). Each value in a vector is encoded as an
+integer, and the vector stores two integer parameters shared by all its
 values: an "exponent" (`e`) and a "factor" (`f`). Each vector can use a
-different exponent and factor, and how they are chosen is explained below. The
+different exponent and factor. How they are chosen is explained below. The
 original value is recovered by computing
 
 <pre>
