@@ -293,7 +293,19 @@ reader and writer compatibility. See the
 &lt;h2 id="feature-compatibility"&gt;Feature compatibility&lt;/h2&gt;
 &lt;p&gt;The Parquet format spec &lt;a href="https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#compatibility-and-feature-enablement"&gt;classifies changes&lt;/a&gt; by their effect on reader and
 writer compatibility. Changes differ in their &lt;em&gt;forward&lt;/em&gt; compatibility — whether
-an older reader can read files that use a newer feature.&lt;/p&gt;</description></item><item><title>2.14.0</title><link>/blog/2026/09/11/2.14.0/</link><pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/2026/09/11/2.14.0/</guid><description>&lt;p&gt;The release contains:&lt;/p&gt;
+an older reader can read files that use a newer feature.&lt;/p&gt;</description></item><item><title>ALP: Adaptive Lossless Floating-Point Encoding in Apache Parquet</title><link>/blog/2026/09/22/alp-adaptive-lossless-floating-point-encoding-in-apache-parquet/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/2026/09/22/alp-adaptive-lossless-floating-point-encoding-in-apache-parquet/</guid><description>&lt;p&gt;Apache Parquet has added the &lt;a href="https://parquet.apache.org/docs/file-format/data-pages/alpencoding/"&gt;Adaptive Lossless floating-Point (ALP) Encoding&lt;/a&gt; &amp;ndash; a new lightweight floating-point encoding with compression ratios similar to &lt;a href="https://github.com/facebook/zstd"&gt;&lt;code&gt;zstd&lt;/code&gt;&lt;/a&gt;, much faster decompression, random-access support, and GPU- and SIMD-friendly decoding.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;ALP works best for decimal values stored as floating-point types (32-bit &lt;code&gt;FLOAT&lt;/code&gt; and 64-bit &lt;code&gt;DOUBLE&lt;/code&gt;), such as&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Monetary values (exchange rates, public funds, stocks, prices, etc.) &amp;ndash; e.g., &lt;code&gt;1.2345&lt;/code&gt; or &lt;code&gt;22.03&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Geographic coordinates (longitude/latitude) &amp;ndash; e.g., &lt;code&gt;42.3584&lt;/code&gt;, &lt;code&gt;-71.0598&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Scientific measurements (temperature, pressure, speed, degrees, etc.) &amp;ndash; e.g., &lt;code&gt;-273.15&lt;/code&gt;, &lt;code&gt;9.81&lt;/code&gt;, &lt;code&gt;3.14159&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ALP is not suitable for data that uses a wide range of exponents or a large
+number of significant digits, such as vector embeddings, which typically span
+the full floating-point range. Such data can continue to use existing Parquet
+features such as &lt;code&gt;PLAIN&lt;/code&gt; or &lt;a href="https://parquet.apache.org/docs/file-format/data-pages/encodings/#BYTESTREAMSPLIT"&gt;&lt;code&gt;BYTE_STREAM_SPLIT&lt;/code&gt;&lt;/a&gt; encoding followed by
+general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</description></item><item><title>2.14.0</title><link>/blog/2026/09/11/2.14.0/</link><pubDate>Fri, 11 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/2026/09/11/2.14.0/</guid><description>&lt;p&gt;The release contains:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Chronological ordering of INT96 timestamps (#&lt;a href="https://github.com/apache/parquet-format/pull/584"&gt;584&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;The FILE logical type (&lt;a href="https://github.com/apache/parquet-format/pull/585"&gt;#585&lt;/a&gt;) with the FILE self-reference follow-up (&lt;a href="https://github.com/apache/parquet-format/pull/603"&gt;#603&lt;/a&gt;)&lt;/li&gt;
