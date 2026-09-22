@@ -1,6 +1,6 @@
 ---
 title: "ALP: Adaptive Lossless Floating-Point Encoding in Apache Parquet"
-date: 2026-09-18
+date: 2026-09-22
 description: "A technical overview of ALP's design, performance, and adoption across the Apache Parquet ecosystem."
 author: "[Kosta Tarasov](https://github.com/sdf-jkl), [Andrew Lamb](https://github.com/alamb), [Prateek Gaur](https://github.com/prtkgaur)"
 categories: ["features"]
