@@ -43,10 +43,10 @@ pandas [infer `float64` for decimal-looking values], and NumPy has [no decimal d
 
 Encoding floating-point data is a complicated engineering problem due to the
 nature of floating-point values. They do not exactly represent most real
-values. This leads to rounding errors that prevent using existing lightweight
-encodings like Delta and Frame of Reference (FOR).
+numbers. This leads to rounding errors that prevent the use of existing lightweight
+encodings like Delta and Frame of Reference.
 
-Prior to ALP, [`BYTE_STREAM_SPLIT`]  was the only non-dictionary alternative to
+Prior to ALP, [`BYTE_STREAM_SPLIT`] was the only non-dictionary alternative to
 `PLAIN` for `FLOAT`/`DOUBLE` values in Parquet. It does not reduce the size of the
 data but *can* improve the compression ratio and speed when a heavyweight
 compressor is used afterwards.
@@ -88,7 +88,7 @@ compression ratio and slightly faster compression.[^benchmark]
     <img src="/blog/alp/avg_random_access.png" alt="Average random-access benchmark" class="img-fluid">
   </div>
   <div>
-    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random-access speed of <code>PLAIN+ZSTD</code> and <code>BYTE_STREAM_SPLIT+ZSTD</code> (each encoding followed by per-page <code>ZSTD</code> compression), and <code>ALP</code> (no compression codec), across <code>30</code> datasets on three machines. Higher is better.
+    <b>Figure 1</b>: Average compression ratio, compression speed, decompression speed, and random-access speed of <code>PLAIN+ZSTD</code> and <code>BYTE_STREAM_SPLIT+ZSTD</code> (each encoding followed by per-page <code>ZSTD</code> compression), and <code>ALP</code> (no compression codec), across <code>30</code> datasets on <code>3</code> machines. Higher is better.
      Random-access speed is measured by decoding <code>100</code> deterministic, uniformly distributed rows from <code>city_temperature_f</code>.
   </div>
   <p/>
@@ -109,7 +109,7 @@ ALP takes advantage of a common pattern: many values stored as `FLOAT` or
 prices or measurements. This section explains the intuition behind ALP and
 then covers the encoding and decoding pipelines in more detail.
 
-ALP encodes floating-point values in batches called “vectors,” ranging in size from 8 to 32K values (e.g., 1024). Each value in a vector is encoded as an
+ALP encodes floating-point values in batches called "vectors", ranging in size from `8` to `32K` values (e.g., `1024`). Each value in a vector is encoded as an
 integer, and the vector stores two integer parameters shared by all its
 values: an "exponent" (`e`) and a "factor" (`f`). Each vector can use a
 different exponent and factor. How they are chosen is explained below. The
@@ -126,7 +126,7 @@ that happens, ALP stores the original full-precision value separately as an
 `±Infinity`, and `-0.0` are also stored as exceptions.
 
 Within each vector, the encoded values are stored by subtracting the lowest
-value (frame of reference) and then bit-packing to a fixed width. Exceptions
+value (the frame of reference) and then bit-packing to a fixed width. Exceptions
 are stored directly after the encoded array. The layout of each ALP vector is
 shown below.
 
@@ -263,7 +263,7 @@ ALP was first published in a [SIGMOD 2024 paper] by Azim
 Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Group
 at CWI]. The [Vortex] and [Lance] formats adopted ALP early, demonstrating its
 benefits in industrial applications. In late 2025, the community began the standardization process. Along with the
-authors of this blog, many community members contributed, including Divjot Arora,
+authors of this blog post, many community members contributed, including Divjot Arora,
 Arnav Balyan, Devan Benz, Ryan Blue, Alkis Evlogimenos, Vinoo Ganesh, Adrian
 Garcia Badaracco, Curt Hagenlocher, Amogh Jahagirdar, Micah Kornfield, Robert
 Kruszewski, Julien Le Dem, Kevin Liu, Steve Loughran, Ismaël Mejía, mwish,
@@ -295,7 +295,7 @@ Google Doc Spec (including all comments): https://docs.google.com/document/d/1Pl
 ## Ecosystem Adoption
 
 The encoding was released as part of [parquet-format 2.14.0] in September 2026.
-ALP is already supported in at least one major open source implementation (the
+ALP is already supported in at least one major open-source implementation (the
 [`parquet` 60.0.0][arrow-rs-60] Rust crate), and we expect other Parquet
 implementations to add support in the coming months. Please check the
 [Implementation Status] page for the current state of support.
