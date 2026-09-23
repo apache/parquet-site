@@ -264,11 +264,11 @@ Afroozeh, Leonardo Kuffó, and Peter Boncz from the [Database Architectures Grou
 at CWI]. The [Vortex] and [Lance] formats adopted ALP early, demonstrating its
 benefits in industrial applications. In late 2025, the community began the standardization process. Along with the
 authors of this blog post, many community members contributed, including Divjot Arora,
-Arnav Balyan, Devan Benz, Ryan Blue, Alkis Evlogimenos, Vinoo Ganesh, Adrian
+Arnav Balyan, Devan Benz, Ryan Blue, Alkis Evlogimenos, Xuwei Fu, Vinoo Ganesh, Adrian
 Garcia Badaracco, Curt Hagenlocher, Amogh Jahagirdar, Micah Kornfield, Robert
-Kruszewski, Julien Le Dem, Kevin Liu, Steve Loughran, Ismaël Mejía, mwish,
-Antoine Pitrou, Adam Reeve, Ed Seidl, Russell Spitzer, Matt Topol, Jeffrey Vo,
-Daniel Weeks, Gang Wu, and Zehua Zou.
+Kruszewski, Julien Le Dem, Kevin Liu, Steve Loughran, Ismaël Mejía, Antoine Pitrou,
+Adam Reeve, Ed Seidl, Russell Spitzer, Matt Topol, Jeffrey Vo, Daniel Weeks, 
+Gang Wu, and Zehua Zou.
 
 <!-- The list of people came from
 Mailing list threads
