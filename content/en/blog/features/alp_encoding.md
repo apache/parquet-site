@@ -266,7 +266,7 @@ benefits in industrial applications. In late 2025, the community began the stand
 authors of this blog post, many community members contributed, including Divjot Arora,
 Arnav Balyan, Devan Benz, Ryan Blue, Alkis Evlogimenos, Vinoo Ganesh, Adrian
 Garcia Badaracco, Curt Hagenlocher, Amogh Jahagirdar, Micah Kornfield, Robert
-Kruszewski, Julien Le Dem, Kevin Liu, Steve Loughran, Ismaël Mejía, mwish,
+Kruszewski, Julien Le Dem, Kevin Liu, Steve Loughran, Ismaël Mejía, Xuwei Fu,
 Antoine Pitrou, Adam Reeve, Ed Seidl, Russell Spitzer, Matt Topol, Jeffrey Vo,
 Daniel Weeks, Gang Wu, and Zehua Zou.
 
