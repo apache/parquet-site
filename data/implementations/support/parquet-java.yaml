@@ -1,5 +1,5 @@
 engine_id: parquet-java
-last_updated: "2025-12-09"
+last_updated: "2026-10-06"
 support:
   physical-boolean:
     status: full
@@ -138,4 +138,10 @@ support:
   api-column-projection:
     status: full
   api-page-pruning-stats:
+    status: full
+  api-rowgroup-pruning-dictionary:
+    status: full
+  api-payload-page-pruning-row-mask:
+    status: full
+  api-sparse-payload-page-io:
     status: full

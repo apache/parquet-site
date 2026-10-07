@@ -114,20 +114,32 @@
   name: cudf
   display_name: cuDF
   language: C++
-  repo_url: https://github.com/rapidsai/cudf
+  repo_url: https://github.com/NVIDIA/cudf
   docs_url: null
   versions:
     default: "25.12.00"
     releases:
+      "24.06.00":
+        release_date: "2024-06-05"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v24.06.00"
       "25.04.00":
         release_date: "2025-04-09"
-        release_notes_url: "https://github.com/rapidsai/cudf/releases/tag/v25.04.00"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v25.04.00"
       "25.06.00":
         release_date: "2025-06-05"
-        release_notes_url: "https://github.com/rapidsai/cudf/releases/tag/v25.06.00"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v25.06.00"
+      "25.08.00":
+        release_date: "2025-08-06"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v25.08.00"
+      "25.10.00":
+        release_date: "2025-10-08"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v25.10.00"
       "25.12.00":
         release_date: "2025-12-10"
-        release_notes_url: "https://github.com/rapidsai/cudf/releases/tag/v25.12.00"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v25.12.00"
+      "26.06.00":
+        release_date: "2026-06-03"
+        release_notes_url: "https://github.com/NVIDIA/cudf/releases/tag/v26.06.00"
 
 - id: hyparquet
   name: hyparquet

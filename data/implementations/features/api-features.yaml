@@ -14,8 +14,29 @@ features:
   - id: api-rowgroup-pruning-bloom
     display_name: Row group pruning using bloom filter
 
+  - id: api-rowgroup-pruning-dictionary
+    display_name: Row group pruning using dictionary pages
+
   - id: api-column-projection
     display_name: Reading select columns only
 
   - id: api-page-pruning-stats
     display_name: Page pruning using statistics
+
+  - id: api-payload-page-pruning-row-mask
+    display_name: Page pruning using a boolean mask
+    spec_url: https://parquet.apache.org/docs/file-format/pageindex/
+    note: "Decompress and decode only the pages with at least one selected row from a supplied or predicate-generated boolean mask."
+
+  - id: api-sparse-payload-page-io
+    display_name: Page pruning with selective I/O
+    spec_url: https://parquet.apache.org/docs/file-format/pageindex/
+    note: "Fetch, decompress and decode only the required dictionary and data pages"
+
+  - id: api-late-materialization
+    display_name: Predicate-first late materialization
+    spec_url: https://arrow.apache.org/blog/2025/12/11/parquet-late-materialization-deep-dive/
+
+  - id: api-separate-io-decoding
+    display_name: Caller-controlled push decoding
+    spec_url: https://arrow.apache.org/rust/parquet/arrow/push_decoder/index.html

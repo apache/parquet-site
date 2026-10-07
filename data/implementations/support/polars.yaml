@@ -1,5 +1,5 @@
 engine_id: polars
-last_updated: "2026-01-30"
+last_updated: "2026-10-06"
 support:
   physical-boolean:
     status: full
@@ -129,3 +129,9 @@ support:
     status: full
   api-page-pruning-stats:
     status: none
+  api-late-materialization:
+    status: full
+    note: "Supported with `parallel=\"prefiltered\"`."
+  api-payload-page-pruning-row-mask:
+    status: full
+    note: "Supported with `parallel=\"prefiltered\"`."

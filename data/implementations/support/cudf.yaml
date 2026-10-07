@@ -1,5 +1,5 @@
 engine_id: cudf
-last_updated: "2025-12-09"
+last_updated: "2026-10-06"
 support:
   physical-boolean:
     status: full
@@ -20,9 +20,11 @@ support:
   logical-string:
     status: full
   logical-enum:
-    status: none
+    status: read
+    note: "Read back as a plain string; the ENUM annotation is not surfaced."
   logical-uuid:
-    status: none
+    status: read
+    note: "Only supported to use its annotated physical type"
   logical-int-types:
     status: full
   logical-decimal-int32:
@@ -34,7 +36,8 @@ support:
   logical-decimal-fixed-len-byte-array:
     status: full
   logical-float16:
-    status: full
+    status: read
+    note: "Only supported to use its annotated physical type"
   logical-date:
     status: full
   logical-time-int32:
@@ -46,11 +49,14 @@ support:
   logical-interval:
     status: none
   logical-json:
-    status: none
+    status: read
+    note: "Read back as a plain string; the JSON annotation is not surfaced."
   logical-bson:
     status: none
   logical-variant:
-    status: none
+    status: read
+    since_version_read: "26.06.00"
+    note: "Read as metadata/value byte lists with shredded typed children exposed; experimental extraction supports unshredded values only."
   logical-geometry:
     status: none
   logical-geography:
@@ -84,7 +90,9 @@ support:
   encoding-alp:
     status: none
   encoding-byte-stream-split-extended:
-    status: unknown
+    status: full
+    since_version_read: "24.06.00"
+    since_version_write: "24.06.00"
   compression-uncompressed:
     status: full
   compression-brotli:
@@ -131,4 +139,25 @@ support:
   api-column-projection:
     status: full
   api-page-pruning-stats:
-    status: none
+    status: full
+    since_version_read: "25.08.00"
+    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+  api-late-materialization:
+    status: full
+    since_version_read: "25.08.00"
+    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+  api-rowgroup-pruning-dictionary:
+    status: full
+    since_version_read: "25.12.00"
+    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+  api-payload-page-pruning-row-mask:
+    status: full
+    since_version_read: "25.08.00"
+    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+  api-sparse-payload-page-io:
+    status: full
+    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+  api-separate-io-decoding:
+    status: full
+    since_version_read: "25.08.00"
+    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."

@@ -1,5 +1,5 @@
 engine_id: duckdb
-last_updated: "2025-12-09"
+last_updated: "2026-10-06"
 support:
   physical-boolean:
     status: full
@@ -140,3 +140,5 @@ support:
     status: full
   api-page-pruning-stats:
     status: none
+  api-late-materialization:
+    status: full
