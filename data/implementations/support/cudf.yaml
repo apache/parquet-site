@@ -141,23 +141,23 @@ support:
   api-page-pruning-stats:
     status: full
     since_version_read: "25.08.00"
-    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+    note: "Provided by the experimental [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) ([multifile version](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental21hybrid_scan_multifileE))."
   api-late-materialization:
     status: full
     since_version_read: "25.08.00"
-    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+    note: "Provided by the experimental [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) ([multifile version](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental21hybrid_scan_multifileE))."
   api-rowgroup-pruning-dictionary:
     status: full
     since_version_read: "25.12.00"
-    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+    note: "Provided by the experimental [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) ([multifile version](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental21hybrid_scan_multifileE))."
   api-payload-page-pruning-row-mask:
     status: full
     since_version_read: "25.08.00"
-    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+    note: "Provided by the experimental [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) ([multifile version](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental21hybrid_scan_multifileE))."
   api-sparse-payload-page-io:
     status: full
-    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+    note: "Provided by the experimental [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) ([multifile version](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental21hybrid_scan_multifileE))."
   api-separate-io-decoding:
     status: full
     since_version_read: "25.08.00"
-    note: "Provided by the experimental [Hybrid Scan APIs](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan.hpp) ([multifile version](https://github.com/NVIDIA/cudf/blob/main/cpp/include/cudf/io/experimental/hybrid_scan_multifile.hpp))."
+    note: "Provided by the experimental [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) ([multifile version](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental21hybrid_scan_multifileE))."

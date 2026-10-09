@@ -16,6 +16,7 @@ features:
 
   - id: api-rowgroup-pruning-dictionary
     display_name: Row group pruning using dictionary pages
+    note: "Skip a row group when a column dictionary proves the predicate cannot match."
 
   - id: api-column-projection
     display_name: Reading select columns only
@@ -24,19 +25,17 @@ features:
     display_name: Page pruning using statistics
 
   - id: api-payload-page-pruning-row-mask
-    display_name: Page pruning using a boolean mask
-    spec_url: https://parquet.apache.org/docs/file-format/pageindex/
-    note: "Decompress and decode only the pages with at least one selected row from a supplied or predicate-generated boolean mask."
+    display_name: Page pruning using row survival mask
+    note: "Decompress and decode only pages containing at least one surviving row. The row survival mask may originate from predicate evaluation or be caller-supplied, e.g. derived from Iceberg/Delta deletion vectors."
 
   - id: api-sparse-payload-page-io
-    display_name: Page pruning with selective I/O
-    spec_url: https://parquet.apache.org/docs/file-format/pageindex/
-    note: "Fetch, decompress and decode only the required dictionary and data pages"
+    display_name: Selective page reads
+    note: "Fetch, decompress and decode only the required pages determined by mechanisms in [(6)](/docs/file-format/implementationstatus/#note-api-features-5). Requires an [OffsetIndex](https://parquet.apache.org/docs/file-format/pageindex/) for selected column chunks."
 
   - id: api-late-materialization
-    display_name: Predicate-first late materialization
-    spec_url: https://arrow.apache.org/blog/2025/12/11/parquet-late-materialization-deep-dive/
+    display_name: Late Materialization
+    note: "Evaluate predicate columns first, then use the resulting row mask to skip unneeded payload pages and materialize only surviving rows. See [Arrow blog](https://arrow.apache.org/blog/2025/12/11/parquet-late-materialization-deep-dive/) for details."
 
   - id: api-separate-io-decoding
-    display_name: Caller-controlled push decoding
-    spec_url: https://arrow.apache.org/rust/parquet/arrow/push_decoder/index.html
+    display_name: Caller-driven parquet scan
+    note: "Advanced APIs to let callers prune row groups and pages, and schedule I/O and compute work (single-pass or [late materialization](/docs/file-format/implementationstatus/#note-api-features-8)) using the fetched buffers. See [cuDF Hybrid Scan APIs](https://docs.nvidia.com/cudf/latest/libcudf/api_docs/io_readers/#_CPPv4N4cudf2io7parquet12experimental18hybrid_scan_readerE) and [Arrow push decoder](https://arrow.apache.org/rust/parquet/arrow/push_decoder/struct.ParquetPushDecoder.html) for details."
