@@ -110,6 +110,25 @@
         release_date: "2026-09-15"
         release_notes_url: "https://github.com/apache/arrow-rs/releases/tag/60.0.0"
 
+- id: clickhouse
+  name: ClickHouse
+  display_name: ClickHouse
+  language: C++
+  repo_url: https://github.com/ClickHouse/ClickHouse/tree/master/src/Processors/Formats/Impl/Parquet
+  docs_url: https://clickhouse.com/docs/interfaces/formats/Parquet
+  versions:
+    default: "26.9"
+    releases:
+      "26.5":
+        release_date: "2026-05-21"
+        release_notes_url: "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.5.1.882-stable"
+      "26.8":
+        release_date: "2026-08-30"
+        release_notes_url: "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.8.1.2041-lts"
+      "26.9":
+        release_date: "2026-09-21"
+        release_notes_url: "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.9.1.1629-stable"
+
 - id: cudf
   name: cudf
   display_name: cuDF

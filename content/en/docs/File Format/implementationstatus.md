@@ -23,6 +23,7 @@ The value in each box means:
 * [parquet-java](https://github.com/apache/parquet-java) (Java)
 * [arrow-go](https://github.com/apache/arrow-go/tree/main/parquet) (Go)
 * [arrow-rs](https://github.com/apache/arrow-rs/blob/main/parquet/README.md) (Rust)
+* [ClickHouse](https://github.com/ClickHouse/ClickHouse/tree/master/src/Processors/Formats/Impl/Parquet) (C++)
 * [cudf](https://github.com/rapidsai/cudf) (cuDF C++)
 * [hyparquet](https://github.com/hyparam/hyparquet) (JavaScript)
 * [duckdb](https://github.com/duckdb/duckdb) (C++)
