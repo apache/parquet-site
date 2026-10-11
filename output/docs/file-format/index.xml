@@ -83,6 +83,7 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; (Java)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/arrow-go/tree/main/parquet"&gt;arrow-go&lt;/a&gt; (Go)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/arrow-rs/blob/main/parquet/README.md"&gt;arrow-rs&lt;/a&gt; (Rust)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ClickHouse/ClickHouse/tree/master/src/Processors/Formats/Impl/Parquet"&gt;ClickHouse&lt;/a&gt; (C++)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/rapidsai/cudf"&gt;cudf&lt;/a&gt; (cuDF C++)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/hyparam/hyparquet"&gt;hyparquet&lt;/a&gt; (JavaScript)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/duckdb/duckdb"&gt;duckdb&lt;/a&gt; (C++)&lt;/li&gt;
