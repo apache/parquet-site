@@ -1,5 +1,5 @@
 engine_id: arrow-rs
-last_updated: "2025-12-09"
+last_updated: "2026-10-06"
 support:
   physical-boolean:
     status: full
@@ -151,4 +151,12 @@ support:
   api-column-projection:
     status: full
   api-page-pruning-stats:
+    status: full
+  api-late-materialization:
+    status: full
+  api-payload-page-pruning-row-mask:
+    status: full
+  api-sparse-payload-page-io:
+    status: full
+  api-separate-io-decoding:
     status: full

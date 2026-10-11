@@ -91,12 +91,11 @@
               {{- end -}}
 
               {{- if .note -}}
-               {{- $present := false }}
-               {{- $noteCounter := 0 -}}
+               {{- $noteCounter := len $noteMap -}}
                {{- range $noteRowIndex, $noteRow :=  $noteMap -}}
                    {{- $noteStr := $feature.note -}}
-                   {{- if ne $noteStr (index $noteRow 1)  -}}
-                     {{- $noteCounter = add $noteCounter 1 -}}
+                   {{- if eq $noteStr (index $noteRow 1) -}}
+                     {{- $noteCounter = $noteRowIndex -}}
                    {{- end -}}
                {{- end -}}
                {{- if eq $noteCounter (len $noteMap)}}
@@ -127,12 +126,12 @@
                   {{- $status = $support.status -}}
                   {{- if $support.note -}}
                      {{- $newNote = true -}}
-                     {{- $present := false }}
+                     {{- $noteCounter = len $noteMap -}}
                      {{- $currentSupportNote := $support.note -}}
                      {{- range $noteRowIndex, $noteRow :=  $noteMap -}}
                        {{- $noteStr := $currentSupportNote -}}
-                       {{- if ne $noteStr (index $noteRow 1)  -}}
-                         {{- $noteCounter = add $noteCounter 1 -}}
+                       {{- if eq $noteStr (index $noteRow 1) -}}
+                         {{- $noteCounter = $noteRowIndex -}}
                        {{- end -}}
                      {{- end -}}
                      {{- if eq $noteCounter (len $noteMap)}}
@@ -255,7 +254,7 @@
     {{- if gt (len $noteMap) 0 -}}
       <b>Notes:</b>
       {{- range $noteRowIndex, $noteRow := $noteMap }}
-        <div id="note-{{ index $noteRow 2}}-{{index $noteRow 0 }}">({{ add $noteRowIndex 1}})&nbsp{{ index $noteRow 1 }}</div>
+        <div id="note-{{ index $noteRow 2}}-{{index $noteRow 0 }}">({{ add $noteRowIndex 1}})&nbsp{{ index $noteRow 1 | markdownify }}</div>
       {{- end -}}
     {{- end -}}
   {{- end -}}
