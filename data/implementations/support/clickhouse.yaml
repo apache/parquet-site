@@ -1,0 +1,148 @@
+engine_id: clickhouse
+last_updated: "2026-10-11"
+support:
+  physical-boolean:
+    status: full
+  physical-int32:
+    status: full
+  physical-int64:
+    status: full
+  physical-int96:
+    status: read
+    note: Read as DateTime64(9); INT96 is never written.
+  physical-float:
+    status: full
+  physical-double:
+    status: full
+  physical-byte-array:
+    status: full
+  physical-fixed-len-byte-array:
+    status: full
+  logical-string:
+    status: full
+  logical-enum:
+    status: full
+    note: Read as String; ClickHouse Enum8/Enum16 are written as ENUM.
+  logical-uuid:
+    status: full
+  logical-int-types:
+    status: full
+  logical-decimal-int32:
+    status: read
+    note: Decimals are always written as FIXED_LEN_BYTE_ARRAY.
+  logical-decimal-int64:
+    status: read
+    note: Decimals are always written as FIXED_LEN_BYTE_ARRAY.
+  logical-decimal-byte-array:
+    status: read
+    note: Decimals are always written as FIXED_LEN_BYTE_ARRAY.
+  logical-decimal-fixed-len-byte-array:
+    status: full
+    note: Precision up to 76 digits.
+  logical-float16:
+    status: read
+    note: Read as Float32.
+  logical-date:
+    status: full
+  logical-time-int32:
+    status: read
+    note: Read as DateTime64, or as Time64 when requested explicitly; ClickHouse Time/Time64 cannot be written.
+  logical-time-int64:
+    status: read
+    note: Read as DateTime64, or as Time64 when requested explicitly; ClickHouse Time/Time64 cannot be written.
+  logical-timestamp-int64:
+    status: full
+    note: Milliseconds, microseconds and nanoseconds.
+  logical-interval:
+    status: none
+    note: Read as raw FixedString(12) bytes.
+  logical-json:
+    status: full
+    note: Read as the JSON data type by default, or as String.
+  logical-bson:
+    status: read
+    note: Read as raw bytes in a String column.
+  logical-variant:
+    status: none
+  logical-geometry:
+    status: none
+    note: GeoParquet ("geo" key-value metadata) is supported instead; WKB and WKT are read, WKB is written.
+  logical-geography:
+    status: none
+    note: GeoParquet ("geo" key-value metadata) is supported instead; WKB and WKT are read, WKB is written.
+  logical-file:
+    status: none
+  logical-list:
+    status: full
+  logical-map:
+    status: full
+  logical-unknown:
+    status: read
+  encoding-plain:
+    status: full
+  encoding-plain-dictionary:
+    status: read
+  encoding-rle-dictionary:
+    status: full
+  encoding-rle:
+    status: full
+    note: Written only for repetition and definition levels; RLE-encoded BOOLEAN values are read.
+  encoding-bit-packed:
+    status: none
+  encoding-delta-binary-packed:
+    status: read
+  encoding-delta-length-byte-array:
+    status: read
+  encoding-delta-byte-array:
+    status: read
+  encoding-byte-stream-split:
+    status: read
+  encoding-alp:
+    status: none
+  encoding-byte-stream-split-extended:
+    status: read
+  compression-uncompressed:
+    status: full
+  compression-brotli:
+    status: full
+  compression-gzip:
+    status: full
+  compression-lz4-deprecated:
+    status: read
+    note: Both Hadoop-framed and raw LZ4 blocks are read; LZ4_RAW is written instead.
+  compression-lz4-raw:
+    status: full
+  compression-lzo:
+    status: none
+  compression-snappy:
+    status: full
+  compression-zstd:
+    status: full
+  format-bloom-filters:
+    status: full
+  format-bloom-filter-length:
+    status: full
+  format-stats-min-max:
+    status: full
+  format-page-index:
+    status: full
+  format-page-crc32:
+    status: full
+  format-modular-encryption:
+    status: none
+  format-size-statistics:
+    status: full
+  format-data-page-v2:
+    status: read
+  api-parquet-summary-file:
+    status: none
+  api-sorting-columns:
+    status: none
+  api-rowgroup-pruning-stats:
+    status: full
+  api-rowgroup-pruning-bloom:
+    status: full
+  api-column-projection:
+    status: full
+  api-page-pruning-stats:
+    status: full

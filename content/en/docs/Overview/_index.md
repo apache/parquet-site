@@ -43,6 +43,7 @@ Here is a non-exhaustive list of open source Parquet implementations:
 * [Parquet C++, a subproject of Arrow C++](https://github.com/apache/arrow/tree/main/cpp/src/parquet) ([documentation](https://arrow.apache.org/docs/cpp/parquet.html))
 * [Parquet Go, a subproject of Arrow Go](https://github.com/apache/arrow-go/tree/main/parquet) ([documentation](https://github.com/apache/arrow-go/tree/main/parquet))
 * [Parquet Rust, a subproject of Arrow Rust](https://github.com/apache/arrow-rs/blob/main/parquet/README.md)
+* [ClickHouse](https://github.com/ClickHouse/ClickHouse) ([documentation](https://clickhouse.com/docs/interfaces/formats/Parquet))
 * [cuDF](https://github.com/rapidsai/cudf)
 * [Apache Impala](https://github.com/apache/impala)
 * [DuckDB](https://github.com/duckdb/duckdb)
