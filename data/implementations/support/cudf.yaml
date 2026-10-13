@@ -1,5 +1,5 @@
 engine_id: cudf
-last_updated: "2026-10-06"
+last_updated: "2026-10-12"
 support:
   physical-boolean:
     status: full
@@ -98,7 +98,8 @@ support:
   compression-brotli:
     status: read
   compression-gzip:
-    status: read
+    status: full
+    since_version_write: "26.10.00"
   compression-lz4-deprecated:
     status: none
   compression-lz4-raw:
