@@ -1,5 +1,5 @@
 engine_id: hyparquet
-last_updated: "2026-05-27"
+last_updated: "2026-10-28"
 support:
   physical-boolean:
     status: full
@@ -59,7 +59,8 @@ support:
     status: full
     since_version_read: "1.19.0"
   logical-file:
-    status: none
+    status: full
+    since_version_read: "1.32.0"
   logical-list:
     status: full
   logical-map:
@@ -85,7 +86,8 @@ support:
   encoding-byte-stream-split:
     status: full
   encoding-alp:
-    status: none
+    status: full
+    since_version_read: "1.32.0"
   encoding-byte-stream-split-extended:
     status: full
   compression-uncompressed:
