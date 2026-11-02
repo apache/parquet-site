@@ -1,0 +1,15 @@
+{{- $id := or .Attributes.id .Anchor -}}
+<h{{ .Level -}}
+  {{- range $key, $value := .Attributes -}}
+    {{ printf " %s=%q" $key (string $value) | safeHTMLAttr -}}
+  {{- end -}}
+>
+  {{- if $id -}}
+    <a class="td-heading-permalink" href="#{{ $id }}">
+      {{- .Text | safeHTML -}}
+      <i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"></i>
+    </a>
+  {{- else -}}
+    {{- .Text | safeHTML -}}
+  {{- end -}}
+</h{{ .Level }}>
