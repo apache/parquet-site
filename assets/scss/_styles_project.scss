@@ -1,6 +1,6 @@
-// Heading permalinks: heading markdown is rendered as-is; a sibling
-// fragment link (icon) is appended. The icon appears on heading hover
-// (always visible on touch / small screens).
+// Heading permalinks (custom, not Docsy's .td-heading-self-link "#").
+// Sibling FA icon after heading text; visible on hover, always on
+// touch / small screens. See layouts/_markup/render-heading.html.
 
 .td-content h1,
 .td-content h2,
