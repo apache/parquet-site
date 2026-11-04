@@ -1,5 +1,6 @@
-// Heading permalinks: the whole heading is the hit target; the link
-// icon appears on hover (always visible on touch / small screens).
+// Heading permalinks: heading markdown is rendered as-is; a sibling
+// fragment link (icon) is appended. The icon appears on heading hover
+// (always visible on touch / small screens).
 
 .td-content h1,
 .td-content h2,
@@ -9,7 +10,6 @@
 .td-content h6 {
   > .td-heading-permalink {
     color: inherit;
-    display: block;
     text-decoration: none;
 
     &:hover,
