@@ -6,7 +6,7 @@
 >
   {{- .Text | safeHTML -}}
   {{- if $id -}}
-    <a class="td-heading-permalink" href="#{{ $id }}" aria-label="Link to this heading">
+    <a class="td-heading-permalink" href="#{{ $id }}" aria-label="Link to {{ .PlainText }}">
       <i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"></i>
     </a>
   {{- end -}}
