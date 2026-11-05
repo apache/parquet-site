@@ -1,0 +1,23 @@
+{{/*
+  Heading permalinks with a Font Awesome link icon.
+
+  Docsy already ships a heading self-link (hover "#") via
+  {{ partial "td/render-heading.html" . }} — see
+  https://www.docsy.dev/docs/adding-content/navigation/#heading-self-links
+  This hook is used instead of that partial so we can use the link icon.
+  .Text stays outside the fragment <a> so headings that already contain
+  markdown links (for example a mailto) stay valid HTML.
+*/ -}}
+{{- $id := or .Attributes.id .Anchor -}}
+<h{{ .Level -}}
+  {{- range $key, $value := .Attributes -}}
+    {{ printf " %s=%q" $key (string $value) | safeHTMLAttr -}}
+  {{- end -}}
+>
+  {{- .Text | safeHTML -}}
+  {{- if $id -}}
+    <a class="td-heading-permalink" href="#{{ $id }}" aria-label="Link to {{ .PlainText }}">
+      <i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"></i>
+    </a>
+  {{- end -}}
+</h{{ .Level }}>
