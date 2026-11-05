@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;a class="td-heading-permalink" href="#binary-protocol-extensions" aria-label="Link to Binary Protocol Extensions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;The extension mechanism of the &lt;code&gt;binary&lt;/code&gt; Thrift field-id &lt;code&gt;32767&lt;/code&gt; has some desirable properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Existing readers will ignore these extensions without any modifications&lt;/li&gt;
@@ -12,24 +14,27 @@ This is left to implementers who MUST put enough unique state in their extension
 bytes for disambiguation. This can be relatively easily achieved by adding a
 &lt;a href="https://en.wikipedia.org/wiki/Universally%5C_unique%5C_identifier"&gt;UUID&lt;/a&gt; at the
 start or end of the extension bytes. The extension does not specify a
-disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;/h1&gt;
+disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;a class="td-heading-permalink" href="#parquet-compression-definitions" aria-label="Link to Parquet compression definitions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
-&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;h2 id="overview"&gt;Overview&lt;a class="td-heading-permalink" href="#overview" aria-label="Link to Overview"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Parquet allows the data block inside dictionary pages and data pages to
 be compressed for better space efficiency. The Parquet format supports
 several compression codecs covering different areas in the compression
 ratio / processing cost spectrum.&lt;/p&gt;
 &lt;p&gt;The detailed specifications of compression codecs are maintained externally
-by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;
-&lt;p&gt;For all compression codecs except the deprecated &lt;code&gt;LZ4&lt;/code&gt; codec, the raw data
-of a (data or dictionary) page is fed &lt;em&gt;as-is&lt;/em&gt; to the underlying compression
-library, without any additional framing or padding. The information required
-for precise allocation of compressed and decompressed buffers is written
-in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;/h1&gt;
+by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;a class="td-heading-permalink" href="#parquet-encoding-definitions" aria-label="Link to Parquet encoding definitions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
 &lt;p&gt;Unless otherwise stated in page or encoding documentation, any encoding can be
 used with any page type.&lt;/p&gt;
-&lt;h3 id="supported-encodings"&gt;Supported Encodings&lt;/h3&gt;
+&lt;h3 id="supported-encodings"&gt;Supported Encodings&lt;a class="td-heading-permalink" href="#supported-encodings" aria-label="Link to Supported Encodings"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;For details on current implementation status, see the &lt;a href="https://parquet.apache.org/docs/file-format/implementationstatus/#encodings"&gt;Implementation Status&lt;/a&gt; page.&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -82,7 +87,9 @@ used with any page type.&lt;/p&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id="deprecated-encodings"&gt;Deprecated Encodings&lt;/h3&gt;
+&lt;h3 id="deprecated-encodings"&gt;Deprecated Encodings&lt;a class="td-heading-permalink" href="#deprecated-encodings" aria-label="Link to Deprecated Encodings"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -97,12 +104,16 @@ used with any page type.&lt;/p&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;/h1&gt;
+&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;a class="td-heading-permalink" href="#parquet-modular-encryption" aria-label="Link to Parquet Modular Encryption"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
 mechanism that encrypts and authenticates the file data and metadata - while allowing
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
 and compression).&lt;/p&gt;
-&lt;h2 id="1-problem-statement"&gt;1 Problem Statement&lt;/h2&gt;
+&lt;h2 id="1-problem-statement"&gt;1 Problem Statement&lt;a class="td-heading-permalink" href="#1-problem-statement" aria-label="Link to 1 Problem Statement"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Existing data protection solutions (such as flat encryption of files, in-storage encryption,
 or use of an encrypting storage client) can be applied to Parquet files, but have various
 security or performance issues. An encryption mechanism, integrated in the Parquet format,
@@ -111,10 +122,14 @@ allows for an optimal combination of data security, processing speed and encrypt
  &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/auNAzC3AU18?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
  &lt;/div&gt;</description></item><item><title>Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-format"&gt;parquet-format&lt;/a&gt; project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;h1 id="alp-adaptive-lossless-floating-point-encoding"&gt;ALP (Adaptive Lossless floating-Point) Encoding&lt;/h1&gt;
+&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;h1 id="alp-adaptive-lossless-floating-point-encoding"&gt;ALP (Adaptive Lossless floating-Point) Encoding&lt;a class="td-heading-permalink" href="#alp-adaptive-lossless-floating-point-encoding" aria-label="Link to ALP (Adaptive Lossless floating-Point) Encoding"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This file contains the detailed specification of the
 &lt;a href="/docs/file-format/data-pages/encodings/#ALP"&gt;ALP encoding&lt;/a&gt; (&lt;code&gt;ALP = 10&lt;/code&gt;).&lt;/p&gt;
-&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;h2 id="overview"&gt;Overview&lt;a class="td-heading-permalink" href="#overview" aria-label="Link to Overview"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For each data page, ALP encoding consists of a header followed by an offset array
 and one or more encoded vectors (batches of values). Each vector contains up to
 &lt;code&gt;vector_size&lt;/code&gt; elements (default 1024).&lt;/p&gt;
@@ -138,7 +153,9 @@ Java resources can be build using &lt;code&gt;mvn package&lt;/code&gt;. The curr
 &lt;p&gt;Parquet is built from the ground up with complex nested data structures in mind, and uses the &lt;a href="https://github.com/julienledem/redelm/wiki/The-striping-and-assembly-algorithms-from-the-Dremel-paper"&gt;record shredding and assembly algorithm&lt;/a&gt; described in the Dremel paper. We believe this approach is superior to simple flattening of nested name spaces.&lt;/p&gt;
 &lt;p&gt;Parquet is built to support very efficient compression and encoding schemes. Multiple projects have demonstrated the performance impact of applying the right compression and encoding scheme to the data. Parquet allows compression schemes to be specified on a per-column level, and is future-proofed to allow adding more encodings as they are invented and implemented.&lt;/p&gt;</description></item><item><title>Security</title><link>/docs/asf/security/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/security/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/security/"&gt;Security&lt;/a&gt;&lt;/p&gt;</description></item><item><title>#CONF 2014</title><link>/docs/learning-resources/presentations/conf-2014-parquet-summit-twitter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/conf-2014-parquet-summit-twitter/</guid><description>&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"&gt;
  &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/Qfp6Uv1UrA0?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
- &lt;/div&gt;</description></item><item><title>Contributing to Parquet-Java</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>&lt;h2 id="pull-requests"&gt;Pull Requests&lt;/h2&gt;
+ &lt;/div&gt;</description></item><item><title>Contributing to Parquet-Java</title><link>/docs/contribution-guidelines/contributing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/contributing/</guid><description>&lt;h2 id="pull-requests"&gt;Pull Requests&lt;a class="td-heading-permalink" href="#pull-requests" aria-label="Link to Pull Requests"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We prefer to receive contributions in the form of GitHub pull requests. Please send pull requests against the &lt;a href="https://github.com/apache/parquet-java"&gt;github.com/apache/parquet-java&lt;/a&gt; repository. If you’ve previously forked Parquet from its old location, you will need to add a remote or update your origin remote to &lt;a href="https://github.com/apache/parquet-java.git"&gt;https://github.com/apache/parquet-java.git&lt;/a&gt;. Here are a few tips to get your contribution in:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Break your work into small, single-purpose patches if possible. It’s much harder to merge in a large change with a lot of disjoint features.&lt;/li&gt;
@@ -148,7 +165,9 @@ Java resources can be build using &lt;code&gt;mvn package&lt;/code&gt;. The curr
 &lt;li&gt;Add new unit tests for your code.&lt;/li&gt;
 &lt;li&gt;All Pull Requests are tested automatically on &lt;a href="https://github.com/apache/parquet-java/actions"&gt;GitHub Actions&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;If you’d like to report a bug but don’t have time to fix it, you can still &lt;a href="https://github.com/apache/parquet-java/issues"&gt;raise an issue&lt;/a&gt;, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org"&gt;dev@parquet.apache.org&lt;/a&gt;).&lt;/p&gt;</description></item><item><title>Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/foundation/thanks.html"&gt;Sponsor&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Donate</title><link>/docs/asf/donate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/donate/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/foundation/sponsorship.html"&gt;Donate&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Releasing Parquet-Java</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>&lt;h3 id="setup"&gt;Setup&lt;/h3&gt;
+&lt;p&gt;If you’d like to report a bug but don’t have time to fix it, you can still &lt;a href="https://github.com/apache/parquet-java/issues"&gt;raise an issue&lt;/a&gt;, or email the mailing list (&lt;a href="mailto:dev@parquet.apache.org"&gt;dev@parquet.apache.org&lt;/a&gt;).&lt;/p&gt;</description></item><item><title>Sponsor</title><link>/docs/asf/sponsor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/sponsor/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/foundation/thanks.html"&gt;Sponsor&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Donate</title><link>/docs/asf/donate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/asf/donate/</guid><description>&lt;p&gt;&lt;a href="https://www.apache.org/foundation/sponsorship.html"&gt;Donate&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Releasing Parquet-Java</title><link>/docs/contribution-guidelines/releasing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/releasing/</guid><description>&lt;h3 id="setup"&gt;Setup&lt;a class="td-heading-permalink" href="#setup" aria-label="Link to Setup"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;N.B. The mechanics of releasing parquet-format is the same (e.g. setting up keys, branching, votes, etc)&lt;/p&gt;
 &lt;p&gt;You will need:&lt;/p&gt;
 &lt;ul&gt;
@@ -158,8 +177,12 @@ Java resources can be build using &lt;code&gt;mvn package&lt;/code&gt;. The curr
 &lt;p&gt;Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;mvn deploy
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If you have problems, read the &lt;a href="https://www.apache.org/dev/publishing-maven-artifacts.html"&gt;publishing Maven artifacts documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id="release-process"&gt;Release process&lt;/h3&gt;
-&lt;p&gt;Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p&gt;</description></item><item><title>Strata 2013</title><link>/docs/learning-resources/presentations/strata-2013/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/strata-2013/</guid><description>&lt;p&gt;&lt;a href="https://www.slideshare.net/julienledem/parquet-stratany-hadoopworld2013"&gt;Slides&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>&lt;h3 id="row-group-size"&gt;Row Group Size&lt;/h3&gt;
+&lt;h3 id="release-process"&gt;Release process&lt;a class="td-heading-permalink" href="#release-process" aria-label="Link to Release process"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.&lt;/p&gt;</description></item><item><title>Strata 2013</title><link>/docs/learning-resources/presentations/strata-2013/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/learning-resources/presentations/strata-2013/</guid><description>&lt;p&gt;&lt;a href="https://www.slideshare.net/julienledem/parquet-stratany-hadoopworld2013"&gt;Slides&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>&lt;h3 id="row-group-size"&gt;Row Group Size&lt;a class="td-heading-permalink" href="#row-group-size" aria-label="Link to Row Group Size"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Larger row groups allow for larger column chunks which makes it
 possible to do larger sequential IO. Larger groups also require more buffering in
 the write path (or a two pass write). We recommend large row groups (512MB - 1GB).
@@ -171,41 +194,44 @@ per HDFS file.&lt;/p&gt;</description></item><item><title>Events</title><link>/d
 &lt;li&gt;File Version: The file metadata contains a version.&lt;/li&gt;
 &lt;li&gt;Encodings: Encodings are specified by enum and more can be added in the future.&lt;/li&gt;
 &lt;li&gt;Page types: Additional page types can be added and safely skipped.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Geospatial Type</title><link>/docs/file-format/types/geospatial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/geospatial/</guid><description>&lt;h1 id="geospatial-definitions"&gt;Geospatial Definitions&lt;/h1&gt;
+&lt;/ul&gt;</description></item><item><title>Geospatial Type</title><link>/docs/file-format/types/geospatial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/geospatial/</guid><description>&lt;h1 id="geospatial-definitions"&gt;Geospatial Definitions&lt;a class="td-heading-permalink" href="#geospatial-definitions" aria-label="Link to Geospatial Definitions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This document contains the specification of geospatial types and statistics.&lt;/p&gt;
-&lt;h1 id="background"&gt;Background&lt;/h1&gt;
+&lt;h1 id="background"&gt;Background&lt;a class="td-heading-permalink" href="#background" aria-label="Link to Background"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;The Geometry and Geography class hierarchy and its Well-Known Text (WKT) and
 Well-Known Binary (WKB) serializations (ISO variant supporting XY, XYZ, XYM,
 XYZM) are defined by &lt;a href="https://portal.ogc.org/files/?artifact_id=25355"&gt;OpenGIS Implementation Specification for Geographic
 information - Simple feature access - Part 1: Common architecture&lt;/a&gt;,
-from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC (Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The version of the OGC standard first used here is 1.2.1, but future versions
-may also be used if the WKB representation remains wire-compatible.&lt;/p&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;/h1&gt;
+from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC (Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;a class="td-heading-permalink" href="#parquet-logical-type-definitions" aria-label="Link to Parquet Logical Type Definitions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
 by specifying how the primitive types should be interpreted. This keeps the set
 of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodings. For
 example, strings are stored with the primitive type &lt;code&gt;BYTE_ARRAY&lt;/code&gt; with a &lt;code&gt;STRING&lt;/code&gt;
 annotation.&lt;/p&gt;
-&lt;p&gt;This file contains the specification for all logical types.&lt;/p&gt;
-&lt;h3 id="metadata"&gt;Metadata&lt;/h3&gt;
-&lt;p&gt;The parquet format&amp;rsquo;s &lt;code&gt;LogicalType&lt;/code&gt; stores the type annotation. The annotation
-may require additional metadata fields, as well as rules for those fields.&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
+&lt;p&gt;This file contains the specification for all logical types.&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
 &lt;p&gt;All thrift structures are serialized using the TCompactProtocol. The full
 definition of these structures is given in the Parquet
 &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift"&gt;Thrift definition&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="file-metadata"&gt;File metadata&lt;/h2&gt;
+&lt;h2 id="file-metadata"&gt;File metadata&lt;a class="td-heading-permalink" href="#file-metadata" aria-label="Link to File metadata"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the diagram below, file metadata is described by the &lt;code&gt;FileMetaData&lt;/code&gt;
 structure. This file metadata provides offset and size information useful
 when navigating the Parquet file.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;
-&lt;h2 id="page-header"&gt;Page header&lt;/h2&gt;
-&lt;p&gt;Page header metadata (&lt;code&gt;PageHeader&lt;/code&gt; and children in the diagram) is stored
-in-line with the page data, and is used in the reading and decoding of data.&lt;/p&gt;</description></item><item><title>Variant Shredding</title><link>/docs/file-format/types/variantshredding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantshredding/</guid><description>&lt;h1 id="variant-shredding"&gt;Variant Shredding&lt;/h1&gt;
+&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;</description></item><item><title>Variant Shredding</title><link>/docs/file-format/types/variantshredding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantshredding/</guid><description>&lt;h1 id="variant-shredding"&gt;Variant Shredding&lt;a class="td-heading-permalink" href="#variant-shredding" aria-label="Link to Variant Shredding"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;The Variant type is designed to store and process semi-structured data efficiently, even with heterogeneous values.
 Query engines encode each Variant value in a self-describing format, and store it as a group containing &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;metadata&lt;/code&gt; binary fields in Parquet.
 Since data is often partially homogeneous, it can be beneficial to extract certain fields into separate Parquet columns to further improve performance.
-This process is called &lt;strong&gt;shredding&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Shredding enables the use of Parquet&amp;rsquo;s columnar representation for more compact data encoding, column statistics for data skipping, and partial projections.&lt;/p&gt;</description></item><item><title>Variant Type</title><link>/docs/file-format/types/variantencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantencoding/</guid><description>&lt;h1 id="variant-binary-encoding"&gt;Variant Binary Encoding&lt;/h1&gt;
+This process is called &lt;strong&gt;shredding&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Variant Type</title><link>/docs/file-format/types/variantencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantencoding/</guid><description>&lt;h1 id="variant-binary-encoding"&gt;Variant Binary Encoding&lt;a class="td-heading-permalink" href="#variant-binary-encoding" aria-label="Link to Variant Binary Encoding"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;A Variant represents a type that contains one of:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Primitive: A type and corresponding value (e.g. INT, STRING)&lt;/li&gt;
@@ -220,8 +246,12 @@ path for the column are defined. Repetition levels specify at what repeated fiel
 in the path has the value repeated. The max definition and repetition levels can
 be computed from the schema (i.e. how much nesting there is). This defines the
 maximum number of bits required to store the levels (levels are defined for all
-values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;/h1&gt;
-&lt;h3 id="problem-statement"&gt;Problem statement&lt;/h3&gt;
+values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;a class="td-heading-permalink" href="#parquet-bloom-filter" aria-label="Link to Parquet Bloom Filter"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
+&lt;h3 id="problem-statement"&gt;Problem statement&lt;a class="td-heading-permalink" href="#problem-statement" aria-label="Link to Problem statement"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In their current format, column statistics and dictionaries can be used for predicate
 pushdown. Statistics include minimum and maximum value, which can be used to filter out
 values not in the range. Dictionaries are more specific, and readers can filter out values
@@ -246,13 +276,17 @@ the data within a page is corrupt, that page is lost. The file will be more
 resilient to corruption with smaller row groups.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
 are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
 would be encoded with run-length encoding (0, 1000 times) for the definition levels and
-nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet Page Index: Layout to Support Page Skipping&lt;/h1&gt;
+nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet Page Index: Layout to Support Page Skipping&lt;a class="td-heading-permalink" href="#parquet-page-index-layout-to-support-page-skipping" aria-label="Link to Parquet Page Index: Layout to Support Page Skipping"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
 ColumnChunk, containing statistics for DataPages that can be used
 to skip those pages when scanning in ordered and unordered columns.
 The page index is stored using the OffsetIndex and ColumnIndex structures,
 defined in &lt;a href="src/main/thrift/parquet.thrift"&gt;&lt;code&gt;parquet.thrift&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="problem-statement"&gt;Problem Statement&lt;/h2&gt;
+&lt;h2 id="problem-statement"&gt;Problem Statement&lt;a class="td-heading-permalink" href="#problem-statement" aria-label="Link to Problem Statement"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In previous versions of the format, Statistics are stored for ColumnChunks in
 ColumnMetaData and for individual pages inside DataPageHeader structs. When
 reading pages, a reader had to process the page header to determine
@@ -262,7 +296,9 @@ data from disk.&lt;/p&gt;</description></item><item><title>Implementation status
 implementations.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: If you find out of date information, please help us improve the accuracy
 of this page by opening an issue or submitting a pull request.&lt;/p&gt;
-&lt;h3 id="legend"&gt;Legend&lt;/h3&gt;
+&lt;h3 id="legend"&gt;Legend&lt;a class="td-heading-permalink" href="#legend" aria-label="Link to Legend"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The value in each box means:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;✅: supported. Footnote added when support is partial. When data is available, links to release notes are provided on the implementing version.&lt;/li&gt;
@@ -271,7 +307,9 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;li&gt;(W): only write support&lt;/li&gt;
 &lt;li&gt;(blank): no data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="implementations"&gt;Implementations&lt;/h3&gt;
+&lt;h3 id="implementations"&gt;Implementations&lt;a class="td-heading-permalink" href="#implementations" aria-label="Link to Implementations"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet"&gt;arrow&lt;/a&gt; (C++)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; (Java)&lt;/li&gt;
@@ -291,7 +329,9 @@ reader and writer compatibility. See the
 &lt;a href="../implementationstatus/"&gt;Implementation status&lt;/a&gt; page for which implementations
 (arrow, parquet-java, arrow-rs, etc.) support each feature.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: If you find out-of-date information, please open an issue or pull request.&lt;/p&gt;
-&lt;h2 id="feature-compatibility"&gt;Feature compatibility&lt;/h2&gt;
+&lt;h2 id="feature-compatibility"&gt;Feature compatibility&lt;a class="td-heading-permalink" href="#feature-compatibility" aria-label="Link to Feature compatibility"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The Parquet format spec &lt;a href="https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#compatibility-and-feature-enablement"&gt;classifies changes&lt;/a&gt; by their effect on reader and
 writer compatibility. Changes differ in their &lt;em&gt;forward&lt;/em&gt; compatibility — whether
 an older reader can read files that use a newer feature.&lt;/p&gt;</description></item><item><title>ALP: Adaptive Lossless Floating-Point Encoding in Apache Parquet</title><link>/blog/2026/09/22/alp-adaptive-lossless-floating-point-encoding-in-apache-parquet/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>/blog/2026/09/22/alp-adaptive-lossless-floating-point-encoding-in-apache-parquet/</guid><description>&lt;p&gt;Apache Parquet has added the &lt;a href="https://parquet.apache.org/docs/file-format/data-pages/alpencoding/"&gt;Adaptive Lossless floating-Point (ALP) Encoding&lt;/a&gt; &amp;ndash; a new lightweight floating-point encoding with compression ratios similar to &lt;a href="https://github.com/facebook/zstd"&gt;&lt;code&gt;zstd&lt;/code&gt;&lt;/a&gt;, much faster decompression, random-access support, and GPU- and SIMD-friendly decoding.&lt;/p&gt;
@@ -335,7 +375,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.17.1/apache-parquet-1.17.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.17.1/apache-parquet-1.17.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.18.1</title><link>/blog/2026/08/04/1.18.1/</link><pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate><guid>/blog/2026/08/04/1.18.1/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.18.1/apache-parquet-1.18.1.tar.gz"&gt;latest version of parquet-java is 1.18.1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.18.1"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -351,7 +393,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.17.1/apache-parquet-1.17.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.17.1/apache-parquet-1.17.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.13.0</title><link>/blog/2026/06/13/2.13.0/</link><pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate><guid>/blog/2026/06/13/2.13.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.13.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.13.0/apache-parquet-format-2.13.0.tar.gz"&gt;latest version of parquet-format is 2.13.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -376,7 +420,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Variant Type in Apache Parquet for Semi-Structured Data</title><link>/blog/2026/02/27/variant-type-in-apache-parquet-for-semi-structured-data/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/2026/02/27/variant-type-in-apache-parquet-for-semi-structured-data/</guid><description>&lt;p&gt;The Apache Parquet community is excited to announce the addition of the &lt;strong&gt;Variant type&lt;/strong&gt;—a feature that brings native support for semi-structured data to Parquet, significantly improving efficiency compared to less efficient formats such as JSON. This marks a significant addition to Parquet, demonstrating how the format continues to evolve to meet modern data engineering needs.&lt;/p&gt;
 &lt;p&gt;While Apache Parquet has long been the standard for structured data where each value has a fixed and known type, handling heterogeneous, nested data often required a compromise: either store it as a costly-to-parse JSON string or flatten it into a rigid schema. The introduction of the Variant logical type provides a native, high-performance solution for semi-structured data that is already seeing rapid uptake across the ecosystem.&lt;/p&gt;</description></item><item><title>Native Geospatial Types in Apache Parquet</title><link>/blog/2026/02/13/native-geospatial-types-in-apache-parquet/</link><pubDate>Fri, 13 Feb 2026 00:00:00 +0000</pubDate><guid>/blog/2026/02/13/native-geospatial-types-in-apache-parquet/</guid><description>&lt;p&gt;Geospatial data has become a core input for modern analytics across logistics, climate science, urban planning, mobility, and location intelligence. Yet for a long time, spatial data lived outside the mainstream analytics ecosystem. In primarily non-spatial data engineering workflows, spatial data was common but required workarounds to handle efficiently at scale. Formats such as Shapefile, GeoJSON, or proprietary spatial databases worked well for visualization and GIS workflows, but they did not integrate cleanly with large scale analytical engines.&lt;/p&gt;</description></item><item><title>1.17.0</title><link>/blog/2026/01/13/1.17.0/</link><pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate><guid>/blog/2026/01/13/1.17.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.17.0/apache-parquet-1.17.0.tar.gz"&gt;latest version of parquet-java is 1.17.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.17.0"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
@@ -393,7 +439,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.16.0</title><link>/blog/2025/09/03/1.16.0/</link><pubDate>Wed, 03 Sep 2025 00:00:00 +0000</pubDate><guid>/blog/2025/09/03/1.16.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.16.0/apache-parquet-1.16.0.tar.gz"&gt;latest version of parquet-java is 1.16.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.16.0"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -409,7 +457,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.2/apache-parquet-1.15.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.12.0</title><link>/blog/2025/08/28/2.12.0/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0000</pubDate><guid>/blog/2025/08/28/2.12.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.12.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.12.0/apache-parquet-format-2.12.0.tar.gz"&gt;latest version of parquet-format is 2.12.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -433,7 +483,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.11.0</title><link>/blog/2025/03/23/2.11.0/</link><pubDate>Sun, 23 Mar 2025 00:00:00 +0000</pubDate><guid>/blog/2025/03/23/2.11.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.11.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.11.0/apache-parquet-format-2.11.0.tar.gz"&gt;latest version of parquet-format is 2.11.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -457,7 +509,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.15.0</title><link>/blog/2024/12/02/1.15.0/</link><pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate><guid>/blog/2024/12/02/1.15.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.15.0/apache-parquet-1.15.0.tar.gz"&gt;latest version of parquet-java is 1.15.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For the changes, please check out the &lt;a href="https://github.com/apache/parquet-java/releases/tag/apache-parquet-1.15.0"&gt;Release on Github&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -473,7 +527,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.4</title><link>/blog/2024/11/11/1.14.4/</link><pubDate>Mon, 11 Nov 2024 00:00:00 +0000</pubDate><guid>/blog/2024/11/11/1.14.4/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.4/apache-parquet-1.14.4.tar.gz"&gt;latest version of parquet-java is 1.14.4&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;With the following bugfixes:&lt;/p&gt;
 &lt;ul&gt;
@@ -494,7 +550,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.3</title><link>/blog/2024/10/05/1.14.3/</link><pubDate>Sat, 05 Oct 2024 00:00:00 +0000</pubDate><guid>/blog/2024/10/05/1.14.3/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3/apache-parquet-1.14.3.tar.gz"&gt;latest version of parquet-java is 1.14.3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
@@ -509,20 +567,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.14.3&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.14.2</title><link>/blog/2024/08/26/1.14.2/</link><pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate><guid>/blog/2024/08/26/1.14.2/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz"&gt;latest version of parquet-java is 1.14.2&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.2</title><link>/blog/2024/08/26/1.14.2/</link><pubDate>Mon, 26 Aug 2024 00:00:00 +0000</pubDate><guid>/blog/2024/08/26/1.14.2/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2/apache-parquet-1.14.2.tar.gz"&gt;latest version of parquet-java is 1.14.2&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
@@ -536,20 +584,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.14.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.14.1</title><link>/blog/2024/06/16/1.14.1/</link><pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate><guid>/blog/2024/06/16/1.14.1/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz"&gt;latest version of parquet-java is 1.14.1&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.1</title><link>/blog/2024/06/16/1.14.1/</link><pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate><guid>/blog/2024/06/16/1.14.1/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.1/apache-parquet-1.14.1.tar.gz"&gt;latest version of parquet-java is 1.14.1&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
@@ -563,20 +601,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.14.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.14.0</title><link>/blog/2024/05/07/1.14.0/</link><pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate><guid>/blog/2024/05/07/1.14.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz"&gt;latest version of parquet-java is 1.14.0&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.14.0</title><link>/blog/2024/05/07/1.14.0/</link><pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate><guid>/blog/2024/05/07/1.14.0/</guid><description>&lt;p&gt;The &lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.0/apache-parquet-1.14.0.tar.gz"&gt;latest version of parquet-java is 1.14.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
@@ -590,20 +618,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.13.1/apache-parquet-1.13.1.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.14.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.10.0</title><link>/blog/2023/11/20/2.10.0/</link><pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate><guid>/blog/2023/11/20/2.10.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.10.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.10.0</title><link>/blog/2023/11/20/2.10.0/</link><pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate><guid>/blog/2023/11/20/2.10.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.10.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.10.0/apache-parquet-format-2.10.0.tar.gz"&gt;latest version of parquet-format is 2.10.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
@@ -625,20 +643,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.13.1&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.13.0</title><link>/blog/2023/04/06/1.13.0/</link><pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate><guid>/blog/2023/04/06/1.13.0/</guid><description>&lt;p&gt;The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz"&gt;latest version of parquet-java is 1.13.0&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.13.0</title><link>/blog/2023/04/06/1.13.0/</link><pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate><guid>/blog/2023/04/06/1.13.0/</guid><description>&lt;p&gt;The &lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.13.0/apache-parquet-1.13.0.tar.gz"&gt;latest version of parquet-java is 1.13.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
@@ -652,20 +660,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.13.0&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.12.3</title><link>/blog/2022/05/26/1.12.3/</link><pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate><guid>/blog/2022/05/26/1.12.3/</guid><description>&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz"&gt;latest version of parquet-java is 1.12.3&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.12.3</title><link>/blog/2022/05/26/1.12.3/</link><pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate><guid>/blog/2022/05/26/1.12.3/</guid><description>&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.3/apache-parquet-1.12.3.tar.gz"&gt;latest version of parquet-java is 1.12.3&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
@@ -679,20 +677,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.12.3&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>1.12.2</title><link>/blog/2021/10/06/1.12.2/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/1.12.2/</guid><description>&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz"&gt;latest version of parquet-java is 1.12.2&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>1.12.2</title><link>/blog/2021/10/06/1.12.2/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/1.12.2/</guid><description>&lt;p&gt;The &lt;a href="https://www.apache.org/dyn/closer.lua/parquet/apache-parquet-1.12.2/apache-parquet-1.12.2.tar.gz"&gt;latest version of parquet-java is 1.12.2&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/KEYS"&gt;Release manager OpenPGP key&lt;/a&gt;&lt;/li&gt;
@@ -706,20 +694,10 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://downloads.apache.org/parquet/apache-parquet-1.11.2/apache-parquet-1.11.2.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;/h3&gt;
-&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Add the following dependency section to your pom.xml:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt; &amp;lt;dependencies&amp;gt;
- ...
- &amp;lt;dependency&amp;gt;
- &amp;lt;groupId&amp;gt;org.apache.parquet&amp;lt;/groupId&amp;gt;
- &amp;lt;artifactId&amp;gt;parquet-avro&amp;lt;/artifactId&amp;gt;
- &amp;lt;version&amp;gt;1.12.2&amp;lt;/version&amp;gt; &amp;lt;!-- or latest version --&amp;gt;
- &amp;lt;/dependency&amp;gt;
- ...
- &amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
-&lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.9.0</title><link>/blog/2021/10/06/2.9.0/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/2.9.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.9.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="downloading-from-the-maven-central-repository"&gt;Downloading from the Maven central repository&lt;a class="td-heading-permalink" href="#downloading-from-the-maven-central-repository" aria-label="Link to Downloading from the Maven central repository"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Parquet team publishes its &lt;a href="https://search.maven.org/search?q=g:org.apache.parquet"&gt;releases to Maven Central&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>2.9.0</title><link>/blog/2021/10/06/2.9.0/</link><pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate><guid>/blog/2021/10/06/2.9.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.9.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz"&gt;latest version of parquet-format is 2.9.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
 &lt;ul&gt;
@@ -727,7 +705,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;a class="td-heading-permalink" href="#older-releases" aria-label="Link to Older Releases"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.8.0</title><link>/blog/2020/01/13/2.8.0/</link><pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate><guid>/blog/2020/01/13/2.8.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.8.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz"&gt;latest version of parquet-format is 2.8.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -736,7 +716,9 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;a class="td-heading-permalink" href="#older-releases" aria-label="Link to Older Releases"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.7.0</title><link>/blog/2019/09/25/2.7.0/</link><pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate><guid>/blog/2019/09/25/2.7.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.7.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz"&gt;latest version of parquet-format is 2.7.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -745,5 +727,7 @@ general-purpose compression like &lt;code&gt;ZSTD&lt;/code&gt;.&lt;/p&gt;</descr
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;a class="td-heading-permalink" href="#older-releases" aria-label="Link to Older Releases"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

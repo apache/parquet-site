@@ -1,21 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Pages on Parquet</title><link>/docs/file-format/data-pages/</link><description>Recent content in Data Pages on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/data-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Pages on Parquet</title><link>/docs/file-format/data-pages/</link><description>Recent content in Data Pages on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/data-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;a class="td-heading-permalink" href="#parquet-compression-definitions" aria-label="Link to Parquet compression definitions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
-&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;h2 id="overview"&gt;Overview&lt;a class="td-heading-permalink" href="#overview" aria-label="Link to Overview"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Parquet allows the data block inside dictionary pages and data pages to
 be compressed for better space efficiency. The Parquet format supports
 several compression codecs covering different areas in the compression
 ratio / processing cost spectrum.&lt;/p&gt;
 &lt;p&gt;The detailed specifications of compression codecs are maintained externally
-by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;
-&lt;p&gt;For all compression codecs except the deprecated &lt;code&gt;LZ4&lt;/code&gt; codec, the raw data
-of a (data or dictionary) page is fed &lt;em&gt;as-is&lt;/em&gt; to the underlying compression
-library, without any additional framing or padding. The information required
-for precise allocation of compressed and decompressed buffers is written
-in the &lt;code&gt;PageHeader&lt;/code&gt; struct.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;/h1&gt;
+by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;a class="td-heading-permalink" href="#parquet-encoding-definitions" aria-label="Link to Parquet encoding definitions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
 &lt;p&gt;Unless otherwise stated in page or encoding documentation, any encoding can be
 used with any page type.&lt;/p&gt;
-&lt;h3 id="supported-encodings"&gt;Supported Encodings&lt;/h3&gt;
+&lt;h3 id="supported-encodings"&gt;Supported Encodings&lt;a class="td-heading-permalink" href="#supported-encodings" aria-label="Link to Supported Encodings"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;For details on current implementation status, see the &lt;a href="https://parquet.apache.org/docs/file-format/implementationstatus/#encodings"&gt;Implementation Status&lt;/a&gt; page.&lt;/p&gt;
 &lt;table&gt;
  &lt;thead&gt;
@@ -68,7 +71,9 @@ used with any page type.&lt;/p&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id="deprecated-encodings"&gt;Deprecated Encodings&lt;/h3&gt;
+&lt;h3 id="deprecated-encodings"&gt;Deprecated Encodings&lt;a class="td-heading-permalink" href="#deprecated-encodings" aria-label="Link to Deprecated Encodings"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;table&gt;
  &lt;thead&gt;
  &lt;tr&gt;
@@ -83,19 +88,27 @@ used with any page type.&lt;/p&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;/h1&gt;
+&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;a class="td-heading-permalink" href="#parquet-modular-encryption" aria-label="Link to Parquet Modular Encryption"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
 mechanism that encrypts and authenticates the file data and metadata - while allowing
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
 and compression).&lt;/p&gt;
-&lt;h2 id="1-problem-statement"&gt;1 Problem Statement&lt;/h2&gt;
+&lt;h2 id="1-problem-statement"&gt;1 Problem Statement&lt;a class="td-heading-permalink" href="#1-problem-statement" aria-label="Link to 1 Problem Statement"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Existing data protection solutions (such as flat encryption of files, in-storage encryption,
 or use of an encrypting storage client) can be applied to Parquet files, but have various
 security or performance issues. An encryption mechanism, integrated in the Parquet format,
-allows for an optimal combination of data security, processing speed and encryption granularity.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;h1 id="alp-adaptive-lossless-floating-point-encoding"&gt;ALP (Adaptive Lossless floating-Point) Encoding&lt;/h1&gt;
+allows for an optimal combination of data security, processing speed and encryption granularity.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;h1 id="alp-adaptive-lossless-floating-point-encoding"&gt;ALP (Adaptive Lossless floating-Point) Encoding&lt;a class="td-heading-permalink" href="#alp-adaptive-lossless-floating-point-encoding" aria-label="Link to ALP (Adaptive Lossless floating-Point) Encoding"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;This file contains the detailed specification of the
 &lt;a href="/docs/file-format/data-pages/encodings/#ALP"&gt;ALP encoding&lt;/a&gt; (&lt;code&gt;ALP = 10&lt;/code&gt;).&lt;/p&gt;
-&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;h2 id="overview"&gt;Overview&lt;a class="td-heading-permalink" href="#overview" aria-label="Link to Overview"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;For each data page, ALP encoding consists of a header followed by an offset array
 and one or more encoded vectors (batches of values). Each vector contains up to
 &lt;code&gt;vector_size&lt;/code&gt; elements (default 1024).&lt;/p&gt;

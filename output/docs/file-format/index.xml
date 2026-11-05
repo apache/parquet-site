@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>File Format on Parquet</title><link>/docs/file-format/</link><description>Recent content in File Format on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>File Format on Parquet</title><link>/docs/file-format/</link><description>Recent content in File Format on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/docs/file-format/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;a class="td-heading-permalink" href="#binary-protocol-extensions" aria-label="Link to Binary Protocol Extensions"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;The extension mechanism of the &lt;code&gt;binary&lt;/code&gt; Thrift field-id &lt;code&gt;32767&lt;/code&gt; has some desirable properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Existing readers will ignore these extensions without any modifications&lt;/li&gt;
@@ -12,7 +14,9 @@ This is left to implementers who MUST put enough unique state in their extension
 bytes for disambiguation. This can be relatively easily achieved by adding a
 &lt;a href="https://en.wikipedia.org/wiki/Universally%5C_unique%5C_identifier"&gt;UUID&lt;/a&gt; at the
 start or end of the extension bytes. The extension does not specify a
-disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>&lt;h3 id="row-group-size"&gt;Row Group Size&lt;/h3&gt;
+disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Configurations</title><link>/docs/file-format/configurations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/configurations/</guid><description>&lt;h3 id="row-group-size"&gt;Row Group Size&lt;a class="td-heading-permalink" href="#row-group-size" aria-label="Link to Row Group Size"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Larger row groups allow for larger column chunks which makes it
 possible to do larger sequential IO. Larger groups also require more buffering in
 the write path (or a two pass write). We recommend large row groups (512MB - 1GB).
@@ -28,21 +32,24 @@ per HDFS file.&lt;/p&gt;</description></item><item><title>Extensibility</title><
 &lt;p&gt;All thrift structures are serialized using the TCompactProtocol. The full
 definition of these structures is given in the Parquet
 &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift"&gt;Thrift definition&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="file-metadata"&gt;File metadata&lt;/h2&gt;
+&lt;h2 id="file-metadata"&gt;File metadata&lt;a class="td-heading-permalink" href="#file-metadata" aria-label="Link to File metadata"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the diagram below, file metadata is described by the &lt;code&gt;FileMetaData&lt;/code&gt;
 structure. This file metadata provides offset and size information useful
 when navigating the Parquet file.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;
-&lt;h2 id="page-header"&gt;Page header&lt;/h2&gt;
-&lt;p&gt;Page header metadata (&lt;code&gt;PageHeader&lt;/code&gt; and children in the diagram) is stored
-in-line with the page data, and is used in the reading and decoding of data.&lt;/p&gt;</description></item><item><title>Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>&lt;p&gt;To encode nested columns, Parquet uses the Dremel encoding with definition and
+&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;</description></item><item><title>Nested Encoding</title><link>/docs/file-format/nestedencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nestedencoding/</guid><description>&lt;p&gt;To encode nested columns, Parquet uses the Dremel encoding with definition and
 repetition levels. Definition levels specify how many optional fields in the
 path for the column are defined. Repetition levels specify at what repeated field
 in the path has the value repeated. The max definition and repetition levels can
 be computed from the schema (i.e. how much nesting there is). This defines the
 maximum number of bits required to store the levels (levels are defined for all
-values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;/h1&gt;
-&lt;h3 id="problem-statement"&gt;Problem statement&lt;/h3&gt;
+values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;a class="td-heading-permalink" href="#parquet-bloom-filter" aria-label="Link to Parquet Bloom Filter"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
+&lt;h3 id="problem-statement"&gt;Problem statement&lt;a class="td-heading-permalink" href="#problem-statement" aria-label="Link to Problem statement"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In their current format, column statistics and dictionaries can be used for predicate
 pushdown. Statistics include minimum and maximum value, which can be used to filter out
 values not in the range. Dictionaries are more specific, and readers can filter out values
@@ -52,13 +59,17 @@ space they occupy. This leaves columns with large cardinalities and widely separ
 and max without support for predicate pushdown.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
 are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
 would be encoded with run-length encoding (0, 1000 times) for the definition levels and
-nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet Page Index: Layout to Support Page Skipping&lt;/h1&gt;
+nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet Page Index: Layout to Support Page Skipping&lt;a class="td-heading-permalink" href="#parquet-page-index-layout-to-support-page-skipping" aria-label="Link to Parquet Page Index: Layout to Support Page Skipping"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
 ColumnChunk, containing statistics for DataPages that can be used
 to skip those pages when scanning in ordered and unordered columns.
 The page index is stored using the OffsetIndex and ColumnIndex structures,
 defined in &lt;a href="src/main/thrift/parquet.thrift"&gt;&lt;code&gt;parquet.thrift&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="problem-statement"&gt;Problem Statement&lt;/h2&gt;
+&lt;h2 id="problem-statement"&gt;Problem Statement&lt;a class="td-heading-permalink" href="#problem-statement" aria-label="Link to Problem Statement"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In previous versions of the format, Statistics are stored for ColumnChunks in
 ColumnMetaData and for individual pages inside DataPageHeader structs. When
 reading pages, a reader had to process the page header to determine
@@ -68,7 +79,9 @@ data from disk.&lt;/p&gt;</description></item><item><title>Implementation status
 implementations.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: If you find out of date information, please help us improve the accuracy
 of this page by opening an issue or submitting a pull request.&lt;/p&gt;
-&lt;h3 id="legend"&gt;Legend&lt;/h3&gt;
+&lt;h3 id="legend"&gt;Legend&lt;a class="td-heading-permalink" href="#legend" aria-label="Link to Legend"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;The value in each box means:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;✅: supported. Footnote added when support is partial. When data is available, links to release notes are provided on the implementing version.&lt;/li&gt;
@@ -77,7 +90,9 @@ of this page by opening an issue or submitting a pull request.&lt;/p&gt;
 &lt;li&gt;(W): only write support&lt;/li&gt;
 &lt;li&gt;(blank): no data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="implementations"&gt;Implementations&lt;/h3&gt;
+&lt;h3 id="implementations"&gt;Implementations&lt;a class="td-heading-permalink" href="#implementations" aria-label="Link to Implementations"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/arrow/tree/main/cpp/src/parquet"&gt;arrow&lt;/a&gt; (C++)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; (Java)&lt;/li&gt;
@@ -97,7 +112,9 @@ reader and writer compatibility. See the
 &lt;a href="../implementationstatus/"&gt;Implementation status&lt;/a&gt; page for which implementations
 (arrow, parquet-java, arrow-rs, etc.) support each feature.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: If you find out-of-date information, please open an issue or pull request.&lt;/p&gt;
-&lt;h2 id="feature-compatibility"&gt;Feature compatibility&lt;/h2&gt;
+&lt;h2 id="feature-compatibility"&gt;Feature compatibility&lt;a class="td-heading-permalink" href="#feature-compatibility" aria-label="Link to Feature compatibility"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The Parquet format spec &lt;a href="https://github.com/apache/parquet-format/blob/master/CONTRIBUTING.md#compatibility-and-feature-enablement"&gt;classifies changes&lt;/a&gt; by their effect on reader and
 writer compatibility. Changes differ in their &lt;em&gt;forward&lt;/em&gt; compatibility — whether
 an older reader can read files that use a newer feature.&lt;/p&gt;</description></item></channel></rss>

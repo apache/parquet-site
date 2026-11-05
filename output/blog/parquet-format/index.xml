@@ -52,7 +52,9 @@
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.9.0/apache-parquet-format-2.9.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;a class="td-heading-permalink" href="#older-releases" aria-label="Link to Older Releases"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.8.0</title><link>/blog/2020/01/13/2.8.0/</link><pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate><guid>/blog/2020/01/13/2.8.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.8.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz"&gt;latest version of parquet-format is 2.8.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -61,7 +63,9 @@
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.8.0/apache-parquet-format-2.8.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;a class="td-heading-permalink" href="#older-releases" aria-label="Link to Older Releases"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item><item><title>2.7.0</title><link>/blog/2019/09/25/2.7.0/</link><pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate><guid>/blog/2019/09/25/2.7.0/</guid><description>&lt;p&gt;&lt;a href="https://github.com/apache/parquet-format/releases/tag/apache-parquet-format-2.7.0"&gt;Github Release Link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz"&gt;latest version of parquet-format is 2.7.0&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To &lt;a href="https://www.apache.org/info/verification.html"&gt;check the validity&lt;/a&gt; of this release, use its:&lt;/p&gt;
@@ -70,5 +74,7 @@
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.asc"&gt;OpenPGP signature&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://dlcdn.apache.org/parquet/apache-parquet-format-2.7.0/apache-parquet-format-2.7.0.tar.gz.sha512"&gt;SHA-512&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="older-releases"&gt;Older Releases&lt;/h3&gt;
+&lt;h3 id="older-releases"&gt;Older Releases&lt;a class="td-heading-permalink" href="#older-releases" aria-label="Link to Older Releases"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Older releases can be found in the Archives of the Apache Software Foundation: &lt;a href="https://archive.apache.org/dist/parquet/"&gt;https://archive.apache.org/dist/parquet/&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
