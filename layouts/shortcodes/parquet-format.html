@@ -24,7 +24,9 @@ under the License.
   This shortcode:
   1. Loads the specified file from the parquet-format submodule (at assets/parquet-format/)
   2. Strips the Apache license header (HTML comment at the top)
-  3. Renders the markdown content as a block so heading render hooks
+  3. Strips the leading document title (ATX `# Title` or setext `Title`/`===`)
+     so it does not duplicate Docsy's page H1 from front matter
+  4. Renders the markdown content as a block so heading render hooks
      (permalinks) apply. Inline RenderString skips those hooks.
 */ -}}
 
@@ -46,6 +48,9 @@ under the License.
 
   {{- /* Strip any leading whitespace/newlines */ -}}
   {{- $content = trim $content "\n\r " -}}
+
+  {{- /* Drop the leading title; Docsy renders the page title from front matter. */ -}}
+  {{- $content = replaceRE `\A(?:#[ \t][^\n]*|[^\n]+\n=+[ \t]*\r?)(?:\n+|\z)` "" $content -}}
 
   {{- /* Render the markdown content */ -}}
   {{- $content | .Page.RenderString (dict "display" "block") -}}
