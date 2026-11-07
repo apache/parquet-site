@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;h1 id="binary-protocol-extensions"&gt;Binary Protocol Extensions&lt;a class="td-heading-permalink" href="#binary-protocol-extensions" aria-label="Link to Binary Protocol Extensions"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;The extension mechanism of the &lt;code&gt;binary&lt;/code&gt; Thrift field-id &lt;code&gt;32767&lt;/code&gt; has some desirable properties:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Parquet</title><link>/</link><description>Recent content on Parquet</description><generator>Hugo</generator><language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Protocol Extensions</title><link>/docs/file-format/binaryprotocolextensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/binaryprotocolextensions/</guid><description>&lt;p&gt;The extension mechanism of the &lt;code&gt;binary&lt;/code&gt; Thrift field-id &lt;code&gt;32767&lt;/code&gt; has some desirable properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Existing readers will ignore these extensions without any modifications&lt;/li&gt;
 &lt;li&gt;Existing readers will ignore the extension bytes with little processing overhead&lt;/li&gt;
@@ -14,10 +11,7 @@ This is left to implementers who MUST put enough unique state in their extension
 bytes for disambiguation. This can be relatively easily achieved by adding a
 &lt;a href="https://en.wikipedia.org/wiki/Universally%5C_unique%5C_identifier"&gt;UUID&lt;/a&gt; at the
 start or end of the extension bytes. The extension does not specify a
-disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;h1 id="parquet-compression-definitions"&gt;Parquet compression definitions&lt;a class="td-heading-permalink" href="#parquet-compression-definitions" aria-label="Link to Parquet compression definitions"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
+disambiguation mechanism to allow more flexibility to implementers.&lt;/p&gt;</description></item><item><title>Compression</title><link>/docs/file-format/data-pages/compression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/compression/</guid><description>&lt;p&gt;This document contains the specification of all supported compression codecs.&lt;/p&gt;
 &lt;h2 id="overview"&gt;Overview&lt;a class="td-heading-permalink" href="#overview" aria-label="Link to Overview"&gt;
  &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/a&gt;&lt;/h2&gt;
@@ -26,10 +20,7 @@ be compressed for better space efficiency. The Parquet format supports
 several compression codecs covering different areas in the compression
 ratio / processing cost spectrum.&lt;/p&gt;
 &lt;p&gt;The detailed specifications of compression codecs are maintained externally
-by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;h1 id="parquet-encoding-definitions"&gt;Parquet encoding definitions&lt;a class="td-heading-permalink" href="#parquet-encoding-definitions" aria-label="Link to Parquet encoding definitions"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
+by their respective authors or maintainers, which we reference hereafter.&lt;/p&gt;</description></item><item><title>Encodings</title><link>/docs/file-format/data-pages/encodings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encodings/</guid><description>&lt;p&gt;This file contains the specification of all supported encodings.&lt;/p&gt;
 &lt;p&gt;Unless otherwise stated in page or encoding documentation, any encoding can be
 used with any page type.&lt;/p&gt;
 &lt;h3 id="supported-encodings"&gt;Supported Encodings&lt;a class="td-heading-permalink" href="#supported-encodings" aria-label="Link to Supported Encodings"&gt;
@@ -104,10 +95,7 @@ used with any page type.&lt;/p&gt;
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;h1 id="parquet-modular-encryption"&gt;Parquet Modular Encryption&lt;a class="td-heading-permalink" href="#parquet-modular-encryption" aria-label="Link to Parquet Modular Encryption"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
+&lt;p&gt;&lt;a name="PLAIN"&gt;&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>/docs/file-format/data-pages/encryption/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/encryption/</guid><description>&lt;p&gt;Parquet files containing sensitive information can be protected by the modular encryption
 mechanism that encrypts and authenticates the file data and metadata - while allowing
 for a regular Parquet functionality (columnar projection, predicate pushdown, encoding
 and compression).&lt;/p&gt;
@@ -122,10 +110,7 @@ allows for an optimal combination of data security, processing speed and encrypt
  &lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/auNAzC3AU18?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"&gt;&lt;/iframe&gt;
  &lt;/div&gt;</description></item><item><title>Sub-Projects</title><link>/docs/contribution-guidelines/sub-projects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/contribution-guidelines/sub-projects/</guid><description>&lt;p&gt;The &lt;a href="https://github.com/apache/parquet-format"&gt;parquet-format&lt;/a&gt; project contains format specifications and Thrift definitions of metadata required to properly read Parquet files.&lt;/p&gt;
 &lt;p&gt;The &lt;a href="https://github.com/apache/parquet-java"&gt;parquet-java&lt;/a&gt; project is a Java library to read and write Parquet files. It consists of multiple sub-modules, which implement the core components of reading and writing a nested, column-oriented data stream, to and from the Parquet format, along with Hadoop Input/Output Formats, Pig loaders, and other Java-based utilities for interacting with Parquet.&lt;/p&gt;
-&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;h1 id="alp-adaptive-lossless-floating-point-encoding"&gt;ALP (Adaptive Lossless floating-Point) Encoding&lt;a class="td-heading-permalink" href="#alp-adaptive-lossless-floating-point-encoding" aria-label="Link to ALP (Adaptive Lossless floating-Point) Encoding"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;This file contains the detailed specification of the
+&lt;p&gt;The &lt;a href="https://arrow.apache.org/docs/cpp/parquet.html"&gt;parquet-cpp&lt;/a&gt; project is a C++ library to read-write Parquet files. It is part of the &lt;a href="https://arrow.apache.org/"&gt;Apache Arrow&lt;/a&gt; C++ implementation, with bindings to Python, R, Ruby and C/GLib.&lt;/p&gt;</description></item><item><title>ALP Encoding</title><link>/docs/file-format/data-pages/alpencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/data-pages/alpencoding/</guid><description>&lt;p&gt;This file contains the detailed specification of the
 &lt;a href="/docs/file-format/data-pages/encodings/#ALP"&gt;ALP encoding&lt;/a&gt; (&lt;code&gt;ALP = 10&lt;/code&gt;).&lt;/p&gt;
 &lt;h2 id="overview"&gt;Overview&lt;a class="td-heading-permalink" href="#overview" aria-label="Link to Overview"&gt;
  &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
@@ -194,10 +179,7 @@ per HDFS file.&lt;/p&gt;</description></item><item><title>Events</title><link>/d
 &lt;li&gt;File Version: The file metadata contains a version.&lt;/li&gt;
 &lt;li&gt;Encodings: Encodings are specified by enum and more can be added in the future.&lt;/li&gt;
 &lt;li&gt;Page types: Additional page types can be added and safely skipped.&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Geospatial Type</title><link>/docs/file-format/types/geospatial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/geospatial/</guid><description>&lt;h1 id="geospatial-definitions"&gt;Geospatial Definitions&lt;a class="td-heading-permalink" href="#geospatial-definitions" aria-label="Link to Geospatial Definitions"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;This document contains the specification of geospatial types and statistics.&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>Geospatial Type</title><link>/docs/file-format/types/geospatial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/geospatial/</guid><description>&lt;p&gt;This document contains the specification of geospatial types and statistics.&lt;/p&gt;
 &lt;h1 id="background"&gt;Background&lt;a class="td-heading-permalink" href="#background" aria-label="Link to Background"&gt;
  &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/a&gt;&lt;/h1&gt;
@@ -205,15 +187,19 @@ per HDFS file.&lt;/p&gt;</description></item><item><title>Events</title><link>/d
 Well-Known Binary (WKB) serializations (ISO variant supporting XY, XYZ, XYM,
 XYZM) are defined by &lt;a href="https://portal.ogc.org/files/?artifact_id=25355"&gt;OpenGIS Implementation Specification for Geographic
 information - Simple feature access - Part 1: Common architecture&lt;/a&gt;,
-from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC (Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;h1 id="parquet-logical-type-definitions"&gt;Parquet Logical Type Definitions&lt;a class="td-heading-permalink" href="#parquet-logical-type-definitions" aria-label="Link to Parquet Logical Type Definitions"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
+from &lt;a href="https://www.ogc.org/standard/sfa/"&gt;OGC (Open Geospatial Consortium)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The version of the OGC standard first used here is 1.2.1, but future versions
+may also be used if the WKB representation remains wire-compatible.&lt;/p&gt;</description></item><item><title>Logical Types</title><link>/docs/file-format/types/logicaltypes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/logicaltypes/</guid><description>&lt;p&gt;Logical types are used to extend the types that parquet can be used to store,
 by specifying how the primitive types should be interpreted. This keeps the set
 of primitive types to a minimum and reuses parquet&amp;rsquo;s efficient encodings. For
 example, strings are stored with the primitive type &lt;code&gt;BYTE_ARRAY&lt;/code&gt; with a &lt;code&gt;STRING&lt;/code&gt;
 annotation.&lt;/p&gt;
-&lt;p&gt;This file contains the specification for all logical types.&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
+&lt;p&gt;This file contains the specification for all logical types.&lt;/p&gt;
+&lt;h3 id="metadata"&gt;Metadata&lt;a class="td-heading-permalink" href="#metadata" aria-label="Link to Metadata"&gt;
+ &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
+ &lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The parquet format&amp;rsquo;s &lt;code&gt;LogicalType&lt;/code&gt; stores the type annotation. The annotation
+may require additional metadata fields, as well as rules for those fields.&lt;/p&gt;</description></item><item><title>Metadata</title><link>/docs/file-format/metadata/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/metadata/</guid><description>&lt;p&gt;There are two types of metadata: file metadata, and page header metadata.&lt;/p&gt;
 &lt;p&gt;All thrift structures are serialized using the TCompactProtocol. The full
 definition of these structures is given in the Parquet
 &lt;a href="https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift"&gt;Thrift definition&lt;/a&gt;.&lt;/p&gt;
@@ -223,16 +209,11 @@ definition of these structures is given in the Parquet
 &lt;p&gt;In the diagram below, file metadata is described by the &lt;code&gt;FileMetaData&lt;/code&gt;
 structure. This file metadata provides offset and size information useful
 when navigating the Parquet file.&lt;/p&gt;
-&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;</description></item><item><title>Variant Shredding</title><link>/docs/file-format/types/variantshredding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantshredding/</guid><description>&lt;h1 id="variant-shredding"&gt;Variant Shredding&lt;a class="td-heading-permalink" href="#variant-shredding" aria-label="Link to Variant Shredding"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;The Variant type is designed to store and process semi-structured data efficiently, even with heterogeneous values.
+&lt;p&gt;&lt;img src="/images/FileMetaData.svg" alt="Parquet Metadata format"&gt;&lt;/p&gt;</description></item><item><title>Variant Shredding</title><link>/docs/file-format/types/variantshredding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantshredding/</guid><description>&lt;p&gt;The Variant type is designed to store and process semi-structured data efficiently, even with heterogeneous values.
 Query engines encode each Variant value in a self-describing format, and store it as a group containing &lt;code&gt;value&lt;/code&gt; and &lt;code&gt;metadata&lt;/code&gt; binary fields in Parquet.
 Since data is often partially homogeneous, it can be beneficial to extract certain fields into separate Parquet columns to further improve performance.
-This process is called &lt;strong&gt;shredding&lt;/strong&gt;.&lt;/p&gt;</description></item><item><title>Variant Type</title><link>/docs/file-format/types/variantencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantencoding/</guid><description>&lt;h1 id="variant-binary-encoding"&gt;Variant Binary Encoding&lt;a class="td-heading-permalink" href="#variant-binary-encoding" aria-label="Link to Variant Binary Encoding"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;A Variant represents a type that contains one of:&lt;/p&gt;
+This process is called &lt;strong&gt;shredding&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Shredding enables the use of Parquet&amp;rsquo;s columnar representation for more compact data encoding, column statistics for data skipping, and partial projections.&lt;/p&gt;</description></item><item><title>Variant Type</title><link>/docs/file-format/types/variantencoding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/types/variantencoding/</guid><description>&lt;p&gt;A Variant represents a type that contains one of:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Primitive: A type and corresponding value (e.g. INT, STRING)&lt;/li&gt;
 &lt;li&gt;Array: An ordered list of Variant values&lt;/li&gt;
@@ -246,10 +227,7 @@ path for the column are defined. Repetition levels specify at what repeated fiel
 in the path has the value repeated. The max definition and repetition levels can
 be computed from the schema (i.e. how much nesting there is). This defines the
 maximum number of bits required to store the levels (levels are defined for all
-values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h1 id="parquet-bloom-filter"&gt;Parquet Bloom Filter&lt;a class="td-heading-permalink" href="#parquet-bloom-filter" aria-label="Link to Parquet Bloom Filter"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;h3 id="problem-statement"&gt;Problem statement&lt;a class="td-heading-permalink" href="#problem-statement" aria-label="Link to Problem statement"&gt;
+values in the column).&lt;/p&gt;</description></item><item><title>Bloom Filter</title><link>/docs/file-format/bloomfilter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/bloomfilter/</guid><description>&lt;h3 id="problem-statement"&gt;Problem statement&lt;a class="td-heading-permalink" href="#problem-statement" aria-label="Link to Problem statement"&gt;
  &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
  &lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;In their current format, column statistics and dictionaries can be used for predicate
@@ -276,10 +254,7 @@ the data within a page is corrupt, that page is lost. The file will be more
 resilient to corruption with smaller row groups.&lt;/p&gt;</description></item><item><title>Nulls</title><link>/docs/file-format/nulls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/nulls/</guid><description>&lt;p&gt;Nullity is encoded in the definition levels (which is run-length encoded). NULL values
 are not encoded in the data. For example, in a non-nested schema, a column with 1000 NULLs
 would be encoded with run-length encoding (0, 1000 times) for the definition levels and
-nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;h1 id="parquet-page-index-layout-to-support-page-skipping"&gt;Parquet Page Index: Layout to Support Page Skipping&lt;a class="td-heading-permalink" href="#parquet-page-index-layout-to-support-page-skipping" aria-label="Link to Parquet Page Index: Layout to Support Page Skipping"&gt;
- &lt;i class="fas fa-link td-heading-permalink__icon" aria-hidden="true"&gt;&lt;/i&gt;
- &lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
+nothing else.&lt;/p&gt;</description></item><item><title>Page Index</title><link>/docs/file-format/pageindex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/file-format/pageindex/</guid><description>&lt;p&gt;In Parquet, a &lt;em&gt;page index&lt;/em&gt; is optional metadata for a
 ColumnChunk, containing statistics for DataPages that can be used
 to skip those pages when scanning in ordered and unordered columns.
 The page index is stored using the OffsetIndex and ColumnIndex structures,
