@@ -26,7 +26,17 @@ This website is built / powered by [Hugo](https://gohugo.io/) with the [Docsy Th
 The following steps assume that you have `hugo` installed and working.
 You can also use docker, see the [Docker section](#docker) for more information.
 
-## Updating `/docs/file-format` documentation`
+## Initializing your local repo
+
+Clone this repository to run the website locally:
+
+```shell
+git clone git@github.com:apache/parquet-site.git
+cd parquet-site
+git submodule update --init --recursive
+```
+
+## Updating `/docs/file-format` documentation
 
 The `/docs/file-format` pages (for example, https://parquet.apache.org/docs/file-format/data-pages/encodings/) are automatically 
 generated from the `parquet-format` repository. 
@@ -46,14 +56,6 @@ git push
 
 
 ## Building and Running Locally
-
-Clone this repository to run the website locally:
-
-```shell
-git clone git@github.com:apache/parquet-site.git
-cd parquet-site
-git submodule update --init --recursive
-```
 
 To build or update CSS resources, you also need PostCSS to create the final assets.  By default npm installs tools under the directory where you run npm install.
 
