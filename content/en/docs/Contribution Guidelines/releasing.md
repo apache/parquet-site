@@ -67,8 +67,16 @@ The workflows use credentials stored as repository secrets:
 `PARQUET_GPG_PRIVATE_KEY` signs the release, `NEXUS_STAGE_DEPLOYER_USER` and
 `NEXUS_STAGE_DEPLOYER_PW` deploy to [Nexus](https://repository.apache.org/),
 and `PARQUET_SVN_DEV_USERNAME` and `PARQUET_SVN_DEV_PASSWORD` write to
-`dist/dev/parquet`. The public key for the signing key must be in
-[KEYS](https://downloads.apache.org/parquet/KEYS).
+`dist/dev/parquet`.
+
+The workflows sign releases with the project's automated release signing key,
+which is published in [KEYS](https://downloads.apache.org/parquet/KEYS):
+
+```
+pub   rsa4096 2026-08-31 [SC]
+      DD1E 0FA3 56E5 268B E450  B2AA A528 E51B CE01 BCFE
+uid   Apache Parquet Automated Release Signing <private@parquet.apache.org>
+```
 
 ### Release process
 
