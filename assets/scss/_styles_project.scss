@@ -59,3 +59,24 @@
     visibility: visible;
   }
 }
+
+// Tables in documentation pages: visible borders and emphasized headers.
+// Matches Docsy's `.td-content table:not(.td-initial)` selectors so these
+// rules take precedence, and uses Bootstrap color variables.
+
+.td-content table:not(.td-initial) {
+  border-collapse: collapse;
+
+  > :not(caption) > * > * {
+    border: 1px solid var(--bs-border-color);
+    padding: 0.5rem 0.75rem;
+    vertical-align: top;
+  }
+
+  > thead > tr > th {
+    --bs-table-bg: var(--bs-secondary-bg);
+    color: var(--bs-emphasis-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--bs-secondary-color);
+  }
+}
