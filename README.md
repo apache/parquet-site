@@ -71,9 +71,9 @@ To preview this website locally, run the following in the root of the directory:
 hugo server
 ```
 
-### Building metadata diagrams
+### Building diagrams
 
-To build the metadata svg diagrams, you need mermaid.js installed. You can install it using npm:
+To build the svg diagrams, you need mermaid.js installed. You can install it using npm:
 
 ```
 npm install -D @mermaid-js/mermaid-cli
@@ -85,7 +85,10 @@ Then you can build the diagrams using the following command:
 cd static/images
 npx mmdc -i FileMetaData.mermaid -o FileMetaData.svg
 npx mmdc -i PageHeader.mermaid -o PageHeader.svg
+npx mmdc -b white -i FormatChangeCategories.mermaid -o FormatChangeCategories.svg
 ```
+
+`FormatChangeDecisionTree.svg` is hand-written SVG (Mermaid cannot produce its compact layout); edit it directly.
 
 ## Building and Running in Docker
 
