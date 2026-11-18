@@ -38,7 +38,7 @@ The ASF vulnerability handling process is described at
 ## Security Model
 
 Parquet files are frequently exchanged between systems and organizations.
-Implementations should treat the contents of a parquet file as untrusted input
+Implementations should treat the contents of a Parquet file as untrusted input
 and validate it before use. The behavior of reading a file that does not match
 the specification is undefined. Reading such files can result in errors or
 unexpected data, but should not result in memory corruption, code execution, or
@@ -55,9 +55,11 @@ the security policy for that implementation. For example:
 | [parquet-java] | [SECURITY.md](https://github.com/apache/parquet-java/blob/master/SECURITY.md) |
 | Parquet C++ (part of [Apache Arrow]) | [Apache Arrow security](https://arrow.apache.org/security/) |
 | [arrow-rs] (the Rust `parquet` crate) | [SECURITY.md](https://github.com/apache/arrow-rs/blob/main/SECURITY.md) |
+| [Hardwood] | [SECURITY.md](https://github.com/hardwood-hq/hardwood/blob/main/SECURITY.md) |
 
 [parquet-format]: https://github.com/apache/parquet-format
 [parquet-java]: https://github.com/apache/parquet-java
 [Apache Arrow]: https://arrow.apache.org/
 [arrow-rs]: https://github.com/apache/arrow-rs
+[Hardwood]: https://github.com/hardwood-hq/hardwood
 
