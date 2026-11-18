@@ -75,9 +75,9 @@ Implementations should treat the contents of a file, both data and metadata, as
 untrusted input and validate it before use. Reading a malformed or malicious
 file should result in an error or in incorrect data, and not in memory
 corruption, code execution, or disclosure of information from outside the file.
-How far each implementation goes to guarantee this, and what resource limits
-(memory, time, input size) applications are expected to impose themselves, is
-described in that implementation's security information.
+The extent to which each implementation guarantees this, and the resource
+limits (memory, time, input size) that applications are expected to impose
+themselves, are described in that implementation's security information.
 
 ### Incorrect results from a crafted file are not a security issue
 
@@ -97,9 +97,9 @@ the values actually stored, rows may be silently omitted from query results.
 Likewise, other fields in the metadata, such as row counts and null counts, may
 be used to answer queries without reading the data.
 
-Systems must therefore not rely on the contents of a Parquet file for
-enforcing security decisions (such as access control or row-level filtering)
-unless they trust the writer of that file.
+Systems must therefore not rely on the contents of a Parquet file to enforce
+security decisions (such as access control or row-level filtering) unless they
+trust the writer of that file.
 
 [statistics]: https://github.com/apache/parquet-format/blob/master/src/main/thrift/parquet.thrift
 [page index]: https://github.com/apache/parquet-format/blob/master/PageIndex.md
@@ -115,8 +115,8 @@ Applications that need to detect tampering should either use
 [Parquet Modular Encryption], which can protect both the confidentiality and
 the integrity of data and metadata against parties that do not hold the keys,
 or use a mechanism external to the file, such as digital signatures or access
-controls on the underlying storage. Note that none of these protect against a
-writer that is itself authorized but malicious or faulty.
+controls on the underlying storage. Note that none of these mechanisms protects
+against a writer that is authorized but malicious or faulty.
 
 [Parquet Modular Encryption]: https://github.com/apache/parquet-format/blob/master/Encryption.md
 
