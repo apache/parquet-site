@@ -41,7 +41,9 @@ Parquet files are frequently exchanged between systems and organizations.
 Implementations should treat the contents of a file, both data and metadata, as
 untrusted input and validate it before use. Reading a malformed or malicious
 file should result in an error or incorrect data, not in memory corruption, code
-execution, or disclosure of information from outside the file.
+execution, or disclosure of information from outside the file. Note that
+resource exhaustion, while good to prevent or protect, is not considered a
+security issue.
 
 Apache Parquet is a file format that is read and written by many independent
 implementations. Therefore, most security issues related to Parquet are specific
