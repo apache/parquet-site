@@ -35,15 +35,18 @@ a fix is available.
 The ASF vulnerability handling process is described at
 <https://www.apache.org/security/>.
 
-## Parquet is a File Format, Not an Implementation
+## Security Model
 
-Apache Parquet is a file format defined by the specification in the
-[parquet-format] repository, and read and written by many independent
-implementations.
+Parquet files are frequently exchanged between systems and organizations.
+Implementations should treat the contents of a file, both data and metadata, as
+untrusted input and validate it before use. Reading a malformed or malicious
+file should result in an error or incorrect data, not in memory corruption, code
+execution, or disclosure of information from outside the file.
 
-Therefore, most security issues related to Parquet are specific to a particular
-implementation rather than the format, and you should consult the security
-policy for that implementation. For example:
+Apache Parquet is a file format that is read and written by many independent
+implementations. Therefore, most security issues related to Parquet are specific
+to a particular implementation rather than the format, and you should consult
+the security policy for that implementation. For example:
 
 | Implementation | Security information |
 |----------------|----------------------|
@@ -56,10 +59,3 @@ policy for that implementation. For example:
 [Apache Arrow]: https://arrow.apache.org/
 [arrow-rs]: https://github.com/apache/arrow-rs
 
-## General Security Model
-
-Parquet files are frequently exchanged between systems and organizations.
-Implementations should treat the contents of a file, both data and metadata, as
-untrusted input and validate it before use. Reading a malformed or malicious
-file should result in an error or incorrect data, not in memory corruption, code
-execution, or disclosure of information from outside the file.
