@@ -21,7 +21,7 @@ linkTitle: "Security"
 weight: 2
 ---
 
-This page describes the security policy of the Apache Parquet project
+This page describes the security policy of the Apache Parquet project.
 
 ## Reporting a Vulnerability
 
