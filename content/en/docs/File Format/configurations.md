@@ -32,22 +32,13 @@ optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block
 per HDFS file.
 
 ### Data Page Size
-Each data page is compressed on its own. To read any value in a page, a reader
-must decompress and decode the whole page. Small pages help selective reads, such
-as single row lookups, when the reader skips the pages that it does not need.
-Large pages have fewer page headers and fewer page index entries, so they use less
-space and less parsing time. Large pages can also compress better. The gain
-depends on the data, the encoding, the compression codec, and the codec settings.
+Data page size is a tradeoff. Small pages are better for point lookups, because a
+reader decompresses and decodes less data to read one value. Large pages need less
+metadata, because a column chunk has fewer page headers and fewer page index
+entries. Large pages also compress and encode better.
 
-A page is not always the unit of IO. Readers can combine adjacent pages into one
-larger read, mostly in sequential scans. Cloud object storage has a high latency
-for each request. If your files are on such storage, check how your reader
-buffers and combines reads before you choose a page size. Some readers decompress
-and decode pages in parallel. For these readers, the page size also changes the
-amount of parallel work.
+A page is not necessarily the unit of IO. Readers can combine the fetches of
+adjacent pages into one larger read to reduce IO time.
 
-No single page size is best for all workloads. Start with the default of your
-writer. Then benchmark representative data and queries with the readers and the
-storage system that you plan to use. Compare the compression ratio, the metadata
-size, the scan throughput, and the speed of selective reads. Include the data
-types and value sizes that your workload uses.
+No single page size fits all workloads. Choose the page size for the workload,
+the storage system, and the engine that reads the files.
