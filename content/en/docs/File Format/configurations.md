@@ -32,25 +32,21 @@ optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block
 per HDFS file.
 
 ### Data Page Size
-Data pages are the unit of compression and encoding, so a reader must decompress
-and decode a whole page to read any value in it. The right size depends on the
-workload; there is no single best value.
+Data pages are compressed independently. Smaller pages can reduce unnecessary
+decompression and decoding for selective reads (e.g. single row lookups), when the
+reader can skip pages. Larger pages reduce the number of page headers and page
+index entries, saving space and parsing overhead. They can also improve
+compression, depending on the data, encoding, compression codec, and codec
+settings.
 
-Smaller pages allow more fine grained reading (e.g. point lookups or selective
-filters combined with the [page index](../pageindex/)), since less unneeded data
-is decompressed and decoded.
+A page is not necessarily the unit of IO: readers can combine adjacent pages into
+larger reads, particularly for sequential scans. On storage with high request
+latency, such as cloud object storage, consider the reader's buffering and read
+coalescing behavior when choosing a page size. Page size can also affect
+parallelism in readers that decompress or decode pages in parallel.
 
-Larger pages:
-* compress better, since each page is compressed independently. How much this
-  helps depends on the codec: codecs with small windows (e.g. Snappy, Gzip) gain
-  little beyond a few tens of KB, while ZSTD can benefit from larger pages.
-* have less overhead from page headers and their parsing.
-* produce smaller page indexes, since there is one entry per page.
-
-Page size does not determine IO size: for sequential scans, readers typically
-read whole column chunks (or large ranges of them) rather than one page at a
-time.
-
-Most implementations (e.g. parquet-java, Arrow C++, Arrow Rust) default to a 1MB
-page size target, often combined with a cap on the number of rows per page.
-Sizes in the range of 64KB to 1MB work well for most workloads.
+There is no single page size that is best for all workloads. Start with the
+writer's default and benchmark representative data and queries using the intended
+readers and storage system. Consider data types and value sizes, compression
+ratio, metadata overhead, and the tradeoff between scan throughput and selective
+read performance.
