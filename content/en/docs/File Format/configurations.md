@@ -32,21 +32,22 @@ optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block
 per HDFS file.
 
 ### Data Page Size
-Data pages are compressed independently. Smaller pages can reduce unnecessary
-decompression and decoding for selective reads (e.g. single row lookups), when the
-reader can skip pages. Larger pages reduce the number of page headers and page
-index entries, saving space and parsing overhead. They can also improve
-compression, depending on the data, encoding, compression codec, and codec
-settings.
+Each data page is compressed on its own. To read any value in a page, a reader
+must decompress and decode the whole page. Small pages help selective reads, such
+as single row lookups, when the reader skips the pages that it does not need.
+Large pages have fewer page headers and fewer page index entries, so they use less
+space and less parsing time. Large pages can also compress better. The gain
+depends on the data, the encoding, the compression codec, and the codec settings.
 
-A page is not necessarily the unit of IO: readers can combine adjacent pages into
-larger reads, particularly for sequential scans. On storage with high request
-latency, such as cloud object storage, consider the reader's buffering and read
-coalescing behavior when choosing a page size. Page size can also affect
-parallelism in readers that decompress or decode pages in parallel.
+A page is not always the unit of IO. Readers can combine adjacent pages into one
+larger read, mostly in sequential scans. Cloud object storage has a high latency
+for each request. If your files are on such storage, check how your reader
+buffers and combines reads before you choose a page size. Some readers decompress
+and decode pages in parallel. For these readers, the page size also changes the
+amount of parallel work.
 
-There is no single page size that is best for all workloads. Start with the
-writer's default and benchmark representative data and queries using the intended
-readers and storage system. Consider data types and value sizes, compression
-ratio, metadata overhead, and the tradeoff between scan throughput and selective
-read performance.
+No single page size is best for all workloads. Start with the default of your
+writer. Then benchmark representative data and queries with the readers and the
+storage system that you plan to use. Compare the compression ratio, the metadata
+size, the scan throughput, and the speed of selective reads. Include the data
+types and value sizes that your workload uses.
