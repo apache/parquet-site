@@ -23,208 +23,265 @@ description: >
   How to release Parquet-Java
 ---
 
+### Overview
+
+Three GitHub Actions workflows in
+[apache/parquet-java](https://github.com/apache/parquet-java/actions) run the
+Parquet-Java releases. The workflows tag the release, stage and publish the
+Maven artifacts in Nexus, and stage the source tarball on dist.apache.org.
+They also create the GitHub releases and write the e-mails that the release
+manager sends.
+
+| Workflow | When to run it |
+| --- | --- |
+| **Release - Prepare RC** | To create a release candidate |
+| **Release - Cancel RC** | When a vote fails |
+| **Release - Publish After Vote** | When a vote passes |
+
+To run a workflow:
+
+1. Open the [Actions tab](https://github.com/apache/parquet-java/actions).
+2. Select the workflow.
+3. Click **Run workflow**.
+4. Set the inputs.
+
+Always run the workflows from `master`. The Prepare RC and Publish workflows
+use the version to find the `parquet-X.Y.x` release branch. Then they check
+out that branch themselves.
+
+Each workflow has a **Dry run** input, and it is selected by default. A dry
+run prints each command and does not run it. Always use this sequence:
+
+1. Do a dry run.
+2. Read the summary of the dry run.
+3. Run the workflow again with **Dry run** cleared.
+
+Each run writes its results, the next steps, and any e-mail text to the
+**Summary** page of the run. Keep the summary of the Prepare RC run. The
+Publish and Cancel RC workflows need the Nexus staging repository ID from it.
+
+N.B. These workflows release only parquet-java. The steps to release
+parquet-format are manual. The mechanics (keys, branches, votes) are the same.
+
 ### Setup
 
-N.B. The mechanics of releasing parquet-format is the same (e.g. setting up keys, branching, votes, etc)
+You will need:
 
-You will need: 
+- Write access to apache/parquet-java, to run the workflows.
+- PMC membership, or a PMC member who helps you, for the final step on
+  dist.apache.org. The workflow credentials can write only to
+  `dist/dev/parquet`. A move into `dist/release/parquet` needs the SVN
+  credentials of a PMC member.
 
-- PGP code signing keys, published in [KEYS](https://downloads.apache.org/parquet/KEYS).
-- Permission to stage artifacts in [Nexus](https://repository.apache.org/).
+The workflows use these repository secrets:
 
-Make sure you have permission to deploy Parquet artifacts to Nexus by pushing a snapshot:
+| Secret | Use |
+| --- | --- |
+| `PARQUET_GPG_PRIVATE_KEY` | Signs the release. |
+| `NEXUS_STAGE_DEPLOYER_USER`, `NEXUS_STAGE_DEPLOYER_PW` | Deploy to [Nexus](https://repository.apache.org/). |
+| `PARQUET_SVN_DEV_USERNAME`, `PARQUET_SVN_DEV_PASSWORD` | Write to `dist/dev/parquet`. |
 
-```sh
-mvn deploy
+The workflows sign releases with the key "Apache Parquet Automated Release
+Signing". The [KEYS](https://downloads.apache.org/parquet/KEYS) file contains
+this key:
+
 ```
-
-If you have problems, read the [publishing Maven artifacts documentation](https://www.apache.org/dev/publishing-maven-artifacts.html).
+pub   rsa4096 2026-08-31 [SC]
+      DD1E 0FA3 56E5 268B E450  B2AA A528 E51B CE01 BCFE
+uid   Apache Parquet Automated Release Signing <private@parquet.apache.org>
+```
 
 ### Release process
 
-Parquet uses the maven-release-plugin to tag a release and push binary artifacts to staging in Nexus. Once maven completes the release, the official source tarball is built from the tag.
-
 #### 0\. Before you start the release process
 
-1. Verify that the release is finished (no planned Issues/PRs are pending [on the milestone](https://github.com/apache/parquet-java/milestones)) 
-1. Build and test the project 
-1. Create a new branch for the release if this is a new minor version. For example, if the new minor version is 1.14.0, create a new branch `parquet-1.14.x`
+1. Verify that the release is complete. No planned issues or PRs are open [on the milestone](https://github.com/apache/parquet-java/milestones).
+2. For a patch release, backport the fixes to the `parquet-X.Y.x` branch.
+3. Verify that CI passes on the commit that you will release. The workflow stops if CI does not pass.
 
-#### 1\. Run the prepare script
+#### 1\. Run "Release - Prepare RC"
 
-```sh
-./dev/prepare-release.sh <version> <rc-number>
-```
+| Input | Required | Default | Description |
+| --- | --- | --- | --- |
+| `version` | Yes | | The release version, for example `1.18.0`. |
+| `rc_number` | No | Next free RC number | The RC number. Set it only to override the next free number. The workflow stops if the RC tag already exists. |
+| `dry_run` | No | Selected | Print each command and do not run it. |
 
-This runs maven’s release prepare with a consistent tag name. After this step, the release tag will exist in the git repository.
+For a new minor release, the workflow creates the `parquet-X.Y.x` release
+branch from `master`. For a patch release, it uses the existing
+`parquet-X.Y.x` branch.
 
-If this step fails, you can roll back the changes by running these commands.
+The workflow:
 
-```sh
-find ./ -type f -name '*.releaseBackup' -exec rm {} \;
-find ./ -type f -name 'pom.xml' -exec git checkout {} \;
-```
+1. Creates the `parquet-X.Y.x` branch if it does not exist, then checks out the branch.
+2. Finds the next RC number.
+3. Verifies that CI passes on the release commit.
+4. Sets the POM version to the release version and commits it.
+5. Creates the RC tag, for example `apache-parquet-1.18.0-rc0`.
+6. Deploys the artifacts to a Nexus staging repository. Then it closes and verifies the repository.
+7. Builds and signs the source tarball, and writes its SHA-512 checksum.
+8. Stages the tarball, signature, and checksum in
+   [dist/dev/parquet](https://dist.apache.org/repos/dist/dev/parquet/).
+9. Pushes the RC tag and creates a GitHub pre-release with generated release notes.
+10. Writes the VOTE e-mail to the run summary.
 
-#### 2\. Run release:perform to stage binaries
+Record the **Nexus staging repository ID** from the summary, for example
+`orgapacheparquet-1234`.
 
-Upload binary artifacts for the release tag to [Nexus](https://repository.apache.org/):
+#### 2\. Review the pre-release notes
 
-```sh
-mvn release:perform -DskipTests -Darguments=-DskipTests
-```
+Open the [pre-release](https://github.com/apache/parquet-java/releases) that
+the workflow created. You can edit the generated notes. For example, remove
+unrelated changes (whitespace, test-only changes) and sort the changes to make
+them easier to read.
 
-#### 3\. In Nexus, close the staging repository
+#### 3\. Send the VOTE e-mail to [dev@parquet.apache.org](mailto:dev@parquet.apache.org)
 
-Closing a staging repository makes the binaries available in [staging](https://repository.apache.org/content/groups/staging/org/apache/parquet/), but does not publish them.
+Copy the VOTE e-mail from the run summary. Add a summary of the important
+changes in the release. Verify that all of the e-mail text applies to your
+release.
 
-1.  Go to [Nexus](https://repository.apache.org/).
-2.  In the menu on the left, choose “Staging Repositories”.
-3.  Select the Parquet repository.
-4.  At the top, click “Close” and follow the instructions. For the comment use “Apache Parquet \[Format\] ”.
+### If the vote fails
 
-#### 4\. Run the source tarball script
+Run **Release - Cancel RC** with these inputs:
 
-```sh
-dev/source-release.sh <version> <rc-number>
-```
+| Input | Required | Default | Description |
+| --- | --- | --- | --- |
+| `version` | Yes | | The release version, for example `1.18.0`. |
+| `rc_number` | Yes | | The RC number that failed the vote, for example `0`. |
+| `staging_repo_id` | Yes | | The Nexus staging repository ID from the Prepare RC summary, for example `orgapacheparquet-1234`. |
+| `allow_description_mismatch` | No | Cleared | Do not verify that the staging repository description is `Apache Parquet <VERSION> RC<NUM>`. Use it only for recovery, when someone changed the description by hand. |
+| `dry_run` | No | Selected | Print each command and do not run it. |
 
-This script builds the source tarball from the release tag’s SHA1, signs it, and uploads the necessary files with SVN.
+Before the workflow drops the staging repository, it verifies that the
+repository:
 
-The source release is pushed to [https://dist.apache.org/repos/dist/dev/parquet/](https://dist.apache.org/repos/dist/dev/parquet/)
+- Belongs to `org.apache.parquet`.
+- Is closed.
+- Contains the release version.
+- Has the expected description.
 
-The last message from the script is the release commit’s SHA1 hash and URL for the VOTE e-mail.
+The workflow drops the Nexus staging repository and removes the RC from
+`dist/dev/parquet`. It also writes the vote result e-mail to the run summary.
+Add the reason that the vote failed to the e-mail. Then send the e-mail to the
+dev list.
 
-### 5\. Prepare the pre-release
-
-Creating the [pre-release](https://github.com/apache/parquet-java/releases/new) will give the users the changelog to see if they need to validate certain functionality. First select the newly created `rc` (ex: `apache-parquet-1.15.0-rc0`) tag, and then the previous release (ex. `apache-parquet-1.14.1`). Hit the `Generate release notes` button to auto generate the notes. You can curate the notes a bit by removing unrelated changes (whitespace, test-only changes) and sorting them to make them easier to digest. Make sure to check the `Set as pre-release` checkbox as this is a release candidate.
-
-#### 6\. Send a VOTE e-mail to [dev@parquet.apache.org](mailto:dev@parquet.apache.org)
-
-Here is a template you can use. Make sure everything applies to your release.
-
-    Subject: [VOTE] Release Apache Parquet <VERSION> RC<NUM>
-
-
-    Hi everyone,
-
-    I propose the following RC to be released as official Apache Parquet <VERSION> release.
-
-    The commit id is <SHA1>
-    * This corresponds to the tag: apache-parquet-<VERSION>-rc<NUM>
-    * https://github.com/apache/parquet-java/tree/<SHA1>
-
-    The release tarball, signature, and checksums are here:
-    * https://dist.apache.org/repos/dist/dev/parquet/<PATH>
-
-    You can find the KEYS file here:
-    * https://downloads.apache.org/parquet/KEYS
-
-    You can find the changelog here:
-    https://github.com/apache/parquet-java/releases/tag/apache-parquet-<VERSION>-rc<NUM>
-
-    Binary artifacts are staged in Nexus here:
-    * https://repository.apache.org/content/groups/staging/org/apache/parquet/
-
-    This release includes important changes that I should have summarized here, but I'm lazy.
-
-    Please download, verify, and test.
-
-    Please vote in the next 72 hours.
-
-    [ ] +1 Release this as Apache Parquet <VERSION>
-    [ ] +0
-    [ ] -1 Do not release this because...
-
-
+The RC tag and the GitHub pre-release stay in place, so no later RC uses the
+same RC number. After you fix the issues, run Prepare RC again. It uses the
+next RC number.
 
 ### Publishing after the vote passes
 
-After a release candidate passes a vote, the candidate needs to be published as the final release.
+#### 1\. Send the vote result e-mail
 
-#### 1\. Tag final release and set development version
+Send a `[RESULT][VOTE] Release Apache Parquet <VERSION> RC<NUM>` e-mail to the
+dev list with the vote counts.
+
+#### 2\. Run "Release - Publish After Vote"
+
+| Input | Required | Default | Description |
+| --- | --- | --- | --- |
+| `version` | Yes | | The release version, for example `1.18.0`. |
+| `rc_number` | No | Latest RC | The RC number that passed the vote. It must be the latest RC for the version. |
+| `staging_repo_id` | Yes | | The Nexus staging repository ID from the Prepare RC summary, for example `orgapacheparquet-1234`. |
+| `allow_description_mismatch` | No | Cleared | Do not verify that the staging repository description is `Apache Parquet <VERSION> RC<NUM>`. Use it only for recovery, when someone changed the description by hand. |
+| `dry_run` | No | Selected | Print each command and do not run it. |
+
+Before it changes anything, the workflow verifies that the staging repository:
+
+- Belongs to `org.apache.parquet`.
+- Is closed.
+- Contains the release version.
+- Has the description `Apache Parquet <VERSION> RC<NUM>`.
+
+The workflow also checks out the `parquet-X.Y.x` branch and verifies that the
+head of the branch is the RC commit. Then the workflow:
+
+1. Creates the final release tag, for example `apache-parquet-1.18.0`, on the RC commit.
+2. Releases the Nexus staging repository to Maven Central.
+3. Pushes the release tag and creates the GitHub release.
+4. Sets the next development version on the release branch, for example
+   `1.18.1-SNAPSHOT`, and pushes it.
+5. Writes the remaining manual steps and the ANNOUNCE e-mail to the run summary.
+
+#### 3\. Move the release on dist.apache.org (PMC member)
+
+The run summary has a block of `svn` commands for the release. A PMC member
+copies the block and runs it with their own SVN credentials. The commands:
+
+- Move the RC from `dist/dev/parquet` to `dist/release/parquet`.
+- Remove the older patch releases of the same minor version that the new
+  release replaces. The commands do not change releases of other minor
+  versions.
+
+For example, for 1.14.3:
 
 ```sh
-./dev/finalize-release <release-version> <rc-num> <new-development-version-without-SNAPSHOT-suffix>
+svn mv https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.14.3-rc0 \
+  https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.3 \
+  -m "Release Apache Parquet 1.14.3"
+svn rm https://dist.apache.org/repos/dist/release/parquet/apache-parquet-1.14.2 \
+  -m "Remove old release apache-parquet-1.14.2 (superseded by 1.14.3)"
 ```
 
-This will add the final release tag to the RC tag and sets the new development version in the pom files. If everything is fine push the changes and the new tag to GitHub: `git push --follow-tags`
-
-#### 2\. Release the binary repository in Nexus
-
-Releasing a binary repository publishes the binaries to [public](https://repository.apache.org/content/groups/public/org/apache/parquet/).
-
-1.  Go to [Nexus](https://repository.apache.org/).
-2.  In the menu on the left, choose “Staging Repositories”.
-3.  Select the Parquet repository.
-4.  At the top, click Release and follow the instructions. For the comment use “Apache Parquet \[Format\] ”.
-
-#### 3\. Copy the release artifacts in SVN into releases
-
-First, check out the candidates and releases locations in SVN:
-
-```sh
-svn mv https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-<VERSION>-rcN/ https://dist.apache.org/repos/dist/release/parquet/apache-parquet-<VERSION> -m "Parquet: Add release <VERSION>"
-```
+Removed releases stay available on [archive.apache.org](https://archive.apache.org/dist/parquet/).
 
 #### 4\. Update parquet.apache.org
 
-Update the downloads page on parquet.apache.org. Instructions for updating the site are on the [contribution page](https://parquet.apache.org/docs/contribution-guidelines/contributing/).
+Update the downloads page on parquet.apache.org. Add a release blog post. The
+run summary has a template for the blog post. The
+[contribution page](https://parquet.apache.org/docs/contribution-guidelines/contributing/)
+tells you how to update the site.
 
-### 5\. Add the release to GitHub
+#### 5\. Send the ANNOUNCE e-mail to [announce@apache.org](mailto:announce@apache.org) and the dev list
 
-Add a [new release to GitHub](https://github.com/apache/parquet-java/releases/new). First select the newly tag (ex: `apache-parquet-1.15.0`), and then the previous release (ex. `apache-parquet-1.14.1`). You can copy the release notes from the RC that passed the vote.
+Copy the ANNOUNCE e-mail from the run summary. The e-mail links to the
+downloads page. Send it after the release is on
+[downloads.apache.org](https://downloads.apache.org/parquet/) and after you
+update the site.
 
-#### 6\. Send an ANNOUNCE e-mail to [announce@apache.org](mailto:announce@apache.org) and the dev list
+#### 6\. Update the feature recommendations in parquet-format
 
-    [ANNOUNCE] Apache Parquet release <VERSION>
-
-
-    I'm pleased to announce the release of Parquet <VERSION>!
-
-    Parquet is a general-purpose columnar file format for nested data. It uses
-    space-efficient encodings and a compressed and splittable structure for
-    processing frameworks like Hadoop.
-
-    Changes are listed at: https://github.com/apache/parquet-java/releases/tag/apache-parquet-<VERSION>
-
-    This release can be downloaded from: https://parquet.apache.org/downloads/
-
-    Java artifacts are available from Maven Central.
-
-    Thanks to everyone for contributing!
-
-#### 6\. Update parquet-format with feature enablement guidance
-
-The recommendations for other feature enablement is generally tied to releases of
-parquet-java (details are in the parquet-format repo).  As releases are made the
-specification should be updated to indicate the recommended dates for when a new
+Recommendations about when to enable features are usually related to
+parquet-java releases. The parquet-format repository has the details. After
+each release, update the specification with the recommended date when each new
 feature may be enabled.
 
+### Running the release scripts locally
+
+Each workflow runs a script in
+[`release/bin`](https://github.com/apache/parquet-java/tree/master/release/bin)
+of parquet-java. You can run the scripts on your own machine, for example to
+debug a failed run. See the
+[release README](https://github.com/apache/parquet-java/blob/master/release/README.md)
+for details.
 
 ### Release Cadence
 
-Provided enough volunteers are available the Parquet community aims to have
-releases on a quarterly basis (Targets months are January, April, July and
-October). If a new major version is necessary it will be targetted for the
-October release.
+If enough volunteers are available, the Parquet community aims to release
+every quarter. The target months are January, April, July, and October. If a
+new major version is necessary, the community targets the October release for
+it.
 
 ### Release Verification
 
-The Apache Parquet Release Approval process follows the guidelines defined at the
+The approval process for Apache Parquet releases follows the guidelines on the
 Apache Software Foundation [Release Approval](https://www.apache.org/legal/release-policy.html#release-approval) page.
 
-For a release vote to pass, a minimum of three positive binding votes and more
-positive binding votes than negative binding votes MUST be cast.
-Releases may not be vetoed. Votes cast by PMC members are binding, however,
-non-binding votes are greatly encouraged and a sign of a healthy project.
+For a release vote to pass, it MUST get a minimum of three positive binding
+votes. It MUST also get more positive binding votes than negative binding
+votes. No one may veto a release. Votes from PMC members are binding. The
+project strongly encourages non-binding votes, which are a sign of a healthy
+project.
 
-In order to cast a vote individuals are expected to follow the following steps.
+To cast a vote, you are expected to do the steps that follow.
 
-#### Download source package, signature file, hash file and KEYS
+#### Download the source package, signature, checksum, and KEYS
 
-The Release candidate will be present at `https://dist.apache.org/repos/dist/dev/parquet/`.
-The RC folder will depend on the version and the release candidate id. See the following example files for
-Apache Parquet 1.15.0 RC 1:
+The release candidate is in `https://dist.apache.org/repos/dist/dev/parquet/`.
+The name of the RC folder contains the version and the RC number. For example,
+these are the files for Apache Parquet 1.15.0 RC1:
+
 ```
 wget https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.15.0-rc1/apache-parquet-1.15.0.tar.gz
 wget https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.15.0-rc1/apache-parquet-1.15.0.tar.gz.asc
@@ -232,11 +289,12 @@ wget https://dist.apache.org/repos/dist/dev/parquet/apache-parquet-1.15.0-rc1/ap
 wget https://dist.apache.org/repos/dist/release/parquet/KEYS
 ```
 
-#### Verify signature and hash
+#### Verify the signature and checksum
 
-GnuPG is recommended, which can be install by:
-- `yum install gnupg` or `apt-get install gnupg` on Linux based environments.
-- `brew install gnupg` on macOS environments.
+The project recommends GnuPG. To install it:
+
+- On Linux, run `yum install gnupg` or `apt-get install gnupg`.
+- On macOS, run `brew install gnupg`.
 
 ```
 gpg --import KEYS
@@ -244,25 +302,27 @@ gpg --verify apache-parquet-1.15.0.tar.gz.asc apache-parquet-1.15.0.tar.gz
 sha512sum --check apache-parquet-1.15.0.tar.gz.sha512
 ```
 
-#### Verify license header
+#### Verify the license headers
 
-Apache RAT is recommended to verify the license header, which can be dowload with the following command.
+The project recommends Apache RAT to verify the license headers. To download
+it, run these commands:
 
 ```
 wget https://archive.apache.org/dist/creadur/apache-rat-0.16.1/apache-rat-0.16.1-bin.tar.gz
 tar zxvf apache-rat-0.16.1-bin.tar.gz
 ```
 
-You can check with the following command. The current command uses a regular expression to avoid raising false
-positives for some files.
+Run the command that follows to verify the license headers. The command uses a
+regular expression to prevent false positives for some files.
 
-The command will output a summary, the list of files with their licenses and any file that does not contain a valid license header.
+The command prints a summary, a list of the files and their licenses, and each
+file that does not have a valid license header.
 
 ```
 java  -jar apache-rat-0.16.1/apache-rat-0.16.1.jar -a -d apache-parquet-1.15.0.tar.gz -e  "\w+.avsc$|\w+\-2.parquet$|.gitignore|PULL_REQUEST_TEMPLATE.md"
 ```
 
-#### Verify building and tests
+#### Verify the build and the tests
 
-Check the [building section](https://github.com/apache/parquet-java/blob/master/README.md#building) on the
-[parquet-java](https://github.com/apache/parquet-java) repository.
+See the [building section](https://github.com/apache/parquet-java/blob/master/README.md#building)
+of the [parquet-java](https://github.com/apache/parquet-java) README.
