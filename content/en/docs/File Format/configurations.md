@@ -35,7 +35,7 @@ per HDFS file.
 Data page size is a tradeoff. Small pages are better for point lookups, because a
 reader decompresses and decodes less data to read one value. Large pages need less
 metadata, because a column chunk has fewer page headers and fewer page index
-entries. Large pages also compress and encode better.
+entries. Large pages also typically compress and encode better.
 
 A page is not necessarily the unit of IO. Readers can combine the fetches of
 adjacent pages into one larger read to reduce IO time.
