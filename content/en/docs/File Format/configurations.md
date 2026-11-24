@@ -31,9 +31,14 @@ one HDFS block.  Therefore, HDFS block sizes should also be set to be larger.  A
 optimized read setup would be: 1GB row groups, 1GB HDFS block size, 1 HDFS block
 per HDFS file.
 
-### Data Page  Size
-Data pages should be considered indivisible so smaller data pages
-allow for more fine grained reading (e.g. single row lookup).  Larger page sizes
-incur less space overhead (less page headers) and potentially less parsing overhead
-(processing headers).  Note: for sequential scans, it is not expected to read a page
-at a time; this is not the IO chunk.  We recommend 8KB for page sizes.
+### Data Page Size
+Data page size is a tradeoff. Small pages are better for point lookups, because a
+reader decompresses and decodes less data to read one value. Large pages need less
+metadata, because a column chunk has fewer page headers and fewer page index
+entries. Large pages also typically compress and encode better.
+
+A page is not necessarily the unit of IO. Readers can combine the fetches of
+adjacent pages into one larger read to reduce IO time.
+
+No single page size fits all workloads. Choose the page size for the workload,
+the storage system, and the engine that reads the files.
