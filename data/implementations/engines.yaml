@@ -145,6 +145,9 @@
       "26.9":
         release_date: "2026-09-21"
         release_notes_url: "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.9.1.1629-stable"
+      "26.10":
+        release_date: "2026-10-24"
+        release_notes_url: "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.10.2.103-stable"
 
 - id: cudf
   name: cudf

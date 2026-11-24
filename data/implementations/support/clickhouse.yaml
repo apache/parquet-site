@@ -16,7 +16,7 @@
 # under the License.
 
 engine_id: clickhouse
-last_updated: "2026-10-11"
+last_updated: "2026-11-24"
 support:
   physical-boolean:
     status: full
@@ -80,7 +80,9 @@ support:
     status: read
     note: Read as raw bytes in a String column.
   logical-variant:
-    status: none
+    status: read
+    since_version_read: "26.10"
+    note: Read as Dynamic, or as JSON when requested explicitly; shredded variants are not supported.
   logical-geometry:
     status: none
     note: GeoParquet ("geo" key-value metadata) is supported instead; WKB and WKT are read, WKB is written.
@@ -88,7 +90,10 @@ support:
     status: none
     note: GeoParquet ("geo" key-value metadata) is supported instead; WKB and WKT are read, WKB is written.
   logical-file:
-    status: none
+    status: full
+    since_version_read: "26.10"
+    since_version_write: "26.10"
+    note: Read as a named Tuple; written from a Tuple with the FILE field names with output_format_parquet_write_file_logical_type = 1.
   logical-list:
     status: full
   logical-map:
