@@ -21,4 +21,45 @@ linkTitle: "Security"
 weight: 2
 ---
 
-[Security](https://www.apache.org/security/)
+This page describes the security policy of the Apache Parquet project.
+
+## Reporting a Vulnerability
+
+Please report suspected vulnerabilities privately to the Apache Software
+Foundation (ASF) security team at
+[security@apache.org](mailto:security@apache.org), who will triage the report
+and coordinate with the relevant project. Do **not** file a public GitHub issue
+or pull request for a suspected vulnerability, as that would disclose it before
+a fix is available.
+
+The ASF vulnerability handling process is described at
+<https://www.apache.org/security/>.
+
+## Security Model
+
+Parquet files are frequently exchanged between systems and organizations.
+Implementations should treat the contents of a Parquet file as untrusted input
+and validate it before use. The behavior of reading a file that does not match
+the specification is undefined. Reading such files can result in errors or
+unexpected data, but should not result in memory corruption, code execution, or
+disclosure of information from outside the file. Note that resource exhaustion,
+while good to prevent or protect against, is not considered a security issue.
+
+Apache Parquet is a file format that is read and written by many independent
+implementations. Therefore, most security issues related to Parquet are specific
+to a particular implementation rather than the format, and you should consult
+the security policy for that implementation. For example:
+
+| Implementation | Security information |
+|----------------|----------------------|
+| [parquet-java] | [SECURITY.md](https://github.com/apache/parquet-java/blob/master/SECURITY.md) |
+| Parquet C++ (part of [Apache Arrow]) | [Apache Arrow security](https://arrow.apache.org/security/) |
+| [arrow-rs] (the Rust `parquet` crate) | [SECURITY.md](https://github.com/apache/arrow-rs/blob/main/SECURITY.md) |
+| [Hardwood] | [SECURITY.md](https://github.com/hardwood-hq/hardwood/blob/main/SECURITY.md) |
+
+[parquet-format]: https://github.com/apache/parquet-format
+[parquet-java]: https://github.com/apache/parquet-java
+[Apache Arrow]: https://arrow.apache.org/
+[arrow-rs]: https://github.com/apache/arrow-rs
+[Hardwood]: https://github.com/hardwood-hq/hardwood
+
