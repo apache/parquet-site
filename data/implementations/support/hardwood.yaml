@@ -1,0 +1,164 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+engine_id: hardwood
+last_updated: "2026-11-26"
+support:
+  physical-boolean:
+    status: full
+  physical-int32:
+    status: full
+  physical-int64:
+    status: full
+  physical-int96:
+    status: read
+  physical-float:
+    status: full
+  physical-double:
+    status: full
+  physical-byte-array:
+    status: full
+  physical-fixed-len-byte-array:
+    status: full
+  logical-string:
+    status: full
+  logical-enum:
+    status: full
+  logical-uuid:
+    status: full
+  logical-int-types:
+    status: full
+  logical-decimal-int32:
+    status: full
+  logical-decimal-int64:
+    status: full
+  logical-decimal-byte-array:
+    status: full
+  logical-decimal-fixed-len-byte-array:
+    status: full
+  logical-float16:
+    status: full
+  logical-date:
+    status: full
+  logical-time-int32:
+    status: full
+  logical-time-int64:
+    status: full
+  logical-timestamp-int64:
+    status: full
+  logical-interval:
+    status: full
+  logical-json:
+    status: full
+  logical-bson:
+    status: full
+  logical-variant:
+    status: read
+    note: Both unshredded and shredded variants are read.
+  logical-geometry:
+    status: full
+    note: Geospatial statistics are read, not written.
+  logical-geography:
+    status: full
+    note: Geospatial statistics are read, not written.
+  logical-file:
+    status: full
+  logical-list:
+    status: full
+  logical-map:
+    status: full
+  logical-unknown:
+    status: full
+  encoding-plain:
+    status: full
+  encoding-plain-dictionary:
+    status: read
+  encoding-rle-dictionary:
+    status: full
+  encoding-rle:
+    status: full
+    note: Written only for repetition and definition levels; RLE-encoded BOOLEAN values are read.
+  encoding-bit-packed:
+    status: read
+  encoding-delta-binary-packed:
+    status: full
+  encoding-delta-length-byte-array:
+    status: full
+  encoding-delta-byte-array:
+    status: full
+  encoding-byte-stream-split:
+    status: full
+  encoding-alp:
+    status: full
+  encoding-byte-stream-split-extended:
+    status: full
+  compression-uncompressed:
+    status: full
+  compression-brotli:
+    status: full
+  compression-gzip:
+    status: full
+  compression-lz4-deprecated:
+    status: read
+    note: Both Hadoop-framed and raw LZ4 blocks are read.
+  compression-lz4-raw:
+    status: full
+  compression-lzo:
+    status: none
+  compression-snappy:
+    status: full
+  compression-zstd:
+    status: full
+  format-bloom-filters:
+    status: full
+  format-bloom-filter-length:
+    status: full
+  format-stats-min-max:
+    status: full
+  format-page-index:
+    status: full
+  format-page-crc32:
+    status: full
+  format-modular-encryption:
+    status: none
+  format-size-statistics:
+    status: full
+  format-data-page-v2:
+    status: full
+  api-parquet-summary-file:
+    status: none
+  api-sorting-columns:
+    status: write
+  api-rowgroup-pruning-stats:
+    status: full
+  api-rowgroup-pruning-bloom:
+    status: full
+  api-rowgroup-pruning-dictionary:
+    status: full
+  api-column-projection:
+    status: full
+  api-page-pruning-stats:
+    status: full
+  api-payload-page-pruning-row-mask:
+    status: full
+    note: The mask comes from page index statistics; no caller-supplied mask.
+  api-sparse-payload-page-io:
+    status: full
+  api-late-materialization:
+    status: none
+  api-separate-io-decoding:
+    status: none

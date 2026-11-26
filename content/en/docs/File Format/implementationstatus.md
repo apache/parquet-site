@@ -46,6 +46,7 @@ The value in each box means:
 * [duckdb](https://github.com/duckdb/duckdb) (C++)
 * [polars](https://github.com/pola-rs/polars) (Rust)
 * [DataHaskell](https://github.com/DataHaskell/dataframe) (Haskell)
+* [Hardwood](https://github.com/hardwood-hq/hardwood) (Java)
 
 <!-- Data driven table, see /layouts/shortcodes -->
 {{< implementation-status >}}

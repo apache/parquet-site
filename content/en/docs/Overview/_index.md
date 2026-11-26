@@ -65,3 +65,4 @@ Here is a non-exhaustive list of open source Parquet implementations:
 * [Apache Impala](https://github.com/apache/impala)
 * [DuckDB](https://github.com/duckdb/duckdb)
 * [fastparquet, a Python implementation of the Apache Parquet format](https://github.com/dask/fastparquet)
+* [Hardwood](https://github.com/hardwood-hq/hardwood) ([documentation](https://hardwood.dev/))
