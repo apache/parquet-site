@@ -261,3 +261,16 @@
       "3.6.0.0":
         release_date: "2026-08-29"
         release_notes_url: "https://hackage.haskell.org/package/dataframe-3.6.0.0/changelog"
+
+- id: hardwood
+  name: Hardwood
+  display_name: Hardwood
+  language: Java
+  repo_url: https://github.com/hardwood-hq/hardwood
+  docs_url: https://hardwood.dev/
+  versions:
+    default: "1.1.0.CR1"
+    releases:
+      "1.1.0.CR1":
+        release_date: "2026-11-24"
+        release_notes_url: "https://github.com/hardwood-hq/hardwood/releases/tag/v1.1.0.CR1"
